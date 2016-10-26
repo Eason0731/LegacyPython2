@@ -1,0 +1,44 @@
+#
+# Neutron Text Command Script File v1.0
+
+# 1. Create a solid box.
+
+NuCommands.NewDocumentCmd FusionAssetType 2b401f4e-e0e5-4454-82c4-e36ab54c5813 2
+Commands.Start PrimitiveBox
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (2, 0, 1.7427113056182861)
+NaFusionUI.SetPoint SketchFirstPointInput (3.5, -4.5, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-3.5, 2, 0) 3 0
+Commands.SetDouble boxWidth 6.5 () ()
+Commands.SetDouble boxLength 7 () ()
+Commands.SetDouble primitiveHeight 4.5 () ()
+NuCommands.CommitCmd
+# 2. Add a G2 Fillet to a vertical edge
+Commands.Start FusionPressPullCommand
+Commands.SetSelections PressPullSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:128=(3.5, 2.25, 4.5)" (3.5, 2.6132216453552246, 4.5)
+Commands.ListCtrlSelCmdInput SelectionListControl CurrentCellChanged 0 0 -1 -1
+Commands.SetDouble FilletEdgesRadius 2.7500000000000004 () ()
+Commands.SetBool "FusionFilletG2BlendOption" 1
+NuCommands.CommitCmd
+# 3. Create a horizontal construction plane across the box
+NaFusionUI.WorkPlaneOffsetFromPlaneCmd
+Commands.SetSelections OffsetWorkPlaneFacesInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:64=(2.8520235131168534, 4.5, 3.7211615566056371)" (-0.97277909517288208, 4.5, 0.6690746545791626)
+Commands.SetDouble OffsetWorkPlaneDistanceInput -2 () ()
+NuCommands.CommitCmd
+# 4. Intersect, then select the face of G2 fillet
+Commands.Start IntersectCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/WorkGeometries/WorkPlane=Plane1/LeafType:16777216=0" (4.2000679969787598, 2.5, -2.1556811332702637)
+Commands.SetSelections SketchSelection "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:64=(2.7211683671163223, 1.0000000000065512e-005, 3.8520308354760511)" (2.6872484683990479, 0.63882255554199219, 3.8809037208557129)
+Commands.SetSelections SketchSelection
+NuCommands.CommitCmd
+NaFusionUI.SketchStopCmd
+Test.ValidateFusionSketch v1
+# 5. Edit the fillet, change the radius. OK
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/DcNodes/Fillet1" (0, 0, 0)
+Commands.Start FusionDcFilletEditCommand
+Commands.ListCtrlSelCmdInput SelectionListControl CurrentCellChanged 0 0 -1 -1
+Commands.SetDouble FilletEdgesRadius 3.4999999999999996 () (d6)
+NuCommands.CommitCmd
+Test.ValidateTimeline v2
+Test.ValidateFusionSketch v2
+Test.ValidateChecksum v2
+NuCommands.CloseDocumentCmd

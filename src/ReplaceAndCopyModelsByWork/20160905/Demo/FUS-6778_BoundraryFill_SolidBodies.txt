@@ -1,0 +1,65 @@
+#
+# Neutron Text Command Script File v1.0
+#
+# 1. Open document attached
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.OpenDocumentCmd "RP=Fusion/Test/Dataset/Surface/BoundaryFill1.f3d"
+# 2. Invoke Boundary fill
+NuCommands.ActivateEnvironmentCmd FusionSurfaceEnvironment
+NuCommands.SelectCmd
+Commands.Start SurfaceSculpt
+# 3. Select tools: XZ workplane, 3 solid models
+Commands.SetSelections SculpToolSelectionInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/OriginWorkGeometry/WorkPlane=XZ" (0, 0, 0)
+Commands.SetSelections SculpToolSelectionInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/OriginWorkGeometry/WorkPlane=XZ" (0, 0, 0) "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/Bds/Bd=Body3" (1.533852219581604, 14.030668258666992, 6.7513766288757324)
+Commands.SetSelections SculpToolSelectionInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/OriginWorkGeometry/WorkPlane=XZ" (0, 0, 0) "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/Bds/Bd=Body3" (1.533852219581604, 14.030668258666992, 6.7513766288757324) "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/Bds/Bd=Body1" (-0.98249685764312744, 2.8918068408966064, 9.3602027893066406)
+Commands.SetSelections SculpToolSelectionInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/OriginWorkGeometry/WorkPlane=XZ" (0, 0, 0) "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/Bds/Bd=Body3" (1.533852219581604, 14.030668258666992, 6.7513766288757324) "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/Bds/Bd=Body1" (-0.98249685764312744, 2.8918068408966064, 9.3602027893066406) "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/Bds/Bd=Body2" (-3.50972580909729, 1.2093783617019653, 10.830610275268555)
+# 4. Select Cells: 5 cells, see attached video
+Commands.SetSelectedCells SculpCellSelectionInput (1, 2.5606062796717812, 5.5000000000000009)_280.11849928505404 (1, 10.060606279671781, 5.5)_57.297839967715852 (1, 0.23928673001140258, 5.5)_1.1862207637799753 (1, 2.6499999999999968, 5.5)_30.502539610157779 (1, 0.65602284442780978, 5.5)_109.24986851631512
+# 5. Operation: New component
+Commands.SetString infoBooleanType infoNewBodyInNewCompType
+# 6. Click OK
+# Nested Trigger: Commands.SetSelectedCells SculpCellSelectionInput
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+# 7. Move component
+Commands.Start FusionMoveComponentsCommand
+Commands.PreSelection MoveComponentsComponentsInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:128=(1, 0, 13.312045688855626)" (-3.3812129497528076, 0, 11.955416679382324)
+Commands.PreUnSelection MoveComponentsComponentsInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/CmpInsts/CmpInst=Component1:1" (-0.93428677320480347, 1.254361629486084, 12.073504447937012)
+Commands.PreSelection MoveComponentsComponentsInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:64=(1, 9.9999999997095481e-006, 13.312045688817518)" (-0.93428677320480347, 1.254361629486084, 12.073504447937012)
+Commands.PreUnSelection MoveComponentsComponentsInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/CmpInsts/CmpInst=Component1:1" (-0.80530166625976563, 0.47857347130775452, 10.460025787353516)
+Commands.PreSelection MoveComponentsComponentsInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:128=(1, 0.47857346002281193, 10.778348931565798)" (-0.80530166625976563, 0.47857347130775452, 10.460025787353516)
+Commands.SetSelections MoveComponentsComponentsInput "ONK::CmpInst=BoundaryFill1/Cmp=BoundaryFill1/CmpInsts/CmpInst=Component1:1" (-0.80530166625976563, 0.47857347130775452, 10.460025787353516)
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 1 1
+Commands.SetDouble AxisX 0.5
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 4
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 7.5
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 12
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 15
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 17
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 18.5
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 19.5
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 20
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 20.5
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 21
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.SetDouble AxisX 21.5
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 2 1
+Commands.ManipulatorEvent MoveComponentsTransformInput AxisX 3 1
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+# Validation
+Test.ValidateChecksum BoundaryFill  
+Test.ValidateMaterial BoundaryFill
+Test.ValidateFusionBrowser BoundaryFill 
+# 8. Close document
+NuCommands.CloseDocumentCmd

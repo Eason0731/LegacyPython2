@@ -1,0 +1,39 @@
+#
+# Neutron Text Command Script File v1.0
+
+NuCommands.NewDocumentCmd FusionAssetType 87070ab4-98ca-46ec-aa61-abbd3bb426c7 2
+# 1
+NaFusionUI.Rectangle3PtCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.7575764656066895, 0, 1.5737286806106567)
+NaFusionUI.SetPoint SketchFirstPointInput (-2.5, -3.5, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-1, -1, 0) 3 0
+NaFusionUI.SetPoint SketchThirdPointInput (0.5, -2.5, 0) 3 0
+NuCommands.CommitCmd
+Commands.Start CircleThreePoint
+NaFusionUI.SetPoint SketchFirstPointInput (-1.5000000223517418, -3.0000000447034836, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-0.90000001341104507, -3.5000000521540642, 0) 3 0
+NaFusionUI.SetPoint SketchThirdPointInput (0.90000001341104507, -2.8000000417232513, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.SketchBreakCmd
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/CircArc:4:1=(-1.7313378115864402, -2.2363636696880502, 0)" (-1.4933903217315674, -1.4636504650115967, 0)
+Commands.SetSelections SketchSelectionInput
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:3=(0.014705882352941346, -3.3088235294117645, 0)" (0.12241911888122559, -3.1293015480041504, 0)
+Commands.SetSelections SketchSelectionInput
+# 2
+Commands.Start DrawSpline
+NaFusionUI.SetPoint SketchPointInput (3.3021627478687883, -0.82850503276208132, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (4, 0.5, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (4.5, -0.5, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (6, 0.5, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.Arc3PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (2.9405071418910858, -0.31384128579381132, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (4.5262278757933245, 0.25646178517102891, 0) 3 0
+NaFusionUI.SetPoint SketchThirdPointInput (4.7905146647770316, -0.24429213079809875, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.SketchBreakCmd
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Spline:6:1=(4.2417859642496776, -0.030812323322539178, 0)" (4.1004137992858887, 0.3255099356174469, 0)
+Commands.SetSelections SketchSelectionInput
+NuCommands.CommitCmd
+Test.ValidateFusionSketch v1
+NuCommands.CloseDocumentCmd

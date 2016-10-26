@@ -1,0 +1,32 @@
+#
+# Neutron Text Command Script File v1.0
+
+NuCommands.NewDocumentCmd FusionAssetType a92727f6-e2c0-4fbe-8c54-6e1e1e253f3e 2
+# 1.Create solid box
+Commands.Start PrimitiveBox
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.2708232402801514, 0, 1.4970972537994385)
+NaFusionUI.SetPoint SketchFirstPointInput (-1, -6.5, 7.1054273576010019e-015) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-6, -2, 0) 3 0
+Commands.SetDouble boxWidth 4.5 () ()
+Commands.SetDouble boxLength 5 () ()
+Commands.SetDouble primitiveHeight 2.9602321668945741 () ()
+NuCommands.CommitCmd
+# 2.Invoke Include3DGeometry Cmd
+NaFusionUI.Include3DGeometryCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:64=(-1.0000000000000022, 1.4801160834450071, 6.4999900000000004)" (-1, 2.2095789909362793, 5.4564337730407715)
+Commands.SetSelections SketchSelection "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:512=10" (-1, 7.1054273576010019e-015, 6.5)
+Commands.SetSelections SketchSelection
+Commands.SetSelections SketchSelection "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:512=17" (-5.7937698364257812, 2.9307043513467253e-016, 6.5)
+Commands.SetSelections SketchSelection
+Commands.SetSelections SketchSelection "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:64=(-1.0000100000000023, 1.4801160834450071, 2)" (-3.5705318450927734, 1.439099907875061, 2)
+Commands.SetSelections SketchSelection
+NuCommands.CommitCmd
+NaFusionUI.SketchStopCmd
+# 3.Edit box to update the porject
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/DcNodes/BoxPrimitive1" (0, 0, 0)
+Commands.Start BoxPrimitiveEditCommand
+Commands.SetDouble boxLength 3.3886109516160845 () (d2)
+Commands.SetDouble boxWidth 2.7769978215032345 () (d1)
+NuCommands.CommitCmd
+Test.ValidateFusionSketch v1
+NuCommands.CloseDocumentCmd
