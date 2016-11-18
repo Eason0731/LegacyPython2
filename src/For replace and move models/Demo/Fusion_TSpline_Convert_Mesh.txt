@@ -1,0 +1,35 @@
+#
+# Neutron Text Command Script File v1.0
+
+Performance.StartPerformanceValidation
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.NewDocumentCmd FusionAssetType 26819606-0095-495d-b610-fc2793235e07 1
+
+# Insert the mesh first
+Commands.Start InsertMeshCommand Path path::"RP=Neutron/Test/Sample/FuCmd/Trex.obj"
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+
+# Convert Mesh to Tspline
+Performance.StartMetric ElapsedTime
+Commands.Start TSpline2BRepCommand
+Commands.SetString filterTypeInput meshFilterType
+Commands.SetString NewComponent infoNewTSplineBodyType
+Commands.SetSelections ControlFrameEntity "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/MBds/MBd=tRex_0/LeafType:67108864=153" (2.8832647800445557, 179.67544555664062, -52.079586029052734)
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Performance.Validate ElapsedTime Time:MeshToTspline
+Performance.ValidateMemory /physical Pyhical_Memory:MeshToTspline
+
+# Convert Tspline to Brep
+Performance.StartMetric ElapsedTime
+Commands.Start TSpline2BRepCommand
+Commands.SetSelections ControlFrameEntity "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:8=9222" (2.8994729518890381, 176.18019104003906, -69.898506164550781)
+Commands.SetString NewComponent infoNewBodyInNewCompType
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Performance.Validate ElapsedTime Time:TsplineToBrep
+Performance.ValidateMemory /physical Pyhical_Memory:TsplineToBrep
+
+Performance.EndPerformanceValidation
+NuCommands.CloseDocumentCmd

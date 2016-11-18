@@ -1,0 +1,23 @@
+#
+# Neutron Text Command Script File v1.0
+
+NuCommands.NewDocumentCmd FusionAssetType 80f5827b-fe0c-444a-ac67-d345308ee9e9 2
+NaFusionUI.Rectangle2PtCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.4863755702972412, 0, 0.96311616897583008)
+NaFusionUI.SetPoint SketchFirstPointInput (-2, -1, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (3.5, -5, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.SketchFilletCmd
+Commands.SetSelections SketchFirstSelection "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:2=(-2, -1, 0)" (-1.7541418075561523, 1.9926838874816895, 0)
+Commands.SetDouble SketchFilletRadius 1 () ()
+Commands.SetSelections SketchFirstSelection "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:2=(3.5, -1, 0)" (4.5726709365844727, 1.9926815032958984, 0)
+Commands.SetDouble SketchFilletRadius 0.5 (5.00 mm) ()
+NuCommands.CommitCmd
+NaFusionUI.OffsetSketchCmd
+Commands.EnableSelectionInput SketchChainSelection 
+Commands.Select "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(0.75, -1, 0)" (1.4967849254608154, -1, 0) 
+Commands.SetDouble SketchPosition 1 (10 mm) ()
+NuCommands.CommitCmd
+Test.ValidateFusionSketch v1
+NuCommands.CloseDocumentCmd 80f5827b-fe0c-444a-ac67-d345308ee9e9
+NuCommands.ShowNavigationToolbarCmd
