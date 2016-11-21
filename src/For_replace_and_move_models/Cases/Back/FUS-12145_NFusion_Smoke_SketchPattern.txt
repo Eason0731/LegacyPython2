@@ -1,0 +1,54 @@
+#
+# Neutron Text Command Script File v1.0
+#
+# 1. Create Parametric design
+NuCommands.NewDocumentCmd FusionAssetType 6de1679d-6b11-4c19-820c-73c57758f210 2
+# 2. Draw a rectangle and create 1x3 R-Pattern
+NaFusionUI.SketchCreateCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.0605874061584473, 0, 1.6828415393829346)
+NuCommands.CommitCmd GP-executingBehavior::0
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:1=(0, 0, 0)" (8.000030517578125, -2.2222065925598145, 0)
+Commands.Start FusionDeleteCommand
+NaFusionUI.Rectangle2PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (-4.505010354635516, -1.9178614489725589, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015) 3 0
+NuCommands.CommitCmd
+Commands.Start RectangularSketchPatternCommand
+Commands.SetSelections Geometries "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015)" (-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(-2.4668566375333469, -3.0116228633795536, -7.1054273576010019e-015)" (-2.4668566375333469, -3.0116228633795536, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:4=(-4.505010354635516, -3.0116228633795536, -3.5527136788005009e-015)" (-4.505010354635516, -3.0116228633795536, -3.5527136788005009e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:3=(-3.4859334960844315, -4.1053842777865484, -7.1054273576010019e-015)" (-3.4859334960844315, -4.1053842777865484, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:4=(-4.505010354635516, -4.1053842777865484, -7.1054273576010019e-015)" (-4.505010354635516, -4.1053842777865484, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:2=(-2.4668566375333469, -1.9178614489725589, -7.1054273576010019e-015)" (-2.4668566375333469, -1.9178614489725589, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:1=(-4.505010354635516, -1.9178614489725589, 0)" (-4.505010354635516, -1.9178614489725589, 0) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:3=(-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015)" (-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015)
+Commands.SetDouble DistanceU 10 () ()
+NuCommands.CommitCmd
+# 3. Change 3 to 1 in Parameters dialog and Undo
+Commands.Start ChangeParameterCommand
+Commands.SetParameterEditData ParameterEditCmdInput "1, d1, 1, 0, , , , "
+NuCommands.CommitCmd GP-executingBehavior::0
+NuCommands.UndoCmd
+# 4. Change 3 to 1 when Edit Pattern and undo twice
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/GeomCons_eRectangularPattern:536870912:1=(-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015)" (-24.125207901000977, -21.266347885131836, 0)
+Commands.Start SketchRectangularPatternEdit
+Commands.SetBool "infoSuppressOccurence" 0
+Commands.SetDouble DistanceU 10 (100.00 mm) (d3)
+Commands.SetDouble VGridEntryCount 1 (1) (d2)
+Commands.SetSelections Geometries "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015)" (-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(-2.4668566375333469, -3.0116228633795536, -7.1054273576010019e-015)" (-2.4668566375333469, -3.0116228633795536, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:4=(-4.505010354635516, -3.0116228633795536, -3.5527136788005009e-015)" (-4.505010354635516, -3.0116228633795536, -3.5527136788005009e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:3=(-3.4859334960844315, -4.1053842777865484, -7.1054273576010019e-015)" (-3.4859334960844315, -4.1053842777865484, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:4=(-4.505010354635516, -4.1053842777865484, -7.1054273576010019e-015)" (-4.505010354635516, -4.1053842777865484, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:2=(-2.4668566375333469, -1.9178614489725589, -7.1054273576010019e-015)" (-2.4668566375333469, -1.9178614489725589, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:1=(-4.505010354635516, -1.9178614489725589, 0)" (-4.505010354635516, -1.9178614489725589, 0) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:3=(-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015)" (-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015)
+Commands.SetDouble UGridEntryCount 1 (1) (d1)
+NuCommands.CommitCmd
+Test.ValidateFusionSketch ChangeC1
+NuCommands.UndoCmd
+NuCommands.UndoCmd
+# 5. Draw a point and create C-Pattern
+Commands.Start DrawPoint
+NaFusionUI.SetPoint SketchPointInput (0, 0, 0) 3 0
+NuCommands.CommitCmd
+Commands.Start CircularSketchPatternCommand
+Commands.SetSelections Geometries "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:4=(-4.505010354635516, -4.1053842777865484, -7.1054273576010019e-015)" (-4.505010354635516, -4.1053842777865484, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:1=(-4.505010354635516, -1.9178614489725589, 0)" (-4.505010354635516, -1.9178614489725589, 0) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:4=(-4.505010354635516, -3.0116228633795536, -3.5527136788005009e-015)" (-4.505010354635516, -3.0116228633795536, -3.5527136788005009e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:2=(-2.4668566375333469, -1.9178614489725589, -7.1054273576010019e-015)" (-2.4668566375333469, -1.9178614489725589, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(-2.4668566375333469, -3.0116228633795536, -7.1054273576010019e-015)" (-2.4668566375333469, -3.0116228633795536, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:3=(-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015)" (-2.4668566375333469, -4.1053842777865484, -7.1054273576010019e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015)" (-3.4859334960844315, -1.9178614489725589, -3.5527136788005009e-015) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:3=(-3.4859334960844315, -4.1053842777865484, -7.1054273576010019e-015)" (-3.4859334960844315, -4.1053842777865484, -7.1054273576010019e-015)
+Commands.SetSelections CircularAxis "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:5=(0, 0, 0)" (4.0000019073486328, 2, 0)
+Commands.SetDouble infoTotalAngle 3.1415926535897931 () ()
+Commands.SetDouble infoCircularGridEntryCount 2.0943951023931953 () ()
+Commands.SetDouble infoCircularGridEntryCount 3 () ()
+NuCommands.CommitCmd
+# 6. Change count from 3 to 1 in Parameters dialog
+Commands.Start ChangeParameterCommand
+Commands.SetParameterEditData ParameterEditCmdInput "1, d1, 1, 0, , , , "
+NuCommands.CommitCmd GP-executingBehavior::0
+#
+Test.ValidateFusionSketch ChangeC2
+NuCommands.CloseDocumentCmd
