@@ -151,7 +151,16 @@ def polishPath(testCasesDir, FusionBuild):
     
     return relativePath
 
-
+def SearchFusionPath():
+    Dir = os.path.join (os.environ['localappdata'],'Autodesk','webdeploy')
+    if os.path.exists(Dir):
+        for root,dirs,filenames in os.walk(Dir):
+            for myFile in filenames:
+                if 'Fusion360.exe' in myFile:
+                    FusionPath = root
+                    return FusionPath
+    else:
+        print "Your Windows PC didn't install Fusion"
 # main is for testing
 
 if  __name__  ==  "__main__":   
@@ -185,7 +194,7 @@ if  __name__  ==  "__main__":
     
 
     #Test GenerateNtp()
-    FusionBuild = r'C:\Users\t_zhanj\AppData\Local\Autodesk\webdeploy\dev\22f238472d683388bda13263e32b5c741b52cbcb'
+    FusionBuild = SearchFusionPath()
     #FusionBuild = r'C:\Users\t_zhanj\AppData\Local\Autodesk\webdeploy\dev\d5a84514d1e3695a3cca2b057c92471e8720004e'
     rawTestDirList = ['Fusion\Test',
                    'Animation\Test',
@@ -197,11 +206,16 @@ if  __name__  ==  "__main__":
                    'NeuCAM\Test']
    
     
-    doc = GenerateNtp(rawTestDirList, FusionBuild)
+    
     
     resultOutPut = r'D:\GeneratedNTP'
     ntpFileName = 'All.ntp'
-    ntpfile = os.path.join(resultOutPut, ntpFileName)
+    ntpfile = os.path.join(resultOutPut, ntpFileName) 
+    
+    if os.path.exists(ntpfile):
+        os.remove(ntpfile)
+    
+    doc = GenerateNtp(rawTestDirList, FusionBuild)
     
     with open(ntpfile,'wb') as f:
         res = doc.toprettyxml(indent="  ", encoding="UTF-16")
