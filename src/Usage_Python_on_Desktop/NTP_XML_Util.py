@@ -167,10 +167,10 @@ if  __name__  ==  "__main__":
 
     # Test remove same folder on ListTestDir
     rawTestDirList = ['Fusion\Test',
-                   #'Animation\Test',
-                   #'FusionDoc\Test',
-                   'Publish\Animation\Test',
-                   'Publish\FusionDoc\Test',
+                   'Animation\Test',
+                   'FusionDoc\Test',
+                   #'Publish\Animation\Test',
+                   #'Publish\FusionDoc\Test',
                    'Simulation\Test',
                    'Neutron\Test\Defects',
                    'Neutron\Test\Migration',
@@ -181,7 +181,7 @@ if  __name__  ==  "__main__":
     print(TestDirList)
     
     FusionBuild = SearchFusionPath()
-    
+    #FusionBuild = r'C:\Users\t_zhanj\AppData\Local\Autodesk\webdeploy\dev\8ccc66a6c4d6d496d9e1513b999265b7af1bfbc1'
     resultOutPut = r'D:\GeneratedNTP'
     ntpFileName = 'All.ntp'
     ntpfile = os.path.join(resultOutPut, ntpFileName) 
