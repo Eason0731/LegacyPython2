@@ -48,12 +48,19 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 if __name__ == '__main__':
-    while(1):
-        PerfResultDir = raw_input ("Please input the Performance Result folder:")
-        if not os.path.exists(PerfResultDir):
-            print "The result Folder is not exist!"
+    PerfResultDir = raw_input ("Please input the Performance Result folder:")
+    if os.path.exists(PerfResultDir):
+        
         OutputFolder = raw_input ("Please insert the output folder:")
         if not os.path.exists(OutputFolder):
-            print "The output Folder is not exist!"
+            os.makedirs(OutputFolder)
+            
+        CopyResult(PerfResultDir,OutputFolder)
+
+    else:
+        print "The Performance result Folder is not exist!"
+        
+        
+    
       
-    CopyResult(PerfResultDir,OutputFolder)
+    
