@@ -8,20 +8,27 @@ import time
 import shutil
 
 def DeleteFailedXmlFiles():
-    XmlDir = r'C:\Users\t_zhanj\Desktop\123'
+    XmlDir = r'E:\Test'
     for root,dirs,filenames in os.walk(XmlDir):
         for myFile in filenames:
             if 'xml' in myFile:
-                print "Found xml file: " + os.path.join(root,myFile)
+                print "Found txt file: " + os.path.join(root,myFile)
                 xmlfiles = os.path.join(root,myFile)
-                f = open (xmlfiles, 'r')
-                content = f.read()
+                f = open (xmlfiles)
+                content = f.readlines() #The content will print line by line
                 #print content
                 
                 for eachline in content:
-                    if '< F a i l / >' in eachline:
-                        print "Found Failed xml file: " + os.path.join(root,myFile) 
-                             
+                    #print eachline
+                    if '<skills>' in eachline:
+                        myXMLfiles = os.path.join(root,myFile) 
+                        f.close() #Should close file then delete
+                        print "Failed xml found on " + myXMLfiles
+                        '''
+                        os.remove(myXMLfiles)
+                        if not os.path.exists(myXMLfiles):
+                            print "Delete file " + myXMLfiles + " Successfully"
+                        '''  
                 print "==================================="
                 f.close()
 
