@@ -16,7 +16,7 @@ def MainFunction():
 9. Rename Folder
 10. Rename File
 
-Press Any Key to Exit
+Press AnyKey to Exit
         
 Please choose : """)
     if (a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10"):
@@ -101,9 +101,10 @@ Please choose : """)
             else:
                 print os.path.join(Dir,Filename) + " is not exists!"
                 CountineOrExit()
-            
+        
     else:
-        exit(0)
+        print "Bye~"
+      
 
 def ReplaceContentOnDir(TestCasesDir,s,p):
     #Dir = os.listdir(TestCasesDir)
