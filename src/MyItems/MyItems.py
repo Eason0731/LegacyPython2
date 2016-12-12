@@ -181,7 +181,15 @@ def CopyFoldertoFolder():
             os.makedirs(TargetCustomed)
         else:
             Type = sourceCustomed.split("\\")[-1]
-            TargetCustomed = os.path.join(TargetCustomed,Type)         
+            TargetCustomed = os.path.join(TargetCustomed,Type)
+            if os.path.exists(TargetCustomed):
+                while(1):
+                    IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
+                    if IsConver.lower() == 'y':
+                        break
+                    elif IsConver.lower() == 'n':
+                        CountineOrExit()
+                         
     else :
         print ("sourceFolder: {0} is NOT Exist!" .format(sourceCustomed))
         CountineOrExit()
