@@ -104,6 +104,7 @@ Please choose : """)
         
     else:
         print "Bye~"
+        exit(1)
       
 
 def ReplaceContentOnDir(TestCasesDir,s,p):
