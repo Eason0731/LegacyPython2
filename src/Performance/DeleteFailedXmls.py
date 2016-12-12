@@ -8,8 +8,7 @@ import time
 import shutil
 from xml.dom.minidom import parse
 
-def DeleteFailedXmlFiles():
-    XmlDir = r'E:\Performance Result\2.1.4259_Yosemite_performance'
+def DeleteFailedXmlFiles(XmlDir):
     for root,dirs,filenames in os.walk(XmlDir):
         for myFile in filenames:
             if 'xml' in myFile:
@@ -30,4 +29,8 @@ def DeleteFailedXmlFiles():
                 #f.close()
 
 if __name__ == '__main__':
-    DeleteFailedXmlFiles()
+    XmlDir = raw_input ("Please input the path of performance result folder: ")
+    if os.path.exists(XmlDir):
+        DeleteFailedXmlFiles(XmlDir)
+    else:
+        print XmlDir + " Not exists!"
