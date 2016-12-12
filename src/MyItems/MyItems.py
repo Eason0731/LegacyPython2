@@ -173,20 +173,27 @@ def DeleteFiles(TestCasesDir):
 def CopyFoldertoFolder():
     sourceCustomed = raw_input ("please input sourceFolder: ")
     TargetCustomed = raw_input ("please input TargetFolder: ")
+    
     if (os.path.exists(sourceCustomed)):
-        os.makedirs(TargetCustomed)
+        if not os.path.exists(TargetCustomed):
+            os.makedirs(TargetCustomed)
+        else:
+            Type = sourceCustomed.split("\\")[-1]
+            TargetCustomed = os.path.join(TargetCustomed,Type)         
     else :
-        print ("{0} is NOT Exist!" .format(sourceCustomed))
+        print ("sourceFolder: {0} is NOT Exist!" .format(sourceCustomed))
+        CountineOrExit()
 
-    if (os.path.isdir(TargetCustomed)):
-        print ("TargetFolder is : {0} " .format(TargetCustomed))
-        print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
-        copyFiles(sourceCustomed,TargetCustomed)
-        print ("Copy Success!")
-        print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-        print ("============================================")
-    else :
-        print ("{0} is NOT Exist!" .format(TargetCustomed))
+    #if (os.path.isdir(TargetCustomed)):
+    print ("SourceFolder is : {0} " .format(sourceCustomed))
+    print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
+    copyFiles(sourceCustomed,TargetCustomed)
+    print "Copy Success to folder " + TargetCustomed
+    print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
+    print ("============================================")
+        
+    #else :
+        #print ("{0} is NOT Exist!" .format(TargetCustomed))
 
     CountineOrExit()
 
