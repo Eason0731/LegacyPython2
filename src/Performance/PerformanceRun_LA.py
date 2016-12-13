@@ -160,7 +160,7 @@ def CheckData(exePath, testcase, ntpProject):
 			return False
 	return True
 
-def RunTestCase(exePath, testcasePath, processes):
+def RunTestCase(exePath, testcasePath, processes, ntpProject):
 	cmd = ''
 	if os.name == "nt":
 		cmd = '"{0}" -execute "test.run {1} /CloseAfterDone"'.format(exePath, testcasePath)
@@ -177,7 +177,7 @@ def RunTestCase(exePath, testcasePath, processes):
 	returncode = command.run(timeout=900)
 
 	if returncode != 0:
-		GenerateFailureXML(exePath, testcasePath)
+		GenerateFailureXML(exePath, testcasePath, ntpProject)
 	# Kill the Fusion process because test.run cannot kill itself now
 	KillProcess(processes)
 
@@ -288,16 +288,16 @@ def RunMgr(exePath, ntpFile, processes,label, ntpProject):
 	testCases = parseNtpFile(exePath, ntpFile)
 	for i in range(3):
 		for testcase in testCases:
-			RunTestCase(exePath, testcase, processes)
+			RunTestCase(exePath, testcase, processes,ntpProject)
 
 
 	for testcase in testCases:
-		if (CheckData(exePath, testcase)):
+		if (CheckData(exePath, testcase, ntpProject)):
 			continue
 		else:
 			print "Test case {0} is not stable, rerun it".format(testcase)
 			for i in range(3):
-				RunTestCase(exePath, testcase, processes)
+				RunTestCase(exePath, testcase, processes,ntpProject)
 	#if -1 != ntpProject.lower().find('perf'):
 		#process_Model_TestResult(exePath, testCases,label)
 	#elif -1 != ntpProject.lower().find('largeassembly'):
