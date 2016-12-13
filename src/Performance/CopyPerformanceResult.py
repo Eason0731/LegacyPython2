@@ -6,6 +6,7 @@ Created on Dec 6, 2016
 import os
 import shutil
 import time
+import DeleteFailedXmls
 
 def CopyResult(PerfResultDir,OutputFolder):
     #PerfResultDir = r'D:\Perf_New\2.1.4242_Win7_performance'
@@ -14,7 +15,7 @@ def CopyResult(PerfResultDir,OutputFolder):
     for root,dirs,filenames in os.walk(PerfResultDir):
         for myFile in filenames:
             if 'xml' in myFile:
-                print "Copying " + root
+                #print "Copying " + root
                 ActualResultDir = root.split('\\')[-1]
                 copyFiles(root, os.path.join(OutputFolder,ActualResultDir))
 
@@ -50,12 +51,20 @@ def copyFiles(sourceDir, targetDir):
 if __name__ == '__main__':
     PerfResultDir = raw_input ("Please input the Performance Result folder:")
     if os.path.exists(PerfResultDir):
-        
-        OutputFolder = raw_input ("Please insert the output folder:")
-        if not os.path.exists(OutputFolder):
-            os.makedirs(OutputFolder)
-            
+        OutputFolder = PerfResultDir
+        #if not os.path.exists(OutputFolder):
+            #os.makedirs(OutputFolder)
+        print "================================="
+        print "Deleting Failed xml files......"
+        DeleteFailedXmls.DeleteFailedXmlFiles(PerfResultDir)
+        print "================================="
+        print "Coping files......"
         CopyResult(PerfResultDir,OutputFolder)
+        print "Deleting Modeling and Visual......"
+        shutil.rmtree(os.path.join(PerfResultDir,'Modeling')) #os.rmdir can delete folders
+        shutil.rmtree(os.path.join(PerfResultDir,'Visual'))
+        print "================================="
+        print "All work done!"
 
     else:
         print "The Performance result Folder is not exist!"
