@@ -115,7 +115,7 @@ def CheckData(exePath, testcase, ntpProject):
 	path, fileName = os.path.split(exePath)
 	print "ntpProject name on Checkdata is: " +ntpProject
 	
-	if ntpProject.lower() == 'largeassembly': #LA
+	if ntpProject == 'largeAssembly': #LA
 		if os.name == 'nt':
 			if 'dev' in path: #For main build
 				performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Capacity/'

@@ -240,7 +240,7 @@ def Run(workSpace, executeFile, ntpProject, label, jobname, processes):
 
     # Upload performance directory to server if it's performance run
     if IsUPloadPerfDir:
-        if ntpProject.lower().find('largeassembly'): #LA performance
+        if ntpProject == 'largeAssembly': #LA performance
             if os.name == 'nt':
                 if 'dev' in executeFile: #For Main build
                     sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Result', 'Neutron', 'Test', 'Capacity')
