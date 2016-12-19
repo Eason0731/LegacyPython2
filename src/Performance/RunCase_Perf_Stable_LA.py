@@ -241,34 +241,35 @@ def Run(workSpace, executeFile, ntpProject, label, jobname, processes):
     # Upload performance directory to server if it's performance run
     if IsUPloadPerfDir:
         if ntpProject == 'largeAssembly': #LA performance
-            if os.name == 'nt':
-                if 'dev' in executeFile: #For Main build
-                    sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Result', 'Neutron', 'Test', 'Capacity')
-                else: #For RC,CU build
-                    sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Neutron', 'Test', 'Capacity')
+            if os.name == 'nt': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+                
+                #if 'dev' in executeFile: #For Main build
+                sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Result', 'Neutron', 'Test', 'Capacity')
+                #else: #For RC,CU build
+                    #sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Neutron', 'Test', 'Capacity')
                 copyFiles(sourceResultDir, os.path.join(os.path.join(uploadTarget, 'Capacity'), os.path.basename(outputFile)))
         
-            elif os.name == 'posix':
-                if 'dev' in appFile: #For Main build
-                    sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Capacity')
-                else: #For RC,CU build
-                    sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Capacity')
+            elif os.name == 'posix':  #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+                #if 'dev' in appFile: #For Main build
+                sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Capacity')
+                #else: #For RC,CU build
+                    #sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Capacity')
                 print 'Start to upload performance results to server: {0}'.format(sourceResultDir)
                 print 'Destiny folder: {0}'.format(os.path.join(os.path.join(uploadTarget, 'Capacity'), os.path.basename(outputFile)))
                 copyFiles(sourceResultDir, os.path.join(os.path.join(uploadTarget, 'Capacity'), os.path.basename(outputFile)))
         else: #Modeling performance
-            if os.name == 'nt':
-                if 'dev' in executeFile: #For Main build
-                    sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Result', 'Neutron', 'Test', 'Performance')
-                else: #For RC,CU build
-                    sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Neutron', 'Test', 'Performance')
+            if os.name == 'nt': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+                #if 'dev' in executeFile: #For Main build
+                sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Result', 'Neutron', 'Test', 'Performance')
+                #else: #For RC,CU build
+                    #sourceResultDir = os.path.join(os.path.dirname(executeFile), 'Neutron', 'Test', 'Performance')
                 copyFiles(sourceResultDir, os.path.join(os.path.join(uploadTarget, 'Performance'), os.path.basename(outputFile)))
         
-            elif os.name == 'posix':
-                if 'dev' in appFile: #For Main build
-                    sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Performance')
-                else: #For RC,CU build
-                    sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
+            elif os.name == 'posix': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+                #if 'dev' in appFile: #For Main build
+                sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Performance')
+                #else: #For RC,CU build
+                    #sourceResultDir = os.path.join(os.path.dirname(appFile), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
                 print 'Start to upload performance results to server: {0}'.format(sourceResultDir)
                 print 'Destiny folder: {0}'.format(os.path.join(os.path.join(uploadTarget, 'Performance'), os.path.basename(outputFile)))
                 copyFiles(sourceResultDir, os.path.join(os.path.join(uploadTarget, 'Performance'), os.path.basename(outputFile)))

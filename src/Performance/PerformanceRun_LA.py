@@ -116,28 +116,28 @@ def CheckData(exePath, testcase, ntpProject):
 	print "ntpProject name on Checkdata is: " +ntpProject
 	
 	if ntpProject == 'largeAssembly': #LA
-		if os.name == 'nt':
-			if 'dev' in path: #For main build
-				performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Capacity/'
-			else: #For RC,CU build
-				performanceDir = path.replace('\\', '/') + '/Neutron/Test/Capacity/'
-		elif os.name == 'posix':
-			if 'dev' in exePath:
-				performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Capacity')
-			else:
-				performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Capacity')
+		if os.name == 'nt': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+			#if 'dev' in path: #For main build
+			performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Capacity/'
+			#else: #For RC,CU build
+				#performanceDir = path.replace('\\', '/') + '/Neutron/Test/Capacity/'
+		elif os.name == 'posix': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+			#if 'dev' in exePath:
+			performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Capacity')
+			#else:
+				#performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Capacity')
 	
 	else: #Modeling perofrmance
-		if os.name == 'nt':
-			if 'dev' in path: #For main build
-				performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Performance/'
-			else: #For RC,CU build
-				performanceDir = path.replace('\\', '/') + '/Neutron/Test/Performance/'
-		elif os.name == 'posix':
-			if 'dev' in exePath:
-				performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Performance')
-			else:
-				performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
+		if os.name == 'nt': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+			#if 'dev' in path: #For main build
+			performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Performance/'
+			#else: #For RC,CU build
+				#performanceDir = path.replace('\\', '/') + '/Neutron/Test/Performance/'
+		elif os.name == 'posix': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
+			#if 'dev' in exePath:
+			performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Performance')
+			#else:
+				#performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
 	
 		
 		
