@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import re
 import shutil
@@ -156,6 +157,7 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
 
 
 def DeleteFolders(TestCasesDir):
+    print "Deleteing folder " + TestCasesDir + " now..."
     shutil.rmtree(TestCasesDir)
     if not os.path.exists(TestCasesDir):
         print "The contents of folder: " + TestCasesDir + " have been deleted succeeded!"
