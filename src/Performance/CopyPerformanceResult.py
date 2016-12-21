@@ -61,8 +61,8 @@ if __name__ == '__main__':
         print "Coping files......"
         CopyResult(PerfResultDir,OutputFolder)
         print "Deleting Modeling and Visual......"
-        shutil.rmtree(os.path.join(PerfResultDir,'Modeling')) #os.rmdir can delete folders
-        shutil.rmtree(os.path.join(PerfResultDir,'Visual'))
+        #shutil.rmtree(os.path.join(PerfResultDir,'Modeling')) #os.rmdir can delete folders
+        #shutil.rmtree(os.path.join(PerfResultDir,'Visual'))
         print "================================="
         print "All work done!"
 
