@@ -16,11 +16,12 @@ def MainFunction():
 8. Find Files on Folder
 9. Rename Folder
 10. Rename File
+11. Replace File Name With SpecificName
 
 Press AnyKey to Exit
         
 Please choose : """)
-    if (a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10"):
+    if (a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10" or a =="11"):
         
         #TestCasesDir = raw_input ("Please Input your folder or file Path: ")
 
@@ -103,6 +104,17 @@ Please choose : """)
                 print os.path.join(Dir,Filename) + " is not exists!"
                 CountineOrExit()
         
+        if a == "11":
+            FolderDir = raw_input ("Please input folder: ")
+            if os.path.exists(FolderDir):
+                FindContent = raw_input("What word do you want find?")
+                FindContent = FindContent.lower() #Convert the FindContent path to lower
+                ReplaceContent = raw_input("What word do you want replace?")
+                ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent)
+            else:
+                print "Target Folder path: " + FolderDir + " is not exists!"
+                CountineOrExit()
+    
     else:
         print "Bye~"
         exit(1)
@@ -330,12 +342,31 @@ def ReplaceFile(Dir,Filename,ReplaceFilename):
         print os.path.join(Dir,ReplaceFilename) + " rename failed!"
     CountineOrExit()
 
+def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent): 
+    for root,dirs,filenames in os.walk(FolderDir):
+        for myFile in filenames:
+            myFile = myFile.lower() #Convert the root path to lower
+            #if 'xml' in myFile:
+                #print myFile            
+            if FindContent in myFile:
+                OldNameFile = os.path.join(root,myFile)
+                myFile = myFile.replace (FindContent,ReplaceContent)
+                NewNameFile = os.path.join(root,myFile)
+                os.rename (OldNameFile,NewNameFile) #rename function
+                if os.path.exists(NewNameFile):
+                    print OldNameFile +" has been replaced as " + NewNameFile + " Successfully!"
+                    print "========================================"
+            else:
+                print "Didn't found target content: " + FindContent
+    CountineOrExit()              
+
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
     while(1):
         if IsExit.upper() == "Y":
             MainFunction()
         elif IsExit.upper() == "N":
+            print "Bye~"
             exit(0)
         else:
             print "You have inputed the illegal character,try again!"
