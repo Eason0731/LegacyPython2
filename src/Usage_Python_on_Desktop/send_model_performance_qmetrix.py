@@ -47,8 +47,8 @@ def send_modeling_perf(dic):
 
 if __name__ == "__main__":
     dic = {}
-    dic['Build'] = "2.0.2604"
-    dic['Baseline_Build'] = "2.0.2667"
+    dic['Build'] = "2.0.2667"
+    dic['Baseline_Build'] = "2.0.2604"
     dic['Windows'] = {
             "Assembly" : 1,
             "Image" : 0.99,
