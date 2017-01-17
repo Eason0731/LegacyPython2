@@ -47,29 +47,29 @@ def send_modeling_perf(dic):
 
 if __name__ == "__main__":
     dic = {}
-    dic['Build'] = "2.0.2506"
-    dic['Baseline_Build'] = "2.0.2455"
+    dic['Build'] = "2.0.2604"
+    dic['Baseline_Build'] = "2.0.2667"
     dic['Windows'] = {
-            "Assembly" : 1.04,
-            "Image" : 0.93,
-            "GraphicsTime" : 1.04,
-            "Graphics" : 1,
-            "POLE" : 1.05,
-            "Sketch" : 0.94,
-            "Solid" : 1.02,
-            "Surface" : 0.94,
-            "TSpline" : 1.02,
+            "Assembly" : 1,
+            "Image" : 0.99,
+            "GraphicsTime" : 0.98,
+            "Graphics" : 1.03,
+            "POLE" : 1.04,
+            "Sketch" : 0.97,
+            "Solid" : 1.01,
+            "Surface" : 0.99,
+            "TSpline" : 0.99,
         }
     dic['Mac'] = {
-            "Assembly" : 1.08,
-            "Image" : 1.06,
-            "GraphicsTime" : 1.10,
-            "Graphics" : 1.01,
-            "POLE" : 1.02,
-            "Sketch" : 0.93,
-            "Solid" : 0.95,
-            "Surface" : 0.90,
-            "TSpline" : 0.99,
+            "Assembly" : 0.97,
+            "Image" : 0.96,
+            "GraphicsTime" : 0.98,
+            "Graphics" : 1.02,
+            "POLE" : 1.01,
+            "Sketch" : 1.05,
+            "Solid" : 0.99,
+            "Surface" : 0.96,
+            "TSpline" : 1.03,
         }
     send_modeling_perf(dic)
     print "Thank you!!!"
