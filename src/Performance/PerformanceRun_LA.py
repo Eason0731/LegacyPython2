@@ -113,34 +113,24 @@ def CheckData(exePath, testcase, ntpProject):
 	name, ext = os.path.splitext(fileName)
 
 	path, fileName = os.path.split(exePath)
-	print "ntpProject name on Checkdata is: " +ntpProject
 	
-	if ntpProject == 'largeAssembly': #LA
-		if os.name == 'nt': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
-			#if 'dev' in path: #For main build
-			performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Capacity/'
-			#else: #For RC,CU build
-				#performanceDir = path.replace('\\', '/') + '/Neutron/Test/Capacity/'
-		elif os.name == 'posix': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
-			#if 'dev' in exePath:
-			performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Capacity')
-			#else:
-				#performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Capacity')
+	PerfTypeDir = ''
+	if ntpProject.lower() == "largeassembly":
+		PerfTypeDir = 'Capacity'
+	else:
+		PerfTypeDir = 'Performance'
+	 
+	if os.name == 'nt':
+		if 'dev' in path or 'staging' in path or 'continuousupdate' in path:
+			performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/'+PerfTypeDir+'/'
+		else:
+			performanceDir = path.replace('\\', '/') + '/Neutron/Test/'+PerfTypeDir+'/'
+	elif os.name == 'posix':
+		if 'dev' in exePath or 'staging' in exePath or 'continuousupdate' in exePath:
+			performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', PerfTypeDir)
+		else:
+			performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', PerfTypeDir)
 	
-	else: #Modeling perofrmance
-		if os.name == 'nt': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
-			#if 'dev' in path: #For main build
-			performanceDir = path.replace('\\', '/') + '/Result/Neutron/Test/Performance/'
-			#else: #For RC,CU build
-				#performanceDir = path.replace('\\', '/') + '/Neutron/Test/Performance/'
-		elif os.name == 'posix': #As integrate from main to RC that the old path (Neutron/Test/Capacity) is useless
-			#if 'dev' in exePath:
-			performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Performance')
-			#else:
-				#performanceDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
-	
-		
-		
 	resultDir = None
 	list_dirs = os.walk(performanceDir)
 	for root, dirs, files in list_dirs:
@@ -191,72 +181,48 @@ def GenerateFailureXML(exePath, testcasePath, ntpProject):
 	root = dom.documentElement  
 	elem = dom.createElement('Fail')
 	root.appendChild(elem)
+	PerfTypeDir = ''
+	if ntpProject.lower() == "largeassembly":
+		PerfTypeDir = 'Capacity'
+	else:
+		PerfTypeDir = 'Performance'
 	
-	print "Current performance type is: " + ntpProject
-	if ntpProject.lower() == 'largeassembly':
-		if 'dev' in exePath: #For main build
-			testcase = testcasePath.split('Neutron/Test/Capacity/')[-1].split('.txt')[0]
-			if os.name == 'nt':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Result', 'Neutron', 'Test', 'Capacity')
-			elif os.name == 'posix':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Capacity')
-			caseDir = os.path.join(resultDir, testcase)
+	if 'dev' in exePath or 'staging' in exePath or 'continuousupdate' in exePath:
+		testcase = testcasePath.split('Neutron/Test/Performance/')[-1].split('.txt')[0]
+		if os.name == 'nt':
+			resultDir = os.path.join(os.path.dirname(exePath), 'Result', 'Neutron', 'Test', PerfTypeDir)
+		elif os.name == 'posix':
+			resultDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', PerfTypeDir)
+		caseDir = os.path.join(resultDir, testcase)
 		
-			if not os.path.exists(caseDir):
-				print "create result directory for failure case if it is not exists"
-				print caseDir
-				os.makedirs(caseDir)
+		print caseDir
+		if not os.path.exists(caseDir):
+			print "create result directory for failure case if it is not exists"
+			os.makedirs(caseDir)
 
-				f = codecs.open(os.path.join(caseDir, os.path.basename(testcase)+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.xml'), 'w', 'utf-16')
-				dom.writexml(f,'\n',' ','')
-				f.close()
-		else: #For RC,CU build
-			testcase = os.path.basename(testcasePath).split('.txt')[0]
-			if os.name == 'nt':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Neutron', 'Test', 'Performance')
-			elif os.name == 'posix':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
-			caseDir = os.path.join(resultDir, testcase)
-
-			if not os.path.exists(caseDir):
-				os.makedirs(caseDir)
-
-			f = codecs.open(os.path.join(caseDir, testcase+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.xml'), 'w', 'utf-16')
+		xmlfile = os.path.join(caseDir, os.path.basename(testcase)+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.xml')
+		print xmlfile
+		if os.path.exists(xmlfile):
+			print "Has the failed xml already!"
+			
+		with codecs.open(xmlfile, 'w', encoding="utf-16") as f:
 			dom.writexml(f,'\n',' ','')
-			f.close()
+			print "write failed xml"
+	else:
+		testcase = os.path.basename(testcasePath).split('.txt')[0]
+		if os.name == 'nt':
+			resultDir = os.path.join(os.path.dirname(exePath), 'Neutron', 'Test', PerfTypeDir)
+		elif os.name == 'posix':
+			resultDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', PerfTypeDir)
+		caseDir = os.path.join(resultDir, testcase)
+
+		if not os.path.exists(caseDir):
+			os.makedirs(caseDir)
+
+		f = codecs.open(os.path.join(caseDir, testcase+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.xml'), 'w', 'utf-16')
+		dom.writexml(f,'\n',' ','')
+		f.close()
 	
-	else: #ntpProject.lower() == 'performance'
-		if 'dev' in exePath: #For main build
-			testcase = testcasePath.split('Neutron/Test/Performance/')[-1].split('.txt')[0]
-			if os.name == 'nt':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Result', 'Neutron', 'Test', 'Performance')
-			elif os.name == 'posix':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Result', 'Neutron', 'Test', 'Performance')
-			caseDir = os.path.join(resultDir, testcase)
-		
-			if not os.path.exists(caseDir):
-				print "create result directory for failure case if it is not exists"
-				print caseDir
-				os.makedirs(caseDir)
-
-				f = codecs.open(os.path.join(caseDir, os.path.basename(testcase)+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.xml'), 'w', 'utf-16')
-				dom.writexml(f,'\n',' ','')
-				f.close()
-		else:#For RC,CU build
-			testcase = os.path.basename(testcasePath).split('.txt')[0]
-			if os.name == 'nt':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Neutron', 'Test', 'Performance')
-			elif os.name == 'posix':
-				resultDir = os.path.join(os.path.dirname(exePath), 'Libraries', 'Neutron', 'Neutron', 'Test', 'Performance')
-			caseDir = os.path.join(resultDir, testcase)
-
-			if not os.path.exists(caseDir):
-				os.makedirs(caseDir)
-
-			f = codecs.open(os.path.join(caseDir, testcase+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.xml'), 'w', 'utf-16')
-			dom.writexml(f,'\n',' ','')
-			f.close()
-		
 
 def KillProcess(processes):
 	for process in processes:
@@ -288,7 +254,7 @@ def RunMgr(exePath, ntpFile, processes,label, ntpProject):
 	testCases = parseNtpFile(exePath, ntpFile)
 	for i in range(3):
 		for testcase in testCases:
-			RunTestCase(exePath, testcase, processes,ntpProject)
+			RunTestCase(exePath, testcase, processes, ntpProject)
 
 
 	for testcase in testCases:
@@ -297,7 +263,7 @@ def RunMgr(exePath, ntpFile, processes,label, ntpProject):
 		else:
 			print "Test case {0} is not stable, rerun it".format(testcase)
 			for i in range(3):
-				RunTestCase(exePath, testcase, processes,ntpProject)
+				RunTestCase(exePath, testcase, processes, ntpProject)
 	#if -1 != ntpProject.lower().find('perf'):
 		#process_Model_TestResult(exePath, testCases,label)
 	#elif -1 != ntpProject.lower().find('largeassembly'):
@@ -305,7 +271,7 @@ def RunMgr(exePath, ntpFile, processes,label, ntpProject):
 	WriteResultToDB(ntpFile, exePath)
 
 def WriteResultToDB(ntpFile, exePath):
-	if 'dev' in exePath:
+	if 'dev' in exePath or 'staging' in exePath or 'continuousupdate' in exePath:
 		if os.name == 'nt':
 			resultDir = os.path.join(os.path.dirname(exePath), 'Result', 'Neutron', 'Test', 'Performance')
 			cmd = r'python35\win\python CITools\save_performance_test_result_from_dir.py "{0}" "{1}"'.format(ntpFile, resultDir)
