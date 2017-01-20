@@ -44,15 +44,16 @@ def SearchFusionPath():
             for myFile in filenames:
                 if 'Fusion360.exe' in myFile:
                     FusionPath = root
+                    Version = getFileVersion(os.path.join(FusionPath,myFile))
                     if 'dev' in FusionPath:
-                        print "Main Build exists on your PC"
+                        print "Main Build "+ Version +" exists on your PC"
                       
                     elif 'staging' in FusionPath:
-                        print "RC Build exists on your PC"
+                        print "RC Build "+ Version +" exists on your PC"
                        
                         
                     elif 'continuousupdate' in FusionPath:
-                        print "CU Build exists on your PC"
+                        print "CU Build "+ Version +" exists on your PC"
                         
                     OpenMultipleFusionBuilds(FusionPath,myFile)
                     
@@ -79,6 +80,23 @@ def OpenMultipleFusionBuilds(FusionPath,myFile):
     else:
         print "You've typed a wrong word!"
     #return os.path.join(FusionPath,myFile)
+
+
+def getFileVersion(file_name):   
+    
+    if os.name == "nt": #Windows
+        import win32api
+        info = win32api.GetFileVersionInfo(file_name, os.sep)
+        ms = info['FileVersionMS']
+        ls = info['FileVersionLS']
+        version = '%d.%d.%d' % (win32api.LOWORD(ms), win32api.HIWORD(ls), win32api.HIWORD(ms))
+        return version
+    
+    else: #Mac
+        import plistlib
+        p1 = plistlib.readPlist(file_name)
+        BundleVersion = p1["CFBundleVersion"]
+        return BundleVersion
 
 if __name__ == '__main__':
    LaunchFusion()
