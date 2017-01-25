@@ -5,7 +5,6 @@ Created on Jan 25, 2017
 '''
 import os
 import shutil
-import _winreg
 import time
 import platform
 
@@ -115,6 +114,7 @@ def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
     
     
 def get_desktop():
+    import _winreg
     key = _winreg.OpenKey(_winreg.HKEY_CURRENT_USER,\
                           r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
     return _winreg.QueryValueEx(key, "Desktop")[0]  
