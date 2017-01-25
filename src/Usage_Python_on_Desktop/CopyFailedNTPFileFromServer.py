@@ -7,6 +7,7 @@ import os
 import shutil
 import _winreg
 import time
+import platform
 
 def MainMethod():
     ChooseOS()
@@ -120,21 +121,26 @@ def get_desktop():
       
 
 def CopyNTPFile(OSName,FailedNTPPath):
-    DesktopPath = get_desktop()
-    TodayFolder = time.strftime("%Y%m%d",time.localtime())
+    CurrentOS = platform.system()
+    if CurrentOS == 'Windows':
+        DesktopPath = get_desktop()
+        TodayFolder = time.strftime("%Y%m%d",time.localtime())
     #print FailedNTPPath
-    NTPName = FailedNTPPath.split("\\")[-1]
-    OutputFilePath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder , NTPName)
-    OutputPath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder)
-    if not os.path.exists(OutputPath):
-        os.makedirs(OutputPath)
+        NTPName = FailedNTPPath.split("\\")[-1]
+        OutputFilePath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder , NTPName)
+        OutputPath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder)
+        if not os.path.exists(OutputPath):
+            os.makedirs(OutputPath)
     
-    if os.path.exists(OutputFilePath):
-        os.remove(OutputFilePath)
-        print "Delete " + NTPName + "  Success!"
+        if os.path.exists(OutputFilePath):
+            os.remove(OutputFilePath)
+            print "Delete " + NTPName + "  Success!"
     
-    shutil.copyfile(FailedNTPPath, OutputFilePath)
-    print "Copy " + NTPName + "  Success!" 
+        shutil.copyfile(FailedNTPPath, OutputFilePath)
+        print "Copy " + NTPName + "  Success!" 
+        
+    elif CurrentOS == 'Darwin':
+        return None
         
     
 
