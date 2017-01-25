@@ -100,12 +100,30 @@ def TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
             
 def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion):
     FailedNTPPath = ''
-    if OSName == 'Win':
-        FailedNTPPath = os.path.join(r'\\eptserver\Freeway\FusionAutomation\AutomationResult' ,FusionVersionName,OSVersionName,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+    CurrentOS = platform.system()
+    NetPath = r'\\eptserver\Freeway\FusionAutomation\AutomationResult'
+    if CurrentOS == 'Windows':
+        if OSName == 'Win':
+            FailedNTPPath = os.path.join(NetPath,FusionVersionName,OSVersionName,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
         
-    else: #Mac
-        FailedNTPPath = os.path.join(r'\\eptserver\Freeway\FusionAutomation\AutomationResult' ,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+        else: #Mac
+            FailedNTPPath = os.path.join(NetPath,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+    elif CurrentOS == 'Darwin':
+        MountFolder = os.path.join (os.environ['HOME'],'Desktop','Mount')
+        if OSName == 'Win':
+            NetPath = NetPath[2:]
+            NetPath = NetPath.replace('\\','/')
+            if not os.path.exists(MountFolder):
+                os.makedirs(MountFolder)
+
+            os.system ('mount_smbfs //svc_q_fusion360:AdP6bc4Y@{0} "{1}"' .format(NetPath,MountFolder))
+            print 'Mount Success!'
+            #FailedNTPPath 
         
+        else: #Mac
+            #FailedNTPPath = 
+            return None
+
     #FailedNTPPath.replace('\\', '\\\\')
     if os.path.exists(FailedNTPPath):
         CopyNTPFile(OSName,FailedNTPPath)
@@ -122,25 +140,32 @@ def get_desktop():
 
 def CopyNTPFile(OSName,FailedNTPPath):
     CurrentOS = platform.system()
+    DesktopPath = ''
+    TodayFolder = time.strftime("%Y%m%d",time.localtime())
+    NTPName = FailedNTPPath.split("\\")[-1]
     if CurrentOS == 'Windows':
         DesktopPath = get_desktop()
-        TodayFolder = time.strftime("%Y%m%d",time.localtime())
     #print FailedNTPPath
-        NTPName = FailedNTPPath.split("\\")[-1]
+        
         OutputFilePath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder , NTPName)
         OutputPath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder)
-        if not os.path.exists(OutputPath):
-            os.makedirs(OutputPath)
-    
-        if os.path.exists(OutputFilePath):
-            os.remove(OutputFilePath)
-            print "Delete " + NTPName + "  Success!"
-    
-        shutil.copyfile(FailedNTPPath, OutputFilePath)
-        print "Copy " + NTPName + "  Success!" 
-        
+
     elif CurrentOS == 'Darwin':
-        return None
+        OutputFilePath = os.path.join (os.environ['HOME'],'Desktop','AutomationTriage',TodayFolder,NTPName)
+        OutputPath = os.path.join (os.environ['HOME'],'Desktop','AutomationTriage',TodayFolder)
+
+
+    if not os.path.exists(OutputPath):
+        os.makedirs(OutputPath)
+    
+    if os.path.exists(OutputFilePath):
+        os.remove(OutputFilePath)
+        print "Delete " + NTPName + "  Success!"
+    
+    shutil.copyfile(FailedNTPPath, OutputFilePath)
+    print "Copy " + NTPName + "  Success!" 
+        
+    
         
     
 
