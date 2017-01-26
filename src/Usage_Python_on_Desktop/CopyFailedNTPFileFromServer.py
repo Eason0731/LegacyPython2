@@ -163,7 +163,7 @@ def CopyNTPFile(OSName,FailedNTPPath):
         print "Delete " + NTPName + "  Success!"
     
     shutil.copyfile(FailedNTPPath, OutputFilePath)
-    print "Copy " + NTPName + "  Success!" 
+    print NTPName + "  has copied to folder " + OutputPath + " Successfully!" 
         
     
         
