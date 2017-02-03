@@ -13,28 +13,31 @@ def MainMethod():
     
   
 def ChooseOS():
-    OS = raw_input(
+    while(True):
+        OS = raw_input(
     """
     Which OS do you want choose?
        1 -- Windows
        2 -- Mac
     """)
-    OSName =''
+        OSName =''
     
-    if OS == '1':
-        OSName = "Win"
-        
-    elif OS == '2':
-        OSName = "Mac"
-
+        if OS == '1':
+            OSName = "Win"
+            break
+        elif OS == '2':
+            OSName = "Mac"
+            break
+        else:
+            print "You've typed an illegal character on ChooseOS, please select again!"
+    
     ChooseFusionVersion(OSName)
 
-
-
 def ChooseFusionVersion(OSName):
-    FusionVersionName = ""
-    FusionVersionName_Perfix = ""
-    FusionVersion = raw_input(
+    while(True):
+        FusionVersionName = ""
+        FusionVersionName_Perfix = ""
+        FusionVersion = raw_input(
     """
     Which Fusion Version do you want choose?
        1 -- Main
@@ -42,23 +45,29 @@ def ChooseFusionVersion(OSName):
        3 -- CU
     """)
     
-    if FusionVersion == '1':
-        FusionVersionName = 'dev'    
-        FusionVersionName_Perfix = 'All'
-    elif FusionVersion == '2':   
-        FusionVersionName = 'prod'
-        FusionVersionName_Perfix = 'proAll'
-    elif FusionVersion == '3':
-        FusionVersionName = 'cu'
-        FusionVersionName_Perfix = 'cuAll'
+        if FusionVersion == '1':
+            FusionVersionName = 'dev'    
+            FusionVersionName_Perfix = 'All'
+            break
+        elif FusionVersion == '2':   
+            FusionVersionName = 'prod'
+            FusionVersionName_Perfix = 'proAll'
+            break
+        elif FusionVersion == '3':
+            FusionVersionName = 'cu'
+            FusionVersionName_Perfix = 'cuAll'
+            break
+        else:
+            print "You've typed an illegal character on ChooseFusionVersion, please select again!"
        
     ChooseOSbuild(OSName,FusionVersionName,FusionVersionName_Perfix)
  
 
 def ChooseOSbuild(OSName,FusionVersionName,FusionVersionName_Perfix):
-    OSVersionName = ''
-    if OSName == 'Win':
-        OSVersion = raw_input(
+    while(True):
+        OSVersionName = ''
+        if OSName == 'Win':
+            OSVersion = raw_input(
     """
     Which OS Version do you want choose?
        1 -- Win 7
@@ -66,8 +75,8 @@ def ChooseOSbuild(OSName,FusionVersionName,FusionVersionName_Perfix):
        3 -- Win 10
     """)
     
-    else:
-        OSVersion = raw_input(
+        else:
+            OSVersion = raw_input(
     """
     Which OS Version do you want choose?
        1 -- Yosemite
@@ -76,26 +85,40 @@ def ChooseOSbuild(OSName,FusionVersionName,FusionVersionName_Perfix):
     """)
         
     
-    if OSVersion == '1':
-        if OSName == 'Win':
-            OSVersionName = 'Win7'
+        if OSVersion == '1':
+            if OSName == 'Win':
+                OSVersionName = 'Win7'
+            else:
+                OSVersionName = 'Yosemite'
+            break
+        elif OSVersion == '2':     
+            if OSName == 'Win':
+                OSVersionName = 'Win8.1'
+            else:
+                OSVersionName = 'El.Capitan'
+            break
+        elif OSVersion == '3':
+            if OSName == 'Win':
+                OSVersionName = 'Win10'
+            else:
+                OSVersionName = 'Sierra'
+            break
         else:
-            OSVersionName = 'Yosemite'
-    elif OSVersion == '2':     
-        if OSName == 'Win':
-            OSVersionName = 'Win8.1'
-        else:
-            OSVersionName = 'El.Capitan'
-    elif OSVersion == '3':
-        if OSName == 'Win':
-            OSVersionName = 'Win10'
-        else:
-            OSVersionName = 'Sierra'
+            print "You've typed an illegal character on ChooseOSbuild, please select again!"
+            
     
     TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName)
     
 def TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName):
-    BuildVersion = raw_input("Please type the build version here: ")
+    while(True):
+        BuildVersion = raw_input("Please type the build version here (e.g.:2.x.xxxx): ")
+        if '2.0' in BuildVersion:
+            break
+        elif '2.1' in BuildVersion:
+            break         
+        else:
+            print "You've inputed a wrong build number, please type again!"
+        
     PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion)
             
 def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion):
@@ -128,7 +151,7 @@ def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
     if os.path.exists(FailedNTPPath):
         CopyNTPFile(OSName,FailedNTPPath)
     else:
-        print "File not found!"
+        print FailedNTPPath + "  not found!"
     
     
 def get_desktop():
