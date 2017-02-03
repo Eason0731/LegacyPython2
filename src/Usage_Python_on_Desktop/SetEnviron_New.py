@@ -56,7 +56,7 @@ def SearchFusionPath():
                         print "CU Build "+ Version +" exists on your PC"
                     
                     elif 'production' in FusionPath:
-                        print "production Build "+ Version +" exists on your PC"
+                        print "Production Build "+ Version +" exists on your PC"
                         
                     OpenMultipleFusionBuilds(FusionPath,myFile)
                     
