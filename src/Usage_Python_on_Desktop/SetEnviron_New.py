@@ -60,49 +60,35 @@ def SearchFusionPath():
                         #print "FusionPath is: " + FusionPath
                         #print "Filename is " + myFile
                         #print "The Full Path of Fusion on your disk is: " + FullPath
-
                         #MacPath = os.path.join('~', 'Applications', 'Autodesk\ Fusion\ 360\ [dev].app')
                         MacPath = (('/').join(FusionPath.split("/")[:-1])).replace(' ','\ ') #Use '\ ' to replace space, which take effect!
                         OpenMultipleFusionBuilds(MacPath,'')
                         #rint "Open Path is: " +  (('/').join(FusionPath.split("/")[:-1])).replace(' ','\ ')
-                        
-                        
+                                                
                                           
                     elif os.path.join('Autodesk Fusion 360 [staging].app','Contents','Info.plist') in os.path.join(root,myFile):
                         FullPath = os.path.join(FusionPath,myFile)
                         Version = getFileVersion(FullPath)
                         print "RC Build " + Version +" exists on your Mac"
-                        #print "FusionPath is: " + FusionPath
-                        #print "Filename is " + myFile
-                        #print "The Full Path of Fusion on your disk is: " + FullPath
-                        #MacPath = os.path.join('~', 'Applications', 'Autodesk\ Fusion\ 360\ [staging].app')
                         MacPath = (('/').join(FusionPath.split("/")[:-1])).replace(' ','\ ')
                         OpenMultipleFusionBuilds(MacPath,'')
-                        #print "Open Path is: " +  ('/').join(FusionPath.split("/")[:-1])
+                        
                                                
                     elif os.path.join('Autodesk Fusion 360 [continuousupdate].app','Contents','Info.plist') in os.path.join(root,myFile):
                         FullPath = os.path.join(FusionPath,myFile)
                         Version = getFileVersion(FullPath)
                         print "CU Build " + Version +" exists on your Mac"
-                        #print "FusionPath is: " + FusionPath
-                        #print "Filename is " + myFile
-                        #print "The Full Path of Fusion on your disk is: " + FullPath
-                        #MacPath = os.path.join('~', 'Applications', 'Autodesk\ Fusion\ 360\ [continuousupdate].app')
                         MacPath = (('/').join(FusionPath.split("/")[:-1])).replace(' ','\ ')
                         OpenMultipleFusionBuilds(MacPath,'')
-                        #print "Open Path is: " +  ('/').join(FusionPath.split("/")[:-1])
+                        
                     
                     elif os.path.join('Autodesk Fusion 360.app','Contents','Info.plist') in os.path.join(root,myFile):
                         FullPath = os.path.join(FusionPath,myFile)
                         Version = getFileVersion(FullPath)
                         print "Production Build " + Version +" exists on your Mac"
-                        #print "FusionPath is: " + FusionPath
-                        #print "Filename is " + myFile
-                        #print "The Full Path of Fusion on your disk is: " + FullPath
-                        #MacPath = os.path.join('~', 'Applications', 'Autodesk\ Fusion\ 360.app')
                         MacPath = (('/').join(FusionPath.split("/")[:-1])).replace(' ','\ ')
                         OpenMultipleFusionBuilds(MacPath,'')
-                        #print "Open Path is: " +  ('/').join(FusionPath.split("/")[:-1])        
+                        
         else:
             print "Your MAC didn't install Fusion"    
         
