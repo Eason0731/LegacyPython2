@@ -131,22 +131,27 @@ def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
         
         else: #Mac
             FailedNTPPath = os.path.join(NetPath,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+    
     elif CurrentOS == 'Darwin':
-        MountFolder = os.path.join (os.environ['HOME'],'Desktop','Mount')
-        if OSName == 'Win':
-            NetPath = NetPath[2:]
-            NetPath = NetPath.replace('\\','/')
-            if not os.path.exists(MountFolder):
-                os.makedirs(MountFolder)
-
-            os.system ('mount_smbfs //svc_q_fusion360:AdP6bc4Y@{0} "{1}"' .format(NetPath,MountFolder))
-            print 'Mount Success!'
-            #FailedNTPPath 
+        workSpace = os.path.join (os.environ['HOME'],'Desktop')
+        mountpoint = os.path.join(workSpace, 'MountFolder')
+        if os.path.exists(mountpoint):            
+            UnMountSMBS(mountpoint)
+            shutil.rmtree(mountpoint) 
         
-        else: #Mac
-            #FailedNTPPath = 
-            return None
+        isMounted = MountSMBS(NetPath,mountpoint)
 
+        if isMounted != 0:
+            print "Mount "+ NetPath[2:] + " Failed!"
+        else:
+            print "Mount " + NetPath[2:] + " Successfully!"
+            if OSName == 'Win':
+                FailedNTPPath = os.path.join(mountpoint,FusionVersionName,OSVersionName,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+        
+            else: #Mac
+                FailedNTPPath = os.path.join(mountpoint,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+    
+            
     #FailedNTPPath.replace('\\', '\\\\')
     if os.path.exists(FailedNTPPath):
         CopyNTPFile(OSName,FailedNTPPath)
@@ -166,17 +171,20 @@ def CopyNTPFile(OSName,FailedNTPPath):
     CurrentOS = platform.system()
     DesktopPath = ''
     TodayFolder = time.strftime("%Y%m%d",time.localtime())
-    NTPName = FailedNTPPath.split("\\")[-1]
+    NTPName = ''
     if CurrentOS == 'Windows':
         DesktopPath = get_desktop()
     #print FailedNTPPath
-        
+        NTPName = FailedNTPPath.split("\\")[-1]
         OutputFilePath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder , NTPName)
         OutputPath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder)
 
     elif CurrentOS == 'Darwin':
-        OutputFilePath = os.path.join (os.environ['HOME'],'Desktop','AutomationTriage',TodayFolder,NTPName)
-        OutputPath = os.path.join (os.environ['HOME'],'Desktop','AutomationTriage',TodayFolder)
+        DesktopPath = os.path.join(os.environ['HOME'],'Desktop')
+        
+        NTPName = FailedNTPPath.split("/")[-1]
+        OutputFilePath = os.path.join(DesktopPath,'AutomationTriage',TodayFolder,NTPName)
+        OutputPath = os.path.join(DesktopPath,'AutomationTriage',TodayFolder)
 
 
     if not os.path.exists(OutputPath):
@@ -190,6 +198,20 @@ def CopyNTPFile(OSName,FailedNTPPath):
     print NTPName + "  has copied to folder " + OutputPath + " Successfully!" 
     print "====================================================="
     ContinueOrExit()    
+    
+def MountSMBS(netpath, mountpoint):
+    os.system('mkdir -p "{0}"'.format(mountpoint))
+    
+    netpath = netpath[2:]
+    netpath = netpath.replace('\\', '/')
+    #os.system('mount_smbfs //svc_q_fusion360:AdP6bc4Y@{0} {1}'.format(netpath, mountpoint))
+    aa = os.system('mount_smbfs //svc_q_fusion360:AdP6bc4Y@{0} "{1}"'.format(netpath, mountpoint))
+    #print (os.system('mount_smbfs //svc_q_fusion360:AdP6bc4Y@{0} {1}'.format(netpath, mountpoint)))
+    return aa
+    #print ("aa is: " + aa) 
+    
+def UnMountSMBS (mountpoint):
+    os.system('umount "{0}"'.format(mountpoint))
     
         
 def ContinueOrExit():
