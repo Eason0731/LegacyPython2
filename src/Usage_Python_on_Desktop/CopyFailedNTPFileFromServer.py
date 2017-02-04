@@ -152,7 +152,8 @@ def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
         CopyNTPFile(OSName,FailedNTPPath)
     else:
         print FailedNTPPath + "  not found!"
-    
+        print "====================================================="
+        ContinueOrExit() 
     
 def get_desktop():
     import _winreg
@@ -187,10 +188,20 @@ def CopyNTPFile(OSName,FailedNTPPath):
     
     shutil.copyfile(FailedNTPPath, OutputFilePath)
     print NTPName + "  has copied to folder " + OutputPath + " Successfully!" 
-        
+    print "====================================================="
+    ContinueOrExit()    
     
         
-    
+def ContinueOrExit():
+    while(True):
+        ce = raw_input("Continue to download new NTP file or exit? (Y/N) ")
+        if ce.lower() == 'y':
+            MainMethod()
+        elif ce.lower() == 'n':
+            print "Bye~"
+            exit(0)         
+        else:
+            print "You've typed an illegal character, please try again!"
 
 
     
