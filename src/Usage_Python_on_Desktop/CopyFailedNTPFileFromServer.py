@@ -107,9 +107,28 @@ def ChooseOSbuild(OSName,FusionVersionName,FusionVersionName_Perfix):
             print "You've typed an illegal character on ChooseOSbuild, please select again!"
             
     
-    TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName)
+    ChooseTypeOfNTP(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName)
+
+def ChooseTypeOfNTP(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName):
+    while(True):
+        cTypeOfNTP = raw_input(
+    """
+    Which type of NTP file do you want choose?
+       1 -- Failed
+       2 -- Passed
+    """)
+        if cTypeOfNTP == '1':
+            TypeOfNTP = 'FailedCases.ntp'
+            break
+        elif cTypeOfNTP == '2':
+            TypeOfNTP = 'PassedCases.ntp'
+            break
+        else:
+            print "You've typed an illegal character on ChooseTypeOfNTP, please select again!"
     
-def TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName):
+    TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,TypeOfNTP)  
+        
+def TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,TypeOfNTP):
     while(True):
         BuildVersion = raw_input("Please type the build version here (e.g.:2.x.xxxx): ")
         if '2.0' in BuildVersion:
@@ -119,18 +138,18 @@ def TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
         else:
             print "You've inputed a wrong build number, please type again!"
         
-    AccessToServer(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion)
+    AccessToServer(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion,TypeOfNTP)
             
-def AccessToServer(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion):
+def AccessToServer(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion,TypeOfNTP):
     FailedNTPPath = ''
     CurrentOS = platform.system()
     NetPath = r'\\eptserver\Freeway\FusionAutomation\AutomationResult'
     if CurrentOS == 'Windows':
         if OSName == 'Win':
-            FailedNTPPath = os.path.join(NetPath,FusionVersionName,OSVersionName,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+            FailedNTPPath = os.path.join(NetPath,FusionVersionName,OSVersionName,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+ TypeOfNTP)
         
         else: #Mac
-            FailedNTPPath = os.path.join(NetPath,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+'FailedCases.ntp')
+            FailedNTPPath = os.path.join(NetPath,FusionVersionName_Perfix+'_'+BuildVersion+'.ntp-'+OSVersionName+'-'+ TypeOfNTP)
     
     elif CurrentOS == 'Darwin':
         workSpace = os.path.join (os.environ['HOME'],'Desktop')
