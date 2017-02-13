@@ -171,13 +171,14 @@ def CopyNTPFile(OSName,FailedNTPPath):
     CurrentOS = platform.system()
     DesktopPath = ''
     TodayFolder = time.strftime("%Y%m%d",time.localtime())
+    CurrentYear = time.strftime("%Y",time.localtime())
     NTPName = ''
     if CurrentOS == 'Windows':
         DesktopPath = get_desktop()
     #print FailedNTPPath
         NTPName = FailedNTPPath.split("\\")[-1]
-        OutputFilePath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder , NTPName)
-        OutputPath = os.path.join(DesktopPath,'John Folder','Failed Cases','2017', TodayFolder)
+        OutputFilePath = os.path.join(DesktopPath,'John Folder','Failed Cases',CurrentYear, TodayFolder , NTPName)
+        OutputPath = os.path.join(DesktopPath,'John Folder','Failed Cases',CurrentYear, TodayFolder)
 
     elif CurrentOS == 'Darwin':
         DesktopPath = os.path.join(os.environ['HOME'],'Desktop')
