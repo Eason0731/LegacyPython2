@@ -119,9 +119,9 @@ def TypeBuildVersion(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersion
         else:
             print "You've inputed a wrong build number, please type again!"
         
-    PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion)
+    AccessToServer(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion)
             
-def PrintYourChoosed(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion):
+def AccessToServer(OSName,FusionVersionName,FusionVersionName_Perfix,OSVersionName,BuildVersion):
     FailedNTPPath = ''
     CurrentOS = platform.system()
     NetPath = r'\\eptserver\Freeway\FusionAutomation\AutomationResult'
