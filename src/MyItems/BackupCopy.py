@@ -5,48 +5,80 @@ import time
 
 def MainMethod():
     a = raw_input("""
-If you want re-install OS please backup Press --- 1
-Want to Customed your path please Press       --- 2
-Want to Copy File to Folder please Press      --- 3
-Quit Press                                    --- Press Any Key
+If you want re-install OS please backup     --- 1
+Put back save files after re-install OS     --- 2
+Quit Press                                  --- Press Any Key
 
 Please Choose:""")
     if a == "1":
         Backup()
     elif a == "2":
-        Custom()
-    elif a == "3":
-        CustomFiletoFolder()
+        PutBack()
+    elif a == "aaa":
+        return None
+        #Custom()
+    elif a == "bbb":
+        #CustomFiletoFolder()
+        return None
     else :
         exit(0)
     
 def Backup():
     
     BackupFolderName = time.strftime("%Y%m%d",time.localtime())
-    BackupFolderName = BackupFolderName + " Backup"
+    BackupFolderName = BackupFolderName + "_Backup"
     
-    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports")
-    
-    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI") 
-   
+    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports") 
+    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
+    sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
     sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
-
     sourceTencent = r'C:\Users\Public\Documents\Tencent'
-
     
     BackupFolderName = os.path.join("D:\\",BackupFolderName)
+
     if (os.path.exists(BackupFolderName)):
+        shutil.rmtree(BackupFolderName)
+        print ("Remove the legacy folder: " + BackupFolderName +" successfully!")
+        print ("============================================")
+    
+    os.makedirs(BackupFolderName)
+    print ("Create Backup Folder: " + BackupFolderName + " successfully!")
+    print ("============================================")
+    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceTencent,BackupFolderName)
+    ExitOrNot()
         
+def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceTencent,BackupFolderName):
+    if os.path.exists(source2Kfolder):
         Copy2K(source2Kfolder,BackupFolderName)
-        CopyKONAMI(sourceKONAMI,BackupFolderName)
-        CopyTencentFiles(sourceTencentFiles,BackupFolderName)
-        CopyTencent(sourceTencent,BackupFolderName)
-        
     else:
-        os.makedirs(BackupFolderName)
-        print ("Create Folder :  " + BackupFolderName + " Success!")
-        Backup()
-        
+        print "The save files of 2K Sports didn't found on this PC and not backup"
+        print ("============================================")
+
+    if os.path.exists(sourceKONAMI):
+        CopyKONAMI(sourceKONAMI,BackupFolderName)
+    else:
+        print "The save files of KONAMI didn't found on this PC and not backup"
+        print ("============================================")
+
+    if os.path.exists(sourceTDU):
+        CopyTDU(sourceTDU,BackupFolderName)
+    else:
+        print "The save files of TDU didn't found on this PC and not backup"
+        print ("============================================")
+
+    if os.path.exists(sourceTencentFiles):
+        CopyTencentFiles(sourceTencentFiles,BackupFolderName)
+    else:
+        print "The save files of TencentFiles didn't found on this PC and not backup"
+        print ("============================================")
+            
+    if os.path.exists(sourceTencent):
+        CopyTencent(sourceTencent,BackupFolderName)
+    else:
+        print "The save files of Tencent didn't found on this PC and not backup"
+        print ("============================================")
+
+    
 def Copy2K(source2Kfolder,BackupFolderName):
     BackupFolderName = os.path.join(BackupFolderName,'2K Sports')
     os.makedirs(BackupFolderName)  
@@ -67,11 +99,21 @@ def CopyKONAMI(sourceKONAMI,BackupFolderName):
     print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
     print ("============================================")
 
+def CopyTDU(sourceTDUfolder,BackupFolderName):
+    BackupFolderName = os.path.join(BackupFolderName,'Test Drive Unlimited')
+    os.makedirs(BackupFolderName)  
+    print time.strftime("Start Copy TDU Time :%Y-%m-%d %X",time.localtime())
+    copyFiles(sourceTDUfolder,BackupFolderName)
+    print ("Backup TDU Success!")
+    print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
+    print ("============================================")
+
+    
 def CopyTencentFiles(sourceTencentFiles,BackupFolderName):
     BackupFolderName = os.path.join(BackupFolderName,'Tencent Files')
     print BackupFolderName
     os.makedirs(BackupFolderName)
-    print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
+    print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())  
     copyFiles(sourceTencentFiles,BackupFolderName)
     print ("Backup Tencent Success!")
     print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
@@ -81,12 +123,13 @@ def CopyTencent(sourceTencent,BackupFolderName):
     BackupFolderName = os.path.join(BackupFolderName,'Tencent')
     print BackupFolderName
     os.makedirs(BackupFolderName)
-    print time.strftime("Start CopyTencent Time :%Y-%m-%d %X",time.localtime())
-    copyFiles(sourceTencent,BackupFolderName)
+    print time.strftime("Start CopyTencent Time :%Y-%m-%d %X",time.localtime())  
+    copyFiles(sourceTencent,BackupFolderName) 
     print ("Backup Tencent Success!")
     print time.strftime("End CopyTencent Time :%Y-%m-%d %X",time.localtime())
     print ("============================================")
-        
+
+"""       
 def CopyCustomed(sourceCustomed,TargetCustomed):
     if (os.path.exists(sourceCustomed)):
         os.makedirs(TargetCustomed)
@@ -116,7 +159,7 @@ def Continue():
             print ("you have typed wrong word")
             continue
         
-        
+       
 def Custom():
     sourceCustomed = raw_input ("please input sourceFolder: ")
     TargetCustomed = raw_input ("please input TargetFolder: ")
@@ -140,8 +183,39 @@ def CustomFiletoFolder():
         
     Continue()
             
-        
+"""
 
+def PutBack():
+    BackupFolderPath = raw_input ("Please input Backup Folder path:")
+
+    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports") 
+    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
+    sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
+    sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
+    sourceTencent = r'C:\Users\Public\Documents\Tencent'
+    
+    if os.path.exists(BackupFolderPath):
+        if not os.listdir(BackupFolderPath):
+            print BackupFolderPath+ " is a empty folder!"
+        else:
+            print "Not a empty folder!"
+    else:
+        print BackupFolderPath+ " is not exists!"
+    ExitOrNot()
+    
+def ExitOrNot():
+    while(True):
+        cc = raw_input("Current work has finished! Back to main menu? (Y/N)")
+        if cc.lower() == 'y':
+            MainMethod()
+            break
+        elif cc.lower() == 'n':
+            exit(0)
+        else:
+            print "You've typed a illgeal word, please select again!"
+            print "============================================"    
+
+        
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
         return 
