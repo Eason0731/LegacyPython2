@@ -24,7 +24,7 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
 
     BackupFolderName = os.path.join("D:\\",BackupFolderName)
 
-    if (os.path.exists(BackupFolderName)):
+    if os.path.exists(BackupFolderName):
         shutil.rmtree(BackupFolderName)
         print "Remove the legacy folder: " + BackupFolderName +" successfully!"
         print "============================================"
