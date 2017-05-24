@@ -3,7 +3,7 @@ import os
 import shutil
 import time
 
-def MainMethod():
+def MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
     a = raw_input("""
 If you want re-install OS please backup     --- 1
 Put back save files after re-install OS     --- 2
@@ -11,28 +11,17 @@ Quit Press                                  --- Press Any Key
 
 Please Choose:""")
     if a == "1":
-        Backup()
+        Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
     elif a == "2":
-        PutBack()
-    elif a == "aaa":
-        return None
-        #Custom()
-    elif a == "bbb":
-        #CustomFiletoFolder()
-        return None
-    else :
+        PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
+    else:
         exit(0)
     
-def Backup():
-    
+def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
+    IsBackup = '1'
     BackupFolderName = time.strftime("%Y%m%d",time.localtime())
     BackupFolderName = BackupFolderName + "_Backup"
-    
-    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports") 
-    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
-    sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
-    sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
-    
+
     BackupFolderName = os.path.join("D:\\",BackupFolderName)
 
     if (os.path.exists(BackupFolderName)):
@@ -43,194 +32,182 @@ def Backup():
     os.makedirs(BackupFolderName)
     print ("Create Backup Folder: " + BackupFolderName + " successfully!")
     print ("============================================")
-    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolderName)
+    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolderName,IsBackup)
     ExitOrNot()
         
-def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolderName):
+def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolderName,IsBackup):
     if os.path.exists(source2Kfolder):
-        Copy2K(source2Kfolder,BackupFolderName)
+        Copy2K(source2Kfolder,BackupFolderName,IsBackup)
     else:
         print "The save files of 2K Sports didn't found on this PC and not backup"
-        print ("============================================")
+        print "============================================"
 
     if os.path.exists(sourceKONAMI):
-        CopyKONAMI(sourceKONAMI,BackupFolderName)
+        CopyKONAMI(sourceKONAMI,BackupFolderName,IsBackup)
     else:
         print "The save files of KONAMI didn't found on this PC and not backup"
-        print ("============================================")
+        print "============================================"
 
     if os.path.exists(sourceTDU):
-        CopyTDU(sourceTDU,BackupFolderName)
+        CopyTDU(sourceTDU,BackupFolderName,IsBackup)
     else:
         print "The save files of TDU didn't found on this PC and not backup"
-        print ("============================================")
+        print "============================================"
 
     if os.path.exists(sourceTencentFiles):
-        CopyTencentFiles(sourceTencentFiles,BackupFolderName)
+        CopyTencentFiles(sourceTencentFiles,BackupFolderName,IsBackup)
     else:
         print "The save files of TencentFiles didn't found on this PC and not backup"
-        print ("============================================")
+        print "============================================"
 
 
     
-def Copy2K(source2Kfolder,BackupFolderName):
-    BackupFolderName = os.path.join(BackupFolderName,'2K Sports')
-    os.makedirs(BackupFolderName)  
-    print time.strftime("Start Copy 2K Time :%Y-%m-%d %X",time.localtime())
-    copyFiles(source2Kfolder,BackupFolderName)
-    print ("Backup 2K Success!")
-    print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
-    print ("============================================")
-    
-    
-def CopyKONAMI(sourceKONAMI,BackupFolderName):
-    BackupFolderName = os.path.join(BackupFolderName,'KONAMI')
-    print BackupFolderName
-    os.makedirs(BackupFolderName)
-    print time.strftime("Start Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
-    copyFiles(sourceKONAMI,BackupFolderName)
-    print ("Backup KONAMI Success!")
-    print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
-    print ("============================================")
-
-def CopyTDU(sourceTDUfolder,BackupFolderName):
-    BackupFolderName = os.path.join(BackupFolderName,'Test Drive Unlimited')
-    os.makedirs(BackupFolderName)  
-    print time.strftime("Start Copy TDU Time :%Y-%m-%d %X",time.localtime())
-    copyFiles(sourceTDUfolder,BackupFolderName)
-    print ("Backup TDU Success!")
-    print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
-    print ("============================================")
-
-    
-def CopyTencentFiles(sourceTencentFiles,BackupFolderName):
-    BackupFolderName = os.path.join(BackupFolderName,'Tencent Files')
-    print BackupFolderName
-    os.makedirs(BackupFolderName)
-    print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())  
-    copyFiles(sourceTencentFiles,BackupFolderName)
-    print ("Backup Tencent Success!")
-    print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
-    print ("============================================")
-
-
-"""       
-def CopyCustomed(sourceCustomed,TargetCustomed):
-    if (os.path.exists(sourceCustomed)):
-        os.makedirs(TargetCustomed)
-    else :
-        print ("{0} is NOT Exist!" .format(sourceCustomed))
-
-    if (os.path.isdir(TargetCustomed)):
-        print ("TargetFolder is : {0} " .format(TargetCustomed))
-        print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
-        copyFiles(sourceCustomed,TargetCustomed)
-        print ("Copy Success!")
-        print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-        print ("============================================")
-    else :
-        print ("{0} is NOT Exist!" .format(TargetCustomed))
-
-    Continue()
-
-def Continue():
-    while(1):
-        cc = raw_input ("continue or back? (y/n)")
-        if cc.lower() == "y":
-            Custom()
-        elif cc.lower() == "n":
-            MainMethod()
-        else:
-            print ("you have typed wrong word")
-            continue
-        
-       
-def Custom():
-    sourceCustomed = raw_input ("please input sourceFolder: ")
-    TargetCustomed = raw_input ("please input TargetFolder: ")
-    CopyCustomed(sourceCustomed,TargetCustomed)
-
-def CustomFiletoFolder():
-    sourceFile = raw_input ("Please input File path:")
-    TargetFolder = raw_input ("Please input Target Folder:")
-    pathname,filename = os.path.split (sourceFile)
-
-    print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
-    if (os.path.exists(sourceFile)):
-        if (not os.path.exists(TargetFolder)):
-            os.makedirs(TargetFolder)      
-        shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
-        print ("Copy File Success!")
-        print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-        print ("============================================")
+def Copy2K(source2Kfolder,BackupFolderName,IsBackup):
+    if IsBackup == '1':
+        BackupFolderName = os.path.join(BackupFolderName,'2K Sports')
+        print BackupFolderName
+        os.makedirs(BackupFolderName)  
+        print time.strftime("Start Copy 2K Time :%Y-%m-%d %X",time.localtime()) 
+        copyFiles(source2Kfolder,BackupFolderName)
+        print "Backup 2K Success!"
+        print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
     else:
-        print ("You File {0} is NOT Exist!" .format(sourceFile))
-        
-    Continue()
-            
-"""
-
-def PutBack():
-    BackupFolderPath = raw_input ("Please input Backup Folder path:")
-
-    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports") 
-    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
-    sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
-    sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
+        print time.strftime("Start Move 2K Time :%Y-%m-%d %X",time.localtime()) 
+        shutil.move(os.path.join(BackupFolderName,"2K Sports"), source2Kfolder)
+        print ("Put Back 2K Success!")
+        print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
     
+    print "============================================"
+    
+    
+def CopyKONAMI(sourceKONAMI,BackupFolderName,IsBackup):
+    if IsBackup == '1':
+        BackupFolderName = os.path.join(BackupFolderName,'KONAMI')
+        print BackupFolderName
+        os.makedirs(BackupFolderName)
+        print time.strftime("Start Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
+        copyFiles(sourceKONAMI,BackupFolderName)
+        print "Backup KONAMI Success!"
+        print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
+    else:
+        print time.strftime("Start Move KONAMI Time :%Y-%m-%d %X",time.localtime()) 
+        shutil.move(os.path.join(BackupFolderPath,"KONAMI"), sourceKONAMI)
+        print "Put Back KONAMI Success!"
+        print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
+ 
+    print "============================================"
+
+def CopyTDU(sourceTDUfolder,BackupFolderName,IsBackup):
+    if IsBackup == '1':
+        BackupFolderName = os.path.join(BackupFolderName,'Test Drive Unlimited')
+        os.makedirs(BackupFolderName)  
+        print time.strftime("Start Copy TDU Time :%Y-%m-%d %X",time.localtime())
+        copyFiles(sourceTDUfolder,BackupFolderName)
+        print "Backup TDU Success!"
+        print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
+    else:
+        print time.strftime("Start Move TDU Time :%Y-%m-%d %X",time.localtime()) 
+        shutil.move(os.path.join(BackupFolderPath,"Test Drive Unlimited"), sourceTDU)
+        print "Put Back TDU Success!"
+        print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
+
+    print "============================================"
+
+    
+def CopyTencentFiles(sourceTencentFiles,BackupFolderName,IsBackup):
+    if IsBackup == '1':
+        BackupFolderName = os.path.join(BackupFolderName,'Tencent Files')
+        print BackupFolderName
+        os.makedirs(BackupFolderName)
+        print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
+        copyFiles(sourceTencentFiles,BackupFolderName)
+        print "Backup Tencent Success!"
+        print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())       
+    else:
+        print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
+        shutil.move(os.path.join(BackupFolderPath,"Tencent Files"), sourceTencentFiles)
+        print "Put Back Tencent Files Success!"
+        print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
+    
+    print "============================================"
+
+
+def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
+    BackupFolderPath = raw_input ("Please input Backup Folder path:")
+    i = 0
+    IsBackup = '2'
     if os.path.exists(BackupFolderPath):
         if os.path.exists(os.path.join(BackupFolderPath,"2K Sports")):
+            i = i + 1
             if os.path.exists(source2Kfolder):
                 print "2K Sports folder exists, no need to put back"
                 print "============================================"
             else:
+                """
                 print time.strftime("Start Move 2K Time :%Y-%m-%d %X",time.localtime()) 
                 shutil.move(os.path.join(BackupFolderPath,"2K Sports"), source2Kfolder)
                 print ("Put Back 2K Success!")
                 print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
                 print "============================================"
+                """
+                Copy2K(source2Kfolder,BackupFolderPath,IsBackup)
         
-            if os.path.exists(os.path.join(BackupFolderPath,"KONAMI")):
-                if os.path.exists(sourceKONAMI):
-                    print "KONAMI folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    print time.strftime("Start Move KONAMI Time :%Y-%m-%d %X",time.localtime()) 
-                    shutil.move(os.path.join(BackupFolderPath,"KONAMI"), sourceKONAMI)
-                    print ("Put Back KONAMI Success!")
-                    print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
-                    print "============================================"
-                
-            if os.path.exists(os.path.join(BackupFolderPath,"Test Drive Unlimited")):
-                if os.path.exists(sourceTDU):
-                    print "TDU folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    print time.strftime("Start Move TDU Time :%Y-%m-%d %X",time.localtime()) 
-                    shutil.move(os.path.join(BackupFolderPath,"Test Drive Unlimited"), sourceTDU)
-                    print ("Put Back TDU Success!")
-                    print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
-                    print "============================================"
-                
-            if os.path.exists(os.path.join(BackupFolderPath,"Tencent Files")):
-                if os.path.exists(sourceTencentFiles):
-                    print "Tencent Files folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
-                    shutil.move(os.path.join(BackupFolderPath,"Tencent Files"), sourceTencentFiles)
-                    print ("Put Back Tencent Files Success!")
-                    print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
-                    print "============================================"
-                   
         
+        if os.path.exists(os.path.join(BackupFolderPath,"KONAMI")):
+            i = i + 1
+            if os.path.exists(sourceKONAMI):
+                print "KONAMI folder exists, no need to put back"
+                print "============================================"
+            else:
+                CopyKONAMI(sourceKONAMI,BackupFolderPath,IsBackup)
+                """
+                print time.strftime("Start Move KONAMI Time :%Y-%m-%d %X",time.localtime()) 
+                shutil.move(os.path.join(BackupFolderPath,"KONAMI"), sourceKONAMI)
+                print ("Put Back KONAMI Success!")
+                print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
+                print "============================================"
+                """
+                
+        if os.path.exists(os.path.join(BackupFolderPath,"Test Drive Unlimited")):
+            i = i + 1
+            if os.path.exists(sourceTDU):
+                print "TDU folder exists, no need to put back"
+                print "============================================"
+            else:
+                CopyTDU(sourceTDUfolder,BackupFolderPath,IsBackup)
+                """
+                print time.strftime("Start Move TDU Time :%Y-%m-%d %X",time.localtime()) 
+                shutil.move(os.path.join(BackupFolderPath,"Test Drive Unlimited"), sourceTDU)
+                print ("Put Back TDU Success!")
+                print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
+                print "============================================"
+                """
+                
+        if os.path.exists(os.path.join(BackupFolderPath,"Tencent Files")):
+            i = i + 1
+            if os.path.exists(sourceTencentFiles):
+                print "Tencent Files folder exists, no need to put back"
+                print "============================================"
+            else:
+                CopyTencentFiles(sourceTencentFiles,BackupFolderPath,IsBackup)
+                """
+                print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
+                shutil.move(os.path.join(BackupFolderPath,"Tencent Files"), sourceTencentFiles)
+                print ("Put Back Tencent Files Success!")
+                print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
+                print "============================================"
+                """       
     else:
-        print BackupFolderPath+ " is not exists!"
-        
+        print BackupFolderPath + " is not exists!"
+
+    if i == 0:
+        print BackupFolderPath + " does not contain any releated backup files, this may not a correct backup folder"
+    
     if not os.listdir(BackupFolderPath):
         shutil.rmtree(BackupFolderPath)
         if not os.path.exists(BackupFolderPath):
-            print "All the save files has put back successfully. Now delete the root folder"
+            print "All the save files has been put back"
+            print "Backup folder " + BackupFolderPath + " deleted successfully!"
             print "============================================"
             
 
@@ -238,9 +215,9 @@ def PutBack():
     
 def ExitOrNot():
     while(True):
-        cc = raw_input("Current work has finished! Back to main menu? (Y/N)")
+        cc = raw_input("Back to main menu? (Y/N)")
         if cc.lower() == 'y':
-            MainMethod()
+            MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
             break
         elif cc.lower() == 'n':
             exit(0)
@@ -279,7 +256,12 @@ def copyFiles(sourceDir, targetDir):
 
 
 if __name__ == "__main__":
-    MainMethod()
+    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports") 
+    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
+    sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
+    sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
+    
+    MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
     
         
         
