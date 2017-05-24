@@ -26,12 +26,12 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
 
     if (os.path.exists(BackupFolderName)):
         shutil.rmtree(BackupFolderName)
-        print ("Remove the legacy folder: " + BackupFolderName +" successfully!")
-        print ("============================================")
+        print "Remove the legacy folder: " + BackupFolderName +" successfully!"
+        print "============================================"
     
     os.makedirs(BackupFolderName)
-    print ("Create Backup Folder: " + BackupFolderName + " successfully!")
-    print ("============================================")
+    print "Create Backup Folder: " + BackupFolderName + " successfully!"
+    print "============================================"
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolderName,IsBackup)
     ExitOrNot()
         
@@ -74,7 +74,7 @@ def Copy2K(source2Kfolder,BackupFolderName,IsBackup):
     else:
         print time.strftime("Start Move 2K Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolderName,"2K Sports"), source2Kfolder)
-        print ("Put Back 2K Success!")
+        print "Put Back 2K Success!"
         print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
     
     print "============================================"
