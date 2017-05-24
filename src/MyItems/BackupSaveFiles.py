@@ -75,7 +75,7 @@ def Copy2K(source2Kfolder,BackupFolderName,IsBackup):
         print time.strftime("Start Move 2K Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolderName,"2K Sports"), source2Kfolder)
         print "Put Back 2K Success!"
-        print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End Move 2K Time :%Y-%m-%d %X",time.localtime())
     
     print "============================================"
     
@@ -93,7 +93,7 @@ def CopyKONAMI(sourceKONAMI,BackupFolderName,IsBackup):
         print time.strftime("Start Move KONAMI Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolderPath,"KONAMI"), sourceKONAMI)
         print "Put Back KONAMI Success!"
-        print time.strftime("End Copy KONAMI Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End Move KONAMI Time :%Y-%m-%d %X",time.localtime())
  
     print "============================================"
 
@@ -109,7 +109,7 @@ def CopyTDU(sourceTDUfolder,BackupFolderName,IsBackup):
         print time.strftime("Start Move TDU Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolderPath,"Test Drive Unlimited"), sourceTDU)
         print "Put Back TDU Success!"
-        print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End Move TDU Time :%Y-%m-%d %X",time.localtime())
 
     print "============================================"
 
@@ -124,10 +124,10 @@ def CopyTencentFiles(sourceTencentFiles,BackupFolderName,IsBackup):
         print "Backup Tencent Success!"
         print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())       
     else:
-        print time.strftime("Start Copy Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
+        print time.strftime("Start Move Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolderPath,"Tencent Files"), sourceTencentFiles)
         print "Put Back Tencent Files Success!"
-        print time.strftime("End Copy Tencent Files Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End Move Tencent Files Time :%Y-%m-%d %X",time.localtime())
     
     print "============================================"
 
