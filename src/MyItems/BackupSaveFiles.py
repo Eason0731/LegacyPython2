@@ -100,7 +100,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupF
                     print "TDU folder exists, no need to put back"
                     print "============================================"
                 else:
-                    CopyTDU(sourceTDUfolder,BackupFolder,IsBackup)
+                    CopyTDU(sourceTDU,BackupFolder,IsBackup)
                     """
                     print time.strftime("Start Move TDU Time :%Y-%m-%d %X",time.localtime()) 
                     shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
@@ -176,12 +176,12 @@ def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
  
     print "============================================"
 
-def CopyTDU(sourceTDUfolder,BackupFolder,IsBackup):
+def CopyTDU(sourceTDU,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'Test Drive Unlimited')
         os.makedirs(BackupFolder)  
         print time.strftime("Start Copy TDU Time :%Y-%m-%d %X",time.localtime())
-        copyFiles(sourceTDUfolder,BackupFolder)
+        copyFiles(sourceTDU,BackupFolder)
         print "Backup TDU Success!"
         print time.strftime("End Copy TDU Time :%Y-%m-%d %X",time.localtime())
     else:
