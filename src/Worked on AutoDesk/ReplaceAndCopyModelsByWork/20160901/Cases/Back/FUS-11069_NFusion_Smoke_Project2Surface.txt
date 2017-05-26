@@ -1,0 +1,48 @@
+#
+# Neutron Text Command Script File v1.0
+#
+# 1. Create Parametric design
+NuCommands.NewDocumentCmd FusionAssetType 944486d0-95c7-40d4-8c43-6df42c4563e8 2
+#
+# 2. Create solid cylinder from XZ
+Commands.Start PrimitiveCylinder
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.706317663192749, 0, 1.2820544242858887)
+NaFusionUI.SetPoint SketchCenterPointInput (0, -5, 0) 3 0
+NaFusionUI.SetPoint SketchRadiusInput (-0.82516183849440239, -2.0470442132171343, -7.1054273576010019e-015) 3 0
+Commands.SetDouble cylinderDiameter 6.1321578382823372 () ()
+Commands.SetDouble primitiveHeight 7 () ()
+NuCommands.CommitCmd
+NuCommands.CommitCmd GP-executingBehavior::0
+#
+# 3. Draw a spline on XY as New Sketch, stop sketch
+Commands.Start DrawSpline
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (1.3010741472244263, 1.0914443731307983, 0)
+NaFusionUI.SetPoint SketchPointInput (-3.6280497495303621, 0.41154659347982658, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (-0.90701243738259052, 2.9939476242764584, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (0, 1.1346050622425565, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (3.3761018502574274, 4.8736728306558774, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.SketchStopCmd
+#
+# 4. Project To Surface, select XZ, the cylindrical face and then the spline, OK, stop sketch
+NaFusionUI.ProjectToSurfaceCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (0.82903563976287842, 0, 0.88560402393341064)
+Commands.SetSelections infoProjectToSurfaceFaces "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Bds/Bd=Body1/LeafType:64=(-3.0661000000000005, 1.0000000007170939e-005, 5)" (2.5571060180664063, 5.3649368286132812, 6.6890521049499512)
+Commands.SetSelections infoProjectToSurfaceCurves "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch2/Spline:6:1=(-0.366166221780235, 1.8470297833022822, 0)" (2.599290132522583, 3.4603302478790283, 0)
+NuCommands.CommitCmd
+NaFusionUI.SketchStopCmd
+#
+# 5. Drag the point of the original spline - Validate
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch2/Point:1:3=(0, 1.1346050622425565, 0)" (8.0000095367431641, 4.0000019073486328, 0)
+NaFusionUI.DragSketchCmd
+NaFusionUI.DragPoint DragInput (0.70545411796423707, 3.1019624021083132, 0) 3 1 (0, 1.1346050622425565, 0)
+NuCommands.SelectCmd
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch2/Point:1:4=(3.3761018502574274, 4.8736728306558774, 0)" (0, 1.9999885559082031, 0)
+NaFusionUI.DragSketchCmd
+NaFusionUI.DragPoint DragInput (1.4109082359284884, 0.050874274362769256, 0) 3 1 (3.3761018502574274, 4.8736728306558774, 0)
+NuCommands.SelectCmd
+
+Test.ValidateChecksum Project1PM
+Test.ValidateFusionSketch Project1PM
+
+NuCommands.CloseDocumentCmd

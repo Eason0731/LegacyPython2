@@ -1,0 +1,72 @@
+#
+# Neutron Text Command Script File v1.0
+
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.NewDocumentCmd FusionAssetType 789ace7c-6431-46e1-9da1-9c613576ecbc 1
+NuCommands.ActivateEnvironmentCmd FusionSolidEnvironment
+
+# 1. Create a box
+Commands.Start PrimitiveBox
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.1030126810073853, 0, 1.6404134035110474)
+NaFusionUI.SetPoint SketchFirstPointInput (-1.2719578496839858, -4.7470113201066937, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-6.5, 1.5, 0) 3 0
+Commands.SetDouble boxWidth 6.2470113201066937 () ()
+Commands.SetDouble boxLength 5.2280421503160142 () ()
+Commands.SetDouble primitiveHeight 2.2893932049191488 () ()
+Commands.SetDouble primitiveHeight 4.3899852280851182 () ()
+Commands.SetString infoBooleanType infoNewBodyInNewCompType
+# Nested Trigger: Commands.EnableSelectionInput Profile 
+Commands.Select "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:4=(-1.2719578496839858, -1.6235056600533468, 0)" (-1.2719578496839858, -1.6235056600533468, 0) 
+NuCommands.CommitCmd
+NuCommands.CommitCmd GP-executingBehavior::0
+NuCommands.SelectCmd
+
+# 2. Create a Cylinder
+Commands.Start PrimitiveCylinder
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.6977230310440063, 0, 1.5845861434936523)
+NaFusionUI.SetPoint SketchCenterPointInput (6.7927999696224433, -0.6241051985931847, 0) 3 0
+NaFusionUI.SetPoint SketchRadiusInput (5, 2, 0) 3 0
+Commands.EnableSelectionInput Profile 
+Commands.Select "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch2/CircArc:4:1=(3.6147408411035906, -0.62410519859318425, 0)" (3.6147408411035906, -0.62410519859318425, 0) 
+Commands.SetDouble cylinderDiameter 6.3561182570377062 () ()
+Commands.SetDouble primitiveHeight 0.68153264397730795 () ()
+Commands.SetDouble primitiveHeight 2.8858576065588739 () ()
+Commands.SetString infoBooleanType infoNewBodyInNewCompType
+# Nested Trigger: Commands.EnableSelectionInput Profile 
+Commands.Select "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch2/CircArc:4:1=(3.6147408411035906, -0.62410519859318425, 0)" (3.6147408411035906, -0.62410519859318425, 0) 
+NuCommands.CommitCmd
+NuCommands.CommitCmd GP-executingBehavior::0
+NuCommands.SelectCmd
+
+# 3. Create Joint and move some distance
+NaFusionUI.JointAssembleCmd
+Commands.SetJointOriginDefinations infoJointComponent1 (6.7927999696224433, 2.8858576065588739, 0.62410519859318403) (0, 1, -2.2204460492503126e-16) (1, 0, 0) (0, -2.2204460492503126e-16, -1) 0 0 0 0 0 0 "ONK::" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component2:1/Cmp=Component2/Bds/Bd=Body1/LeafType:64=(3.6147508411035907, 2.8858576065588739, 0.62410519859318359)" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component2:1/Cmp=Component2/Bds/Bd=Body1/LeafType:64=(3.6147508411035907, 2.8858576065588739, 0.62410519859318359)" "ONK::" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component2:1/Cmp=Component2/Bds/Bd=Body1/LeafType:64=(3.6147508411035907, 2.8858576065588739, 0.62410519859318359)" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component2:1/Cmp=Component2/Bds/Bd=Body1/LeafType:128=(3.6147408411035906, 2.8858576065588739, 0.62410519859318359)" 2 
+Commands.SetSelections infoJointComponent1 "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component2:1/Cmp=Component2/Bds/Bd=Body1/LeafType:64=(3.6147508411035907, 2.8858576065588739, 0.62410519859318359)" (7.1831936836242676, 2.8858575820922852, 0.71504783630371094)
+Commands.SetJointOriginDefinations infoJointComponent2 (-3.8859789248419929, 4.3899852280851182, 1.6235056600533468) (0, 1, 0) (1, 0, 0) (0, 0, -1) 0 0 0 0 0 0 "ONK::" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:64=(-3.8859789248419929, 4.3899852280851182, -1.4999899999999999)" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:64=(-3.8859789248419929, 4.3899852280851182, -1.4999899999999999)" "ONK::" "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:64=(-3.8859789248419929, 4.3899852280851182, -1.4999899999999999)" "ONK::" 1 
+Commands.SetSelections infoJointComponent2 "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/CmpInsts/CmpInst=Component1:1/Cmp=Component1/Bds/Bd=Body1/LeafType:64=(-3.8859789248419929, 4.3899852280851182, -1.4999899999999999)" (-3.434769868850708, 4.3899850845336914, 1.685846209526062)
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+
+# 4. Edit joint change the offset value and type
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/JointOccurrences/JointOccurrence=Rigid1_1" (-3.8859789248419929, 4.3899852280851182, 1.6235056600533468)
+Commands.Start EditJointAssembleCmd
+Commands.SetDouble infoJointAlignOffset 0.7520638107631239 () ()
+Commands.SetDouble infoJointAlignOffset 1.4003946821106101 () ()
+Commands.SetDouble infoJointAlignOffsetX 0.30238810641956837 () ()
+Commands.SetDouble infoJointAlignOffsetX 1.680506558648168 () ()
+Commands.SetDouble infoJointAlignOffsetY 0.56333292713567751 () ()
+Commands.SetDouble infoJointAlignOffsetY 1.016915086765021 () ()
+Commands.SetString infoJointType infoJointRevolute
+Commands.SetString infoJointAxis1 infoJointRZ
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Test.ValidateFusionBrowser v1 /JointOrigin /DefaultPrecision 
+Test.ValidateChecksum v1
+
+# 5. Undo/Redo
+NuCommands.UndoDropDown 0
+NuCommands.SelectCmd
+NuCommands.RedoDropDown 0
+Test.ValidateFusionBrowser v2 /JointOrigin /DefaultPrecision 
+Test.ValidateChecksum v2
+NuCommands.CloseDocumentCmd

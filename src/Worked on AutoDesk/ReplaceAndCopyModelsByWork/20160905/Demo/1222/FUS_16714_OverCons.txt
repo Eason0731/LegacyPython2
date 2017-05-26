@@ -1,0 +1,17 @@
+#
+# Neutron Text Command Script File v1.0
+
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.OpenDocumentCmd "RP=Fusion/Test/Dataset/Sketch/FUS16714_OverConsSketch.f3d"
+NuCommands.ShowNavigationToolbarCmd
+Commands.SetSelections SelectionInput "ONK::CmpInst=FUS16714_OverConsSketch/Cmp=FUS16714_OverConsSketch/Sketches/Sketch=Sketch1" (0, 0, 0)
+Commands.Start SketchActivate
+NuCommands.SelectCmd
+Commands.SetSelections SelectionInput "ONK::CmpInst=FUS16714_OverConsSketch/Cmp=FUS16714_OverConsSketch/Sketches/Sketch=Sketch1/Dim_eVerticalDim:8388608:3=(19.012849561352184, 1.7823936973566239, 0)" (19.012849807739258, 1.2243613004684448, 0)
+Commands.Start SketchEditDimensionCmdDef
+Commands.SetDouble EditableDimensionHUDInput 0.40000000000000002 (4 mm) (d15)
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Test.ValidateFusionSketch V1
+# Nested Trigger: NuCommands.CurrentlyOpenDocumentsCmd 475b3b83-3d00-4197-ba7a-29b5b6b529dc:a8308e3d-ef2e-4eec-b8fd-066ddc543e16
+NuCommands.CloseDocumentCmd 

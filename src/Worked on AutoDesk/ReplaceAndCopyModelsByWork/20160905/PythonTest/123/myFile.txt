@@ -1,0 +1,4 @@
+NuCommands.OpenDocumentCmd "RP=Fusion/Test/Dataset/Sketch/Simple.f3d"
+
+Commands.SetFileString infoOpenFile "RP=Fusion/Test/Dataset/Smoke/Airplane.DXF"
+

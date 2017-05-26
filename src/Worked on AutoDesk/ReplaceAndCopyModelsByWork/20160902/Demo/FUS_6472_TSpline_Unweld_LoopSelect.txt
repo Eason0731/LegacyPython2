@@ -1,0 +1,52 @@
+#
+# Neutron Text Command Script File v1.0
+
+# Nested Trigger: NuCommands.SelectCmd
+#open a document
+NuCommands.OpenDocumentCmd "RP=Fusion/Test/Dataset/TSplines/Chair_TSp_1.7.444.f3d"
+Commands.Start TSplineClearSymmetryCommand
+Commands.SetSelections SurfaceSelection "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1" (-22.202569961547852, 83.862556457519531, 55.989711761474609)
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+#unweld the edge
+Commands.Start TSplineUnWeldCommand
+Commands.SetSelections ControlFrameEntity "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=80" (-28.999332427978516, 73.167083740234375, 1.2613184822920527e-016)
+Commands.SetSelections ControlFrameEntity
+Commands.SetSelections ControlFrameEntity "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=29" (-41.817125000000004, 100.81099999999999, 1.2613184658463317e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=31" (-46.777633333333334, 70.713166666666652, 1.3489100259745492e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=33" (-45.782499999999999, 29.344999999999999, 3.3635159089235516e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=35" (-45.29846666666667, 12.351833333333337, 5.2029386716161201e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=36" (-39.337958333333333, 0.25400000000000006, 2.859864438186301e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=80" (-28.999332427978516, 73.167083740234375, 1.2613184822920527e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=82" (-27.74933333333334, 4.2100132942779966, 1.3270121359424947e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=116" (25.953733333333329, 55.308405256737316, 1.261318465846332e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=118" (25.953733333333325, 0.99715168122821496, 5.2905302317443361e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=157" (44.957999999999998, 41.294166666666655, 1.3489100259745492e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=159" (45.719999999999992, 28.219999999999999, 3.3635159089235516e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=161" (44.957999999999998, 15.145833333333337, 5.378121791872553e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=258" (-32.998308333333341, 0.18107584061410736, 1.3270121359424947e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=269" (-35.446225000000005, 100.25420262836866, 1.2613184658463317e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=302" (-10.354833333333339, 5.205930417655587, 2.859864438186301e-016) "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body1/LeafType:128=313" (-10.406916666666675, 50.238950565598927, 1.2613184658463317e-016)
+# Nested Trigger: Commands.SetSelections ControlFrameEntity
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+#edit form and move the component
+Transcripting.ResetOnCommand /on
+Commands.Start TSplineEditCommand
+Commands.SetString filterTypeInput bodyFilterType
+Commands.SetSelections TSplineEntity "ONK::CmpInst=Chair_TSp_1.7.444/Cmp=Chair_TSp_1.7.444/SubDSurfaceNodes/SubDSurfaceNode=Body2" (-0.53268827654320461, 50.720000000000013, 30.480000000000011)
+Commands.ManipulatorEvent FrameTransformInput AxisZ 1 4
+Commands.SetDouble AxisZ 5
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 10
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 15
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 20
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 25
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 30
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 35
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.SetDouble AxisZ 40
+Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+Commands.ManipulatorEvent FrameTransformInput AxisZ 3 4
+# Nested Trigger: Commands.ManipulatorEvent FrameTransformInput AxisZ 1 4
+# Nested Trigger: Commands.SetDouble AxisZ -0
+# Nested Trigger: Commands.ManipulatorEvent FrameTransformInput AxisZ 2 4
+# Nested Trigger: Commands.ManipulatorEvent FrameTransformInput AxisZ 3 4
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+#Validation
+Test.ValidateTsplineSurface V1 
+Test.ValidateFusionBrowser V2 /Feature 
+Transcripting.ResetOnCommand /off
+NuCommands.CloseDocumentCmd

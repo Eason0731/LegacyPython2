@@ -1,0 +1,55 @@
+#
+# Neutron Text Command Script File v1.0
+
+NuCommands.NewDocumentCmd FusionAssetType a08097fe-39e5-495d-a42c-11451c0de27b
+NaFusionUI.ImportCmd "RP=Fusion/Test/Dataset/SampleFile2.sat"
+NaFusionUI.SketchCreateCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=FusionComponent/Cmp=FusionComponent/CmpInsts/CmpInst=SampleFile2:1/Cmp=SampleFile2/Bds/Bd=Body1/LeafType:64=(-8.5506718435119637, -12.294707951006941, 0.99999000000000005)" (-8.5506706237792969, -12.124216079711914, 0.53871995210647583)
+NaFusionUI.DrawPolylineCmd
+NaFusionUI.SetPoint SketchFirstPointInput (1, 1.25, -7.1054273576010019e-015) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (2.1545135425105428, 1.25, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (2.842766596720395, 2.0040192875690579, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.Rectangle2PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (1.2276660961746089, 0.68170339624604281, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (2.25, 0, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.Rectangle3PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (2.25, 0, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (3.3841923326988024, -0.88928994880316026, 0) 3 0
+NaFusionUI.SetPoint SketchThirdPointInput (3.6778469691616777, -0.35265275891054415, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.RectangleCenterCmd
+NaFusionUI.SetPoint SketchCenterPointInput (2.842766596720395, 2.0040192875690579, 0) 3 0
+NaFusionUI.SetPoint SketchCornerPointInput (2.1545135425105428, 1.25, 0) 3 0
+NaFusionUI.CircleCenterRadiusCmd
+NaFusionUI.SetPoint SketchCenterPointInput (1.2276660961746089, 0, 0) 3 0
+NaFusionUI.SetPoint SketchRadiusInput (1.447907073521769, -0.37414123738989247, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.Circle2PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (1, 1.25, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (2.1545135425105428, 1.25, 0) 3 0
+Commands.Start CircleElipse
+NaFusionUI.SetPoint SketchCenterPointInput (0.64035682324887944, 2.7317028733532993, 0) 3 0
+NaFusionUI.SetPoint SketchFirstPointInput (1.5, 2.5, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (1.1175456075010359, 3.0573640635156849, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.Arc3PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (2.6223706087479774, 0.4749180960976141, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (3.7565629414467798, -0.41437185270554616, 0) 3 0
+NaFusionUI.SetPoint SketchThirdPointInput (3.329132088362023, 0.24290955277503912, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.SketchStopCmd
+NaFusionUI.ProjectCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=FusionComponent/Cmp=FusionComponent/CmpInsts/CmpInst=SampleFile2:1/Cmp=SampleFile2/Bds/Bd=Body1/LeafType:64=(-10.016369155720099, -9.8114748936022806, 1)" (-10.970877647399902, -11.697015762329102, 1)
+NaFusionUI.SketchFilletCmd
+Commands.SetSelections SketchFirstSelection "ONK::CmpInst=designRoot/Cmp=FusionComponent/Sketches/Sketch=Sketch2/CmnData=25/LeafType:4096=0" (-1.4656972885131836, -1.195439875125885, 0)
+Commands.SetSelections SketchFirstSelection "ONK::CmpInst=designRoot/Cmp=FusionComponent/Sketches/Sketch=Sketch2/CmnData=25/LeafType:4096=0" (-1.4656972885131836, -1.195439875125885, 0) "ONK::CmpInst=designRoot/Cmp=FusionComponent/Sketches/Sketch=Sketch2/CmnData=26/LeafType:4096=0" (-1.10854172706604, -1.5317392349243164, 0)
+Commands.SetDouble SketchFilletRadius 0.62500000000000011
+NuCommands.CommitCmd
+NaFusionUI.SketchStopCmd
+
+Test.ValidateChecksum sketch
+#Currently, the sketch brower validation will fail on Mac, so this test just use the general browser validation method.
+Test.ValidateFusionBrowser sketch
+NuCommands.CloseDocumentCmd
