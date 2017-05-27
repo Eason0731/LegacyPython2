@@ -316,8 +316,9 @@ def FindContentOnTxt(Path,Content):
                         
                 if flag == "true":
                     print Content + " found on " + myFile + " for " + str(i) + " times"
-                #else:
-                   # print ""
+                
+                else:
+                    print Content + " didn't found on " + myFile
                     
                            
                 f.close()
