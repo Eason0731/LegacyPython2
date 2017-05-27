@@ -358,13 +358,15 @@ def ReplaceFile(Dir,Filename,ReplaceFilename):
         print os.path.join(Dir,ReplaceFilename) + " rename failed!"
     CountineOrExit()
 
-def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent): 
+def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent):
+    w = 0
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
             myFile = myFile.lower() #Convert the root path to lower
             #if 'xml' in myFile:
                 #print myFile            
             if FindContent in myFile:
+                w = w + 1
                 OldNameFile = os.path.join(root,myFile)
                 myFile = myFile.replace (FindContent,ReplaceContent)
                 NewNameFile = os.path.join(root,myFile)
@@ -372,8 +374,9 @@ def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent):
                 if os.path.exists(NewNameFile):
                     print OldNameFile +" has been replaced as " + NewNameFile + " Successfully!"
                     print "========================================"
-            else:
-                print "Didn't found target content: " + FindContent
+    if w == 0:
+        print "Didn't found file named with " + FindContent + " under folder " + FolderDir
+    
     CountineOrExit()              
 
 def CountineOrExit():
