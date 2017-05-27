@@ -328,12 +328,17 @@ def FindContentOnTxt(Path,Content):
     CountineOrExit()
                 
 def FindFilesonDirs(Path,File):
+    k = 0
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
-            if File.lower() in myFile.lower():           
+            if File.lower() in myFile.lower():
+                k = k + 1
                 print "File: " + File + " has found on " + root
             #else: #means not found
                 #print ""                
+    if k == 0:
+        print "File: " + File + " didn't found on " + Path
+
     CountineOrExit()
             
 def ReplaceFolder(Dir,Foldername,ReplaceFoldername):
