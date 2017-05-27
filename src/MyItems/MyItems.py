@@ -295,7 +295,8 @@ def MoveFoldertoFolder():
     CountineOrExit()
 
 
-def FindContentOnTxt(Path,Content): 
+def FindContentOnTxt(Path,Content):
+    j = 0
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
@@ -303,7 +304,7 @@ def FindContentOnTxt(Path,Content):
             i=0
             #print "root is:" + root  root is the path which your file in now
             if 'txt' in myFile:
-                
+                j = j + 1
                 #print TxtFile
                 f = open (TxtFile, 'r')
                 Filecontent = f.readlines()
@@ -320,7 +321,10 @@ def FindContentOnTxt(Path,Content):
                     
                            
                 f.close()
-                
+
+    if j == 0:
+        print "There is no txt files under folder " + Path
+    
     CountineOrExit()
                 
 def FindFilesonDirs(Path,File):
