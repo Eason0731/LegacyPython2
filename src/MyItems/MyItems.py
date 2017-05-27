@@ -64,10 +64,10 @@ Please choose : """)
             MoveFoldertoFolder()
 
         if a == "7":
-            Path  = raw_input ("Please input your txt file path:")
+            Path  = raw_input ("Please input the folder path with txt files:")
             Content = raw_input ("What content you want to find on txt file?")
             if os.path.exists(Path):
-                FindContent(Path,Content)
+                FindContentOnTxt(Path,Content)
             else:
                 print Path + " not exists!"
                 CountineOrExit()
@@ -289,7 +289,7 @@ def MoveFoldertoFolder():
     CountineOrExit()
 
 
-def FindContent(Path,Content): 
+def FindContentOnTxt(Path,Content): 
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
