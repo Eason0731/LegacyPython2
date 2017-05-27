@@ -121,6 +121,7 @@ Please choose : """)
       
 
 def ReplaceContentOnDir(TestCasesDir,s,p):
+    i = 0
     #Dir = os.listdir(TestCasesDir)
     """
     for myFile in Dir:
@@ -130,7 +131,8 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             #print "root is:" + root  root is the path which your file in now
-            if "txt" in myFile:       
+            if "txt" in myFile:
+                i = i + 1
                 #print "File Path is: " + TxtFile #Show the txt file path(Should open this)
                 #print "File Name is: " + myFile #Show the txt file name
                 #print "the full name of the file is:" + os.path.join(parent,myFile)
@@ -154,15 +156,19 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
                     #f = open (TxtFile,'r')
                     #content = f.read()
                     #f.close()
-                
+            
                 
                 else:
                     print s + " Not found on File!"
+            
+            
                     
                 files.close()
                 print "================================ Finish ==============================="
                 print "                                                                       "
-                
+
+    if i == 0:
+        print "There is no txt files under folder " + TestCasesDir
                 
     CountineOrExit()
 
