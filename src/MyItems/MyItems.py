@@ -6,7 +6,7 @@ import time
 
 def MainFunction():
     a = raw_input ("""
-1. Replace Content on Folder
+1. Replace Content on txt files
 2. Delete Folders
 3. Delete Files
 4. Copy Folder to Folder
