@@ -245,8 +245,15 @@ def CopyFiletoFolder(TestCasesDir):
             print "This is a folder NOT a file, if wanna copy a file please back to menu to choose again!"
             CountineOrExit()
         else:
-            if (not os.path.exists(TargetFolder)):
+            if not os.path.exists(TargetFolder):
                 os.makedirs(TargetFolder)
+            if os.path.exists(TargetFolder):
+                while(1):
+                    IsConver = raw_input ("There is a same file on target folder , would you like to cover? (Y/N) ")
+                    if IsConver.lower() == 'y':
+                        break
+                    elif IsConver.lower() == 'n':
+                        CountineOrExit()
 
             print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
             shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
