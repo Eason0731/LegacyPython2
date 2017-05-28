@@ -21,7 +21,7 @@ def MainFunction():
 Press AnyKey to Exit
         
 Please choose : """)
-    if (a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10" or a =="11"):
+    if a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10" or a =="11":
         
         #TestCasesDir = raw_input ("Please Input your folder or file Path: ")
 
@@ -196,7 +196,7 @@ def CopyFoldertoFolder():
     sourceCustomed = raw_input ("please input sourceFolder: ")
     TargetCustomed = raw_input ("please input TargetFolder: ")
 
-    if (os.path.exists(sourceCustomed)):
+    if os.path.exists(sourceCustomed):
         if os.path.isfile(sourceCustomed):
             print "This is a file NOT a folder, if wanna copy a file please back to menu to choose again!"
             CountineOrExit()
@@ -227,7 +227,7 @@ def CopyFoldertoFolder():
         copyFiles(sourceCustomed,TargetCustomed)
     print "Copy Success to folder " + TargetCustomed
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-    print ("============================================")
+    print "============================================"
         
     #else :
         #print ("{0} is NOT Exist!" .format(TargetCustomed))
@@ -240,7 +240,7 @@ def CopyFiletoFolder(TestCasesDir):
     pathname,filename = os.path.split (sourceFile)
 
     
-    if (os.path.exists(sourceFile)):
+    if os.path.exists(sourceFile):
         if os.path.isdir(sourceFile):
             print "This is a folder NOT a file, if wanna copy a file please back to menu to choose again!"
             CountineOrExit()
@@ -257,9 +257,9 @@ def CopyFiletoFolder(TestCasesDir):
 
             print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
             shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
-            print ("Copy File Success!")
+            print "Copy File Success!"
             print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-            print ("============================================")
+            print "============================================"
     else:
         print ("You File {0} is NOT Exist!" .format(sourceFile))
         
