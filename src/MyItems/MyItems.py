@@ -195,20 +195,24 @@ def DeleteFiles(TestCasesDir):
 def CopyFoldertoFolder():
     sourceCustomed = raw_input ("please input sourceFolder: ")
     TargetCustomed = raw_input ("please input TargetFolder: ")
-    
+
     if (os.path.exists(sourceCustomed)):
-        if not os.path.exists(TargetCustomed):
-            os.makedirs(TargetCustomed)
+        if os.path.isfile(sourceCustomed):
+            print "This is a file NOT a folder, if wanna copy a file please back to menu to choose again!"
+            CountineOrExit()
         else:
-            Type = sourceCustomed.split("\\")[-1]
-            TargetCustomed = os.path.join(TargetCustomed,Type)
-            if os.path.exists(TargetCustomed):
-                while(1):
-                    IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
-                    if IsConver.lower() == 'y':
-                        break
-                    elif IsConver.lower() == 'n':
-                        CountineOrExit()
+            if not os.path.exists(TargetCustomed):
+                os.makedirs(TargetCustomed)
+            else:
+                Type = sourceCustomed.split("\\")[-1]
+                TargetCustomed = os.path.join(TargetCustomed,Type)
+                if os.path.exists(TargetCustomed):
+                    while(1):
+                        IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
+                        if IsConver.lower() == 'y':
+                            break
+                        elif IsConver.lower() == 'n':
+                            CountineOrExit()
                          
     else :
         print ("sourceFolder: {0} is NOT Exist!" .format(sourceCustomed))
@@ -232,14 +236,20 @@ def CopyFiletoFolder(TestCasesDir):
     TargetFolder = raw_input ("Please input Target Folder:")
     pathname,filename = os.path.split (sourceFile)
 
-    print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
+    
     if (os.path.exists(sourceFile)):
-        if (not os.path.exists(TargetFolder)):
-            os.makedirs(TargetFolder)      
-        shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
-        print ("Copy File Success!")
-        print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-        print ("============================================")
+        if os.path.isdir(sourceFile):
+            print "This is a folder NOT a file, if wanna copy a file please back to menu to choose again!"
+            CountineOrExit()
+        else:
+            if (not os.path.exists(TargetFolder)):
+                os.makedirs(TargetFolder)
+
+            print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
+            shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
+            print ("Copy File Success!")
+            print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
+            print ("============================================")
     else:
         print ("You File {0} is NOT Exist!" .format(sourceFile))
         
