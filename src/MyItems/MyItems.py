@@ -221,7 +221,10 @@ def CopyFoldertoFolder():
     #if (os.path.isdir(TargetCustomed)):
     print ("SourceFolder is : {0} " .format(sourceCustomed))
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
-    copyFiles(sourceCustomed,TargetCustomed)
+    if not os.listdir(sourceCustomed):
+        shutil.copytree(sourceCustomed,TargetCustomed)
+    else:
+        copyFiles(sourceCustomed,TargetCustomed)
     print "Copy Success to folder " + TargetCustomed
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
     print ("============================================")
