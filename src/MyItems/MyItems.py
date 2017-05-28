@@ -303,6 +303,12 @@ def MoveFoldertoFolder():
         os.makedirs(targetFolder)
     
     if os.path.exists(sourceFolder):
+        if os.path.isfile(sourceFolder):
+            Type = sourceFolder.split("\\")[-1]
+            targetFolder = os.path.join(targetFolder,Type)
+            if os.path.exists(targetFolder):
+                os.remove(targetFolder)
+  
         shutil.move (sourceFolder,targetFolder)
         if os.path.exists(targetFolder):
             print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
