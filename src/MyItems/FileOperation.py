@@ -316,8 +316,32 @@ def MoveFoldertoFolder():
             Type = sourceFolder.split("\\")[-1]
             targetFolder = os.path.join(targetFolder,Type)
             if os.path.exists(targetFolder):
+                while(1):
+                    IsConver = raw_input ("There is a same file on target file , would you like to cover? (Y/N) ")
+                    if IsConver.lower() == 'y':
+                        break
+                    elif IsConver.lower() == 'n':
+                        CountineOrExit()
+
                 os.remove(targetFolder)
   
+        
+
+        elif os.path.isdir(sourceFolder):
+            Type = sourceFolder.split("\\")[-1]
+            targetFolder = os.path.join(targetFolder,Type)
+            if os.path.exists(targetFolder):
+                while(1):
+                    IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
+                    if IsConver.lower() == 'y':
+                        break
+                    elif IsConver.lower() == 'n':
+                        CountineOrExit()
+                    
+                shutil.rmtree(targetFolder)
+  
+        
+
         shutil.move (sourceFolder,targetFolder)
         if os.path.exists(targetFolder):
             print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
