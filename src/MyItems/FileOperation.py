@@ -174,20 +174,29 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
 
 
 def DeleteFolders(TestCasesDir):
-    print "Deleteing folder " + TestCasesDir + " now..."
-    shutil.rmtree(TestCasesDir)
-    if not os.path.exists(TestCasesDir):
-        print "The contents of folder: " + TestCasesDir + " have been deleted succeeded!"
+    if os.path.isfile(TestCasesDir):
+        print "This is a file not a folder,cannot be deleted here"
+
     else:
-        print "The contents of folder: " + TestCasesDir + " have been deleted failed!"        
+        print "Deleteing folder " + TestCasesDir + " now..."
+        shutil.rmtree(TestCasesDir)
+        if not os.path.exists(TestCasesDir):
+            print "The contents of folder: " + TestCasesDir + " have been deleted succeeded!"
+        else:
+            print "The contents of folder: " + TestCasesDir + " have been deleted failed!"        
+
     CountineOrExit()
 
 def DeleteFiles(TestCasesDir):
-    os.remove(TestCasesDir)
-    if not os.path.exists(TestCasesDir):
-        print "The file: " + TestCasesDir + " have been deleted succeeded!"
+    if os.path.isdir(TestCasesDir):
+        print "This is a folder not a file,cannot be deleted here"
     else:
-        print "The file: " + TestCasesDir + " have been deleted failed!"
+        os.remove(TestCasesDir)
+        if not os.path.exists(TestCasesDir):
+            print "The file: " + TestCasesDir + " have been deleted succeeded!"
+        else:
+            print "The file: " + TestCasesDir + " have been deleted failed!"
+            
     CountineOrExit()
         
 
