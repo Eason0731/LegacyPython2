@@ -22,7 +22,6 @@ Press AnyKey to Exit
         
 Please choose : """)
     if a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10" or a =="11":
-        
         #TestCasesDir = raw_input ("Please Input your folder or file Path: ")
 
         if a == "1":
@@ -322,12 +321,11 @@ def MoveFoldertoFolder():
                         break
                     elif IsConver.lower() == 'n':
                         CountineOrExit()
-
                 os.remove(targetFolder)
   
+            shutil.move (sourceFolder,targetFolder)
         
-
-        elif os.path.isdir(sourceFolder):
+        if os.path.isdir(sourceFolder):
             Type = sourceFolder.split("\\")[-1]
             targetFolder = os.path.join(targetFolder,Type)
             if os.path.exists(targetFolder):
@@ -337,12 +335,17 @@ def MoveFoldertoFolder():
                         break
                     elif IsConver.lower() == 'n':
                         CountineOrExit()
-                    
-                shutil.rmtree(targetFolder)
+
+                if not os.listdir(sourceFolder):
+                    shutil.copytree(sourceFolder,targetFolder)
+                else:
+                    copyFiles(sourceFolder,targetFolder)   
+
+                shutil.rmtree(sourceFolder)
   
         
 
-        shutil.move (sourceFolder,targetFolder)
+        #shutil.move (sourceFolder,targetFolder)
         if os.path.exists(targetFolder):
             print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
         else:
