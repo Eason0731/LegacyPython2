@@ -377,19 +377,25 @@ def FindFilesonDirs(Path,File):
     CountineOrExit()
             
 def ReplaceFolder(Dir,Foldername,ReplaceFoldername):
-    os.rename (os.path.join(Dir,Foldername),os.path.join(Dir,ReplaceFoldername))       
-    if os.path.join(os.path.join(Dir,ReplaceFoldername)):
-        print "Rename succeed!"
+    if os.path.isfile(os.path.join(Dir,Foldername)):
+        print "This is a file not a folder,cannot be renamed here"
     else:
-        print os.path.join(Dir,ReplaceFoldername) + " rename failed!"
+        os.rename (os.path.join(Dir,Foldername),os.path.join(Dir,ReplaceFoldername))       
+        if os.path.join(os.path.join(Dir,ReplaceFoldername)):
+            print "Rename succeed!"
+        else:
+            print os.path.join(Dir,ReplaceFoldername) + " rename failed!"
     CountineOrExit()
 
 def ReplaceFile(Dir,Filename,ReplaceFilename):
-    os.rename (os.path.join(Dir,Filename),os.path.join(Dir,ReplaceFilename))       
-    if os.path.join(os.path.join(Dir,ReplaceFilename)):
-        print "Rename succeed!"
+    if os.path.isdir(os.path.join(Dir,Filename)):
+        print "This is a folder not a file,cannot be renamed here"
     else:
-        print os.path.join(Dir,ReplaceFilename) + " rename failed!"
+        os.rename (os.path.join(Dir,Filename),os.path.join(Dir,ReplaceFilename))       
+        if os.path.join(os.path.join(Dir,ReplaceFilename)):
+            print "Rename succeed!"
+        else:
+            print os.path.join(Dir,ReplaceFilename) + " rename failed!"
     CountineOrExit()
 
 def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent):
