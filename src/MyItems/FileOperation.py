@@ -255,9 +255,11 @@ def CopyFiletoFolder(TestCasesDir):
         else:
             if not os.path.exists(TargetFolder):
                 os.makedirs(TargetFolder)
-            if os.path.exists(TargetFolder):
+
+            print "source file is " + sourceFile
+            if os.path.exists(os.path.join(TargetFolder,sourceFile.split("\\")[-1])):
                 while(1):
-                    IsConver = raw_input ("There is a same file on target folder , would you like to cover? (Y/N) ")
+                    IsConver = raw_input ("There is a same file on target file , would you like to cover? (Y/N) ")
                     if IsConver.lower() == 'y':
                         break
                     elif IsConver.lower() == 'n':
