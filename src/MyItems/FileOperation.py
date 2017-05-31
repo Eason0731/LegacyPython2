@@ -83,23 +83,21 @@ Please choose : """)
 
 
         if a == "9":
-            Dir = raw_input ("Input your folder path(if on disk should type like this -> E:\ ):")
-            Foldername = raw_input ("Input your folder name: ")
-            if os.path.exists(os.path.join(Dir,Foldername)):          
+            Foldername = raw_input ("Input your folder path: ")
+            if os.path.exists(Foldername):          
                 ReplaceFoldername = raw_input ("Input new folder name want to replace: ")
-                ReplaceFolder(Dir,Foldername,ReplaceFoldername)
+                ReplaceFolder(Foldername,ReplaceFoldername)
             else:
-                print os.path.join(Dir,Foldername) + " is not exists!"
+                print Foldername + " is not exists!"
                 CountineOrExit()
 
         if a == "10":
-            Dir = raw_input ("Input your folder path(if on disk should type like this -> E:\ ):")  
-            if os.path.exists(os.path.join(Dir)):
-                Filename = raw_input ("Input your file name: ")
+            Filename = raw_input ("Input your file path: ")
+            if os.path.exists(Filename):           
                 ReplaceFilename = raw_input ("Input new file name want to replace: ")
-                ReplaceFile(Dir,Filename,ReplaceFilename)
+                ReplaceFile(Filename,ReplaceFilename)
             else:
-                print os.path.join(Dir) + " is not exists!"
+                print Filename + " is not exists!"
                 CountineOrExit()
         
         if a == "11":
@@ -404,26 +402,32 @@ def FindFilesonDirs(Path,File):
 
     CountineOrExit()
             
-def ReplaceFolder(Dir,Foldername,ReplaceFoldername):
-    if os.path.isfile(os.path.join(Dir,Foldername)):
+def ReplaceFolder(Foldername,ReplaceFoldername):
+    if os.path.isfile(Foldername):
         print "This is a file not a folder,cannot be renamed here"
     else:
-        os.rename (os.path.join(Dir,Foldername),os.path.join(Dir,ReplaceFoldername))       
-        if os.path.join(os.path.join(Dir,ReplaceFoldername)):
-            print "Rename succeed!"
+        Foldername=os.path.abspath(Foldername)
+        ReplaceFoldername = os.path.join(os.path.split(Foldername)[0],ReplaceFoldername)    
+        if os.path.exists(ReplaceFoldername):
+            print Foldername + " has already exists, can not be renamed!"
         else:
-            print os.path.join(Dir,ReplaceFoldername) + " rename failed!"
+            os.rename (Foldername,ReplaceFoldername)
+            print Foldername + " has been renamed as " + ReplaceFoldername +" successfully!"
+    
     CountineOrExit()
 
-def ReplaceFile(Dir,Filename,ReplaceFilename):
-    if os.path.isdir(os.path.join(Dir,Filename)):
+def ReplaceFile(Filename,ReplaceFilename):
+    if os.path.isdir(Filename):
         print "This is a folder not a file,cannot be renamed here"
     else:
-        os.rename (os.path.join(Dir,Filename),os.path.join(Dir,ReplaceFilename))       
-        if os.path.join(os.path.join(Dir,ReplaceFilename)):
-            print "Rename succeed!"
+        Filename=os.path.abspath(Filename)
+        ReplaceFilename = os.path.join(os.path.split(Filename)[0],ReplaceFilename)       
+        if os.path.exists(ReplaceFilename):
+            print ReplaceFilename + " has already exists, can not be renamed!"
         else:
-            print os.path.join(Dir,ReplaceFilename) + " rename failed!"
+            os.rename (Filename,ReplaceFilename)
+            print Filename + " has been renamed as " + ReplaceFilename +" successfully!"
+            
     CountineOrExit()
 
 def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent):
