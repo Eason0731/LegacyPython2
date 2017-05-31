@@ -27,11 +27,12 @@ Please choose : """)
 
         if a == "1":
             TestCasesDir = raw_input ("Please Input your folder Path: ")
-            s = raw_input("Please Input what words you want to find: ")
-            p = raw_input("Please Input what words you want to replace: ")
+            
 
             #TestCasesDir = "C:\\Users\\t_zhanj\\Desktop\\Cases"
             if os.path.exists(TestCasesDir):
+                s = raw_input("Please Input what words you want to find: ")
+                p = raw_input("Please Input what words you want to replace: ")
                 ReplaceContentOnDir(TestCasesDir,s,p)
             else:
                 print "This folder path not exist!"
@@ -65,8 +66,8 @@ Please choose : """)
 
         if a == "7":
             Path  = raw_input ("Please input the folder path with txt files:")
-            Content = raw_input ("What content you want to find on txt file?")
             if os.path.exists(Path):
+                Content = raw_input ("What content you want to find on txt file?")
                 FindContentOnTxt(Path,Content)
             else:
                 print Path + " not exists!"
@@ -74,8 +75,8 @@ Please choose : """)
                 
         if a == "8":
             Path  = raw_input ("Please input your folder path:")
-            File = raw_input ("What file you want to find on this folder?")
             if os.path.exists(Path):
+                File = raw_input ("What file you want to find on this folder?")
                 FindFilesonDirs(Path,File)
             else:
                 print Path + " not exists!"
@@ -85,23 +86,21 @@ Please choose : """)
         if a == "9":
             Dir = raw_input ("Input your folder path(if on disk should type like this -> E:\ ):")
             Foldername = raw_input ("Input your folder name: ")
-            ReplaceFoldername = raw_input ("Input new folder name want to replace: ")
-
-            if os.path.exists(os.path.join(Dir,Foldername)):
+            if os.path.exists(os.path.join(Dir,Foldername)):          
+                ReplaceFoldername = raw_input ("Input new folder name want to replace: ")
                 ReplaceFolder(Dir,Foldername,ReplaceFoldername)
             else:
                 print os.path.join(Dir,Foldername) + " is not exists!"
                 CountineOrExit()
 
         if a == "10":
-            Dir = raw_input ("Input your folder path(if on disk should type like this -> E:\ ):")
-            Filename = raw_input ("Input your file name: ")
-            ReplaceFilename = raw_input ("Input new file name want to replace: ")
-
-            if os.path.exists(os.path.join(Dir,Filename)):
+            Dir = raw_input ("Input your folder path(if on disk should type like this -> E:\ ):")  
+            if os.path.exists(os.path.join(Dir)):
+                Filename = raw_input ("Input your file name: ")
+                ReplaceFilename = raw_input ("Input new file name want to replace: ")
                 ReplaceFile(Dir,Filename,ReplaceFilename)
             else:
-                print os.path.join(Dir,Filename) + " is not exists!"
+                print os.path.join(Dir) + " is not exists!"
                 CountineOrExit()
         
         if a == "11":
