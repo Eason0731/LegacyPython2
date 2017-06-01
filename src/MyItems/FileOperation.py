@@ -6,6 +6,7 @@ import time
 
 def MainFunction():
     a = raw_input ("""
+==========Welcome to File Operation==========
 1. Replace Content on txt files
 2. Delete Folders or Files
 3. Copy Files or Folder to Folder
@@ -14,7 +15,7 @@ def MainFunction():
 6. Find Files on Folder
 7. Rename File or Folder
 8. Replace File Name With SpecificName
-
+=============================================
 Press AnyKey to Exit
         
 Please choose : """)
