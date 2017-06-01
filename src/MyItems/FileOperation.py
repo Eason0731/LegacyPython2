@@ -13,14 +13,14 @@ def MainFunction():
 5. Find Contents on txt files
 6. Find Files on Folder
 7. Rename File or Folder
-9. Replace File Name With SpecificName
+8. Replace File Name With SpecificName
 
 Press AnyKey to Exit
         
 Please choose : """)
 
     if a.isdigit():
-        if int(a) in range(1,10):
+        if int(a) in range(1,9):
             if int(a) == 1:
                 TestCasesDir = raw_input ("Please Input your folder Path: ")
                 if os.path.exists(TestCasesDir):
@@ -108,7 +108,7 @@ Please choose : """)
                     print Filename + " is not exists!"
                     CountineOrExit()
             """
-            if int(a) == 9:
+            if int(a) == 8:
                 FolderDir = raw_input ("Please input folder: ")
                 if os.path.exists(FolderDir):
                     FindContent = raw_input("What word do you want find?")
