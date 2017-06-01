@@ -27,7 +27,7 @@ Please choose : """)
                 if os.path.exists(TestCasesDir):
                     ReplaceContentOnDir(TestCasesDir)
                 else:
-                    print "This folder path not exist!"
+                    print "{0} is NOT Exist!" .format(TestCasesDir)
                     CountineOrExit()
                 
             if int(a) == 2:
@@ -35,7 +35,7 @@ Please choose : """)
                 if os.path.exists(TestCasesDir):
                     DeleteMethod(TestCasesDir)
                 else:
-                    print TestCasesDir + " is not exist!"
+                    print "{0} is NOT Exist!" .format(TestCasesDir)
                     CountineOrExit()
 
             if int(a) == 3:
@@ -57,7 +57,7 @@ Please choose : """)
                 if os.path.exists(Path):   
                     FindContentOnTxt(Path)
                 else:
-                    print Path + " not exists!"
+                    print "{0} is NOT Exist!" .format(Path)
                     CountineOrExit()
                 
             if int(a) == 6:
@@ -65,7 +65,7 @@ Please choose : """)
                 if os.path.exists(Path):
                     FindFilesonDirs(Path)
                 else:
-                    print Path + " not exists!"
+                    print "{0} is NOT Exist!" .format(Path)
                     CountineOrExit()
 
 
@@ -74,7 +74,7 @@ Please choose : """)
                 if os.path.exists(Oname):          
                     ReplaceName(Oname)
                 else:
-                    print Oname + " is not exists!"
+                    print "{0} is NOT Exist!" .format(Oname)
                     CountineOrExit()
 
 
@@ -83,7 +83,7 @@ Please choose : """)
                 if os.path.exists(FolderDir):
                     ReplaceFileNameWithSpecificName(FolderDir)
                 else:
-                    print "Target Folder path: " + FolderDir + " is not exists!"
+                    print "{0} is NOT Exist!" .format(FolderDir)
                     CountineOrExit()
     
         else:
