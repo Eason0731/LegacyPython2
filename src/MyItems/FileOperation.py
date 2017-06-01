@@ -36,24 +36,9 @@ Please choose : """)
                 TestCasesDir = raw_input ("Please Input your folder or file path: ")
                 if os.path.exists(TestCasesDir):
                     DeleteMethod(TestCasesDir)
-                    """
-                    if os.path.isdir(TestCasesDir):
-                        DeleteFolders(TestCasesDir)
-                    elif os.path.isfile(TestCasesDir):
-                        DeleteFiles(TestCasesDir)
-                    """
                 else:
                     print TestCasesDir + " is not exist!"
                     CountineOrExit()
-
-            """if int(a) == 3:
-                TestCasesDir = raw_input ("Please Input your file Path: ")
-                if os.path.exists(TestCasesDir):
-                    DeleteFiles(TestCasesDir)
-                else:
-                    print "This file path not exist!"
-                    CountineOrExit()
-            """
 
             if int(a) == 3:
                 sourceCustomed = raw_input ("Please Input your folder or file Path: ")
@@ -65,12 +50,7 @@ Please choose : """)
                 else :
                     print "source File or Folder: {0} is NOT Exist!" .format(sourceCustomed)
                     CountineOrExit()
-                
-
-            """if int(a) == 5:
-                TestCasesDir = raw_input ("Please Input your file Path: ")
-                CopyFiletoFolder(TestCasesDir)
-            """
+            
             if int(a) == 4:
                 MoveFoldertoFolder()
 
@@ -102,21 +82,12 @@ Please choose : """)
                     print Oname + " is not exists!"
                     CountineOrExit()
 
-            """
-            if int(a) == 8:
-                Filename = raw_input ("Input your file path: ")
-                if os.path.exists(Filename):           
-                    ReplaceFilename = raw_input ("Input new file name want to replace: ")
-                    ReplaceFile(Filename,ReplaceFilename)
-                else:
-                    print Filename + " is not exists!"
-                    CountineOrExit()
-            """
+
             if int(a) == 8:
                 FolderDir = raw_input ("Please input folder: ")
                 if os.path.exists(FolderDir):
                     FindContent = raw_input("What word do you want find?")
-                    FindContent = FindContent.lower() #Convert the FindContent path to lower
+                    FindContent = FindContent.lower()
                     ReplaceContent = raw_input("What word do you want replace?")
                     ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent)
                 else:
@@ -134,46 +105,27 @@ Please choose : """)
 
 def ReplaceContentOnDir(TestCasesDir,s,p):
     i = 0
-    #Dir = os.listdir(TestCasesDir)
-    """
-    for myFile in Dir:
-        TxtFile = os.path.join(TestCasesDir,myFile)
-    """
     for root,dirnames,filenames in os.walk(TestCasesDir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
-            #print "root is:" + root  root is the path which your file in now
             if "txt" in myFile:
                 i = i + 1
-                #print "File Path is: " + TxtFile #Show the txt file path(Should open this)
-                #print "File Name is: " + myFile #Show the txt file name
-                #print "the full name of the file is:" + os.path.join(parent,myFile)
-                
                 print "================================ Start ================================"
                 print "File on " + TxtFile   
-                files = open (TxtFile,'r') #read mode
+                files = open (TxtFile,'r') 
                 content = files.read()
-                #print content
                 files.close()
-                # OK
                 
                 if s in content:
                     print "Found word: " + s + " in File " + myFile
                 
-                    files = open (TxtFile,'w') # write mode
+                    files = open (TxtFile,'w') 
                     files.writelines(content.replace (s, p))
                     files.close()
                     print s + " has been replaced as " + p + " Success!"
                 
-                    #f = open (TxtFile,'r')
-                    #content = f.read()
-                    #f.close()
-            
-                
                 else:
-                    print s + " Not found on File!"
-            
-            
+                    print s + " Not found on File!"   
                     
                 files.close()
                 print "================================ Finish ==============================="
@@ -184,29 +136,7 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
                 
     CountineOrExit()
 
-
-"""
-def DeleteFolders(TestCasesDir):
-    
-    if os.path.isfile(TestCasesDir):
-        print "This is a file not a folder,cannot be deleted here"
-    else:
-   
-    print "Deleteing folder " + TestCasesDir + " now..."
-    shutil.rmtree(TestCasesDir)
-    if not os.path.exists(TestCasesDir):
-        print "The contents of folder: " + TestCasesDir + " have been deleted succeeded!"
-    else:
-        print "The contents of folder: " + TestCasesDir + " have been deleted failed!"        
-
-    CountineOrExit()
-"""
-
 def DeleteMethod(TestCasesDir):
-    """if os.path.isdir(TestCasesDir):
-        print "This is a folder not a file,cannot be deleted here"
-    else:
-    """
     print "Deleteing " + TestCasesDir + " now..."
     if os.path.isfile(TestCasesDir):
         os.remove(TestCasesDir)
@@ -223,13 +153,6 @@ def DeleteMethod(TestCasesDir):
 
 def CopyFoldertoFolder(sourceCustomed):
     TargetCustomed = raw_input ("please input TargetFolder: ")
-    """
-    if os.path.exists(sourceCustomed):
-        if os.path.isfile(sourceCustomed):
-            print "This is a file NOT a folder, if wanna copy a file please back to menu to choose again!"
-            CountineOrExit()
-        else:
-    """
     if not os.path.exists(TargetCustomed):
         os.makedirs(TargetCustomed)
             
@@ -242,8 +165,7 @@ def CopyFoldertoFolder(sourceCustomed):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
-
-    #if (os.path.isdir(TargetCustomed)):
+    
     print ("SourceFolder is : {0} " .format(sourceCustomed))
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     if not os.listdir(sourceCustomed):
@@ -253,23 +175,13 @@ def CopyFoldertoFolder(sourceCustomed):
     print sourceCustomed + " have copied successfully to folder " + TargetCustomed
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
-        
-    #else :
-        #print ("{0} is NOT Exist!" .format(TargetCustomed))
-
+    
     CountineOrExit()
 
 def CopyFiletoFolder(TestCasesDir):
     sourceFile = TestCasesDir
     TargetFolder = raw_input ("Please input Target Folder:")
     pathname,filename = os.path.split (sourceFile)
-    
-    """if os.path.exists(sourceFile):
-        if os.path.isdir(sourceFile):
-            print "This is a folder NOT a file, if wanna copy a file please back to menu to choose again!"
-            CountineOrExit()
-        else:
-    """
     if not os.path.exists(TargetFolder):
         os.makedirs(TargetFolder)
 
@@ -282,14 +194,11 @@ def CopyFiletoFolder(TestCasesDir):
                 CountineOrExit()
 
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
-    shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
+    shutil.copy (sourceFile,TargetFolder) 
     print sourceFile + " has been copied to " + TargetFolder + " successfully!"
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
-    """
-    else:
-        print ("You File {0} is NOT Exist!" .format(sourceFile))
-    """ 
+   
     CountineOrExit()
             
         
@@ -361,10 +270,7 @@ def MoveFoldertoFolder():
                     copyFiles(sourceFolder,targetFolder)   
 
                 shutil.rmtree(sourceFolder)
-  
         
-
-        #shutil.move (sourceFolder,targetFolder)
         if os.path.exists(targetFolder):
             print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
         else:
@@ -382,11 +288,9 @@ def FindContentOnTxt(Path,Content):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             flag = ""
-            i=0
-            #print "root is:" + root  root is the path which your file in now
+            i=0          
             if 'txt' in myFile:
-                j = j + 1
-                #print TxtFile
+                j = j + 1             
                 f = open (TxtFile, 'r')
                 Filecontent = f.readlines()
                 for eachline in Filecontent:
@@ -415,20 +319,13 @@ def FindFilesonDirs(Path,File):
         for myFile in filenames:
             if File.lower() in myFile.lower():
                 k = k + 1
-                print "File: " + File + " has found on " + root
-            #else: #means not found
-                #print ""                
+                print "File: " + File + " has found on " + root               
     if k == 0:
         print "File: " + File + " didn't found on " + Path
 
     CountineOrExit()
             
 def ReplaceName(Oname,Replacename):
-    """
-    if os.path.isfile(Foldername):
-        print "This is a file not a folder,cannot be renamed here"
-    else:
-    """
     Oname=os.path.abspath(Oname)
     Replacename = os.path.join(os.path.split(Oname)[0],Replacename)    
     if os.path.exists(Replacename):
@@ -439,35 +336,17 @@ def ReplaceName(Oname,Replacename):
     
     CountineOrExit()
 
-"""
-def ReplaceFile(Filename,ReplaceFilename):
-    if os.path.isdir(Filename):
-        print "This is a folder not a file,cannot be renamed here"
-    else:
-        Filename=os.path.abspath(Filename)
-        ReplaceFilename = os.path.join(os.path.split(Filename)[0],ReplaceFilename)       
-        if os.path.exists(ReplaceFilename):
-            print ReplaceFilename + " has already exists, can not be renamed!"
-        else:
-            os.rename (Filename,ReplaceFilename)
-            print Filename + " has been renamed as " + ReplaceFilename +" successfully!"
-            
-    CountineOrExit()
-"""
-
 def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent):
     w = 0
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
-            myFile = myFile.lower() #Convert the root path to lower
-            #if 'xml' in myFile:
-                #print myFile            
+            myFile = myFile.lower()  
             if FindContent in myFile:
                 w = w + 1
                 OldNameFile = os.path.join(root,myFile)
                 myFile = myFile.replace (FindContent,ReplaceContent)
                 NewNameFile = os.path.join(root,myFile)
-                os.rename (OldNameFile,NewNameFile) #rename function
+                os.rename (OldNameFile,NewNameFile)
                 if os.path.exists(NewNameFile):
                     print OldNameFile +" has been replaced as " + NewNameFile + " Successfully!"
                     print "========================================"
