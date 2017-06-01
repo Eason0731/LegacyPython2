@@ -8,14 +8,13 @@ def MainFunction():
     a = raw_input ("""
 1. Replace Content on txt files
 2. Delete Folders or Files
-4. Copy Folder to Folder
-5. Copy Files or Folder
-6. Move Folder or files to Folder
-7. Find Contents on txt files
-8. Find Files on Folder
-9. Rename Folder
-10. Rename File
-11. Replace File Name With SpecificName
+3. Copy Files or Folder to Folderr
+4. Move Folder or files to Folder
+5. Find Contents on txt files
+6. Find Files on Folder
+7. Rename Folder
+8. Rename File
+9. Replace File Name With SpecificName
 
 Press AnyKey to Exit
         
@@ -53,17 +52,26 @@ Please choose : """)
                     CountineOrExit()
             """
 
-            if int(a) == 4:
-                CopyFoldertoFolder()
+            if int(a) == 3:
+                sourceCustomed = raw_input ("Please Input your folder or file Path: ")
+                if os.path.exists(sourceCustomed):
+                    if os.path.isfile(sourceCustomed):
+                         CopyFiletoFolder(sourceCustomed)
+                    elif os.path.isdir(sourceCustomed):
+                        CopyFoldertoFolder(sourceCustomed)
+                else :
+                    print "source File or Folder: {0} is NOT Exist!" .format(sourceCustomed)
+                    CountineOrExit()
+                
 
-            if int(a) == 5:
+            """if int(a) == 5:
                 TestCasesDir = raw_input ("Please Input your file Path: ")
                 CopyFiletoFolder(TestCasesDir)
-
-            if int(a) == 6:
+            """
+            if int(a) == 4:
                 MoveFoldertoFolder()
 
-            if int(a) == 7:
+            if int(a) == 5:
                 Path  = raw_input ("Please input the folder path with txt files:")
                 if os.path.exists(Path):
                     Content = raw_input ("What content you want to find on txt file?")
@@ -72,7 +80,7 @@ Please choose : """)
                     print Path + " not exists!"
                     CountineOrExit()
                 
-            if int(a) == 8:
+            if int(a) == 6:
                 Path  = raw_input ("Please input your folder path:")
                 if os.path.exists(Path):
                     File = raw_input ("What file you want to find on this folder?")
@@ -82,7 +90,7 @@ Please choose : """)
                     CountineOrExit()
 
 
-            if int(a) == 9:
+            if int(a) == 7:
                 Foldername = raw_input ("Input your folder path: ")
                 if os.path.exists(Foldername):          
                     ReplaceFoldername = raw_input ("Input new folder name want to replace: ")
@@ -91,7 +99,7 @@ Please choose : """)
                     print Foldername + " is not exists!"
                     CountineOrExit()
 
-            if int(a) == 10:
+            if int(a) == 8:
                 Filename = raw_input ("Input your file path: ")
                 if os.path.exists(Filename):           
                     ReplaceFilename = raw_input ("Input new file name want to replace: ")
@@ -100,7 +108,7 @@ Please choose : """)
                     print Filename + " is not exists!"
                     CountineOrExit()
         
-            if int(a) == 11:
+            if int(a) == 9:
                 FolderDir = raw_input ("Please input folder: ")
                 if os.path.exists(FolderDir):
                     FindContent = raw_input("What word do you want find?")
@@ -201,31 +209,27 @@ def DeleteFiles(TestCasesDir):
     CountineOrExit()
         
 
-def CopyFoldertoFolder():
-    sourceCustomed = raw_input ("please input sourceFolder: ")
+def CopyFoldertoFolder(sourceCustomed):
     TargetCustomed = raw_input ("please input TargetFolder: ")
-
+    """
     if os.path.exists(sourceCustomed):
         if os.path.isfile(sourceCustomed):
             print "This is a file NOT a folder, if wanna copy a file please back to menu to choose again!"
             CountineOrExit()
         else:
-            if not os.path.exists(TargetCustomed):
-                os.makedirs(TargetCustomed)
+    """
+    if not os.path.exists(TargetCustomed):
+        os.makedirs(TargetCustomed)
             
-            Type = sourceCustomed.split("\\")[-1]
-            TargetCustomed = os.path.join(TargetCustomed,Type)
-            if os.path.exists(TargetCustomed):
-                while(1):
-                    IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
-                    if IsConver.lower() == 'y':
-                        break
-                    elif IsConver.lower() == 'n':
-                        CountineOrExit()
-                         
-    else :
-        print ("sourceFolder: {0} is NOT Exist!" .format(sourceCustomed))
-        CountineOrExit()
+    Type = sourceCustomed.split("\\")[-1]
+    TargetCustomed = os.path.join(TargetCustomed,Type)
+    if os.path.exists(TargetCustomed):
+        while(1):
+            IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
+            if IsConver.lower() == 'y':
+                break
+            elif IsConver.lower() == 'n':
+                CountineOrExit()
 
     #if (os.path.isdir(TargetCustomed)):
     print ("SourceFolder is : {0} " .format(sourceCustomed))
@@ -234,7 +238,7 @@ def CopyFoldertoFolder():
         shutil.copytree(sourceCustomed,TargetCustomed)
     else:
         copyFiles(sourceCustomed,TargetCustomed)
-    print "Copy Success to folder " + TargetCustomed
+    print sourceCustomed + " have copied successfully to folder " + TargetCustomed
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
         
@@ -247,32 +251,33 @@ def CopyFiletoFolder(TestCasesDir):
     sourceFile = TestCasesDir
     TargetFolder = raw_input ("Please input Target Folder:")
     pathname,filename = os.path.split (sourceFile)
-
     
-    if os.path.exists(sourceFile):
+    """if os.path.exists(sourceFile):
         if os.path.isdir(sourceFile):
             print "This is a folder NOT a file, if wanna copy a file please back to menu to choose again!"
             CountineOrExit()
         else:
-            if not os.path.exists(TargetFolder):
-                os.makedirs(TargetFolder)
+    """
+    if not os.path.exists(TargetFolder):
+        os.makedirs(TargetFolder)
 
-            if os.path.exists(os.path.join(TargetFolder,sourceFile.split("\\")[-1])):
-                while(1):
-                    IsConver = raw_input ("There is a same file on target file , would you like to cover? (Y/N) ")
-                    if IsConver.lower() == 'y':
-                        break
-                    elif IsConver.lower() == 'n':
-                        CountineOrExit()
+    if os.path.exists(os.path.join(TargetFolder,sourceFile.split("\\")[-1])):
+        while(1):
+            IsConver = raw_input ("There is a same file on target file , would you like to cover? (Y/N) ")
+            if IsConver.lower() == 'y':
+                break
+            elif IsConver.lower() == 'n':
+                CountineOrExit()
 
-            print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
-            shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
-            print "Copy File Success!"
-            print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-            print "============================================"
+    print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
+    shutil.copy (sourceFile,TargetFolder) #Copy File to Folder method
+    print sourceFile + " has been copied to " + TargetFolder + " successfully!"
+    print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
+    print "============================================"
+    """
     else:
         print ("You File {0} is NOT Exist!" .format(sourceFile))
-        
+    """ 
     CountineOrExit()
             
         
