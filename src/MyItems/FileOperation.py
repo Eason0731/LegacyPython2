@@ -154,7 +154,7 @@ def CopyFoldertoFolder(sourceCustomed):
     TargetCustomed = os.path.join(TargetCustomed,Type)
     if os.path.exists(TargetCustomed):
         while(1):
-            IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
+            IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")
             if IsConver.lower() == 'y':
                 break
             elif IsConver.lower() == 'n':
@@ -181,7 +181,7 @@ def CopyFiletoFolder(TestCasesDir):
 
     if os.path.exists(os.path.join(TargetFolder,sourceFile.split("\\")[-1])):
         while(1):
-            IsConver = raw_input ("There is a same file on target file , would you like to cover? (Y/N) ")
+            IsConver = raw_input ("There is a same file on target file , would you still want to copy? (Y/N) ")
             if IsConver.lower() == 'y':
                 break
             elif IsConver.lower() == 'n':
@@ -238,7 +238,7 @@ def MoveFoldertoFolder():
             targetFolder = os.path.join(targetFolder,Type)
             if os.path.exists(targetFolder):
                 while(1):
-                    IsConver = raw_input ("There is a same file on target file , would you like to cover? (Y/N) ")
+                    IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
                     if IsConver.lower() == 'y':
                         break
                     elif IsConver.lower() == 'n':
@@ -252,7 +252,7 @@ def MoveFoldertoFolder():
             targetFolder = os.path.join(targetFolder,Type)
             if os.path.exists(targetFolder):
                 while(1):
-                    IsConver = raw_input ("There is a same folder on target folder , would you like to cover? (Y/N) ")
+                    IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")
                     if IsConver.lower() == 'y':
                         break
                     elif IsConver.lower() == 'n':
