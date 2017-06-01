@@ -35,10 +35,13 @@ Please choose : """)
             if int(a) == 2:
                 TestCasesDir = raw_input ("Please Input your folder or file path: ")
                 if os.path.exists(TestCasesDir):
+                    DeleteMethod(TestCasesDir)
+                    """
                     if os.path.isdir(TestCasesDir):
                         DeleteFolders(TestCasesDir)
                     elif os.path.isfile(TestCasesDir):
                         DeleteFiles(TestCasesDir)
+                    """
                 else:
                     print TestCasesDir + " is not exist!"
                     CountineOrExit()
@@ -182,13 +185,13 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
     CountineOrExit()
 
 
-
+"""
 def DeleteFolders(TestCasesDir):
-    """
+    
     if os.path.isfile(TestCasesDir):
         print "This is a file not a folder,cannot be deleted here"
     else:
-    """
+   
     print "Deleteing folder " + TestCasesDir + " now..."
     shutil.rmtree(TestCasesDir)
     if not os.path.exists(TestCasesDir):
@@ -197,18 +200,23 @@ def DeleteFolders(TestCasesDir):
         print "The contents of folder: " + TestCasesDir + " have been deleted failed!"        
 
     CountineOrExit()
+"""
 
-def DeleteFiles(TestCasesDir):
+def DeleteMethod(TestCasesDir):
     """if os.path.isdir(TestCasesDir):
         print "This is a folder not a file,cannot be deleted here"
     else:
     """
-    print "Deleteing file " + TestCasesDir + " now..."
-    os.remove(TestCasesDir)
+    print "Deleteing " + TestCasesDir + " now..."
+    if os.path.isfile(TestCasesDir):
+        os.remove(TestCasesDir)
+    elif os.path.isdir(TestCasesDir):
+        shutil.rmtree(TestCasesDir)
+    
     if not os.path.exists(TestCasesDir):
-        print "The file: " + TestCasesDir + " have been deleted succeeded!"
+        print  TestCasesDir + " has been deleted succeeded!"
     else:
-        print "The file: " + TestCasesDir + " have been deleted failed!"
+        print  TestCasesDir + " has been deleted failed!"
             
     CountineOrExit()
         
