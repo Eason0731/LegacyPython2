@@ -8,9 +8,9 @@ def MainFunction():
     a = raw_input ("""
 ==========Welcome to File Operation==========
 1. Replace Content on txt files
-2. Delete Folders or Files
-3. Copy Files or Folder to Folder
-4. Move Folder or files to Folder
+2. Delete File or Folder
+3. Copy File or Folder
+4. Move File or Folder
 5. Find Contents on txt files
 6. Find Files on Folder
 7. Rename File or Folder
