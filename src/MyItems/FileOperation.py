@@ -7,8 +7,7 @@ import time
 def MainFunction():
     a = raw_input ("""
 1. Replace Content on txt files
-2. Delete Folders
-3. Delete Files
+2. Delete Folders or Files
 4. Copy Folder to Folder
 5. Copy Files or Folder
 6. Move Folder or files to Folder
@@ -35,20 +34,24 @@ Please choose : """)
                     CountineOrExit()
                 
             if int(a) == 2:
-                TestCasesDir = raw_input ("Please Input your folder Path: ")
+                TestCasesDir = raw_input ("Please Input your folder or file path: ")
                 if os.path.exists(TestCasesDir):
-                    DeleteFolders(TestCasesDir)
+                    if os.path.isdir(TestCasesDir):
+                        DeleteFolders(TestCasesDir)
+                    elif os.path.isfile(TestCasesDir):
+                        DeleteFiles(TestCasesDir)
                 else:
                     print "This folder path not exist!"
                     CountineOrExit()
 
-            if int(a) == 3:
+            """if int(a) == 3:
                 TestCasesDir = raw_input ("Please Input your file Path: ")
                 if os.path.exists(TestCasesDir):
                     DeleteFiles(TestCasesDir)
                 else:
                     print "This file path not exist!"
                     CountineOrExit()
+            """
 
             if int(a) == 4:
                 CopyFoldertoFolder()
