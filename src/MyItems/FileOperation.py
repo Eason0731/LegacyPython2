@@ -25,9 +25,7 @@ Please choose : """)
             if int(a) == 1:
                 TestCasesDir = raw_input ("Please Input your folder Path: ")
                 if os.path.exists(TestCasesDir):
-                    s = raw_input("Please Input what words you want to find: ")
-                    p = raw_input("Please Input what words you want to replace: ")
-                    ReplaceContentOnDir(TestCasesDir,s,p)
+                    ReplaceContentOnDir(TestCasesDir)
                 else:
                     print "This folder path not exist!"
                     CountineOrExit()
@@ -56,9 +54,8 @@ Please choose : """)
 
             if int(a) == 5:
                 Path  = raw_input ("Please input the folder path with txt files:")
-                if os.path.exists(Path):
-                    Content = raw_input ("What content you want to find on txt file?")
-                    FindContentOnTxt(Path,Content)
+                if os.path.exists(Path):   
+                    FindContentOnTxt(Path)
                 else:
                     print Path + " not exists!"
                     CountineOrExit()
@@ -66,8 +63,7 @@ Please choose : """)
             if int(a) == 6:
                 Path  = raw_input ("Please input your folder path:")
                 if os.path.exists(Path):
-                    File = raw_input ("What file you want to find on this folder?")
-                    FindFilesonDirs(Path,File)
+                    FindFilesonDirs(Path)
                 else:
                     print Path + " not exists!"
                     CountineOrExit()
@@ -76,8 +72,7 @@ Please choose : """)
             if int(a) == 7:
                 Oname = raw_input ("Input your file or folder path: ")
                 if os.path.exists(Oname):          
-                    Rname = raw_input ("Input new folder name want to replace: ")
-                    ReplaceName(Oname,Rname)
+                    ReplaceName(Oname)
                 else:
                     print Oname + " is not exists!"
                     CountineOrExit()
@@ -86,10 +81,7 @@ Please choose : """)
             if int(a) == 8:
                 FolderDir = raw_input ("Please input folder: ")
                 if os.path.exists(FolderDir):
-                    FindContent = raw_input("What word do you want find?")
-                    FindContent = FindContent.lower()
-                    ReplaceContent = raw_input("What word do you want replace?")
-                    ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent)
+                    ReplaceFileNameWithSpecificName(FolderDir)
                 else:
                     print "Target Folder path: " + FolderDir + " is not exists!"
                     CountineOrExit()
@@ -103,7 +95,9 @@ Please choose : """)
         exit(1)
       
 
-def ReplaceContentOnDir(TestCasesDir,s,p):
+def ReplaceContentOnDir(TestCasesDir):
+    s = raw_input("Please Input what words you want to find: ")
+    p = raw_input("Please Input what words you want to replace: ")
     i = 0
     for root,dirnames,filenames in os.walk(TestCasesDir):
         for myFile in filenames:
@@ -282,7 +276,8 @@ def MoveFoldertoFolder():
     CountineOrExit()
 
 
-def FindContentOnTxt(Path,Content):
+def FindContentOnTxt(Path):
+    Content = raw_input ("What content you want to find on txt file?")
     j = 0
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
@@ -313,7 +308,8 @@ def FindContentOnTxt(Path,Content):
     
     CountineOrExit()
                 
-def FindFilesonDirs(Path,File):
+def FindFilesonDirs(Path):
+    File = raw_input ("What file you want to find on this folder?")
     k = 0
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
@@ -325,18 +321,22 @@ def FindFilesonDirs(Path,File):
 
     CountineOrExit()
             
-def ReplaceName(Oname,Replacename):
-    Oname=os.path.abspath(Oname)
-    Replacename = os.path.join(os.path.split(Oname)[0],Replacename)    
-    if os.path.exists(Replacename):
+def ReplaceName(Oname):
+    Rname = raw_input ("Input new name want to replace: ")
+    Oname = os.path.abspath(Oname)
+    Rname = os.path.join(os.path.split(Oname)[0],Rname)    
+    if os.path.exists(Rname):
         print Oname + " has already exists, can not be renamed!"
     else:
-        os.rename (Oname,Replacename)
-        print Oname + " has been renamed as " + Replacename +" successfully!"
+        os.rename (Oname,Rname)
+        print Oname + " has been renamed as " + Rname +" successfully!"
     
     CountineOrExit()
 
-def ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent):
+def ReplaceFileNameWithSpecificName(FolderDir):
+    FindContent = raw_input("What word do you want find?")
+    FindContent = FindContent.lower()
+    ReplaceContent = raw_input("What word do you want replace?")
     w = 0
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
