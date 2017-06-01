@@ -8,7 +8,7 @@ def MainFunction():
     a = raw_input ("""
 1. Replace Content on txt files
 2. Delete Folders or Files
-3. Copy Files or Folder to Folderr
+3. Copy Files or Folder to Folder
 4. Move Folder or files to Folder
 5. Find Contents on txt files
 6. Find Files on Folder
