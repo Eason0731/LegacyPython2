@@ -21,7 +21,7 @@ Press AnyKey to Exit
 Please choose : """)
 
     if a.isdigit():
-        if int(a) in range(1,12):
+        if int(a) in range(1,10):
             if int(a) == 1:
                 TestCasesDir = raw_input ("Please Input your folder Path: ")
                 if os.path.exists(TestCasesDir):
@@ -40,7 +40,7 @@ Please choose : """)
                     elif os.path.isfile(TestCasesDir):
                         DeleteFiles(TestCasesDir)
                 else:
-                    print "This folder path not exist!"
+                    print TestCasesDir + " is not exist!"
                     CountineOrExit()
 
             """if int(a) == 3:
@@ -183,28 +183,31 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
 
 
 def DeleteFolders(TestCasesDir):
+    """
     if os.path.isfile(TestCasesDir):
         print "This is a file not a folder,cannot be deleted here"
-
     else:
-        print "Deleteing folder " + TestCasesDir + " now..."
-        shutil.rmtree(TestCasesDir)
-        if not os.path.exists(TestCasesDir):
-            print "The contents of folder: " + TestCasesDir + " have been deleted succeeded!"
-        else:
-            print "The contents of folder: " + TestCasesDir + " have been deleted failed!"        
+    """
+    print "Deleteing folder " + TestCasesDir + " now..."
+    shutil.rmtree(TestCasesDir)
+    if not os.path.exists(TestCasesDir):
+        print "The contents of folder: " + TestCasesDir + " have been deleted succeeded!"
+    else:
+        print "The contents of folder: " + TestCasesDir + " have been deleted failed!"        
 
     CountineOrExit()
 
 def DeleteFiles(TestCasesDir):
-    if os.path.isdir(TestCasesDir):
+    """if os.path.isdir(TestCasesDir):
         print "This is a folder not a file,cannot be deleted here"
     else:
-        os.remove(TestCasesDir)
-        if not os.path.exists(TestCasesDir):
-            print "The file: " + TestCasesDir + " have been deleted succeeded!"
-        else:
-            print "The file: " + TestCasesDir + " have been deleted failed!"
+    """
+    print "Deleteing file " + TestCasesDir + " now..."
+    os.remove(TestCasesDir)
+    if not os.path.exists(TestCasesDir):
+        print "The file: " + TestCasesDir + " have been deleted succeeded!"
+    else:
+        print "The file: " + TestCasesDir + " have been deleted failed!"
             
     CountineOrExit()
         
