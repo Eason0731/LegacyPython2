@@ -21,96 +21,97 @@ def MainFunction():
 Press AnyKey to Exit
         
 Please choose : """)
-    if a == "1" or a == "2" or a == "3" or a == "4" or a == "5" or a == "6" or a == "7" or a == "8" or a == "9" or a == "10" or a =="11":
-        #TestCasesDir = raw_input ("Please Input your folder or file Path: ")
 
-        if a == "1":
-            TestCasesDir = raw_input ("Please Input your folder Path: ")
-            
-
-            #TestCasesDir = "C:\\Users\\t_zhanj\\Desktop\\Cases"
-            if os.path.exists(TestCasesDir):
-                s = raw_input("Please Input what words you want to find: ")
-                p = raw_input("Please Input what words you want to replace: ")
-                ReplaceContentOnDir(TestCasesDir,s,p)
-            else:
-                print "This folder path not exist!"
-                CountineOrExit()
+    if a.isdigit():
+        if int(a) in range(1,12):
+            if int(a) == 1:
+                TestCasesDir = raw_input ("Please Input your folder Path: ")
+                if os.path.exists(TestCasesDir):
+                    s = raw_input("Please Input what words you want to find: ")
+                    p = raw_input("Please Input what words you want to replace: ")
+                    ReplaceContentOnDir(TestCasesDir,s,p)
+                else:
+                    print "This folder path not exist!"
+                    CountineOrExit()
                 
-        if a == "2":
-            TestCasesDir = raw_input ("Please Input your folder Path: ")
-            if os.path.exists(TestCasesDir):
-                DeleteFolders(TestCasesDir)
-            else:
-                print "This folder path not exist!"
-                CountineOrExit()
+            if int(a) == 2:
+                TestCasesDir = raw_input ("Please Input your folder Path: ")
+                if os.path.exists(TestCasesDir):
+                    DeleteFolders(TestCasesDir)
+                else:
+                    print "This folder path not exist!"
+                    CountineOrExit()
 
-        if a == "3":
-            TestCasesDir = raw_input ("Please Input your file Path: ")
-            if os.path.exists(TestCasesDir):
-                DeleteFiles(TestCasesDir)
-            else:
-                print "This file path not exist!"
-                CountineOrExit()
+            if int(a) == 3:
+                TestCasesDir = raw_input ("Please Input your file Path: ")
+                if os.path.exists(TestCasesDir):
+                    DeleteFiles(TestCasesDir)
+                else:
+                    print "This file path not exist!"
+                    CountineOrExit()
 
-        if a == "4":
-            CopyFoldertoFolder()
+            if int(a) == 4:
+                CopyFoldertoFolder()
 
-        if a == "5":
-            TestCasesDir = raw_input ("Please Input your file Path: ")
-            CopyFiletoFolder(TestCasesDir)
+            if int(a) == 5:
+                TestCasesDir = raw_input ("Please Input your file Path: ")
+                CopyFiletoFolder(TestCasesDir)
 
-        if a == "6":
-            MoveFoldertoFolder()
+            if int(a) == 6:
+                MoveFoldertoFolder()
 
-        if a == "7":
-            Path  = raw_input ("Please input the folder path with txt files:")
-            if os.path.exists(Path):
-                Content = raw_input ("What content you want to find on txt file?")
-                FindContentOnTxt(Path,Content)
-            else:
-                print Path + " not exists!"
-                CountineOrExit()
+            if int(a) == 7:
+                Path  = raw_input ("Please input the folder path with txt files:")
+                if os.path.exists(Path):
+                    Content = raw_input ("What content you want to find on txt file?")
+                    FindContentOnTxt(Path,Content)
+                else:
+                    print Path + " not exists!"
+                    CountineOrExit()
                 
-        if a == "8":
-            Path  = raw_input ("Please input your folder path:")
-            if os.path.exists(Path):
-                File = raw_input ("What file you want to find on this folder?")
-                FindFilesonDirs(Path,File)
-            else:
-                print Path + " not exists!"
-                CountineOrExit()
+            if int(a) == 8:
+                Path  = raw_input ("Please input your folder path:")
+                if os.path.exists(Path):
+                    File = raw_input ("What file you want to find on this folder?")
+                    FindFilesonDirs(Path,File)
+                else:
+                    print Path + " not exists!"
+                    CountineOrExit()
 
 
-        if a == "9":
-            Foldername = raw_input ("Input your folder path: ")
-            if os.path.exists(Foldername):          
-                ReplaceFoldername = raw_input ("Input new folder name want to replace: ")
-                ReplaceFolder(Foldername,ReplaceFoldername)
-            else:
-                print Foldername + " is not exists!"
-                CountineOrExit()
+            if int(a) == 9:
+                Foldername = raw_input ("Input your folder path: ")
+                if os.path.exists(Foldername):          
+                    ReplaceFoldername = raw_input ("Input new folder name want to replace: ")
+                    ReplaceFolder(Foldername,ReplaceFoldername)
+                else:
+                    print Foldername + " is not exists!"
+                    CountineOrExit()
 
-        if a == "10":
-            Filename = raw_input ("Input your file path: ")
-            if os.path.exists(Filename):           
-                ReplaceFilename = raw_input ("Input new file name want to replace: ")
-                ReplaceFile(Filename,ReplaceFilename)
-            else:
-                print Filename + " is not exists!"
-                CountineOrExit()
+            if int(a) == 10:
+                Filename = raw_input ("Input your file path: ")
+                if os.path.exists(Filename):           
+                    ReplaceFilename = raw_input ("Input new file name want to replace: ")
+                    ReplaceFile(Filename,ReplaceFilename)
+                else:
+                    print Filename + " is not exists!"
+                    CountineOrExit()
         
-        if a == "11":
-            FolderDir = raw_input ("Please input folder: ")
-            if os.path.exists(FolderDir):
-                FindContent = raw_input("What word do you want find?")
-                FindContent = FindContent.lower() #Convert the FindContent path to lower
-                ReplaceContent = raw_input("What word do you want replace?")
-                ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent)
-            else:
-                print "Target Folder path: " + FolderDir + " is not exists!"
-                CountineOrExit()
+            if int(a) == 11:
+                FolderDir = raw_input ("Please input folder: ")
+                if os.path.exists(FolderDir):
+                    FindContent = raw_input("What word do you want find?")
+                    FindContent = FindContent.lower() #Convert the FindContent path to lower
+                    ReplaceContent = raw_input("What word do you want replace?")
+                    ReplaceFileNameWithSpecificName(FolderDir,FindContent,ReplaceContent)
+                else:
+                    print "Target Folder path: " + FolderDir + " is not exists!"
+                    CountineOrExit()
     
+        else:
+            print "Bye~"
+            exit(1)
+
     else:
         print "Bye~"
         exit(1)
