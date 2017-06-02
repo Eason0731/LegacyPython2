@@ -175,7 +175,7 @@ def CopyFoldertoFolder(sourceCustomed):
 
 def CopyFiletoFolder(TestCasesDir):
     sourceFile = TestCasesDir
-    TargetFolder = raw_input ("Please input Target Folder:")
+    TargetFolder = raw_input ("Please input target folder path:")
     pathname,filename = os.path.split (sourceFile)
     if not os.path.exists(TargetFolder):
         os.makedirs(TargetFolder)
