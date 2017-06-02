@@ -23,6 +23,7 @@ Please choose : """)
     if a.isdigit():
         if int(a) in range(1,9):
             if int(a) == 1:
+                print "========Replace Content on txt files========"
                 TestCasesDir = raw_input ("Please input the folder path: ")
                 if os.path.exists(TestCasesDir):
                     ReplaceContentOnDir(TestCasesDir)
