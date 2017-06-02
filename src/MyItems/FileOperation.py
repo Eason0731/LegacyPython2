@@ -132,7 +132,7 @@ def ReplaceContentOnDir(TestCasesDir):
 
 def DeleteMethod(TestCasesDir):
     print "Deleteing " + TestCasesDir + " now..."
-	print "============================================"
+    print "============================================"
     if os.path.isfile(TestCasesDir):
         os.remove(TestCasesDir)
     elif os.path.isdir(TestCasesDir):
@@ -175,7 +175,7 @@ def CopyFoldertoFolder(sourceCustomed):
 
 def CopyFiletoFolder(TestCasesDir):
     sourceFile = TestCasesDir
-    TargetFolder = raw_input ("Please input target folder path:")
+    TargetFolder = raw_input ("Please input target folder path: ")
     pathname,filename = os.path.split (sourceFile)
     if not os.path.exists(TargetFolder):
         os.makedirs(TargetFolder)
@@ -230,7 +230,7 @@ def copyFiles(sourceDir, targetDir):
 def MoveFoldertoFolder():
     sourceFolder = raw_input ("Please input the source folder or file path: ")
     targetFolder = raw_input ("Please input the target folder path: ")
-	print "============================================"
+    print "============================================"
     if not os.path.exists(targetFolder):
         os.makedirs(targetFolder)
     
@@ -327,7 +327,7 @@ def ReplaceName(Oname):
     Rname = raw_input ("Please input new name want to replace: ")
     Oname = os.path.abspath(Oname)
     Rname = os.path.join(os.path.split(Oname)[0],Rname)   
-	print "============================================"
+    print "============================================"
     if os.path.exists(Rname):
         print Oname + " has already exists, can not be renamed!"
     else:
@@ -341,7 +341,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
     FindContent = FindContent.lower()
     ReplaceContent = raw_input("What word do you want replace? ")
     w = 0
-	print "============================================"
+    print "============================================"
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
             myFile = myFile.lower()  
