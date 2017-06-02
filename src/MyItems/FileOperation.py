@@ -86,6 +86,7 @@ Please choose : """)
 
 
             if int(a) == 8:
+                print "====Replace File Name With SpecificName===="
                 FolderDir = raw_input ("Please input the folder path: ")
                 if os.path.exists(FolderDir):
                     ReplaceFileNameWithSpecificName(FolderDir)
