@@ -57,6 +57,7 @@ Please choose : """)
                 MoveFoldertoFolder()
 
             if int(a) == 5:
+                print "=========Find Contents on txt files========"
                 Path  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Path):   
                     FindContentOnTxt(Path)
