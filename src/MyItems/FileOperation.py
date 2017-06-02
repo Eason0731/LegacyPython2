@@ -66,6 +66,7 @@ Please choose : """)
                     CountineOrExit()
                 
             if int(a) == 6:
+                print "============Find Files on Folder==========="
                 Path  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Path):
                     FindFilesonDirs(Path)
