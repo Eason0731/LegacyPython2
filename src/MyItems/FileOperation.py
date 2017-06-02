@@ -42,7 +42,7 @@ Please choose : """)
                 sourceCustomed = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(sourceCustomed):
                     if os.path.isfile(sourceCustomed):
-                         CopyFiletoFolder(sourceCustomed)
+                        CopyFiletoFolder(sourceCustomed)
                     elif os.path.isdir(sourceCustomed):
                         CopyFoldertoFolder(sourceCustomed)
                 else :
@@ -147,7 +147,7 @@ def DeleteMethod(TestCasesDir):
         
 
 def CopyFoldertoFolder(sourceCustomed):
-    TargetCustomed = raw_input ("Please input TargetFolder: ")
+    TargetCustomed = raw_input ("Please input target folder path: ")
     if not os.path.exists(TargetCustomed):
         os.makedirs(TargetCustomed)
             
@@ -160,7 +160,7 @@ def CopyFoldertoFolder(sourceCustomed):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
-    
+    print "============================================"
     print ("SourceFolder is : {0} " .format(sourceCustomed))
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     if not os.listdir(sourceCustomed):
@@ -187,7 +187,7 @@ def CopyFiletoFolder(TestCasesDir):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
-
+    print "============================================"
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     shutil.copy (sourceFile,TargetFolder) 
     print sourceFile + " has been copied to " + TargetFolder + " successfully!"
