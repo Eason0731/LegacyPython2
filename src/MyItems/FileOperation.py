@@ -132,6 +132,7 @@ def ReplaceContentOnDir(TestCasesDir):
 
 def DeleteMethod(TestCasesDir):
     print "Deleteing " + TestCasesDir + " now..."
+	print "============================================"
     if os.path.isfile(TestCasesDir):
         os.remove(TestCasesDir)
     elif os.path.isdir(TestCasesDir):
@@ -141,7 +142,7 @@ def DeleteMethod(TestCasesDir):
         print  TestCasesDir + " has been deleted succeeded!"
     else:
         print  TestCasesDir + " has been deleted failed!"
-            
+    print "============================================"    
     CountineOrExit()
         
 
@@ -229,6 +230,7 @@ def copyFiles(sourceDir, targetDir):
 def MoveFoldertoFolder():
     sourceFolder = raw_input ("Please input the source folder or file path: ")
     targetFolder = raw_input ("Please input the target folder path: ")
+	print "============================================"
     if not os.path.exists(targetFolder):
         os.makedirs(targetFolder)
     
@@ -272,7 +274,7 @@ def MoveFoldertoFolder():
 
     else:
         print sourceFolder +" is not exists!"
-    
+    print "============================================"
     CountineOrExit()
 
 
@@ -324,13 +326,14 @@ def FindFilesonDirs(Path):
 def ReplaceName(Oname):
     Rname = raw_input ("Please input new name want to replace: ")
     Oname = os.path.abspath(Oname)
-    Rname = os.path.join(os.path.split(Oname)[0],Rname)    
+    Rname = os.path.join(os.path.split(Oname)[0],Rname)   
+	print "============================================"
     if os.path.exists(Rname):
         print Oname + " has already exists, can not be renamed!"
     else:
         os.rename (Oname,Rname)
         print Oname + " has been renamed as " + Rname +" successfully!"
-    
+    print "============================================"
     CountineOrExit()
 
 def ReplaceFileNameWithSpecificName(FolderDir):
@@ -338,6 +341,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
     FindContent = FindContent.lower()
     ReplaceContent = raw_input("What word do you want replace? ")
     w = 0
+	print "============================================"
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
             myFile = myFile.lower()  
