@@ -147,7 +147,7 @@ def DeleteMethod(TestCasesDir):
         
 
 def CopyFoldertoFolder(sourceCustomed):
-    TargetCustomed = raw_input ("Please input target folder path: ")
+    TargetCustomed = raw_input ("Please input the target folder path: ")
     if not os.path.exists(TargetCustomed):
         os.makedirs(TargetCustomed)
             
@@ -175,7 +175,7 @@ def CopyFoldertoFolder(sourceCustomed):
 
 def CopyFiletoFolder(TestCasesDir):
     sourceFile = TestCasesDir
-    TargetFolder = raw_input ("Please input target folder path: ")
+    TargetFolder = raw_input ("Please input the target folder path: ")
     pathname,filename = os.path.split (sourceFile)
     if not os.path.exists(TargetFolder):
         os.makedirs(TargetFolder)
