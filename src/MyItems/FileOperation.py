@@ -32,6 +32,7 @@ Please choose : """)
                     CountineOrExit()
                 
             if int(a) == 2:
+                print "===========Delete File or Folder============"
                 TestCasesDir = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(TestCasesDir):
                     DeleteMethod(TestCasesDir)
