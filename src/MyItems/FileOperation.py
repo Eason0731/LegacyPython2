@@ -76,6 +76,7 @@ Please choose : """)
 
 
             if int(a) == 7:
+                print "===========Rename File or Folder==========="
                 Oname = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(Oname):          
                     ReplaceName(Oname)
