@@ -130,7 +130,7 @@ def ReplaceContentOnDir(TestCasesDir):
                     files = open (TxtFile,'w') 
                     files.writelines(content.replace (s, p))
                     files.close()
-                    print s + " has been replaced as " + p + " Success!"
+                    print s + " has been replaced as " + p + " succeeded!"
                 
                 else:
                     print s + " Not found on File!"   
@@ -181,7 +181,7 @@ def CopyFoldertoFolder(sourceCustomed):
         shutil.copytree(sourceCustomed,TargetCustomed)
     else:
         copyFiles(sourceCustomed,TargetCustomed)
-    print sourceCustomed + " have copied successfully to folder " + TargetCustomed
+    print sourceCustomed + " have copied succeeded to folder " + TargetCustomed
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
     
@@ -204,7 +204,7 @@ def CopyFiletoFolder(TestCasesDir):
     print "============================================"
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     shutil.copy (sourceFile,TargetFolder) 
-    print sourceFile + " has been copied to " + TargetFolder + " successfully!"
+    print sourceFile + " has been copied to " + TargetFolder + " succeeded!"
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
    
@@ -274,9 +274,9 @@ def MoveFoldertoFolder(sourceFolder):
         shutil.rmtree(sourceFolder)
 
     if os.path.exists(targetFolder):
-        print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
+        print sourceFolder + " has been moved to " + targetFolder + " succeeded!"
     else:
-        print sourceFolder + " have been moved failed!"
+        print sourceFolder + " has been moved failed!"
 
     print "============================================"
     CountineOrExit()
@@ -333,10 +333,10 @@ def ReplaceName(Oname):
     Rname = os.path.join(os.path.split(Oname)[0],Rname)   
     print "============================================"
     if os.path.exists(Rname):
-        print Oname + " has already exists, can not be renamed!"
+        print Oname + " has already exists, cannot be renamed!"
     else:
         os.rename (Oname,Rname)
-        print Oname + " has been renamed as " + Rname +" successfully!"
+        print Oname + " has been renamed as " + Rname +" succeeded!"
     print "============================================"
     CountineOrExit()
 
@@ -356,7 +356,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
                 NewNameFile = os.path.join(root,myFile)
                 os.rename (OldNameFile,NewNameFile)
                 if os.path.exists(NewNameFile):
-                    print OldNameFile +" has been replaced as " + NewNameFile + " Successfully!"
+                    print OldNameFile +" has been replaced as " + NewNameFile + " succeeded!"
                     print "========================================"
     if w == 0:
         print "Didn't found file named with " + FindContent + " under folder " + FolderDir
