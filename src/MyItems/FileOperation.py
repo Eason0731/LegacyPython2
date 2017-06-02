@@ -247,10 +247,8 @@ def MoveFoldertoFolder(sourceFolder):
     if not os.path.exists(targetFolder):
         os.makedirs(targetFolder)
     
-    #if os.path.exists(sourceFolder):
     Type = sourceFolder.split("\\")[-1]
     targetFolder = os.path.join(targetFolder,Type)
-    #if os.path.isfile(sourceFolder):   
     if os.path.exists(targetFolder):
         while(1):
             if os.path.isfile(targetFolder):
@@ -275,27 +273,6 @@ def MoveFoldertoFolder(sourceFolder):
             copyFiles(sourceFolder,targetFolder)                    
         shutil.rmtree(sourceFolder)
 
-        """
-        if os.path.isdir(sourceFolder):
-            
-            Type = sourceFolder.split("\\")[-1]
-            targetFolder = os.path.join(targetFolder,Type)
-            
-            if os.path.exists(targetFolder):
-                while(1):
-                    IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")
-                    if IsConver.lower() == 'y':
-                        break
-                    elif IsConver.lower() == 'n':
-                        CountineOrExit()
-            
-            if not os.listdir(sourceFolder):
-                shutil.copytree(sourceFolder,targetFolder)
-            else:
-                copyFiles(sourceFolder,targetFolder)
-                    
-            shutil.rmtree(sourceFolder)
-        """
     if os.path.exists(targetFolder):
         print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
     else:
