@@ -54,7 +54,13 @@ Please choose : """)
             
             if int(a) == 4:
                 print "===========Move File or Folder============="
-                MoveFoldertoFolder()
+                sourceFolder = raw_input ("Please input the source folder or file path: ")
+                if os.path.exists(sourceFolder):
+                    MoveFoldertoFolder(sourceFolder)
+                else:
+                    print "{0} is NOT Exist!" .format(sourceFolder)
+                    CountineOrExit()
+                    
 
             if int(a) == 5:
                 print "=========Find Contents on txt files========"
@@ -235,8 +241,7 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 
-def MoveFoldertoFolder():
-    sourceFolder = raw_input ("Please input the source folder or file path: ")
+def MoveFoldertoFolder(sourceFolder):
     targetFolder = raw_input ("Please input the target folder path: ")
     print "============================================"
     if not os.path.exists(targetFolder):
