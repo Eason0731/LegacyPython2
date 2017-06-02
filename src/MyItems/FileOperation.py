@@ -253,8 +253,9 @@ def MoveFoldertoFolder():
                         break
                     elif IsConver.lower() == 'n':
                         CountineOrExit()
+
                 os.remove(targetFolder)
-  
+
             shutil.move (sourceFolder,targetFolder)
         
         if os.path.isdir(sourceFolder):
@@ -268,12 +269,12 @@ def MoveFoldertoFolder():
                     elif IsConver.lower() == 'n':
                         CountineOrExit()
 
-                if not os.listdir(sourceFolder):
-                    shutil.copytree(sourceFolder,targetFolder)
-                else:
-                    copyFiles(sourceFolder,targetFolder)   
-
-                shutil.rmtree(sourceFolder)
+            if not os.listdir(sourceFolder):
+                shutil.copytree(sourceFolder,targetFolder)
+            else:
+                copyFiles(sourceFolder,targetFolder)
+                    
+            shutil.rmtree(sourceFolder)
         
         if os.path.exists(targetFolder):
             print sourceFolder + " have been moved to " + targetFolder + " succeeded!"
