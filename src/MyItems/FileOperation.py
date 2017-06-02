@@ -41,6 +41,7 @@ Please choose : """)
                     CountineOrExit()
 
             if int(a) == 3:
+                print "===========Copy File or Folder============="
                 sourceCustomed = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(sourceCustomed):
                     if os.path.isfile(sourceCustomed):
