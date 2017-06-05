@@ -301,10 +301,10 @@ def FindContentOnTxt(Path):
                         i+=1
                         
                 if flag == "true":
-                    print Content + " found on " + myFile + " for " + str(i) + " times"
+                    print Content + " found on " + TxtFile + " for " + str(i) + " times"
                 
                 else:
-                    print Content + " didn't found on " + myFile
+                    print Content + " didn't found on " + TxtFile
                     
                            
                 f.close()
