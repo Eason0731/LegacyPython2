@@ -285,26 +285,30 @@ def MoveFoldertoFolder(sourceFolder):
 def FindContentOnTxt(Path):
     Content = raw_input ("What content you want to find on txt file? ")
     j = 0
+    w = 0
     print "================================ Start ==============================="
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             i=0          
             if 'txt' in myFile:
-                j = j + 1             
+                j = j + 1
+                
                 f = open (TxtFile, 'r')
                 Filecontent = f.readlines()
                 for eachline in Filecontent:
                     if Content.lower() in eachline.lower():
-                        i+=1
+                        i+= 1
+                        w+= 1
+                
                 if i > 0:
                     print Content + " found on " + TxtFile + " for " + str(i) + " times"
                 
-                else:
-                    print Content + " didn't found on " + TxtFile
-                            
                 f.close()
 
+    if w == 0:
+        print Content + " didn't found on " + Path
+                    
     if j == 0:
         print "There is no txt files under folder " + Path
     print "================================ Finish ==============================="
