@@ -112,36 +112,31 @@ Please choose : """)
 def ReplaceContentOnDir(TestCasesDir):
     s = raw_input("Please input what word you want to find: ")
     p = raw_input("Please input what word you want to replace: ")
-    i = 0
+    t = 0
+    c = 0
+    print "================================ Start ================================"
     for root,dirnames,filenames in os.walk(TestCasesDir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             if "txt" in myFile:
-                i = i + 1
-                print "================================ Start ================================"
-                print "File on " + TxtFile   
+                t = t + 1  
                 files = open (TxtFile,'r') 
                 content = files.read()
                 files.close()
                 
                 if s in content:
-                    print "Found word: " + s + " in File " + myFile
-                
+                    c+=1         
                     files = open (TxtFile,'w') 
                     files.writelines(content.replace (s, p))
                     files.close()
-                    print s + " has been replaced as " + p + " succeeded!"
-                
-                else:
-                    print s + " Not found on File!"   
-                    
+                    print s + " has been replaced as " + p + " on file "+ TxtFile +" succeeded!"              
                 files.close()
-                print "================================ Finish ==============================="
-                print "                                                                       "
 
-    if i == 0:
+    if c == 0 and t != 0:
+        print s + " didn't found on " + TestCasesDir
+    if c == 0 and t == 0:
         print "There is no txt files under folder " + TestCasesDir
-                
+    print "================================ Finish ==============================="     
     CountineOrExit()
 
 def DeleteMethod(TestCasesDir):
