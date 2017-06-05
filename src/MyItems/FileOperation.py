@@ -170,7 +170,7 @@ def CopyFoldertoFolder(sourceCustomed):
             elif IsConver.lower() == 'n':
                 CountineOrExit()
     print "============================================"
-    print ("SourceFolder is : {0} " .format(sourceCustomed))
+    print "SourceFolder is : {0} " .format(sourceCustomed)
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     if not os.listdir(sourceCustomed):
         shutil.copytree(sourceCustomed,TargetCustomed)
