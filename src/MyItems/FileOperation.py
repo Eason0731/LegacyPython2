@@ -240,7 +240,7 @@ def copyFiles(sourceDir, targetDir):
 
 def MoveFoldertoFolder(sourceFolder):
     targetFolder = raw_input ("Please input the target folder path: ")
-    print "============================================"
+    print "================================ Start ================================"
     if not os.path.exists(targetFolder):
         os.makedirs(targetFolder)
     
@@ -275,7 +275,7 @@ def MoveFoldertoFolder(sourceFolder):
     else:
         print sourceFolder + " has been moved failed!"
 
-    print "============================================"
+    print "================================ Finish ==============================="
     CountineOrExit()
 
 
