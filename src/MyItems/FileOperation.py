@@ -143,7 +143,7 @@ def ReplaceContentOnDir(TestCasesDir):
 
 def DeleteMethod(TestCasesDir):
     print "Deleteing " + TestCasesDir + " now..."
-    print "============================================"
+    print "================================ Start ================================"
     if os.path.isfile(TestCasesDir):
         os.remove(TestCasesDir)
     elif os.path.isdir(TestCasesDir):
@@ -153,7 +153,7 @@ def DeleteMethod(TestCasesDir):
         print  TestCasesDir + " has been deleted succeeded!"
     else:
         print  TestCasesDir + " has been deleted failed!"
-    print "============================================"    
+    print "================================ Finish ==============================="    
     CountineOrExit()
         
 
