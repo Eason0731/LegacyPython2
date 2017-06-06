@@ -129,8 +129,10 @@ def ReplaceContentOnDir(TestCasesDir):
                     files = open (TxtFile,'w') 
                     files.writelines(content.replace (s, p))
                     files.close()
-                    print s + " has been replaced as " + p + " on file "+ TxtFile +" succeeded!"              
+                    print s + " has been replaced as " + p + " on file "+ TxtFile +" succeeded!"
+                    print "   "
                 files.close()
+                
 
     if c == 0 and t != 0:
         print s + " didn't found on " + TestCasesDir
@@ -298,9 +300,8 @@ def FindContentOnTxt(Path):
                 
                 if i > 0:
                     print Content + " found on " + TxtFile + " for " + str(i) + " times"
-                
+                    print "   "
                 f.close()
-
     if w == 0:
         print Content + " didn't found on " + Path
                     
