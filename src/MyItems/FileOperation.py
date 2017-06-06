@@ -327,13 +327,13 @@ def ReplaceName(Oname):
     Rname = raw_input ("Please input new name want to replace: ")
     Oname = os.path.abspath(Oname)
     Rname = os.path.join(os.path.split(Oname)[0],Rname)   
-    print "============================================"
+    print "================================ Start ==============================="
     if os.path.exists(Rname):
         print Oname + " has already exists, cannot be renamed!"
     else:
         os.rename (Oname,Rname)
         print Oname + " has been renamed as " + Rname +" succeeded!"
-    print "============================================"
+    print "================================ Finish ==============================="
     CountineOrExit()
 
 def ReplaceFileNameWithSpecificName(FolderDir):
