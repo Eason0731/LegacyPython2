@@ -341,7 +341,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
     FindContent = FindContent.lower()
     ReplaceContent = raw_input("What word do you want replace? ")
     w = 0
-    print "============================================"
+    print "================================ Start ==============================="
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
             myFile = myFile.lower()  
@@ -353,7 +353,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
                 os.rename (OldNameFile,NewNameFile)
                 if os.path.exists(NewNameFile):
                     print OldNameFile +" has been replaced as " + NewNameFile + " succeeded!"
-                    print "========================================"
+                    print "================================ Finish ==============================="
     if w == 0:
         print "Didn't found file named with " + FindContent + " under folder " + FolderDir
     
