@@ -355,10 +355,10 @@ def ReplaceFileNameWithSpecificName(FolderDir):
                 os.rename (OldNameFile,NewNameFile)
                 if os.path.exists(NewNameFile):
                     print OldNameFile +" has been replaced as " + NewNameFile + " succeeded!"
-                    print "================================ Finish ==============================="
+                    print "   "
     if w == 0:
         print "Didn't found file named with " + FindContent + " under folder " + FolderDir
-    
+    print "================================ Finish ==============================="
     CountineOrExit()              
 
 def CountineOrExit():
