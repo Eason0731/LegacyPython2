@@ -313,14 +313,16 @@ def FindContentOnTxt(Path):
 def FindFilesonDirs(Path):
     File = raw_input ("What file you want to find on this folder? ")
     k = 0
+    print "================================ Start ==============================="
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             if File.lower() in myFile.lower():
                 k = k + 1
-                print "File: " + File + " has found on " + root               
+                print "File: " + File + " has found on " + root
+                print "  "
     if k == 0:
         print "File: " + File + " didn't found on " + Path
-
+    print "================================ Finish ==============================="
     CountineOrExit()
             
 def ReplaceName(Oname):
