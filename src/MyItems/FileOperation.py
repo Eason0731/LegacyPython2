@@ -171,7 +171,7 @@ def CopyFoldertoFolder(sourceCustomed):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
-    print "============================================"
+    print "================================ Start ================================"
     print "SourceFolder is : {0} " .format(sourceCustomed)
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     if not os.listdir(sourceCustomed):
@@ -180,7 +180,7 @@ def CopyFoldertoFolder(sourceCustomed):
         copyFiles(sourceCustomed,TargetCustomed)
     print sourceCustomed + " have copied succeeded to folder " + TargetCustomed
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-    print "============================================"
+    print "================================ Finish ==============================="
     
     CountineOrExit()
 
