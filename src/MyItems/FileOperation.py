@@ -198,12 +198,12 @@ def CopyFiletoFolder(TestCasesDir):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
-    print "============================================"
+    print "================================ Start ================================"
     print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
     shutil.copy (sourceFile,TargetFolder) 
     print sourceFile + " has been copied to " + TargetFolder + " succeeded!"
     print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
-    print "============================================"
+    print "================================ Finish ==============================="
    
     CountineOrExit()
             
