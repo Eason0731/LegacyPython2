@@ -115,6 +115,7 @@ def ReplaceContentOnDir(TestCasesDir):
     t = 0
     c = 0
     print "================================ Start ================================"
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirnames,filenames in os.walk(TestCasesDir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
@@ -138,12 +139,14 @@ def ReplaceContentOnDir(TestCasesDir):
         print s + " didn't found on " + TestCasesDir
     if c == 0 and t == 0:
         print "There is no txt files under folder " + TestCasesDir
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="     
     CountineOrExit()
 
 def DeleteMethod(TestCasesDir):
-    print "Deleteing " + TestCasesDir + " now..."
     print "================================ Start ================================"
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    print "Deleteing " + TestCasesDir + " now..."
     if os.path.isfile(TestCasesDir):
         os.remove(TestCasesDir)
     elif os.path.isdir(TestCasesDir):
@@ -153,6 +156,7 @@ def DeleteMethod(TestCasesDir):
         print  TestCasesDir + " has been deleted succeeded!"
     else:
         print  TestCasesDir + " has been deleted failed!"
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="    
     CountineOrExit()
         
@@ -173,13 +177,13 @@ def CopyFoldertoFolder(sourceCustomed):
                 CountineOrExit()
     print "================================ Start ================================"
     print "SourceFolder is : {0} " .format(sourceCustomed)
-    print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if not os.listdir(sourceCustomed):
         shutil.copytree(sourceCustomed,TargetCustomed)
     else:
         copyFiles(sourceCustomed,TargetCustomed)
     print sourceCustomed + " have copied succeeded to folder " + TargetCustomed
-    print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     
     CountineOrExit()
@@ -199,10 +203,10 @@ def CopyFiletoFolder(TestCasesDir):
             elif IsConver.lower() == 'n':
                 CountineOrExit()
     print "================================ Start ================================"
-    print time.strftime("Start Copy Time :%Y-%m-%d %X",time.localtime())
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     shutil.copy (sourceFile,TargetFolder) 
     print sourceFile + " has been copied to " + TargetFolder + " succeeded!"
-    print time.strftime("End Copy Time :%Y-%m-%d %X",time.localtime())
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
    
     CountineOrExit()
@@ -241,6 +245,7 @@ def copyFiles(sourceDir, targetDir):
 def MoveFoldertoFolder(sourceFolder):
     targetFolder = raw_input ("Please input the target folder path: ")
     print "================================ Start ================================"
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if not os.path.exists(targetFolder):
         os.makedirs(targetFolder)
     
@@ -274,7 +279,7 @@ def MoveFoldertoFolder(sourceFolder):
         print sourceFolder + " has been moved to " + targetFolder + " succeeded!"
     else:
         print sourceFolder + " has been moved failed!"
-
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
 
@@ -284,6 +289,7 @@ def FindContentOnTxt(Path):
     t = 0
     c = 0
     print "================================ Start ==============================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
@@ -307,6 +313,7 @@ def FindContentOnTxt(Path):
                     
     if c == 0 and t == 0:
         print "There is no txt files under folder " + Path
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
                 
@@ -314,6 +321,7 @@ def FindFilesonDirs(Path):
     File = raw_input ("What file you want to find on this folder? ")
     k = 0
     print "================================ Start ==============================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             if File.lower() in myFile.lower():
@@ -322,6 +330,7 @@ def FindFilesonDirs(Path):
                 print "  "
     if k == 0:
         print "File: " + File + " didn't found on " + Path
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
             
@@ -330,11 +339,13 @@ def ReplaceName(Oname):
     Oname = os.path.abspath(Oname)
     Rname = os.path.join(os.path.split(Oname)[0],Rname)   
     print "================================ Start ==============================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.exists(Rname):
         print Oname + " has already exists, cannot be renamed!"
     else:
         os.rename (Oname,Rname)
         print Oname + " has been renamed as " + Rname +" succeeded!"
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
 
@@ -344,6 +355,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
     ReplaceContent = raw_input("What word do you want replace? ")
     w = 0
     print "================================ Start ==============================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirs,filenames in os.walk(FolderDir):
         for myFile in filenames:
             myFile = myFile.lower()  
@@ -358,6 +370,7 @@ def ReplaceFileNameWithSpecificName(FolderDir):
                     print "   "
     if w == 0:
         print "Didn't found file named with " + FindContent + " under folder " + FolderDir
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()              
 
