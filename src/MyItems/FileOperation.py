@@ -12,7 +12,7 @@ def MainFunction():
 3. Copy File or Folder
 4. Move File or Folder
 5. Find Contents on txt files
-6. Find Files on Folder
+6. Find Files or Folder on Folder
 7. Rename File or Folder
 8. Replace File Name With SpecificName
 =============================================
@@ -342,16 +342,23 @@ def FindContentOnTxt(Path):
     CountineOrExit()
                 
 def FindFilesonDirs(Path):
-    File = raw_input ("What file you want to find on this folder? ")
+    File = raw_input ("What file or folder you want to find on this folder? ")
     k = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirnames,filenames in os.walk(Path):
-        for myFile in filenames:
-            if File.lower() in myFile.lower():
-                k = k + 1
-                print "File: " + File + " has found on " + root
-                print "  "
+        if os.path.isfile(os.path.join(Path,File)):
+            for myFile in filenames:
+                if File.lower() in myFile.lower():
+                    k = k + 1
+                    print "File: " + File + " has found on " + root
+                    print "  "
+        elif os.path.isdir(os.path.join(Path,File)):
+            for myFolder in dirnames:
+                if File.lower() in myFolder.lower():
+                    k = k + 1
+                    print "Folder: " + File + " has found on " + root
+                    print "  "   
     if k == 0:
         print "File: " + File + " didn't found on " + Path
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
