@@ -28,8 +28,7 @@ Please choose : """)
                 if os.path.exists(TestCasesDir):
                     ReplaceContentOnDir(TestCasesDir)
                 elif not TestCasesDir.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(TestCasesDir)
                     CountineOrExit()
@@ -40,8 +39,7 @@ Please choose : """)
                 if os.path.exists(TestCasesDir):
                     DeleteMethod(TestCasesDir)
                 elif not TestCasesDir.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(TestCasesDir)
                     CountineOrExit()
@@ -52,8 +50,7 @@ Please choose : """)
                 if os.path.exists(sourceCustomed):
                     CopyMethod(sourceCustomed)
                 elif not sourceCustomed.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else :
                     print "source File or Folder: {0} is NOT Exist!" .format(sourceCustomed)
                     CountineOrExit()
@@ -64,8 +61,7 @@ Please choose : """)
                 if os.path.exists(sourceFolder):
                     MoveMethod(sourceFolder)
                 elif not sourceFolder.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(sourceFolder)
                     CountineOrExit()
@@ -77,8 +73,7 @@ Please choose : """)
                 if os.path.exists(Path):   
                     FindContentOnTxt(Path)
                 elif not Path.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(Path)
                     CountineOrExit()
@@ -89,8 +84,7 @@ Please choose : """)
                 if os.path.exists(Path):
                     FindFilesonDirs(Path)
                 elif not Path.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(Path)
                     CountineOrExit()
@@ -102,8 +96,7 @@ Please choose : """)
                 if os.path.exists(Oname):          
                     ReplaceName(Oname)
                 elif not Oname.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(Oname)
                     CountineOrExit()
@@ -115,8 +108,7 @@ Please choose : """)
                 if os.path.exists(FolderDir):
                     ReplaceFileNameWithSpecificName(FolderDir)
                 elif not FolderDir.strip():
-                    print "Please do not input the empty infos"
-                    CountineOrExit()
+                    EmptyReturn()
                 else:
                     print "{0} is NOT Exist!" .format(FolderDir)
                     CountineOrExit()
@@ -397,7 +389,10 @@ def CountineOrExit():
             CountineOrExit()
             break
             
-            
+def EmptyReturn():
+    print "Please do not input the empty infos"
+    CountineOrExit()
+    
             
 if __name__=='__main__':
     MainFunction()
