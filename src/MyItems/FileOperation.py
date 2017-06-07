@@ -30,8 +30,8 @@ Please choose : """)
                 elif not TestCasesDir.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(TestCasesDir)
-                    CountineOrExit()
+                    DirNotExists(TestCasesDir)
+                    
                 
             if int(a) == 2:
                 print "===========Delete file or folder============"
@@ -41,8 +41,7 @@ Please choose : """)
                 elif not TestCasesDir.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(TestCasesDir)
-                    CountineOrExit()
+                    DirNotExists(TestCasesDir)
 
             if int(a) == 3:
                 print "===========Copy file or folder============="
@@ -52,8 +51,7 @@ Please choose : """)
                 elif not sourceCustomed.strip():
                     EmptyReturn()
                 else :
-                    print "source File or Folder: {0} is NOT Exist!" .format(sourceCustomed)
-                    CountineOrExit()
+                    DirNotExists(sourceCustomed)
             
             if int(a) == 4:
                 print "===========Move file or folder============="
@@ -63,8 +61,7 @@ Please choose : """)
                 elif not sourceFolder.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(sourceFolder)
-                    CountineOrExit()
+                    DirNotExists(sourceFolder)
                     
 
             if int(a) == 5:
@@ -75,8 +72,7 @@ Please choose : """)
                 elif not Path.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(Path)
-                    CountineOrExit()
+                    DirNotExists(Path)
                 
             if int(a) == 6:
                 print "============Find files on folder==========="
@@ -86,8 +82,7 @@ Please choose : """)
                 elif not Path.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(Path)
-                    CountineOrExit()
+                    DirNotExists(Path)
 
 
             if int(a) == 7:
@@ -98,8 +93,7 @@ Please choose : """)
                 elif not Oname.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(Oname)
-                    CountineOrExit()
+                    DirNotExists(Oname)
 
 
             if int(a) == 8:
@@ -110,8 +104,7 @@ Please choose : """)
                 elif not FolderDir.strip():
                     EmptyReturn()
                 else:
-                    print "{0} is NOT Exist!" .format(FolderDir)
-                    CountineOrExit()
+                   DirNotExists(FolderDir)
     
         else:
             print "Bye~"
@@ -392,6 +385,11 @@ def CountineOrExit():
 def EmptyReturn():
     print "Please do not input the empty infos"
     CountineOrExit()
+
+def DirNotExists(Dir):
+    print "{0} is NOT Exist!" .format(Dir)
+    CountineOrExit()
+    
     
             
 if __name__=='__main__':
