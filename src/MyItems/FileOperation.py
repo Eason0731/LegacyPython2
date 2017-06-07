@@ -199,7 +199,6 @@ def CopyMethod(sourceCustomed):
             elif IsConver.lower() == 'n':
                 CountineOrExit()
     print "================================ Start ================================"
-    print "SourceFolder or file is : {0} " .format(sourceCustomed)
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(sourceCustomed):
         if not os.listdir(sourceCustomed):
