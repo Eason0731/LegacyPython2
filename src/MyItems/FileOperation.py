@@ -191,13 +191,13 @@ def CopyMethod(sourceCustomed):
     if os.path.exists(TargetCustomed):
         while(1):
             if os.path.isdir(TargetCustomed):
-                IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")
-                if os.path.isdir(TargetCustomed):
-                    if not os.listdir(sourceCustomed) and not os.listdir(TargetCustomed):
-                        shutil.rmtree(TargetCustomed)      
+                IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")            
             elif os.path.isfile(TargetCustomed):
                 IsConver = raw_input ("There is a same file on target file , would you still want to copy? (Y/N) ")
             if IsConver.lower() == 'y':
+                if os.path.isdir(TargetCustomed):
+                    if not os.listdir(sourceCustomed) and not os.listdir(TargetCustomed):
+                        shutil.rmtree(TargetCustomed) 
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
