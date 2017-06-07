@@ -68,17 +68,17 @@ Please choose : """)
                 print "=========Find contents on txt files========"
                 Path  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Path):   
-                    FindContentOnTxt(Path)
+                    FindOnTxtMethod(Path)
                 elif not Path.strip():
                     EmptyReturn()
                 else:
                     DirNotExists(Path)
                 
             if int(a) == 6:
-                print "============Find files on folder==========="
+                print "=======Find files or folder on folder======="
                 Path  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Path):
-                    FindFilesonDirs(Path)
+                    FindOnDirsMethod(Path)
                 elif not Path.strip():
                     EmptyReturn()
                 else:
@@ -89,7 +89,7 @@ Please choose : """)
                 print "===========Rename file or folder==========="
                 Oname = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(Oname):          
-                    ReplaceName(Oname)
+                    ReplaceNameMethod(Oname)
                 elif not Oname.strip():
                     EmptyReturn()
                 else:
@@ -100,7 +100,7 @@ Please choose : """)
                 print "=======Rename file with specificname======"
                 FolderDir = raw_input ("Please input the folder path: ")
                 if os.path.exists(FolderDir):
-                    ReplaceFileNameWithSpecificName(FolderDir)
+                    RenameWithSpecificNameMethod(FolderDir)
                 elif not FolderDir.strip():
                     EmptyReturn()
                 else:
@@ -156,8 +156,7 @@ def DeleteMethod(TestCasesDir):
     if os.path.isfile(TestCasesDir):
         os.remove(TestCasesDir)
     elif os.path.isdir(TestCasesDir):
-        shutil.rmtree(TestCasesDir)
-    
+        shutil.rmtree(TestCasesDir)  
     if not os.path.exists(TestCasesDir):
         print  TestCasesDir + " has been deleted succeeded!"
     else:
@@ -272,7 +271,7 @@ def MoveMethod(sourceFolder):
     CountineOrExit()
 
 
-def FindContentOnTxt(Path):
+def FindOnTxtMethod(Path):
     Content = raw_input ("What content you want to find on txt file? ")
     t = 0
     c = 0
@@ -305,7 +304,7 @@ def FindContentOnTxt(Path):
     print "================================ Finish ==============================="
     CountineOrExit()
                 
-def FindFilesonDirs(Path):
+def FindOnDirsMethod(Path):
     File = raw_input ("What file or folder you want to find on this folder? ")
     k = 0
     print "================================ Start ==============================="
@@ -329,7 +328,7 @@ def FindFilesonDirs(Path):
     print "================================ Finish ==============================="
     CountineOrExit()
             
-def ReplaceName(Oname):
+def ReplaceNameMethod(Oname):
     Rname = raw_input ("Please input new name want to replace: ")
     Oname = os.path.abspath(Oname)
     Rname = os.path.join(os.path.split(Oname)[0],Rname)   
@@ -344,7 +343,7 @@ def ReplaceName(Oname):
     print "================================ Finish ==============================="
     CountineOrExit()
 
-def ReplaceFileNameWithSpecificName(FolderDir):
+def RenameWithSpecificNameMethod(FolderDir):
     FindContent = raw_input("What word do you want find? ")
     FindContent = FindContent.lower()
     ReplaceContent = raw_input("What word do you want replace? ")
