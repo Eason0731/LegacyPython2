@@ -7,13 +7,13 @@ import time
 def MainFunction():
     a = raw_input ("""
 ==========Welcome to File Operation==========
-1. Replace Content on txt files
-2. Delete File or Folder
-3. Copy File or Folder
-4. Move File or Folder
-5. Find Contents on txt files
-6. Find Files or Folder on Folder
-7. Rename File or Folder
+1. Replace content on txt files
+2. Delete file or folder
+3. Copy file or folder
+4. Move file or folder
+5. Find contents on txt files
+6. Find files or folder on folder
+7. Rename file or folder
 8. Rename file with specificname
 =============================================
 Press AnyKey to Exit
@@ -23,7 +23,7 @@ Please choose : """)
     if a.isdigit():
         if int(a) in range(1,9):
             if int(a) == 1:
-                print "========Replace Content on txt files========"
+                print "========Replace content on txt files========"
                 TestCasesDir = raw_input ("Please input the folder path: ")
                 if os.path.exists(TestCasesDir):
                     ReplaceContentOnDir(TestCasesDir)
@@ -35,7 +35,7 @@ Please choose : """)
                     CountineOrExit()
                 
             if int(a) == 2:
-                print "===========Delete File or Folder============"
+                print "===========Delete file or folder============"
                 TestCasesDir = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(TestCasesDir):
                     DeleteMethod(TestCasesDir)
@@ -47,7 +47,7 @@ Please choose : """)
                     CountineOrExit()
 
             if int(a) == 3:
-                print "===========Copy File or Folder============="
+                print "===========Copy file or folder============="
                 sourceCustomed = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(sourceCustomed):
                     if os.path.isfile(sourceCustomed):
@@ -62,7 +62,7 @@ Please choose : """)
                     CountineOrExit()
             
             if int(a) == 4:
-                print "===========Move File or Folder============="
+                print "===========Move file or folder============="
                 sourceFolder = raw_input ("Please input the source folder or file path: ")
                 if os.path.exists(sourceFolder):
                     MoveFoldertoFolder(sourceFolder)
@@ -75,7 +75,7 @@ Please choose : """)
                     
 
             if int(a) == 5:
-                print "=========Find Contents on txt files========"
+                print "=========Find contents on txt files========"
                 Path  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Path):   
                     FindContentOnTxt(Path)
@@ -87,7 +87,7 @@ Please choose : """)
                     CountineOrExit()
                 
             if int(a) == 6:
-                print "============Find Files on Folder==========="
+                print "============Find files on folder==========="
                 Path  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Path):
                     FindFilesonDirs(Path)
@@ -100,7 +100,7 @@ Please choose : """)
 
 
             if int(a) == 7:
-                print "===========Rename File or Folder==========="
+                print "===========Rename file or folder==========="
                 Oname = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(Oname):          
                     ReplaceName(Oname)
