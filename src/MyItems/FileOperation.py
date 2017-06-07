@@ -212,31 +212,6 @@ def CopyMethod(sourceCustomed):
     print "================================ Finish ===============================" 
     CountineOrExit()
 
-"""
-def CopyFiletoFolder(TestCasesDir):
-    sourceFile = TestCasesDir
-    TargetFolder = raw_input ("Please input the target folder path: ")
-    pathname,filename = os.path.split (sourceFile)
-    if not os.path.exists(TargetFolder):
-        os.makedirs(TargetFolder)
-
-    if os.path.exists(os.path.join(TargetFolder,sourceFile.split("\\")[-1])):
-        while(1):
-            IsConver = raw_input ("There is a same file on target file , would you still want to copy? (Y/N) ")
-            if IsConver.lower() == 'y':
-                break
-            elif IsConver.lower() == 'n':
-                CountineOrExit()
-    print "================================ Start ================================"
-    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    shutil.copy (sourceFile,TargetFolder) 
-    print sourceFile + " has been copied to " + TargetFolder + " succeeded!"
-    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="
-   
-    CountineOrExit()
-            
-"""       
 
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
