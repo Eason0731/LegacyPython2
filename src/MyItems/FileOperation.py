@@ -31,8 +31,7 @@ Please choose : """)
                     EmptyReturn()
                 else:
                     DirNotExists(TestCasesDir)
-                    
-                
+                                  
             if int(a) == 2:
                 print "===========Delete file or folder============"
                 TestCasesDir = raw_input ("Please input the folder or file path: ")
@@ -63,7 +62,6 @@ Please choose : """)
                 else:
                     DirNotExists(sourceFolder)
                     
-
             if int(a) == 5:
                 print "=========Find contents on txt files========"
                 Path  = raw_input ("Please input the folder path: ")
@@ -84,7 +82,6 @@ Please choose : """)
                 else:
                     DirNotExists(Path)
 
-
             if int(a) == 7:
                 print "===========Rename file or folder==========="
                 Oname = raw_input ("Please input the folder or file path: ")
@@ -94,7 +91,6 @@ Please choose : """)
                     EmptyReturn()
                 else:
                     DirNotExists(Oname)
-
 
             if int(a) == 8:
                 print "=======Rename file with specificname======"
@@ -232,7 +228,6 @@ def MoveMethod(sourceFolder):
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if not os.path.exists(targetFolder):
         os.makedirs(targetFolder)
-    
     Type = sourceFolder.split("\\")[-1]
     targetFolder = os.path.join(targetFolder,Type)
     if os.path.exists(targetFolder):
@@ -288,8 +283,7 @@ def FindOnTxtMethod(Path):
                     print "   "
                 f.close()
     if c == 0 and t != 0:
-        print Content + " didn't found on " + Path
-                    
+        print Content + " didn't found on " + Path              
     if c == 0 and t == 0:
         print "There is no txt files under folder " + Path
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
