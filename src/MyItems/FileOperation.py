@@ -129,8 +129,7 @@ def ReplaceContentOnDir(TestCasesDir):
                 t = t + 1  
                 files = open (TxtFile,'r') 
                 content = files.read()
-                files.close()
-                
+                files.close()         
                 if s in content:
                     c+=1         
                     files = open (TxtFile,'w') 
@@ -139,8 +138,6 @@ def ReplaceContentOnDir(TestCasesDir):
                     print s + " has been replaced as " + p + " on file "+ TxtFile +" succeeded!"
                     print "   "
                 files.close()
-                
-
     if c == 0 and t != 0:
         print s + " didn't found on " + TestCasesDir
     if c == 0 and t == 0:
@@ -203,7 +200,7 @@ def CopyMethod(sourceCustomed):
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
         return 
-    
+
     files = []
     i = 0
     while(1):
@@ -243,13 +240,11 @@ def MoveMethod(sourceFolder):
             if os.path.isfile(targetFolder):
                 IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
             elif os.path.isdir(targetFolder):
-                IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")
-                    
+                IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")              
             if IsConver.lower() == 'y':
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
-
     if os.path.isfile(sourceFolder):
         if os.path.exists(targetFolder):
             os.remove(targetFolder)
@@ -261,7 +256,6 @@ def MoveMethod(sourceFolder):
         else:
             copyFiles(sourceFolder,targetFolder)                    
         shutil.rmtree(sourceFolder)
-
     if os.path.exists(targetFolder):
         print sourceFolder + " has been moved to " + targetFolder + " succeeded!"
     else:
@@ -282,15 +276,13 @@ def FindOnTxtMethod(Path):
             TxtFile = os.path.join(root,myFile)
             i=0          
             if 'txt' in myFile:
-                t = t + 1
-                
+                t = t + 1      
                 f = open (TxtFile, 'r')
                 Filecontent = f.readlines()
                 for eachline in Filecontent:
                     if Content.lower() in eachline.lower():
                         i+= 1
-                        c+= 1
-                
+                        c+= 1      
                 if i > 0:
                     print Content + " found on " + TxtFile + " for " + str(i) + " times"
                     print "   "
@@ -388,9 +380,8 @@ def EmptyReturn():
 def DirNotExists(Dir):
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
-    
-    
-            
+
+
 if __name__=='__main__':
     MainFunction()
 
