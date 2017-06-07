@@ -14,7 +14,7 @@ def MainFunction():
 5. Find Contents on txt files
 6. Find Files or Folder on Folder
 7. Rename File or Folder
-8. Replace File Name With SpecificName
+8. Rename file with specificname
 =============================================
 Press AnyKey to Exit
         
@@ -113,7 +113,7 @@ Please choose : """)
 
 
             if int(a) == 8:
-                print "====Replace File Name With SpecificName===="
+                print "=======Rename file with specificname======"
                 FolderDir = raw_input ("Please input the folder path: ")
                 if os.path.exists(FolderDir):
                     ReplaceFileNameWithSpecificName(FolderDir)
