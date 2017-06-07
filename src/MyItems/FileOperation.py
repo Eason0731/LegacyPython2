@@ -62,7 +62,7 @@ Please choose : """)
                 print "===========Move file or folder============="
                 sourceFolder = raw_input ("Please input the source folder or file path: ")
                 if os.path.exists(sourceFolder):
-                    MoveFoldertoFolder(sourceFolder)
+                    MoveMethod(sourceFolder)
                 elif not sourceFolder.strip():
                     print "Please do not input the empty infos"
                     CountineOrExit()
@@ -268,7 +268,7 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 
-def MoveFoldertoFolder(sourceFolder):
+def MoveMethod(sourceFolder):
     targetFolder = raw_input ("Please input the target folder path: ")
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
