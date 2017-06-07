@@ -192,6 +192,9 @@ def CopyMethod(sourceCustomed):
         while(1):
             if os.path.isdir(TargetCustomed):
                 IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")
+                if os.path.isdir(TargetCustomed):
+                    if not os.listdir(sourceCustomed) and not os.listdir(TargetCustomed):
+                        shutil.rmtree(TargetCustomed)      
             elif os.path.isfile(TargetCustomed):
                 IsConver = raw_input ("There is a same file on target file , would you still want to copy? (Y/N) ")
             if IsConver.lower() == 'y':
@@ -200,9 +203,6 @@ def CopyMethod(sourceCustomed):
                 CountineOrExit()
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if os.path.isdir(TargetCustomed):
-        if not os.listdir(sourceCustomed) and not os.listdir(TargetCustomed):
-            shutil.rmtree(TargetCustomed)      
     if os.path.isdir(sourceCustomed):
         if not os.listdir(sourceCustomed):
             shutil.copytree(sourceCustomed,TargetCustomed)
