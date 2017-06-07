@@ -200,6 +200,9 @@ def CopyMethod(sourceCustomed):
                 CountineOrExit()
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    if os.path.isdir(TargetCustomed):
+        if not os.listdir(sourceCustomed) and not os.listdir(TargetCustomed):
+            shutil.rmtree(TargetCustomed)      
     if os.path.isdir(sourceCustomed):
         if not os.listdir(sourceCustomed):
             shutil.copytree(sourceCustomed,TargetCustomed)
