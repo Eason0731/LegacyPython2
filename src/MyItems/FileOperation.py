@@ -50,10 +50,7 @@ Please choose : """)
                 print "===========Copy file or folder============="
                 sourceCustomed = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(sourceCustomed):
-                    if os.path.isfile(sourceCustomed):
-                        CopyFiletoFolder(sourceCustomed)
-                    elif os.path.isdir(sourceCustomed):
-                        CopyFoldertoFolder(sourceCustomed)
+                    CopyMethod(sourceCustomed)
                 elif not sourceCustomed.strip():
                     print "Please do not input the empty infos"
                     CountineOrExit()
@@ -185,33 +182,38 @@ def DeleteMethod(TestCasesDir):
     CountineOrExit()
         
 
-def CopyFoldertoFolder(sourceCustomed):
+def CopyMethod(sourceCustomed):
     TargetCustomed = raw_input ("Please input the target folder path: ")
     if not os.path.exists(TargetCustomed):
-        os.makedirs(TargetCustomed)
-            
+        os.makedirs(TargetCustomed)          
     Type = sourceCustomed.split("\\")[-1]
     TargetCustomed = os.path.join(TargetCustomed,Type)
     if os.path.exists(TargetCustomed):
         while(1):
-            IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")
+            if os.path.isdir(TargetCustomed):
+                IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")
+            elif os.path.isfile(TargetCustomed):
+                IsConver = raw_input ("There is a same file on target file , would you still want to copy? (Y/N) ")
             if IsConver.lower() == 'y':
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
     print "================================ Start ================================"
-    print "SourceFolder is : {0} " .format(sourceCustomed)
+    print "SourceFolder or file is : {0} " .format(sourceCustomed)
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if not os.listdir(sourceCustomed):
-        shutil.copytree(sourceCustomed,TargetCustomed)
-    else:
-        copyFiles(sourceCustomed,TargetCustomed)
-    print sourceCustomed + " have copied succeeded to folder " + TargetCustomed
+    if os.path.isdir(sourceCustomed):
+        if not os.listdir(sourceCustomed):
+            shutil.copytree(sourceCustomed,TargetCustomed)
+        else:
+            copyFiles(sourceCustomed,TargetCustomed)
+    elif os.path.isfile(sourceCustomed):
+        shutil.copy (sourceCustomed,TargetCustomed) 
+    print sourceCustomed + " has copied succeeded to folder " + TargetCustomed
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="
-    
+    print "================================ Finish ===============================" 
     CountineOrExit()
 
+"""
 def CopyFiletoFolder(TestCasesDir):
     sourceFile = TestCasesDir
     TargetFolder = raw_input ("Please input the target folder path: ")
@@ -235,7 +237,7 @@ def CopyFiletoFolder(TestCasesDir):
    
     CountineOrExit()
             
-        
+"""       
 
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
