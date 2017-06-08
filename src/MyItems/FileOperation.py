@@ -110,7 +110,6 @@ Please choose : """)
         print "Bye~"
         exit(1)
       
-
 def ReplaceContentOnDir(TestCasesDir):
     s = raw_input("Please input what word you want to find: ")
     p = raw_input("Please input what word you want to replace: ")
@@ -158,7 +157,6 @@ def DeleteMethod(TestCasesDir):
     print "================================ Finish ==============================="    
     CountineOrExit()
         
-
 def CopyMethod(sourceCustomed):
     fun = 1
     TargetCustomed = raw_input ("Please input the target folder path: ")
@@ -181,7 +179,6 @@ def CopyMethod(sourceCustomed):
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ===============================" 
     CountineOrExit()
-
 
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
@@ -210,7 +207,6 @@ def copyFiles(sourceDir, targetDir):
                 open(targetFile, "wb").write(open(sourceFile, "rb").read()) 
         if os.path.isdir(sourceFile): 
             copyFiles(sourceFile, targetFile)
-
 
 def MoveMethod(sourceFolder):
     fun = 2
@@ -241,7 +237,6 @@ def MoveMethod(sourceFolder):
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
-
 
 def FindOnTxtMethod(Path):
     Content = raw_input ("What content you want to find on txt file? ")
