@@ -361,16 +361,13 @@ def NeedOverWrite(sourceFolder,targetFolder,fun):
             IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")              
         if IsConver.lower() == 'y':
             if fun == 1:
-                print "This is copy method"
                 if os.path.isdir(targetFolder):
-                    print "Dealing with copy exist empty folder"
                     if not os.listdir(sourceFolder) and not os.listdir(targetFolder):
                         shutil.rmtree(targetFolder) 
             break
         elif IsConver.lower() == 'n':
             CountineOrExit()
     
-
 if __name__=='__main__':
     MainFunction()
 
