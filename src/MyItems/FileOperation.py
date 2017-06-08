@@ -168,20 +168,6 @@ def CopyMethod(sourceCustomed):
     TargetCustomed = os.path.join(TargetCustomed,Type)
     if os.path.exists(TargetCustomed):
         NeedOverWrite(sourceCustomed,TargetCustomed,fun)
-        """
-        while(1):
-            if os.path.isdir(TargetCustomed):
-                IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")            
-            elif os.path.isfile(TargetCustomed):
-                IsConver = raw_input ("There is a same file on target file , would you still want to copy? (Y/N) ")
-            if IsConver.lower() == 'y':
-                if os.path.isdir(TargetCustomed):
-                    if not os.listdir(sourceCustomed) and not os.listdir(TargetCustomed):
-                        shutil.rmtree(TargetCustomed) 
-                break
-            elif IsConver.lower() == 'n':
-                CountineOrExit()
-        """ 
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(sourceCustomed):
@@ -237,17 +223,6 @@ def MoveMethod(sourceFolder):
     targetFolder = os.path.join(targetFolder,Type)
     if os.path.exists(targetFolder):
         NeedOverWrite(sourceFolder,targetFolder,fun)
-        """
-        while(1):
-            if os.path.isfile(targetFolder):
-                IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
-            elif os.path.isdir(targetFolder):
-                IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")              
-            if IsConver.lower() == 'y':
-                break
-            elif IsConver.lower() == 'n':
-                CountineOrExit()
-        """
     if os.path.isfile(sourceFolder):
         if os.path.exists(targetFolder):
             os.remove(targetFolder)
