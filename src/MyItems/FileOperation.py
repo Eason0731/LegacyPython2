@@ -160,12 +160,15 @@ def DeleteMethod(TestCasesDir):
         
 
 def CopyMethod(sourceCustomed):
+    fun = 1
     TargetCustomed = raw_input ("Please input the target folder path: ")
     if not os.path.exists(TargetCustomed):
         os.makedirs(TargetCustomed)          
     Type = sourceCustomed.split("\\")[-1]
     TargetCustomed = os.path.join(TargetCustomed,Type)
     if os.path.exists(TargetCustomed):
+        NeedOverWrite(sourceCustomed,TargetCustomed,fun)
+        """
         while(1):
             if os.path.isdir(TargetCustomed):
                 IsConver = raw_input ("There is a same folder on target folder , would you still want to copy? (Y/N) ")            
@@ -178,6 +181,7 @@ def CopyMethod(sourceCustomed):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
+        """ 
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(sourceCustomed):
@@ -223,6 +227,7 @@ def copyFiles(sourceDir, targetDir):
 
 
 def MoveMethod(sourceFolder):
+    fun = 2
     targetFolder = raw_input ("Please input the target folder path: ")
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
@@ -231,6 +236,8 @@ def MoveMethod(sourceFolder):
     Type = sourceFolder.split("\\")[-1]
     targetFolder = os.path.join(targetFolder,Type)
     if os.path.exists(targetFolder):
+        NeedOverWrite(sourceFolder,targetFolder,fun)
+        """
         while(1):
             if os.path.isfile(targetFolder):
                 IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
@@ -240,6 +247,7 @@ def MoveMethod(sourceFolder):
                 break
             elif IsConver.lower() == 'n':
                 CountineOrExit()
+        """
     if os.path.isfile(sourceFolder):
         if os.path.exists(targetFolder):
             os.remove(targetFolder)
@@ -375,6 +383,23 @@ def DirNotExists(Dir):
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
 
+def NeedOverWrite(sourceFolder,targetFolder,fun):
+    while(1):
+        if os.path.isfile(targetFolder):
+            IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
+        elif os.path.isdir(targetFolder):
+            IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")              
+        if IsConver.lower() == 'y':
+            if fun == 1:
+                print "This is copy method"
+                if os.path.isdir(targetFolder):
+                    print "Dealing with copy exist empty folder"
+                    if not os.listdir(sourceFolder) and not os.listdir(targetFolder):
+                        shutil.rmtree(targetFolder) 
+            break
+        elif IsConver.lower() == 'n':
+            CountineOrExit()
+    
 
 if __name__=='__main__':
     MainFunction()
