@@ -165,7 +165,7 @@ def CopyMethod(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        NeedOverWrite(Source,Target,fun)
+        OverwriteOrNot(Source,Target,fun)
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(Source):
@@ -218,7 +218,7 @@ def MoveMethod(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        NeedOverWrite(Source,Target,fun)
+        OverwriteOrNot(Source,Target,fun)
     if os.path.isfile(Source):
         if os.path.exists(Target):
             os.remove(Target)
@@ -353,7 +353,7 @@ def DirNotExists(Dir):
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
 
-def NeedOverWrite(Source,Target,fun):
+def OverwriteOrNot(Source,Target,fun):
     while(1):
         if os.path.isfile(Target):
             IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
