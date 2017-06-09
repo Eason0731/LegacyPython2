@@ -30,7 +30,7 @@ Please choose : """)
                 elif not Dir.strip():
                     EmptyOrNot()
                 else:
-                    DirNotExists(Dir)
+                    ExistOrNot(Dir)
                                   
             if int(a) == 2:
                 print "===========Delete file or folder============"
@@ -40,7 +40,7 @@ Please choose : """)
                 elif not Dir.strip():
                     EmptyOrNot()
                 else:
-                    DirNotExists(Dir)
+                    ExistOrNot(Dir)
 
             if int(a) == 3:
                 print "===========Copy file or folder============="
@@ -50,7 +50,7 @@ Please choose : """)
                 elif not Source.strip():
                     EmptyOrNot()
                 else :
-                    DirNotExists(Source)
+                    ExistOrNot(Source)
             
             if int(a) == 4:
                 print "===========Move file or folder============="
@@ -60,7 +60,7 @@ Please choose : """)
                 elif not Source.strip():
                     EmptyOrNot()
                 else:
-                    DirNotExists(Source)
+                    ExistOrNot(Source)
                     
             if int(a) == 5:
                 print "=========Find contents on txt files========"
@@ -70,7 +70,7 @@ Please choose : """)
                 elif not Dir.strip():
                     EmptyOrNot()
                 else:
-                    DirNotExists(Dir)
+                    ExistOrNot(Dir)
                 
             if int(a) == 6:
                 print "=======Find files or folder on folder======="
@@ -80,7 +80,7 @@ Please choose : """)
                 elif not Dir.strip():
                     EmptyOrNot()
                 else:
-                    DirNotExists(Dir)
+                    ExistOrNot(Dir)
 
             if int(a) == 7:
                 print "===========Rename file or folder==========="
@@ -90,7 +90,7 @@ Please choose : """)
                 elif not Source.strip():
                     EmptyOrNot()
                 else:
-                    DirNotExists(Source)
+                    ExistOrNot(Source)
 
             if int(a) == 8:
                 print "=======Rename file with specificname======"
@@ -100,7 +100,7 @@ Please choose : """)
                 elif not Dir.strip():
                     EmptyOrNot()
                 else:
-                   DirNotExists(Dir)
+                   ExistOrNot(Dir)
     
         else:
             print "Bye~"
@@ -349,7 +349,7 @@ def EmptyOrNot():
     print "Please do not input the empty infos"
     CountineOrExit()
 
-def DirNotExists(Dir):
+def ExistOrNot(Dir):
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
 
