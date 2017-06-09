@@ -28,7 +28,7 @@ Please choose : """)
                 if os.path.exists(Dir):
                     ReplaceContentOnDir(Dir)
                 elif not Dir.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                     DirNotExists(Dir)
                                   
@@ -38,7 +38,7 @@ Please choose : """)
                 if os.path.exists(Dir):
                     DeleteMethod(Dir)
                 elif not Dir.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                     DirNotExists(Dir)
 
@@ -48,7 +48,7 @@ Please choose : """)
                 if os.path.exists(Source):
                     CopyMethod(Source)
                 elif not Source.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else :
                     DirNotExists(Source)
             
@@ -58,7 +58,7 @@ Please choose : """)
                 if os.path.exists(Source):
                     MoveMethod(Source)
                 elif not Source.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                     DirNotExists(Source)
                     
@@ -68,7 +68,7 @@ Please choose : """)
                 if os.path.exists(Dir):   
                     FindOnTxtMethod(Dir)
                 elif not Dir.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                     DirNotExists(Dir)
                 
@@ -78,7 +78,7 @@ Please choose : """)
                 if os.path.exists(Dir):
                     FindOnDirsMethod(Dir)
                 elif not Dir.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                     DirNotExists(Dir)
 
@@ -88,7 +88,7 @@ Please choose : """)
                 if os.path.exists(Source):          
                     ReplaceNameMethod(Source)
                 elif not Source.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                     DirNotExists(Source)
 
@@ -98,7 +98,7 @@ Please choose : """)
                 if os.path.exists(Dir):
                     RenameWithSpecificNameMethod(Dir)
                 elif not Dir.strip():
-                    EmptyReturn()
+                    EmptyOrNot()
                 else:
                    DirNotExists(Dir)
     
@@ -345,7 +345,7 @@ def CountineOrExit():
             CountineOrExit()
             break
             
-def EmptyReturn():
+def EmptyOrNot():
     print "Please do not input the empty infos"
     CountineOrExit()
 
