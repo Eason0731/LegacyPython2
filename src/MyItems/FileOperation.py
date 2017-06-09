@@ -24,83 +24,83 @@ Please choose : """)
         if int(a) in range(1,9):
             if int(a) == 1:
                 print "========Replace content on txt files========"
-                TestCasesDir = raw_input ("Please input the folder path: ")
-                if os.path.exists(TestCasesDir):
-                    ReplaceContentOnDir(TestCasesDir)
-                elif not TestCasesDir.strip():
+                Dir = raw_input ("Please input the folder path: ")
+                if os.path.exists(Dir):
+                    ReplaceContentOnDir(Dir)
+                elif not Dir.strip():
                     EmptyReturn()
                 else:
-                    DirNotExists(TestCasesDir)
+                    DirNotExists(Dir)
                                   
             if int(a) == 2:
                 print "===========Delete file or folder============"
-                TestCasesDir = raw_input ("Please input the folder or file path: ")
-                if os.path.exists(TestCasesDir):
-                    DeleteMethod(TestCasesDir)
-                elif not TestCasesDir.strip():
+                Dir = raw_input ("Please input the folder or file path: ")
+                if os.path.exists(Dir):
+                    DeleteMethod(Dir)
+                elif not Dir.strip():
                     EmptyReturn()
                 else:
-                    DirNotExists(TestCasesDir)
+                    DirNotExists(Dir)
 
             if int(a) == 3:
                 print "===========Copy file or folder============="
-                sourceCustomed = raw_input ("Please input the folder or file path: ")
-                if os.path.exists(sourceCustomed):
-                    CopyMethod(sourceCustomed)
-                elif not sourceCustomed.strip():
+                Source = raw_input ("Please input the folder or file path: ")
+                if os.path.exists(Source):
+                    CopyMethod(Source)
+                elif not Source.strip():
                     EmptyReturn()
                 else :
-                    DirNotExists(sourceCustomed)
+                    DirNotExists(Source)
             
             if int(a) == 4:
                 print "===========Move file or folder============="
-                sourceFolder = raw_input ("Please input the source folder or file path: ")
-                if os.path.exists(sourceFolder):
-                    MoveMethod(sourceFolder)
-                elif not sourceFolder.strip():
+                Source = raw_input ("Please input the source folder or file path: ")
+                if os.path.exists(Source):
+                    MoveMethod(Source)
+                elif not Source.strip():
                     EmptyReturn()
                 else:
-                    DirNotExists(sourceFolder)
+                    DirNotExists(Source)
                     
             if int(a) == 5:
                 print "=========Find contents on txt files========"
-                Path  = raw_input ("Please input the folder path: ")
-                if os.path.exists(Path):   
-                    FindOnTxtMethod(Path)
-                elif not Path.strip():
+                Dir  = raw_input ("Please input the folder path: ")
+                if os.path.exists(Dir):   
+                    FindOnTxtMethod(Dir)
+                elif not Dir.strip():
                     EmptyReturn()
                 else:
-                    DirNotExists(Path)
+                    DirNotExists(Dir)
                 
             if int(a) == 6:
                 print "=======Find files or folder on folder======="
-                Path  = raw_input ("Please input the folder path: ")
-                if os.path.exists(Path):
-                    FindOnDirsMethod(Path)
-                elif not Path.strip():
+                Dir  = raw_input ("Please input the folder path: ")
+                if os.path.exists(Dir):
+                    FindOnDirsMethod(Dir)
+                elif not Dir.strip():
                     EmptyReturn()
                 else:
-                    DirNotExists(Path)
+                    DirNotExists(Dir)
 
             if int(a) == 7:
                 print "===========Rename file or folder==========="
-                Oname = raw_input ("Please input the folder or file path: ")
-                if os.path.exists(Oname):          
-                    ReplaceNameMethod(Oname)
-                elif not Oname.strip():
+                Source = raw_input ("Please input the folder or file path: ")
+                if os.path.exists(Source):          
+                    ReplaceNameMethod(Source)
+                elif not Source.strip():
                     EmptyReturn()
                 else:
-                    DirNotExists(Oname)
+                    DirNotExists(Source)
 
             if int(a) == 8:
                 print "=======Rename file with specificname======"
-                FolderDir = raw_input ("Please input the folder path: ")
-                if os.path.exists(FolderDir):
-                    RenameWithSpecificNameMethod(FolderDir)
-                elif not FolderDir.strip():
+                Dir = raw_input ("Please input the folder path: ")
+                if os.path.exists(Dir):
+                    RenameWithSpecificNameMethod(Dir)
+                elif not Dir.strip():
                     EmptyReturn()
                 else:
-                   DirNotExists(FolderDir)
+                   DirNotExists(Dir)
     
         else:
             print "Bye~"
@@ -110,14 +110,14 @@ Please choose : """)
         print "Bye~"
         exit(1)
       
-def ReplaceContentOnDir(TestCasesDir):
+def ReplaceContentOnDir(Dir):
     s = raw_input("Please input what word you want to find: ")
     p = raw_input("Please input what word you want to replace: ")
     t = 0
     c = 0
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirnames,filenames in os.walk(TestCasesDir):
+    for root,diTargets,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             if "txt" in myFile:
@@ -134,48 +134,48 @@ def ReplaceContentOnDir(TestCasesDir):
                     print "   "
                 files.close()
     if c == 0 and t != 0:
-        print s + " didn't found on " + TestCasesDir
+        print s + " didn't found on " + Dir
     if c == 0 and t == 0:
-        print "There is no txt files under folder " + TestCasesDir
+        print "There is no txt files under folder " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="     
     CountineOrExit()
 
-def DeleteMethod(TestCasesDir):
+def DeleteMethod(Dir):
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    print "Deleteing " + TestCasesDir + " now..."
-    if os.path.isfile(TestCasesDir):
-        os.remove(TestCasesDir)
-    elif os.path.isdir(TestCasesDir):
-        shutil.rmtree(TestCasesDir)  
-    if not os.path.exists(TestCasesDir):
-        print  TestCasesDir + " has been deleted succeeded!"
+    print "Deleteing " + Dir + " now..."
+    if os.path.isfile(Dir):
+        os.remove(Dir)
+    elif os.path.isdir(Dir):
+        shutil.rmtree(Dir)  
+    if not os.path.exists(Dir):
+        print  Dir + " has been deleted succeeded!"
     else:
-        print  TestCasesDir + " has been deleted failed!"
+        print  Dir + " has been deleted failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="    
     CountineOrExit()
         
-def CopyMethod(sourceCustomed):
+def CopyMethod(Source):
     fun = 1
-    TargetCustomed = raw_input ("Please input the target folder path: ")
-    if not os.path.exists(TargetCustomed):
-        os.makedirs(TargetCustomed)          
-    Type = sourceCustomed.split("\\")[-1]
-    TargetCustomed = os.path.join(TargetCustomed,Type)
-    if os.path.exists(TargetCustomed):
-        NeedOverWrite(sourceCustomed,TargetCustomed,fun)
+    Target = raw_input ("Please input the target folder path: ")
+    if not os.path.exists(Target):
+        os.makedirs(Target)          
+    Type = Source.split("\\")[-1]
+    Target = os.path.join(Target,Type)
+    if os.path.exists(Target):
+        NeedOverWrite(Source,Target,fun)
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if os.path.isdir(sourceCustomed):
-        if not os.listdir(sourceCustomed):
-            shutil.copytree(sourceCustomed,TargetCustomed)
+    if os.path.isdir(Source):
+        if not os.listdir(Source):
+            shutil.copytree(Source,Target)
         else:
-            copyFiles(sourceCustomed,TargetCustomed)
-    elif os.path.isfile(sourceCustomed):
-        shutil.copy (sourceCustomed,TargetCustomed) 
-    print sourceCustomed + " has copied succeeded to folder " + TargetCustomed
+            copyFiles(Source,Target)
+    elif os.path.isfile(Source):
+        shutil.copy (Source,Target) 
+    print Source + " has copied succeeded to folder " + Target
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ===============================" 
     CountineOrExit()
@@ -208,43 +208,43 @@ def copyFiles(sourceDir, targetDir):
         if os.path.isdir(sourceFile): 
             copyFiles(sourceFile, targetFile)
 
-def MoveMethod(sourceFolder):
+def MoveMethod(Source):
     fun = 2
-    targetFolder = raw_input ("Please input the target folder path: ")
+    Target = raw_input ("Please input the target folder path: ")
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if not os.path.exists(targetFolder):
-        os.makedirs(targetFolder)
-    Type = sourceFolder.split("\\")[-1]
-    targetFolder = os.path.join(targetFolder,Type)
-    if os.path.exists(targetFolder):
-        NeedOverWrite(sourceFolder,targetFolder,fun)
-    if os.path.isfile(sourceFolder):
-        if os.path.exists(targetFolder):
-            os.remove(targetFolder)
-        shutil.move (sourceFolder,targetFolder)
+    if not os.path.exists(Target):
+        os.makedirs(Target)
+    Type = Source.split("\\")[-1]
+    Target = os.path.join(Target,Type)
+    if os.path.exists(Target):
+        NeedOverWrite(Source,Target,fun)
+    if os.path.isfile(Source):
+        if os.path.exists(Target):
+            os.remove(Target)
+        shutil.move (Source,Target)
 
-    elif os.path.isdir(sourceFolder):
-        if not os.listdir(sourceFolder):
-            shutil.copytree(sourceFolder,targetFolder)
+    elif os.path.isdir(Source):
+        if not os.listdir(Source):
+            shutil.copytree(Source,Target)
         else:
-            copyFiles(sourceFolder,targetFolder)                    
-        shutil.rmtree(sourceFolder)
-    if os.path.exists(targetFolder):
-        print sourceFolder + " has been moved to " + targetFolder + " succeeded!"
+            copyFiles(Source,Target)                    
+        shutil.rmtree(Source)
+    if os.path.exists(Target):
+        print Source + " has been moved to " + Target + " succeeded!"
     else:
-        print sourceFolder + " has been moved failed!"
+        print Source + " has been moved failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
 
-def FindOnTxtMethod(Path):
+def FindOnTxtMethod(Dir):
     Content = raw_input ("What content you want to find on txt file? ")
     t = 0
     c = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirnames,filenames in os.walk(Path):
+    for root,diTargets,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             i=0          
@@ -261,60 +261,60 @@ def FindOnTxtMethod(Path):
                     print "   "
                 f.close()
     if c == 0 and t != 0:
-        print Content + " didn't found on " + Path              
+        print Content + " didn't found on " + Dir              
     if c == 0 and t == 0:
-        print "There is no txt files under folder " + Path
+        print "There is no txt files under folder " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
                 
-def FindOnDirsMethod(Path):
+def FindOnDirsMethod(Dir):
     File = raw_input ("What file or folder you want to find on this folder? ")
     k = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirnames,filenames in os.walk(Path):
-        if os.path.isfile(os.path.join(Path,File)):
+    for root,diTargets,filenames in os.walk(Dir):
+        if os.path.isfile(os.path.join(Dir,File)):
             for myFile in filenames:
                 if File.lower() in myFile.lower():
                     k = k + 1
                     print "File: " + File + " has found on " + root
                     print "  "
-        elif os.path.isdir(os.path.join(Path,File)):
-            for myFolder in dirnames:
+        elif os.path.isdir(os.path.join(Dir,File)):
+            for myFolder in diTargets:
                 if File.lower() in myFolder.lower():
                     k = k + 1
                     print "Folder: " + File + " has found on " + root
                     print "  "   
     if k == 0:
-        print "File: " + File + " didn't found on " + Path
+        print "File: " + File + " didn't found on " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
             
-def ReplaceNameMethod(Oname):
-    Rname = raw_input ("Please input new name want to replace: ")
-    Oname = os.path.abspath(Oname)
-    Rname = os.path.join(os.path.split(Oname)[0],Rname)   
+def ReplaceNameMethod(Source):
+    Target = raw_input ("Please input new name want to replace: ")
+    Source = os.path.abspath(Source)
+    Target = os.path.join(os.path.split(Source)[0],Target)   
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if os.path.exists(Rname):
-        print Oname + " has already exists, cannot be renamed!"
+    if os.path.exists(Target):
+        print Source + " has already exists, cannot be renamed!"
     else:
-        os.rename (Oname,Rname)
-        print Oname + " has been renamed as " + Rname +" succeeded!"
+        os.rename (Source,Target)
+        print Source + " has been renamed as " + Target +" succeeded!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
 
-def RenameWithSpecificNameMethod(FolderDir):
+def RenameWithSpecificNameMethod(Dir):
     FindContent = raw_input("What word do you want find? ")
     FindContent = FindContent.lower()
     ReplaceContent = raw_input("What word do you want replace? ")
     w = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirs,filenames in os.walk(FolderDir):
+    for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
             myFile = myFile.lower()  
             if FindContent in myFile:
@@ -327,7 +327,7 @@ def RenameWithSpecificNameMethod(FolderDir):
                     print OldNameFile +" has been replaced as " + NewNameFile + " succeeded!"
                     print "   "
     if w == 0:
-        print "Didn't found file named with " + FindContent + " under folder " + FolderDir
+        print "Didn't found file named with " + FindContent + " under folder " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()              
@@ -353,17 +353,17 @@ def DirNotExists(Dir):
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
 
-def NeedOverWrite(sourceFolder,targetFolder,fun):
+def NeedOverWrite(Source,Target,fun):
     while(1):
-        if os.path.isfile(targetFolder):
+        if os.path.isfile(Target):
             IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
-        elif os.path.isdir(targetFolder):
+        elif os.path.isdir(Target):
             IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")              
         if IsConver.lower() == 'y':
             if fun == 1:
-                if os.path.isdir(targetFolder):
-                    if not os.listdir(sourceFolder) and not os.listdir(targetFolder):
-                        shutil.rmtree(targetFolder) 
+                if os.path.isdir(Target):
+                    if not os.listdir(Source) and not os.listdir(Target):
+                        shutil.rmtree(Target) 
             break
         elif IsConver.lower() == 'n':
             CountineOrExit()
