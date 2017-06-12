@@ -111,8 +111,8 @@ Please choose : """)
         exit(1)
       
 def ReplaceContentOnDir(Dir):
-    s = raw_input("Please input what word you want to find: ")
-    p = raw_input("Please input what word you want to replace: ")
+    Original = raw_input("Please input what word you want to find: ")
+    Replace = raw_input("Please input what word you want to replace: ")
     t = 0
     c = 0
     print "================================ Start ================================"
@@ -125,16 +125,16 @@ def ReplaceContentOnDir(Dir):
                 files = open (TxtFile,'r') 
                 content = files.read()
                 files.close()         
-                if s in content:
+                if Original in content:
                     c+=1         
                     files = open (TxtFile,'w') 
-                    files.writelines(content.replace (s, p))
+                    files.writelines(content.replace (Original, Replace))
                     files.close()
-                    print s + " has been replaced as " + p + " on file "+ TxtFile +" succeeded!"
+                    print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" succeeded!"
                     print "   "
                 files.close()
     if c == 0 and t != 0:
-        print s + " didn't found on " + Dir
+        print Original + " didn't found on " + Dir
     if c == 0 and t == 0:
         print "There is no txt files under folder " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
