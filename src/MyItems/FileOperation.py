@@ -370,7 +370,7 @@ def OverwriteOrNot(Source,Target):
 
 def TargetFolderExistsOrNot(Source,Target,Fun):
      if not Target.strip():
-         print "Do not input the empty infos on target folder. Please input again!"
+         print "Do not input the empty infos. Please input again!"
          if 'Copy' in Fun:
              CopyMethod(Source)
          elif 'Move' in Fun:
