@@ -3,6 +3,7 @@ import os
 import re
 import shutil
 import time
+import sys
 
 def MainFunction():
     a = raw_input ("""
@@ -158,14 +159,13 @@ def DeleteMethod(Dir):
     CountineOrExit()
         
 def CopyMethod(Source):
-    fun = 1
     Target = raw_input ("Please input the target folder path: ")
     if not os.path.exists(Target):
         os.makedirs(Target)          
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        OverwriteOrNot(Source,Target,fun)
+        OverwriteOrNot(Source,Target,sys._getframe().f_code.co_name)
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(Source):
@@ -209,16 +209,15 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 def MoveMethod(Source):
-    fun = 2
     Target = raw_input ("Please input the target folder path: ")
-    print "================================ Start ================================"
-    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if not os.path.exists(Target):
         os.makedirs(Target)
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        OverwriteOrNot(Source,Target,fun)
+        OverwriteOrNot(Source,Target,sys._getframe().f_code.co_name)
+    print "================================ Start ================================"
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isfile(Source):
         if os.path.exists(Target):
             os.remove(Target)
@@ -353,14 +352,14 @@ def ExistOrNot(Dir):
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
 
-def OverwriteOrNot(Source,Target,fun):
+def OverwriteOrNot(Source,Target,Fun):
     while(1):
         if os.path.isfile(Target):
             IsConver = raw_input ("There is a same file on target file , would you still want to move? (Y/N) ")
         elif os.path.isdir(Target):
             IsConver = raw_input ("There is a same folder on target folder , would you still want to move? (Y/N) ")              
         if IsConver.lower() == 'y':
-            if fun == 1:
+            if 'Copy' in Fun:
                 if os.path.isdir(Target):
                     if not os.listdir(Source) and not os.listdir(Target):
                         shutil.rmtree(Target) 
