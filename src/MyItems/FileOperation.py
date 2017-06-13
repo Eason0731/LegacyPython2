@@ -166,7 +166,11 @@ def CopyMethod(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        OverwriteOrNot(Source,Target)
+        if Source == Target:
+            print "Cannot copy same file or folder to origin path"
+            CountineOrExit()
+        else:
+            OverwriteOrNot(Source,Target)
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(Source):
@@ -217,14 +221,17 @@ def MoveMethod(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        OverwriteOrNot(Source,Target)
+        if Source == Target:
+            print "Cannot move file or folder to origin path"
+            CountineOrExit()
+        else:
+            OverwriteOrNot(Source,Target)
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isfile(Source):
         if os.path.exists(Target):
             os.remove(Target)
         shutil.move (Source,Target)
-
     elif os.path.isdir(Source):
         if not os.listdir(Source):
             shutil.copytree(Source,Target)
@@ -367,6 +374,7 @@ def OverwriteOrNot(Source,Target):
             break
         elif IsConver.lower() == 'n':
             CountineOrExit()
+        
 
 def TargetFolderExistsOrNot(Source,Target,Fun):
      if not Target.strip():
