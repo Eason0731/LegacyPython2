@@ -239,7 +239,7 @@ def MoveMethod(Source):
             copyFiles(Source,Target)                    
         shutil.rmtree(Source)
     if os.path.exists(Target):
-        print Source.split("\\")[-1] + " has been moved from " + Source.split("\\")[0:-2] + " to " + Target.spilt("\\")[0:-2] + " succeeded!"
+        print Source + " has been moved from " + "\\".join(Source.split("\\")[0:-1]) + " to " + "\\".join(Target.split("\\")[0:-1]) + " succeeded!"
     else:
         print Source + " has been moved failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
