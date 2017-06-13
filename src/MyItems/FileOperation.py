@@ -180,7 +180,7 @@ def CopyMethod(Source):
             copyFiles(Source,Target)
     elif os.path.isfile(Source):
         shutil.copy (Source,Target) 
-    print Source + " has copied succeeded to folder " + Target
+    print Source + " has copied to " + '\\'.join(Target.split("\\")[:-1]) + " succeeded!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ===============================" 
     CountineOrExit()
@@ -239,7 +239,7 @@ def MoveMethod(Source):
             copyFiles(Source,Target)                    
         shutil.rmtree(Source)
     if os.path.exists(Target):
-        print Source + " has been moved to " + Target + " succeeded!"
+        print Source.split("\\")[-1] + " has been moved from " + Source.split("\\")[0:-2] + " to " + Target.spilt("\\")[0:-2] + " succeeded!"
     else:
         print Source + " has been moved failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
