@@ -118,7 +118,7 @@ def ReplaceContentOnDir(Dir):
     c = 0
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirs,filenames in os.walk(Dir):
+    for root,diTargets,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             if "txt" in myFile:
@@ -145,7 +145,6 @@ def ReplaceContentOnDir(Dir):
 def DeleteMethod(Dir):
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    print "Deleteing " + Dir + " now..."
     if os.path.isfile(Dir):
         os.remove(Dir)
     elif os.path.isdir(Dir):
@@ -252,7 +251,7 @@ def FindOnTxtMethod(Dir):
     c = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirs,filenames in os.walk(Dir):
+    for root,diTargets,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             i=0          
