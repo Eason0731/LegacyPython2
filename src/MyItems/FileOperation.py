@@ -118,7 +118,7 @@ def ReplaceContentOnDir(Dir):
     c = 0
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,diTargets,filenames in os.walk(Dir):
+    for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             if "txt" in myFile:
@@ -252,7 +252,7 @@ def FindOnTxtMethod(Dir):
     c = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,diTargets,filenames in os.walk(Dir):
+    for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             i=0          
