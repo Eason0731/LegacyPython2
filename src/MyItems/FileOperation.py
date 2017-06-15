@@ -281,6 +281,18 @@ def FindOnDirsMethod(Dir):
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirs,filenames in os.walk(Dir):
+        for myFile in filenames:
+            if File.lower() in myFile.lower():
+                k = k + 1
+                print "File: " + File + " has found on " + os.path.join(root,myFile)
+                print "  "
+
+        for myFolder in dirs:
+            if File.lower() in myFolder.lower():
+                k = k + 1
+                print "Folder: " + File + " has found on " + os.path.join(root,myFolder)
+                print "  "
+        """
         if os.path.isfile(os.path.join(Dir,File)):
             for myFile in filenames:
                 if File.lower() in myFile.lower():
@@ -292,7 +304,15 @@ def FindOnDirsMethod(Dir):
                 if File.lower() in myFolder.lower():
                     k = k + 1
                     print "Folder: " + File + " has found on " + root
-                    print "  "   
+                    print "  "
+        else:
+            for myString in dirs:
+                if File.lower() in myString.lower():
+                    k = k + 1
+                    print  File + " has found on " + root
+                    print "  "
+        """
+    
     if k == 0:
         print "File: " + File + " didn't found on " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
