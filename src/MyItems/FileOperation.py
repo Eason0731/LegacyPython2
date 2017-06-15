@@ -118,7 +118,7 @@ def ReplaceContentOnDir(Dir):
     c = 0
     print "================================ Start ================================"
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,diTargets,filenames in os.walk(Dir):
+    for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             if "txt" in myFile:
@@ -251,7 +251,7 @@ def FindOnTxtMethod(Dir):
     c = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,diTargets,filenames in os.walk(Dir):
+    for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
             i=0          
@@ -280,7 +280,7 @@ def FindOnDirsMethod(Dir):
     k = 0
     print "================================ Start ==============================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,diTargets,filenames in os.walk(Dir):
+    for root,dirs,filenames in os.walk(Dir):
         if os.path.isfile(os.path.join(Dir,File)):
             for myFile in filenames:
                 if File.lower() in myFile.lower():
@@ -288,7 +288,7 @@ def FindOnDirsMethod(Dir):
                     print "File: " + File + " has found on " + root
                     print "  "
         elif os.path.isdir(os.path.join(Dir,File)):
-            for myFolder in diTargets:
+            for myFolder in dirs:
                 if File.lower() in myFolder.lower():
                     k = k + 1
                     print "Folder: " + File + " has found on " + root
