@@ -294,7 +294,7 @@ def FindOnDirsMethod(Dir):
                 print "  "
     
     if k == 0:
-        print "File: " + File + " didn't found on " + Dir
+        print File + " didn't found on " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
