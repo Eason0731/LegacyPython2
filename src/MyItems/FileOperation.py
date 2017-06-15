@@ -292,26 +292,6 @@ def FindOnDirsMethod(Dir):
                 k = k + 1
                 print "Folder: " + File + " has found on " + os.path.join(root,myFolder)
                 print "  "
-        """
-        if os.path.isfile(os.path.join(Dir,File)):
-            for myFile in filenames:
-                if File.lower() in myFile.lower():
-                    k = k + 1
-                    print "File: " + File + " has found on " + root
-                    print "  "
-        elif os.path.isdir(os.path.join(Dir,File)):
-            for myFolder in dirs:
-                if File.lower() in myFolder.lower():
-                    k = k + 1
-                    print "Folder: " + File + " has found on " + root
-                    print "  "
-        else:
-            for myString in dirs:
-                if File.lower() in myString.lower():
-                    k = k + 1
-                    print  File + " has found on " + root
-                    print "  "
-        """
     
     if k == 0:
         print "File: " + File + " didn't found on " + Dir
