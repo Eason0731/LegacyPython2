@@ -124,6 +124,8 @@ def ReplaceContentOnDir(Dir):
                 files = open (TxtFile,'r') 
                 content = files.read()
                 files.close()
+                Original = Original.lower()
+                content = content.lower()
                 if Original in content:
                     c+=1         
                     files = open (TxtFile,'w') 
