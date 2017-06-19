@@ -5,6 +5,7 @@ import shutil
 import time
 import sys
 
+
 def MainFunction():
     a = raw_input ("""
 ==========Welcome to File Operation==========
@@ -16,13 +17,14 @@ def MainFunction():
 6. Find files or folder on folder
 7. Rename file or folder
 8. Rename file with specificname
+9. View infos of PC
 =============================================
 Press AnyKey to Exit
         
 Please choose : """)
 
     if a.isdigit():
-        if int(a) in range(1,9):
+        if int(a) in range(1,10):
             if int(a) == 1:
                 print "========Replace content on txt files========"
                 Dir = raw_input ("Please input the folder path: ")
@@ -102,6 +104,9 @@ Please choose : """)
                     EmptyOrNot()
                 else:
                    ExistOrNot(Dir)
+
+            if int(a) == 9:
+                ViewPCInfos()
     
         else:
             print "Bye~"
@@ -334,6 +339,24 @@ def RenameWithSpecificNameMethod(Dir):
     print "================================ Finish ==============================="
     CountineOrExit()              
 
+def ViewPCInfos():
+    import getpass
+    import socket
+    import uuid
+    pcname = socket.getfqdn(socket.gethostname())
+    ipaddress = socket.gethostbyname(pcname)
+    currentusername = getpass.getuser()
+    mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
+    mac_address = ":".join([mac[e:e+2] for e in range(0,11,2)])
+    print "======================================================================="
+    print "PC name: " + pcname
+    print "Current login user name: " + currentusername
+    print "IP address: " + ipaddress
+    print "Mac address: " + mac_address
+    print "======================================================================="
+    CountineOrExit()
+
+    
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
     while(1):
