@@ -17,7 +17,7 @@ def MainFunction():
 6. Find files or folder on folder
 7. Rename file or folder
 8. Rename file with specificname
-9. View infos of PC
+9. View PC infos
 =============================================
 Press AnyKey to Exit
         
