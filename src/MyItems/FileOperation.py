@@ -343,14 +343,17 @@ def ViewPCInfos():
     import getpass
     import socket
     import uuid
+    import platform
     pcname = socket.getfqdn(socket.gethostname())
     ipaddress = socket.gethostbyname(pcname)
     currentusername = getpass.getuser()
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
     mac_address = ":".join([mac[e:e+2] for e in range(0,11,2)])
     print "======================================================================="
+    print "OS name and version: " + platform.platform()
+    print "Processor info: "+ platform.processor()  
     print "PC name: " + pcname
-    print "Current login user name: " + currentusername
+    print "Current login user: " + currentusername
     print "IP address: " + ipaddress
     print "Mac address: " + mac_address
     print "======================================================================="
