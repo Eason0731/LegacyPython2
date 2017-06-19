@@ -106,7 +106,6 @@ Please choose : """)
         else:
             print "Bye~"
             exit(1)
-
     else:
         print "Bye~"
         exit(1)
@@ -134,10 +133,8 @@ def ReplaceContentOnDir(Dir):
                     print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" succeeded!"
                     print "   "
                 files.close()
-        
         if c ==0:
-            print Original + " didn't found on " + Dir
-        
+            print Original + " didn't found on " + Dir       
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
         print "================================ Finish ==============================="
     else:
@@ -290,8 +287,7 @@ def FindOnDirsMethod(Dir):
             if File.lower() in myFolder.lower():
                 k = k + 1
                 print "Folder: " + File + " has found on " + os.path.join(root,myFolder)
-                print "  "
-    
+                print "  "   
     if k == 0:
         print File + " didn't found on " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
@@ -381,10 +377,6 @@ def TargetFolderExistsOrNot(Source,Target,Fun):
              CopyMethod(Source)
          elif 'Move' in Fun:
              MoveMethod(Source)
-             
-    
+              
 if __name__=='__main__':
     MainFunction()
-
-    
-
