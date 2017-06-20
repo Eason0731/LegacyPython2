@@ -350,7 +350,7 @@ def ViewPCInfos():
     ipaddress = socket.gethostbyname(pcname)
     currentusername = getpass.getuser()
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
-    mac_address = ":".join([mac[e:e+2] for e in range(0,11,2)])
+    mac_address = "-".join([mac[e:e+2] for e in range(0,11,2)])
     try:
         ipinfo = urllib2.urlopen('http://ip138.com/ip2city.asp').read() #'http://ip138.com/ip2city.asp' This site is available to search IP
         w_ip = re.search('\d+\.\d+\.\d+\.\d+',ipinfo).group(0) 
