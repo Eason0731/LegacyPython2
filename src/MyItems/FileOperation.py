@@ -344,17 +344,26 @@ def ViewPCInfos():
     import socket
     import uuid
     import platform
+    import re,urllib2
+    from subprocess import Popen, PIPE
     pcname = socket.getfqdn(socket.gethostname())
     ipaddress = socket.gethostbyname(pcname)
     currentusername = getpass.getuser()
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
     mac_address = ":".join([mac[e:e+2] for e in range(0,11,2)])
+    try:
+        ipinfo = urllib2.urlopen('http://ip138.com/ip2city.asp').read() #'http://ip138.com/ip2city.asp' This site is available to search IP
+        w_ip = re.search('\d+\.\d+\.\d+\.\d+',ipinfo).group(0) 
+    except Exception ,e:
+        print str(e)
     print "======================================================================="
     print "OS name and version: " + platform.platform()
     print "Processor info: "+ platform.processor()  
     print "PC name: " + pcname
     print "Current login user: " + currentusername
-    print "IP address: " + ipaddress
+    #print "IP address: " + ipaddress
+    print "Intranet IP：" + re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)
+    print "Public network IP: " + w_ip
     print "Mac address: " + mac_address
     print "======================================================================="
     CountineOrExit()
