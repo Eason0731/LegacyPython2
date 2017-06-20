@@ -362,7 +362,7 @@ def ViewPCInfos():
     print "PC name: " + pcname
     print "Current login user: " + currentusername
     #print "IP address: " + ipaddress
-    print "Intranet IP：" + re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)
+    print "Intranet IP: " + re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)
     print "Public network IP: " + w_ip
     print "Mac address: " + mac_address
     print "======================================================================="
