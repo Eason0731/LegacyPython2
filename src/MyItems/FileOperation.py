@@ -350,21 +350,27 @@ def ViewPCInfos():
     currentusername = getpass.getuser()
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
     mac_address = "-".join([mac[e:e+2] for e in range(0,11,2)])
-    n_ip = re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)
-    ipinfo = urllib2.urlopen('http://ip138.com/ip2city.asp').read() #'http://ip138.com/ip2city.asp' This site is available to search IP
-    w_ip = re.search('\d+\.\d+\.\d+\.\d+',ipinfo).group(0) 
+    n_ip = re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)  
     print "======================================================================="
     print "OS name and version: " + platform.platform()
     print "Processor info: "+ platform.processor()  
     print "PC name: " + pcname
     print "Current login user: " + currentusername
     print "Intranet IP: " + n_ip
-    print "Public network IP: " + w_ip
+    print "Public network IP: " + GetPublicNetworkIP()
     print "Mac address: " + mac_address
     print "======================================================================="
     CountineOrExit()
 
-    
+def GetPublicNetworkIP():
+    import re,urllib2
+    try:
+        ipURL = urllib2.urlopen('http://ip138.com/ip2city.asp').read() #'http://ip138.com/ip2city.asp' This site is available to search IP
+        publicip = re.search('\d+\.\d+\.\d+\.\d+',ipURL).group(0)
+    except Exception,e:
+        publicip = str(e)
+    return publicip
+        
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
     while(1):
