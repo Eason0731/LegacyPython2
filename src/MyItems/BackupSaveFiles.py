@@ -157,10 +157,10 @@ def CopyTDU(sourceTDU,BackupFolder,IsBackup):
         print "Backup TDU Success!"
         print time.strftime("End back up TDU Time :%Y-%m-%d %X",time.localtime())
     else:
-        print time.strftime("Start Move TDU Time :%Y-%m-%d %X",time.localtime()) 
+        print time.strftime("Start put back TDU Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
         print "Put Back TDU Success!"
-        print time.strftime("End Move TDU Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End put back TDU Time :%Y-%m-%d %X",time.localtime())
 
     print "============================================"
 
