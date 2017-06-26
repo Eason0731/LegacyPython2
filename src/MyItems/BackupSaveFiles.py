@@ -104,7 +104,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
 
             if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
                 i = i + 1
-                if os.path.exists(sourceTencentFiles):
+                if os.path.exists(sourceBusDriver):
                     print "Bus Driver folder exists, no need to put back"
                     print "============================================"
                 else:
