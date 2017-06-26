@@ -118,7 +118,7 @@ def Copy2K(source2Kfolder,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'2K Sports')
         print BackupFolder
         os.makedirs(BackupFolder)  
-        print time.strftime("Start Copy 2K Time :%Y-%m-%d %X",time.localtime()) 
+        print time.strftime("Start back up 2K Time :%Y-%m-%d %X",time.localtime()) 
         copyFiles(source2Kfolder,BackupFolder)
         print "Backup 2K Success!"
         print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
