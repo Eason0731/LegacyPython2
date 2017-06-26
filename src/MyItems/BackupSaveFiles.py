@@ -104,7 +104,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupF
                 shutil.rmtree(BackupFolder)
                 if not os.path.exists(BackupFolder):
                     print "All the save files has been put back"
-                    print "Backup folder " + BackupFolder + " deleted successfully!"
+                    print "Backup folder " + BackupFolder + " has been deleted successfully!"
                     print "============================================"
           
         else:
@@ -184,7 +184,7 @@ def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
 
 
 def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
-    BackupFolder = raw_input ("Please input Backup Folder path:")
+    BackupFolder = raw_input ("Please input back up folder path:")
     IsBackup = '2'
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolder,IsBackup)
     ExitOrNot()
