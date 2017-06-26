@@ -3,7 +3,7 @@ import os
 import shutil
 import time
 
-def MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
+def MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver):
     a = raw_input("""
 If you want re-install OS please backup     --- 1
 Put back save files after re-install OS     --- 2
@@ -11,13 +11,13 @@ Quit Press                                  --- Press Any Key
 
 Please Choose:""")
     if a == "1":
-        Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
+        Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver)
     elif a == "2":
-        PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
+        PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver)
     else:
         exit(0)
     
-def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
+def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver):
     IsBackup = '1'
     BackupFolder = time.strftime("%Y%m%d",time.localtime())
     BackupFolder = BackupFolder + "_Backup"
@@ -32,10 +32,10 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
     os.makedirs(BackupFolder)
     print "Create back up folder: " + BackupFolder + " successfully!"
     print "============================================"
-    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolder,IsBackup)
+    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,BackupFolder,IsBackup)
     ExitOrNot()
         
-def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolder,IsBackup):
+def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,BackupFolder,IsBackup):
     if IsBackup == '1':
         if os.path.exists(source2Kfolder):
             Copy2K(source2Kfolder,BackupFolder,IsBackup)
@@ -59,6 +59,12 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupF
             CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
         else:
             print "The save files of TencentFiles didn't found on this PC and not backup"
+            print "============================================"
+
+        if os.path.exists(sourceBusDriver):
+            CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
+        else:
+            print "The save files of Bus Driver didn't found on this PC and not backup"
             print "============================================"
     else:
         i = 0
@@ -96,6 +102,14 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupF
                 else:
                     CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
 
+            if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
+                i = i + 1
+                if os.path.exists(sourceTencentFiles):
+                    print "Bus Driver folder exists, no need to put back"
+                    print "============================================"
+                else:
+                    CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
+            
             if i == 0:
                 print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
 
@@ -182,18 +196,35 @@ def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
     
     print "============================================"
 
+def CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup):
+    if IsBackup == '1':
+        BackupFolder = os.path.join(BackupFolder,'Bus Driver')
+        print BackupFolder
+        os.makedirs(BackupFolder)
+        print time.strftime("Start back up Bus Driver Time :%Y-%m-%d %X",time.localtime())
+        copyFiles(sourceBusDriver,BackupFolder)
+        print "Backup Bus Driver Success!"
+        print time.strftime("End back up Bus Driver Time :%Y-%m-%d %X",time.localtime())       
+    else:
+        print time.strftime("Start put back Bus Driver Time :%Y-%m-%d %X",time.localtime()) 
+        shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceBusDriver)
+        print "Put Back Bus Driver Files Success!"
+        print time.strftime("End put back Bus Driver Time :%Y-%m-%d %X",time.localtime())
+    
+    print "============================================"
 
-def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
+
+def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver):
     BackupFolder = raw_input ("Please input back up folder path:")
     IsBackup = '2'
-    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolder,IsBackup)
+    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,BackupFolder,IsBackup)
     ExitOrNot()
     
 def ExitOrNot():
     while(True):
         cc = raw_input("Back to main menu? (Y/N)")
         if cc.lower() == 'y':
-            MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
+            MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver)
             break
         elif cc.lower() == 'n':
             exit(0)
@@ -236,5 +267,6 @@ if __name__ == "__main__":
     sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
     sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
     sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
+    sourceBusDriver = os.path.join(os.environ["USERPROFILE"],"Documents","Bus Driver")
     
-    MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles)
+    MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver)
