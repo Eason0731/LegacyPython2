@@ -175,10 +175,10 @@ def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
         print "Backup Tencent Success!"
         print time.strftime("End back up Tencent Files Time :%Y-%m-%d %X",time.localtime())       
     else:
-        print time.strftime("Start Move Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
+        print time.strftime("Start put back Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Tencent Files"), sourceTencentFiles)
         print "Put Back Tencent Files Success!"
-        print time.strftime("End Move Tencent Files Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End put back Tencent Files Time :%Y-%m-%d %X",time.localtime())
     
     print "============================================"
 
