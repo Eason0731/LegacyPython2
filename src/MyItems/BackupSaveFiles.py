@@ -141,10 +141,10 @@ def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
         print "Backup KONAMI Success!"
         print time.strftime("End back up KONAMI Time :%Y-%m-%d %X",time.localtime())
     else:
-        print time.strftime("Start Move KONAMI Time :%Y-%m-%d %X",time.localtime()) 
+        print time.strftime("Start put back KONAMI Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"KONAMI"), sourceKONAMI)
         print "Put Back KONAMI Success!"
-        print time.strftime("End Move KONAMI Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End put back KONAMI Time :%Y-%m-%d %X",time.localtime())
  
     print "============================================"
 
