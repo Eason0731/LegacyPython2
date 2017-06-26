@@ -121,7 +121,7 @@ def Copy2K(source2Kfolder,BackupFolder,IsBackup):
         print time.strftime("Start back up 2K Time :%Y-%m-%d %X",time.localtime()) 
         copyFiles(source2Kfolder,BackupFolder)
         print "Backup 2K Success!"
-        print time.strftime("End Copy 2K Time :%Y-%m-%d %X",time.localtime())
+        print time.strftime("End back up 2K Time :%Y-%m-%d %X",time.localtime())
     else:
         print time.strftime("Start Move 2K Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
