@@ -30,7 +30,7 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles):
         print "============================================"
     
     os.makedirs(BackupFolder)
-    print "Create Backup Folder: " + BackupFolder + " successfully!"
+    print "Create back up folder: " + BackupFolder + " successfully!"
     print "============================================"
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,BackupFolder,IsBackup)
     ExitOrNot()
