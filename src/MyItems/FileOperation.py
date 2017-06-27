@@ -135,7 +135,7 @@ def ReplaceContentOnDir(Dir):
                     files = open (TxtFile,'w') 
                     files.writelines(content.replace (Original, Replace))
                     files.close()
-                    print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" succeeded!"
+                    print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" successfully!"
                     print "   "
                 files.close()
         if c ==0:
@@ -154,7 +154,7 @@ def DeleteMethod(Dir):
     elif os.path.isdir(Dir):
         shutil.rmtree(Dir)  
     if not os.path.exists(Dir):
-        print  Dir + " has been deleted succeeded!"
+        print  Dir + " has been deleted successfully!"
     else:
         print  Dir + " has been deleted failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
@@ -183,7 +183,7 @@ def CopyMethod(Source):
             copyFiles(Source,Target)
     elif os.path.isfile(Source):
         shutil.copy (Source,Target) 
-    print Source + " has copied to " + '\\'.join(Target.split("\\")[:-1]) + " succeeded!"
+    print Source + " has copied to " + '\\'.join(Target.split("\\")[:-1]) + " successfully!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ===============================" 
     CountineOrExit()
@@ -242,7 +242,7 @@ def MoveMethod(Source):
             copyFiles(Source,Target)                    
         shutil.rmtree(Source)
     if os.path.exists(Target):
-        print Source + " has been moved from " + "\\".join(Source.split("\\")[0:-1]) + " to " + "\\".join(Target.split("\\")[0:-1]) + " succeeded!"
+        print Source + " has been moved from " + "\\".join(Source.split("\\")[0:-1]) + " to " + "\\".join(Target.split("\\")[0:-1]) + " successfully!"
     else:
         print Source + " has been moved failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
@@ -309,7 +309,7 @@ def ReplaceNameMethod(Source):
         print Source + " has already exists, cannot be renamed!"
     else:
         os.rename (Source,Target)
-        print Source + " has been renamed as " + Target +" succeeded!"
+        print Source + " has been renamed as " + Target +" successfully!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "================================ Finish ==============================="
     CountineOrExit()
@@ -331,7 +331,7 @@ def RenameWithSpecificNameMethod(Dir):
                 NewNameFile = os.path.join(root,myFile)
                 os.rename (OldNameFile,NewNameFile)
                 if os.path.exists(NewNameFile):
-                    print OldNameFile +" has been replaced as " + NewNameFile + " succeeded!"
+                    print OldNameFile +" has been replaced as " + NewNameFile + " successfully!"
                     print "   "
     if w == 0:
         print "Didn't found file named with " + FindContent + " under folder " + Dir
