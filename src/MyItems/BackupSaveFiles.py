@@ -72,58 +72,44 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if os.path.exists(os.path.join(BackupFolder,"2K Sports")):
                 i = i + 1
                 if os.path.exists(source2Kfolder):
-                    print "2K Sports folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    Copy2K(source2Kfolder,BackupFolder,IsBackup)
-        
+                    BackupExistsSaveFiles(source2Kfolder)
+                Copy2K(source2Kfolder,BackupFolder,IsBackup)
         
             if os.path.exists(os.path.join(BackupFolder,"KONAMI")):
                 i = i + 1
                 if os.path.exists(sourceKONAMI):
-                    print "KONAMI folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
+                    BackupExistsSaveFiles(sourceKONAMI)
+                CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
                 
             if os.path.exists(os.path.join(BackupFolder,"Test Drive Unlimited")):
                 i = i + 1
                 if os.path.exists(sourceTDU):
-                    print "TDU folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    CopyTDU(sourceTDU,BackupFolder,IsBackup)
+                    BackupExistsSaveFiles(sourceTDU)
+                CopyTDU(sourceTDU,BackupFolder,IsBackup)
                 
             if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
                 i = i + 1
                 if os.path.exists(sourceTencentFiles):
-                    print "Tencent Files folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
+                    BackupExistsSaveFiles(sourceTencentFiles)
+                CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
 
             if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
                 i = i + 1
                 if os.path.exists(sourceBusDriver):
-                    print "Bus Driver folder exists, no need to put back"
-                    print "============================================"
-                else:
-                    CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
+                    BackupExistsSaveFiles(sourceBusDriver)
+                CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
             
             if i == 0:
                 print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
-
 
             if not os.listdir(BackupFolder):
                 shutil.rmtree(BackupFolder)
                 if not os.path.exists(BackupFolder):
                     print "All the save files has been put back"
                     print "Backup folder " + BackupFolder + " has been deleted successfully!"
-                    print "============================================"
-          
+                    print "============================================"  
         else:
             print BackupFolder + " is not exists!"
-
         return i
 
     
@@ -140,8 +126,7 @@ def Copy2K(source2Kfolder,BackupFolder,IsBackup):
         print time.strftime("Start put back 2K Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
         print "Put Back 2K Success!"
-        print time.strftime("End put back 2K Time :%Y-%m-%d %X",time.localtime())
-    
+        print time.strftime("End put back 2K Time :%Y-%m-%d %X",time.localtime())   
     print "============================================"
     
     
@@ -159,7 +144,6 @@ def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
         shutil.move(os.path.join(BackupFolder,"KONAMI"), sourceKONAMI)
         print "Put Back KONAMI Success!"
         print time.strftime("End put back KONAMI Time :%Y-%m-%d %X",time.localtime())
- 
     print "============================================"
 
 def CopyTDU(sourceTDU,BackupFolder,IsBackup):
@@ -175,7 +159,6 @@ def CopyTDU(sourceTDU,BackupFolder,IsBackup):
         shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
         print "Put Back TDU Success!"
         print time.strftime("End put back TDU Time :%Y-%m-%d %X",time.localtime())
-
     print "============================================"
 
     
@@ -192,8 +175,7 @@ def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
         print time.strftime("Start put back Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Tencent Files"), sourceTencentFiles)
         print "Put Back Tencent Files Success!"
-        print time.strftime("End put back Tencent Files Time :%Y-%m-%d %X",time.localtime())
-    
+        print time.strftime("End put back Tencent Files Time :%Y-%m-%d %X",time.localtime())   
     print "============================================"
 
 def CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup):
@@ -210,7 +192,6 @@ def CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup):
         shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceBusDriver)
         print "Put Back Bus Driver Files Success!"
         print time.strftime("End put back Bus Driver Time :%Y-%m-%d %X",time.localtime())
-    
     print "============================================"
 
 
@@ -219,6 +200,15 @@ def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
     IsBackup = '2'
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,BackupFolder,IsBackup)
     ExitOrNot()
+
+def BackupExistsSaveFiles(source):
+    timestamp = time.strftime("%Y%m%d%H%M%S", time.localtime())
+    Target = source + "_" + timestamp
+    os.rename(source,Target)
+    if os.path.exists(Target):
+        print "============================================"
+        print "Old save files on " + source + " has been renamed as " + Target + " successfully!"
+        
     
 def ExitOrNot():
     while(True):
