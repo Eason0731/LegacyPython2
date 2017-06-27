@@ -132,12 +132,12 @@ def Copy2K(source2Kfolder,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)  
         print time.strftime("Start back up 2K Time :%Y-%m-%d %X",time.localtime()) 
         copyFiles(source2Kfolder,BackupFolder)
-        print "Backup 2K Success!"
+        print "Backup 2K successfully!"
         print time.strftime("End back up 2K Time :%Y-%m-%d %X",time.localtime())
     else:
         print time.strftime("Start put back 2K Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
-        print "Put Back 2K Success!"
+        print "Put back 2K successfully!"
         print time.strftime("End put back 2K Time :%Y-%m-%d %X",time.localtime())   
     print "============================================"
     
@@ -149,12 +149,12 @@ def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)
         print time.strftime("Start back up KONAMI Time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceKONAMI,BackupFolder)
-        print "Backup KONAMI Success!"
+        print "Backup KONAMI successfully!"
         print time.strftime("End back up KONAMI Time :%Y-%m-%d %X",time.localtime())
     else:
         print time.strftime("Start put back KONAMI Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"KONAMI"), sourceKONAMI)
-        print "Put Back KONAMI Success!"
+        print "Put back KONAMI successfully!"
         print time.strftime("End put back KONAMI Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
@@ -164,12 +164,12 @@ def CopyTDU(sourceTDU,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)  
         print time.strftime("Start back up TDU Time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceTDU,BackupFolder)
-        print "Backup TDU Success!"
+        print "Backup TDU successfully!"
         print time.strftime("End back up TDU Time :%Y-%m-%d %X",time.localtime())
     else:
         print time.strftime("Start put back TDU Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
-        print "Put Back TDU Success!"
+        print "Put back TDU successfully!"
         print time.strftime("End put back TDU Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
@@ -181,12 +181,12 @@ def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)
         print time.strftime("Start back up Tencent Files Time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceTencentFiles,BackupFolder)
-        print "Backup Tencent Files Success!"
+        print "Backup Tencent Files successfully!"
         print time.strftime("End back up Tencent Files Time :%Y-%m-%d %X",time.localtime())       
     else:
         print time.strftime("Start put back Tencent Files Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Tencent Files"), sourceTencentFiles)
-        print "Put Back Tencent Files Success!"
+        print "Put back Tencent Files successfully!"
         print time.strftime("End put back Tencent Files Time :%Y-%m-%d %X",time.localtime())   
     print "============================================"
 
@@ -197,12 +197,12 @@ def CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)
         print time.strftime("Start back up Bus Driver Time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceBusDriver,BackupFolder)
-        print "Backup Bus Driver Success!"
+        print "Backup Bus Driver successfully!"
         print time.strftime("End back up Bus Driver Time :%Y-%m-%d %X",time.localtime())       
     else:
         print time.strftime("Start put back Bus Driver Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceBusDriver)
-        print "Put Back Bus Driver Success!"
+        print "Put back Bus Driver successfully!"
         print time.strftime("End put back Bus Driver Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
@@ -213,12 +213,12 @@ def CopyWeChat(sourceWeChat,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)
         print time.strftime("Start back up WeChat Time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceWeChat,BackupFolder)
-        print "Backup WeChat Files Success!"
+        print "Backup WeChat Files successfully!"
         print time.strftime("End back up WeChat Time :%Y-%m-%d %X",time.localtime())       
     else:
         print time.strftime("Start put back WeChat Time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceWeChat)
-        print "Put Back WeChat Files Success!"
+        print "Put back WeChat Files successfully!"
         print time.strftime("End put back WeChat Time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
