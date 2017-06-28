@@ -52,7 +52,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         if os.path.exists(sourceTDU):
             CopyTDU(sourceTDU,BackupFolder,IsBackup)
         else:
-            print "The save files of TDU didn't found on this PC and not backup"
+            print "The save files of Test Drive Unlimited didn't found on this PC and not backup"
             print "============================================"
 
         if os.path.exists(sourceTencentFiles):
@@ -182,12 +182,12 @@ def CopyTDU(sourceTDU,BackupFolder,IsBackup):
         os.makedirs(BackupFolder)  
         print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceTDU,BackupFolder)
-        print "Backup TDU successfully!"
+        print "Backup Test Drive Unlimited successfully!"
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     else:
         print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
-        print "Put back TDU successfully!"
+        print "Put back Test Drive Unlimited successfully!"
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
