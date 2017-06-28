@@ -235,7 +235,7 @@ def CopyWeChat(sourceWeChat,BackupFolder,IsBackup):
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
     else:
         print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
-        shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceWeChat)
+        shutil.move(os.path.join(BackupFolder,"WeChat Files"), sourceWeChat)
         print "Put back WeChat Files successfully!"
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     print "============================================"
