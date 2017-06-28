@@ -65,7 +65,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             print "============================================"
 
         if os.path.exists(sourceWeChat):
-            CopyWeChat(sourceWeChat,BackupFolder,IsBackup)
+            CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
         else:
             print "The archive files of WeChat Files didn't found on this PC and won't backup"
             print "============================================"
@@ -124,7 +124,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 if 'Error' in E:
                     print "Wechat is running, please close it then try to put back again"
                 else:
-                    CopyWeChat(sourceWeChat,BackupFolder,IsBackup)
+                    CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
             
             if i == 0:
                 print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
@@ -218,7 +218,7 @@ def CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup):
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
-def CopyWeChat(sourceWeChat,BackupFolder,IsBackup):
+def CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'WeChat Files')
         print BackupFolder
