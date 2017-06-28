@@ -46,7 +46,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         if os.path.exists(sourceKONAMI):
             CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
         else:
-            print "The save files of KONAMI didn't found on this PC and not backup"
+            print "The save files of Pro Evolution Soccer didn't found on this PC and not backup"
             print "============================================"
 
         if os.path.exists(sourceTDU):
@@ -89,7 +89,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 if os.path.exists(sourceKONAMI):
                     E = BackupExistsSaveFiles(sourceKONAMI)
                 if 'Error' in E:
-                    print "PES is running, please close it then try to put back again"
+                    print "Pro Evolution Soccer is running, please close it then try to put back again"
                 else:
                     CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
                 
