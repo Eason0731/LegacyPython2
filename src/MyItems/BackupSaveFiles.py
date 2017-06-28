@@ -21,14 +21,11 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDri
     IsBackup = '1'
     BackupFolder = time.strftime("%Y%m%d",time.localtime())
     BackupFolder = BackupFolder + "_Backup"
-
     BackupFolder = os.path.join("D:\\",BackupFolder)
-
     if os.path.exists(BackupFolder):
         shutil.rmtree(BackupFolder)
         print "Delete the legacy backup folder: " + BackupFolder +" successfully!"
         print "============================================"
-    
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
     print "============================================"
@@ -42,7 +39,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         else:
             print "The save files of 2K Sports didn't found on this PC and not backup"
             print "============================================"
-
+            
         if os.path.exists(sourceKONAMI):
             CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
         else:
@@ -141,8 +138,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         else:
             print BackupFolder + " is not exists!"
         return i
-
-    
+  
 def Copy2K(source2Kfolder,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'2K Sports')
@@ -158,8 +154,7 @@ def Copy2K(source2Kfolder,BackupFolder,IsBackup):
         print "Put back 2K successfully!"
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())   
     print "============================================"
-    
-    
+      
 def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'KONAMI')
@@ -190,7 +185,6 @@ def CopyTDU(sourceTDU,BackupFolder,IsBackup):
         print "Put back Test Drive Unlimited successfully!"
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     print "============================================"
-
     
 def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
     if IsBackup == '1':
@@ -240,7 +234,6 @@ def CopyWeChat(sourceWeChat,BackupFolder,IsBackup):
         print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     print "============================================"
 
-
 def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input back up folder path:")
     IsBackup = '2'
@@ -271,8 +264,7 @@ def ExitOrNot():
         else:
             print "You've typed a illgeal word, please select again!"
             print "============================================"    
-
-        
+     
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
         return 
