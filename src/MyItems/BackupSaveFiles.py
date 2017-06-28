@@ -70,7 +70,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         if os.path.exists(sourceWeChat):
             CopyWeChat(sourceWeChat,BackupFolder,IsBackup)
         else:
-            print "The save files of WeChat didn't found on this PC and not backup"
+            print "The save files of WeChat Files didn't found on this PC and not backup"
             print "============================================"
     else:
         i = 0
