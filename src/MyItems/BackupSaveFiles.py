@@ -58,7 +58,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         if os.path.exists(sourceTencentFiles):
             CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
         else:
-            print "The save files of TencentFiles didn't found on this PC and not backup"
+            print "The save files of Tencent Files didn't found on this PC and not backup"
             print "============================================"
 
         if os.path.exists(sourceBusDriver):
