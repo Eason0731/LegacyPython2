@@ -75,54 +75,48 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if os.path.exists(os.path.join(BackupFolder,"2K Sports")):
                 i = i + 1
                 if os.path.exists(source2Kfolder):
-                    E = BackupExistsSaveFiles(source2Kfolder)
-                if 'Error' in E:
-                    print "2K is running, please close it then try to put back again"
+                    print "============================================"
+                    print "The archive files of 2K Sports has existed on original path and won't put back"
                 else:
                     Copy2K(source2Kfolder,BackupFolder,IsBackup)
-        
+                
             if os.path.exists(os.path.join(BackupFolder,"KONAMI")):
                 i = i + 1
                 if os.path.exists(sourceKONAMI):
-                    E = BackupExistsSaveFiles(sourceKONAMI)
-                if 'Error' in E:
-                    print "Pro Evolution Soccer is running, please close it then try to put back again"
+                    print "============================================"
+                    print "The archive files of Pro Evolution Soccer has existed on original path and won't put back"
                 else:
                     CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
                 
             if os.path.exists(os.path.join(BackupFolder,"Test Drive Unlimited")):
                 i = i + 1
                 if os.path.exists(sourceTDU):
-                    E = BackupExistsSaveFiles(sourceTDU)
-                if 'Error' in E:
-                    print "Test Drive Unlimited is running, please close it then try to put back again"
+                    print "============================================"
+                    print "The archive files of Test Drive Unlimited has existed on original path and won't put back"
                 else:
                     CopyTDU(sourceTDU,BackupFolder,IsBackup)
                 
             if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
                 i = i + 1
                 if os.path.exists(sourceTencentFiles):
-                    E = BackupExistsSaveFiles(sourceTencentFiles)
-                if 'Error' in E:
-                    print "Tencent QQ is running, please close it then try to put back again"
+                    print "============================================"
+                    print "The archive files of Tencent QQ has existed on original path and won't put back"
                 else:
                     CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
 
             if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
                 i = i + 1
                 if os.path.exists(sourceBusDriver):
-                    E = BackupExistsSaveFiles(sourceBusDriver)
-                if 'Error' in E:
-                    print "Bus Driver is running, please close it then try to put back again"
+                    print "============================================"
+                    print "The archive files of Bus Driver has existed on original path and won't put back"
                 else:
                     CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
 
             if os.path.exists(os.path.join(BackupFolder,"WeChat Files")):
                 i = i + 1
                 if os.path.exists(sourceWeChat):
-                    E = BackupExistsSaveFiles(sourceWeChat)
-                if 'Error' in E:
-                    print "Wechat is running, please close it then try to put back again"
+                    print "============================================"
+                    print "The archive files of WeChat Files has existed on original path and won't put back"
                 else:
                     CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
             
@@ -239,19 +233,6 @@ def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
     IsBackup = '2'
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
     ExitOrNot()
-
-def BackupExistsSaveFiles(source):
-    try:
-        timestamp = time.strftime("%Y%m%d%H%M%S", time.localtime())
-        Target = source + "_" + timestamp
-        os.rename(source,Target)
-        if os.path.exists(Target):
-            print "============================================"
-            print "Old save files on " + source + " has been renamed as " + Target + " successfully!"
-        rs = 'OK'
-    except Exception,e:
-        rs = str(e)
-    return rs
 
 def ExitOrNot():
     while(True):
