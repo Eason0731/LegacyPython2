@@ -37,37 +37,37 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         if os.path.exists(source2Kfolder):
             Copy2K(source2Kfolder,BackupFolder,IsBackup)
         else:
-            print "The save files of 2K Sports didn't found on this PC and not backup"
+            print "The archive files of 2K Sports didn't found on this PC and won't backup"
             print "============================================"
             
         if os.path.exists(sourceKONAMI):
             CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
         else:
-            print "The save files of Pro Evolution Soccer didn't found on this PC and not backup"
+            print "The archive files of Pro Evolution Soccer didn't found on this PC and won't backup"
             print "============================================"
 
         if os.path.exists(sourceTDU):
             CopyTDU(sourceTDU,BackupFolder,IsBackup)
         else:
-            print "The save files of Test Drive Unlimited didn't found on this PC and not backup"
+            print "The archive files of Test Drive Unlimited didn't found on this PC and won't backup"
             print "============================================"
 
         if os.path.exists(sourceTencentFiles):
             CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
         else:
-            print "The save files of Tencent Files didn't found on this PC and not backup"
+            print "The archive files of Tencent Files didn't found on this PC and won't backup"
             print "============================================"
 
         if os.path.exists(sourceBusDriver):
             CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
         else:
-            print "The save files of Bus Driver didn't found on this PC and not backup"
+            print "The archive files of Bus Driver didn't found on this PC and won't backup"
             print "============================================"
 
         if os.path.exists(sourceWeChat):
             CopyWeChat(sourceWeChat,BackupFolder,IsBackup)
         else:
-            print "The save files of WeChat Files didn't found on this PC and not backup"
+            print "The archive files of WeChat Files didn't found on this PC and won't backup"
             print "============================================"
     else:
         i = 0
