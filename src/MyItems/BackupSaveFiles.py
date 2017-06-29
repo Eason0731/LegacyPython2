@@ -73,53 +73,53 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
         i = 0
         if os.path.exists(BackupFolder):
             if os.path.exists(os.path.join(BackupFolder,"2K Sports")):
-                i = i + 1
-                if os.path.exists(source2Kfolder):
-                    print "============================================"
-                    print "The archive files of 2K Sports has existed on original path and won't put back"
-                else:
+                i = i + 1      
+                try:
                     Copy2K(source2Kfolder,BackupFolder,IsBackup)
+                except Exception,ex:
+                    print str(ex)
+                print "============================================"
                 
             if os.path.exists(os.path.join(BackupFolder,"KONAMI")):
-                i = i + 1
-                if os.path.exists(sourceKONAMI):
-                    print "============================================"
-                    print "The archive files of Pro Evolution Soccer has existed on original path and won't put back"
-                else:
+                i = i + 1 
+                try:
                     CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
+                except Exception,ex:
+                    print str(ex)
+                print "============================================"
                 
             if os.path.exists(os.path.join(BackupFolder,"Test Drive Unlimited")):
-                i = i + 1
-                if os.path.exists(sourceTDU):
-                    print "============================================"
-                    print "The archive files of Test Drive Unlimited has existed on original path and won't put back"
-                else:
+                i = i + 1  
+                try:
                     CopyTDU(sourceTDU,BackupFolder,IsBackup)
+                except Exception,ex:
+                    print str(ex)
+                print "============================================"
                 
             if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
-                i = i + 1
-                if os.path.exists(sourceTencentFiles):
-                    print "============================================"
-                    print "The archive files of Tencent QQ has existed on original path and won't put back"
-                else:
+                i = i + 1   
+                try:
                     CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
+                except Exception,ex:
+                    print str(ex)
+                print "============================================"
 
             if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
-                i = i + 1
-                if os.path.exists(sourceBusDriver):
-                    print "============================================"
-                    print "The archive files of Bus Driver has existed on original path and won't put back"
-                else:
+                i = i + 1    
+                try:
                     CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
+                except Exception,ex:
+                    print str(ex)
+                print "============================================"
 
             if os.path.exists(os.path.join(BackupFolder,"WeChat Files")):
-                i = i + 1
-                if os.path.exists(sourceWeChat):
-                    print "============================================"
-                    print "The archive files of WeChat Files has existed on original path and won't put back"
-                else:
+                i = i + 1   
+                try:
                     CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
-            
+                except Exception,ex:
+                    print str(ex)
+                print "============================================"
+                
             if i == 0:
                 print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
 
@@ -231,6 +231,8 @@ def CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup):
 def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input back up folder path:")
     IsBackup = '2'
+    print "Start to put back archive files!"
+    print "============================================"
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
     ExitOrNot()
 
