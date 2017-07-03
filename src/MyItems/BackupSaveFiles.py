@@ -4,15 +4,15 @@ import shutil
 import time
 
 def MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
-    a = raw_input("""
+    Mychoose = raw_input("""
 If you want re-install OS please backup     --- 1
 Put back save files after re-install OS     --- 2
 Quit Press                                  --- Press Any Key
 
 Please Choose:""")
-    if a == "1":
+    if Mychoose == "1":
         Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
-    elif a == "2":
+    elif Mychoose == "2":
         PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
     else:
         exit(0)
