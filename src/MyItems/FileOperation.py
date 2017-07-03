@@ -7,7 +7,7 @@ import sys
 
 
 def MainFunction():
-    a = raw_input ("""
+    Mychoose = raw_input ("""
 ==========Welcome to File Operation==========
 1. Replace content on txt files
 2. Delete file or folder
@@ -23,9 +23,9 @@ Press AnyKey to Exit
         
 Please choose : """)
 
-    if a.isdigit():
-        if int(a) in range(1,10):
-            if int(a) == 1:
+    if Mychoose.isdigit():
+        if int(Mychoose) in range(1,10):
+            if int(Mychoose) == 1:
                 print "========Replace content on txt files========"
                 Dir = raw_input ("Please input the folder path: ")
                 if os.path.exists(Dir):
@@ -35,7 +35,7 @@ Please choose : """)
                 else:
                     ExistOrNot(Dir)
                                   
-            if int(a) == 2:
+            if int(Mychoose) == 2:
                 print "===========Delete file or folder============"
                 Dir = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(Dir):
@@ -45,7 +45,7 @@ Please choose : """)
                 else:
                     ExistOrNot(Dir)
 
-            if int(a) == 3:
+            if int(Mychoose) == 3:
                 print "===========Copy file or folder============="
                 Source = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(Source):
@@ -55,7 +55,7 @@ Please choose : """)
                 else :
                     ExistOrNot(Source)
             
-            if int(a) == 4:
+            if int(Mychoose) == 4:
                 print "===========Move file or folder============="
                 Source = raw_input ("Please input the source folder or file path: ")
                 if os.path.exists(Source):
@@ -65,7 +65,7 @@ Please choose : """)
                 else:
                     ExistOrNot(Source)
                     
-            if int(a) == 5:
+            if int(Mychoose) == 5:
                 print "=========Find contents on txt files========"
                 Dir  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Dir):   
@@ -75,7 +75,7 @@ Please choose : """)
                 else:
                     ExistOrNot(Dir)
                 
-            if int(a) == 6:
+            if int(Mychoose) == 6:
                 print "=======Find files or folder on folder======="
                 Dir  = raw_input ("Please input the folder path: ")
                 if os.path.exists(Dir):
@@ -85,7 +85,7 @@ Please choose : """)
                 else:
                     ExistOrNot(Dir)
 
-            if int(a) == 7:
+            if int(Mychoose) == 7:
                 print "===========Rename file or folder==========="
                 Source = raw_input ("Please input the folder or file path: ")
                 if os.path.exists(Source):          
@@ -95,7 +95,7 @@ Please choose : """)
                 else:
                     ExistOrNot(Source)
 
-            if int(a) == 8:
+            if int(Mychoose) == 8:
                 print "=======Rename file with specificname======"
                 Dir = raw_input ("Please input the folder path: ")
                 if os.path.exists(Dir):
@@ -105,7 +105,7 @@ Please choose : """)
                 else:
                    ExistOrNot(Dir)
 
-            if int(a) == 9:
+            if int(Mychoose) == 9:
                 ViewPCInfos()
     
         else:
