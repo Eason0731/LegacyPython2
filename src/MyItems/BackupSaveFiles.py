@@ -71,66 +71,66 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             print "============================================"
     else:
         i = 0
-        if os.path.exists(BackupFolder):
-            if os.path.exists(os.path.join(BackupFolder,"2K Sports")):
-                i = i + 1      
-                try:
-                    Copy2K(source2Kfolder,BackupFolder,IsBackup)
-                except Exception,ex:
-                    print str(ex)
-                print "============================================"
+        print "Start to put back archive files!"
+        print "============================================"
+        if os.path.exists(os.path.join(BackupFolder,"2K Sports")):
+            i = i + 1      
+            try:
+                Copy2K(source2Kfolder,BackupFolder,IsBackup)
+            except Exception,ex:
+                print str(ex)
+            print "============================================"
                 
-            if os.path.exists(os.path.join(BackupFolder,"KONAMI")):
-                i = i + 1 
-                try:
-                    CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
-                except Exception,ex:
-                    print str(ex)
-                print "============================================"
+        if os.path.exists(os.path.join(BackupFolder,"KONAMI")):
+            i = i + 1 
+            try:
+                CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
+            except Exception,ex:
+                print str(ex)
+            print "============================================"
                 
-            if os.path.exists(os.path.join(BackupFolder,"Test Drive Unlimited")):
-                i = i + 1  
-                try:
-                    CopyTDU(sourceTDU,BackupFolder,IsBackup)
-                except Exception,ex:
-                    print str(ex)
-                print "============================================"
+        if os.path.exists(os.path.join(BackupFolder,"Test Drive Unlimited")):
+            i = i + 1  
+            try:
+                CopyTDU(sourceTDU,BackupFolder,IsBackup)
+            except Exception,ex:
+                print str(ex)
+            print "============================================"
                 
-            if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
-                i = i + 1   
-                try:
-                    CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
-                except Exception,ex:
-                    print str(ex)
-                print "============================================"
+        if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
+            i = i + 1   
+            try:
+                CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
+            except Exception,ex:
+                print str(ex)
+            print "============================================"
 
-            if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
-                i = i + 1    
-                try:
-                    CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
-                except Exception,ex:
-                    print str(ex)
-                print "============================================"
+        if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
+            i = i + 1    
+            try:
+                CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
+            except Exception,ex:
+                print str(ex)
+            print "============================================"
 
-            if os.path.exists(os.path.join(BackupFolder,"WeChat Files")):
-                i = i + 1   
-                try:
-                    CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
-                except Exception,ex:
-                    print str(ex)
-                print "============================================"
+        if os.path.exists(os.path.join(BackupFolder,"WeChat Files")):
+            i = i + 1   
+            try:
+                CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
+            except Exception,ex:
+                print str(ex)
+            print "============================================"
                 
-            if i == 0:
-                print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
+        if i == 0:
+            print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
 
-            if not os.listdir(BackupFolder):
-                shutil.rmtree(BackupFolder)
-                if not os.path.exists(BackupFolder):
-                    print "All the save files has been put back"
-                    print "Backup folder " + BackupFolder + " has been deleted successfully!"
-                    print "============================================"  
-        else:
-            print BackupFolder + " is not exists!"
+        if not os.listdir(BackupFolder):
+            shutil.rmtree(BackupFolder)
+            if not os.path.exists(BackupFolder):
+                print "All the save files has been put back"
+                print "Backup folder " + BackupFolder + " has been deleted successfully!"
+                print "============================================"  
+
         return i
   
 def Copy2K(source2Kfolder,BackupFolder,IsBackup):
@@ -230,10 +230,14 @@ def CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup):
 
 def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input back up folder path:")
-    IsBackup = '2'
-    print "Start to put back archive files!"
-    print "============================================"
-    CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
+    if BackupFolder.strip():
+        if os.path.exists(BackupFolder):
+            IsBackup = '2'
+            CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
+        else:
+            print BackupFolder + " is not exists!"
+    else:
+        print "Please do not input the empty infos"
     ExitOrNot()
 
 def ExitOrNot():
