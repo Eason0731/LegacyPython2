@@ -99,10 +99,10 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 
         if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
             i = i + 1   
-            try:
+            if not os.path.exists(sourceTencentFiles):
                 CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
-            except Exception,ex:
-                print str(ex)
+            else:
+                print "Destination path of Tencent Files " + sourceTencentFiles + " already exists and won't put back"
             print "============================================"
 
         if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
