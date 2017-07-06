@@ -4,7 +4,7 @@ import re
 import shutil
 import time
 import sys
-import wmi
+
 
 def MainFunction():
     Choose = raw_input ("""
@@ -346,7 +346,9 @@ def ViewPCInfos():
     import platform
     import re,urllib2
     from subprocess import Popen, PIPE
-    os.system ("pip install wmi")
+    output = os.popen('pip list')
+    if 'WMI' not in output.read():
+        os.system('pip install wmi')
     pcname = socket.getfqdn(socket.gethostname())
     currentusername = getpass.getuser()
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
@@ -396,6 +398,7 @@ def ExistOrNot(Dir):
 
 def os_version():
     import platform
+    import wmi
     c = wmi.WMI ()
     print "OS name and version: " + platform.platform()
     for sys in c.Win32_OperatingSystem(): 
@@ -404,7 +407,8 @@ def os_version():
         print "Current process count: " + str(sys.NumberOfProcesses)
     print "       "
 
-def cpu_mem(): 
+def cpu_mem():
+    import wmi
     c = wmi.WMI ()         
     for processor in c.Win32_Processor(): 
         print "Process Name: %s" % processor.Name.strip() 
@@ -412,7 +416,8 @@ def cpu_mem():
         print "Memory Capacity: %.fMB" %(int(Memory.Capacity)/1048576)
     print "       "
 
-def disk(): 
+def disk():
+    import wmi
     c = wmi.WMI ()    
     for physical_disk in c.Win32_DiskDrive (): 
         for partition in physical_disk.associators ("Win32_DiskDriveToDiskPartition"): 
