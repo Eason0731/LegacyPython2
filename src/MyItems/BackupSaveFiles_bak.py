@@ -115,10 +115,10 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
 
         if os.path.exists(os.path.join(BackupFolder,"WeChat Files")):
             i = i + 1   
-            try:
+            if not os.path.exists(sourceWeChat):
                 CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
-            except Exception,ex:
-                print str(ex)
+            else:
+               print "Destination path of WeChat Files " + sourceWeChat + " already exists and won't put back"
             print "============================================"
                 
         if i == 0:
