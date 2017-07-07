@@ -16,7 +16,7 @@ def ViewPCInfos():
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
     mac_address = "-".join([mac[e:e+2] for e in range(0,11,2)])
     n_ip = re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)  
-    print "======================================================================="
+    print "==============================PC Infos================================="
     os_version()
     cpu_mem() 
     disk()
@@ -69,3 +69,6 @@ def disk():
     for disk in c.Win32_LogicalDisk (DriveType=3): 
         print disk.Caption, "%0.2f%% free" % (100.0 * long (disk.FreeSpace) / long (disk.Size)) 
     print "       "
+
+if __name__ == '__main__':
+    ViewPCInfos()
