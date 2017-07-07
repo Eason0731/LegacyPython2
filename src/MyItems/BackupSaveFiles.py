@@ -25,61 +25,61 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDri
     if os.path.exists(BackupFolder):
         shutil.rmtree(BackupFolder)
         print "Delete the legacy backup folder: " + BackupFolder +" successfully!"
-        print "============================================"
+        print "                                "
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
-    print "============================================"
+    print "                                "
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
     ExitOrNot()
         
 def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
+    print "============================================"
+    print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
     if IsBackup == '1':
         if os.path.exists(source2Kfolder):
             Copy2K(source2Kfolder,BackupFolder,IsBackup)
         else:
             print "The archive files of 2K Sports didn't found on this PC and won't backup"
-        print "============================================"
+        print "                                "
             
         if os.path.exists(sourceKONAMI):
             CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
         else:
             print "The archive files of Pro Evolution Soccer didn't found on this PC and won't backup"
-        print "============================================"
+        print "                                "
 
         if os.path.exists(sourceTDU):
             CopyTDU(sourceTDU,BackupFolder,IsBackup)
         else:
             print "The archive files of Test Drive Unlimited didn't found on this PC and won't backup"
-        print "============================================"
+        print "                                "
 
         if os.path.exists(sourceTencentFiles):
             CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
         else:
             print "The archive files of Tencent Files didn't found on this PC and won't backup"
-        print "============================================"
+        print "                                "
 
         if os.path.exists(sourceBusDriver):
             CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
         else:
             print "The archive files of Bus Driver didn't found on this PC and won't backup"
-        print "============================================"
+        print "                                "
 
         if os.path.exists(sourceWeChat):
             CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
         else:
             print "The archive files of WeChat Files didn't found on this PC and won't backup"
-        print "============================================"
+        print "                                "
     else:
         i = 0
-        print "Start to put back archive files!"
-        print "============================================"
         if os.path.exists(os.path.join(BackupFolder,"2K Sports")):
             i = i + 1      
             if not os.path.exists(source2Kfolder):
                 Copy2K(source2Kfolder,BackupFolder,IsBackup)
             else:
                 print "Destination path of 2K Sports " + source2Kfolder + " already exists and won't put back"
-            print "============================================"
+            print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,"KONAMI")):
             i = i + 1 
@@ -87,7 +87,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
             else:
                 print "Destination path of Pro Evolution Soccer " + sourceKONAMI + " already exists and won't put back"
-            print "============================================"
+            print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,"Test Drive Unlimited")):
             i = i + 1  
@@ -95,7 +95,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 CopyTDU(sourceTDU,BackupFolder,IsBackup)
             else:
                 print "Destination path of Pro Evolution Soccer " + sourceTDU + " already exists and won't put back"
-            print "============================================"
+            print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,"Tencent Files")):
             i = i + 1   
@@ -103,7 +103,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
             else:
                 print "Destination path of Tencent Files " + sourceTencentFiles + " already exists and won't put back"
-            print "============================================"
+            print "                                "
 
         if os.path.exists(os.path.join(BackupFolder,"Bus Driver")):
             i = i + 1    
@@ -111,7 +111,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
             else:
                 print "Destination path of Bus Driver " + sourceBusDriver + " already exists and won't put back"
-            print "============================================"
+            print "                                "
 
         if os.path.exists(os.path.join(BackupFolder,"WeChat Files")):
             i = i + 1   
@@ -119,7 +119,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
             else:
                print "Destination path of WeChat Files " + sourceWeChat + " already exists and won't put back"
-            print "============================================"
+            print "                                "
                 
         if i == 0:
             print BackupFolder + " does not contain any releated backup files, this may not a correct backup folder"
@@ -129,97 +129,94 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(BackupFolder):
                 print "All the save files has been put back"
                 print "Backup folder " + BackupFolder + " has been deleted successfully!"
-                print "============================================"  
-        return i
+                print "                                "
+        #return i
+    print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+    print "============================================"
   
 def Copy2K(source2Kfolder,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'2K Sports')
-        print BackupFolder
         os.makedirs(BackupFolder)  
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         copyFiles(source2Kfolder,BackupFolder)
         print "Backup 2K successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     else:
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
         print "Put back 2K successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())   
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())   
       
 def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'KONAMI')
-        print BackupFolder
         os.makedirs(BackupFolder)
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceKONAMI,BackupFolder)
         print "Backup KONAMI successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     else:
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"KONAMI"), sourceKONAMI)
         print "Put back KONAMI successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
 
 def CopyTDU(sourceTDU,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'Test Drive Unlimited')
         os.makedirs(BackupFolder)  
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceTDU,BackupFolder)
         print "Backup Test Drive Unlimited successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     else:
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
         print "Put back Test Drive Unlimited successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
     
 def CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'Tencent Files')
-        print BackupFolder
         os.makedirs(BackupFolder)
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceTencentFiles,BackupFolder)
         print "Backup Tencent Files successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
     else:
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Tencent Files"), sourceTencentFiles)
         print "Put back Tencent Files successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
 
 def CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'Bus Driver')
-        print BackupFolder
         os.makedirs(BackupFolder)
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceBusDriver,BackupFolder)
         print "Backup Bus Driver successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
     else:
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceBusDriver)
         print "Put back Bus Driver successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
 
 def CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'WeChat Files')
-        print BackupFolder
         os.makedirs(BackupFolder)
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
         copyFiles(sourceWeChat,BackupFolder)
         print "Backup WeChat Files successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())       
     else:
-        print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
+        #print time.strftime("Start time :%Y-%m-%d %X",time.localtime()) 
         shutil.move(os.path.join(BackupFolder,"WeChat Files"), sourceWeChat)
         print "Put back WeChat Files successfully!"
-        print time.strftime("End time :%Y-%m-%d %X",time.localtime())
+        #print time.strftime("End time :%Y-%m-%d %X",time.localtime())
 
 def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input back up folder path:")
