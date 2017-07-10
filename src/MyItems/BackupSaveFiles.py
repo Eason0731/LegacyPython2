@@ -203,6 +203,7 @@ def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
             print BackupFolder + " is not exists!"
     else:
         print "Please do not input the empty infos"
+    print "============================================"
     ExitOrNot()
 
 def ExitOrNot():
