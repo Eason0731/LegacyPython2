@@ -23,94 +23,89 @@ Press AnyKey to Exit
         
 Please choose : """)
 
-    if Choose.isdigit():
-        if int(Choose) in range(1,10):
-            if int(Choose) == 1:
-                print "========Replace content on txt files========"
-                Dir = raw_input ("Please input the folder path: ")
-                if os.path.exists(Dir):
-                    ReplaceContentOnDir(Dir)
-                elif not Dir.strip():
-                    EmptyOrNot()
-                else:
-                    ExistOrNot(Dir)
-                                  
-            if int(Choose) == 2:
-                print "===========Delete file or folder============"
-                Dir = raw_input ("Please input the folder or file path: ")
-                if os.path.exists(Dir):
-                    DeleteMethod(Dir)
-                elif not Dir.strip():
-                    EmptyOrNot()
-                else:
-                    ExistOrNot(Dir)
-
-            if int(Choose) == 3:
-                print "===========Copy file or folder============="
-                Source = raw_input ("Please input the folder or file path: ")
-                if os.path.exists(Source):
-                    CopyMethod(Source)
-                elif not Source.strip():
-                    EmptyOrNot()
-                else :
-                    ExistOrNot(Source)
-            
-            if int(Choose) == 4:
-                print "===========Move file or folder============="
-                Source = raw_input ("Please input the source folder or file path: ")
-                if os.path.exists(Source):
-                    MoveMethod(Source)
-                elif not Source.strip():
-                    EmptyOrNot()
-                else:
-                    ExistOrNot(Source)
-                    
-            if int(Choose) == 5:
-                print "=========Find contents on txt files========"
-                Dir  = raw_input ("Please input the folder path: ")
-                if os.path.exists(Dir):   
-                    FindOnTxtMethod(Dir)
-                elif not Dir.strip():
-                    EmptyOrNot()
-                else:
-                    ExistOrNot(Dir)
-                
-            if int(Choose) == 6:
-                print "=======Find files or folder on folder======="
-                Dir  = raw_input ("Please input the folder path: ")
-                if os.path.exists(Dir):
-                    FindOnDirsMethod(Dir)
-                elif not Dir.strip():
-                    EmptyOrNot()
-                else:
-                    ExistOrNot(Dir)
-
-            if int(Choose) == 7:
-                print "===========Rename file or folder==========="
-                Source = raw_input ("Please input the folder or file path: ")
-                if os.path.exists(Source):          
-                    ReplaceNameMethod(Source)
-                elif not Source.strip():
-                    EmptyOrNot()
-                else:
-                    ExistOrNot(Source)
-
-            if int(Choose) == 8:
-                print "=======Rename file with specificname======"
-                Dir = raw_input ("Please input the folder path: ")
-                if os.path.exists(Dir):
-                    RenameWithSpecificNameMethod(Dir)
-                elif not Dir.strip():
-                    EmptyOrNot()
-                else:
-                   ExistOrNot(Dir)
-
-            if int(Choose) == 9:
-                ViewPCInfos.ViewPCInfos()
-    
+    if Choose == '1':
+        print "========Replace content on txt files========"
+        Dir = raw_input ("Please input the folder path: ")
+        if os.path.exists(Dir):
+            ReplaceContentOnDir(Dir)
+        elif not Dir.strip():
+            EmptyOrNot()
         else:
-            print "Bye~"
-            exit(1)
+            ExistOrNot(Dir)
+                                  
+    elif Choose == '2':
+        print "===========Delete file or folder============"
+        Dir = raw_input ("Please input the folder or file path: ")
+        if os.path.exists(Dir):
+            DeleteMethod(Dir)
+        elif not Dir.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Dir)
+
+    elif Choose == '3':
+        print "===========Copy file or folder============="
+        Source = raw_input ("Please input the folder or file path: ")
+        if os.path.exists(Source):
+            CopyMethod(Source)
+        elif not Source.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Source)
+            
+    elif Choose == '4':
+        print "===========Move file or folder============="
+        Source = raw_input ("Please input the source folder or file path: ")
+        if os.path.exists(Source):
+            MoveMethod(Source)
+        elif not Source.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Source)
+                    
+    elif Choose == '5':
+        print "=========Find contents on txt files========"
+        Dir  = raw_input ("Please input the folder path: ")
+        if os.path.exists(Dir):   
+            FindOnTxtMethod(Dir)
+        elif not Dir.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Dir)
+                
+    elif Choose == '6':
+        print "=======Find files or folder on folder======="
+        Dir  = raw_input ("Please input the folder path: ")
+        if os.path.exists(Dir):
+            FindOnDirsMethod(Dir)
+        elif not Dir.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Dir)
+
+    elif Choose == '7':
+        print "===========Rename file or folder==========="
+        Source = raw_input ("Please input the folder or file path: ")
+        if os.path.exists(Source):          
+            ReplaceNameMethod(Source)
+        elif not Source.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Source)
+
+    elif Choose == '8':
+        print "=======Rename file with specificname======"
+        Dir = raw_input ("Please input the folder path: ")
+        if os.path.exists(Dir):
+            RenameWithSpecificNameMethod(Dir)
+        elif not Dir.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Dir)
+
+    elif Choose == '9':
+        ViewPCInfos.ViewPCInfos()
+    
     else:
         print "Bye~"
         exit(1)
