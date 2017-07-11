@@ -28,12 +28,12 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDri
         print "                                "
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
-    print "                                "
+    print "============================================"
     CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
+    print "============================================"
     ExitOrNot()
         
 def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
-    print "============================================"
     print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
     if IsBackup == '1':
         if os.path.exists(source2Kfolder):
@@ -131,8 +131,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
                 print "Backup folder " + BackupFolder + " has been deleted successfully!"
                 print "                                "
     print time.strftime("End time :%Y-%m-%d %X",time.localtime())
-    print "============================================"
-  
+
 def Copy2K(source2Kfolder,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'2K Sports')
@@ -195,6 +194,7 @@ def CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup):
 
 def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input back up folder path:")
+    print "============================================"
     if BackupFolder.strip():
         if os.path.exists(BackupFolder):
             IsBackup = '2'
