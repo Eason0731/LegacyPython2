@@ -107,7 +107,6 @@ Please choose : """)
         ViewPCInfos.ViewPCInfos()
     
     else:
-        print "Bye~"
         exit(1)
       
 def ReplaceContentOnDir(Dir):
