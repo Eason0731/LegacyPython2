@@ -248,11 +248,11 @@ def copyFiles(sourceDir, targetDir):
 
 
 if __name__ == "__main__":
-    source2Kfolder = os.path.join(os.environ["AppData"],"2K Sports") 
-    sourceKONAMI = os.path.join(os.environ["USERPROFILE"],"Documents","KONAMI")
-    sourceTDU = os.path.join(os.environ["USERPROFILE"],"Documents","Test Drive Unlimited")
-    sourceTencentFiles = os.path.join(os.environ["USERPROFILE"],"Documents","Tencent Files")
-    sourceBusDriver = os.path.join(os.environ["USERPROFILE"],"Documents","Bus Driver")
-    sourceWeChat = os.path.join(os.environ["USERPROFILE"],"Documents","WeChat Files")
+    source2Kfolder = os.path.join(os.environ['AppData'],'2K Sports') 
+    sourceKONAMI = os.path.join(os.environ['USERPROFILE'],'Documents','KONAMI')
+    sourceTDU = os.path.join(os.environ['USERPROFILE'],'Documents','Test Drive Unlimited')
+    sourceTencentFiles = os.path.join(os.environ['USERPROFILE'],'Documents','Tencent Files')
+    sourceBusDriver = os.path.join(os.environ['USERPROFILE'],'Documents','Bus Driver')
+    sourceWeChat = os.path.join(os.environ['USERPROFILE'],'Documents','WeChat Files')
     
     MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
