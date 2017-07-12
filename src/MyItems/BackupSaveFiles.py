@@ -10,9 +10,9 @@ Put back save files after re-install OS     --- 2
 Quit Press                                  --- Press Any Key
 
 Please Choose:""")
-    if Choose == "1":
+    if Choose == '1':
         Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
-    elif Choose == "2":
+    elif Choose == '2':
         PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
     else:
         exit(0)
