@@ -5,8 +5,8 @@ import time
 
 def MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     Choose = raw_input("""
-If you want re-install OS please backup     --- 1
-Put back save files after re-install OS     --- 2
+Backup archive files before reinstall OS      --- 1
+Put back archive files after reinstall OS     --- 2
 Quit Press                                  --- Press Any Key
 
 Please Choose:""")
