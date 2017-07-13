@@ -105,7 +105,7 @@ Please choose : """)
 
     elif Choose == '9':
         ViewPCInfos.ViewPCInfos()
-    
+
     else:
         exit(1)
       
@@ -336,9 +336,9 @@ def RenameWithSpecificNameMethod(Dir):
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
     while(1):
-        if IsExit.upper() == "Y":
+        if IsExit.upper() == 'Y':
             MainFunction()
-        elif IsExit.upper() == "N":
+        elif IsExit.upper() == 'N':
             print "Bye~"
             exit(0)
         else:
@@ -377,5 +377,5 @@ def TargetFolderExistsOrNot(Source,Target,Fun):
          elif 'Move' in Fun:
              MoveMethod(Source)
               
-if __name__=='__main__':
+if __name__== '__main__':
     MainFunction()
