@@ -1,8 +1,9 @@
+# coding:utf-8
 import os
 from selenium import webdriver 
-import time
+import time 
 
-IEdriver = "D:\John's Code Project\MySeleniumCases\Drivers\IEDriverServer.exe"
+IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe')
 os.environ["webdriver.ie.driver"] = IEdriver 
 driver = webdriver.Ie(IEdriver)
 driver.maximize_window()
@@ -19,12 +20,9 @@ time.sleep(3)
 SearchButton.click()
 time.sleep(3)
 
-try:
-    assert Content in driver.title
-    print "Pass!"
-except Exception as e:
-    print e
-
-print driver.title
+if Content in driver.title:
+    print "Title of search page is right!"
+else:
+    print "Current title name is " + driver.title
 
 driver.quit()
