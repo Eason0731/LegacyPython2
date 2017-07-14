@@ -16,9 +16,11 @@ def GetChrome():
     return driver
 
 def GetFireFox():
-    FireFoxDriver = os.path.join(os.path.abspath('.'),'Drivers','gecko.exe')
-    os.environ['webdriver.gecko.driver'] = FireFoxDriver
-    driver = webdriver.Firefox(FireFoxDriver)
+    #GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver.exe')
+    FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
+    os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
+    #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
+    driver = webdriver.Firefox()
     return driver
 
 def RunSogou(driver):
