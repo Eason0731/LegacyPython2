@@ -2,26 +2,30 @@
 import os
 from selenium import webdriver 
 import time
+import sys
 
 def GetIE():
     IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
     os.environ["webdriver.ie.driver"] = IEdriver #Set a system environment for ie browser then load IEDriverServer file path
     driver = webdriver.Ie(IEdriver)# Lanuch IE browser
-    return driver
+    RunSogou(driver,sys._getframe().f_code.co_name)
+
 
 def GetChrome():
     ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver.exe')
     os.environ['webdriver.chrome.driver'] = ChromeDriver
     driver = webdriver.Chrome(ChromeDriver)
-    return driver
+    RunSogou(driver,sys._getframe().f_code.co_name)
 
 def GetFireFox():
-    FireFoxDriver = os.path.join(os.path.abspath('.'),'Drivers','gecko.exe')
-    os.environ['webdriver.gecko.driver'] = FireFoxDriver
-    driver = webdriver.Firefox(FireFoxDriver)
-    return driver
+    #GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver.exe')
+    FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
+    os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
+    #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
+    driver = webdriver.Firefox()
+    RunSogou(driver,sys._getframe().f_code.co_name)
 
-def RunSogou(driver):
+def RunSogou(driver,browser):
     driver.maximize_window() #Maxmize the IE browser
     
     # Open sogou website then wait for 3 seconds
@@ -44,6 +48,7 @@ def RunSogou(driver):
     #To check the titile is right
     if Content in driver.title:
         print "Title of search page is right!"
+        print "Pass: " + browser
     else:
         print "Current title name is " + driver.title
 
@@ -61,8 +66,7 @@ def RunSogou(driver):
     
     driver.quit() #Quit the browser
 
-
 if __name__ == '__main__':
-    RunSogou(GetIE())
-    RunSogou(GetChrome())
-    RunSogou(GetFireFox())
+    GetIE()
+    GetChrome()
+    GetFireFox()
