@@ -3,25 +3,37 @@ import os
 from selenium import webdriver 
 import time
 import sys
+import platform
 
 def GetIE():
-    IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
-    os.environ["webdriver.ie.driver"] = IEdriver #Set a system environment for ie browser then load IEDriverServer file path
+    if platform.system() == 'Windows':
+        IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
+        os.environ["webdriver.ie.driver"] = IEdriver #Set a system environment for ie browser then load IEDriverServer file path    
+    else:
+        print "IE cannot be ran on non-Windows OS"
     driver = webdriver.Ie(IEdriver)# Lanuch IE browser
     RunSogou(driver,sys._getframe().f_code.co_name[3:])
 
 def GetChrome():
-    ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver.exe')
+    if platform.system() == 'Windows':
+        ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver.exe')  
+    elif platform.system() == 'Darwin':
+        ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver')
     os.environ['webdriver.chrome.driver'] = ChromeDriver
     driver = webdriver.Chrome(ChromeDriver)
     RunSogou(driver,sys._getframe().f_code.co_name[3:])
 
 def GetFireFox():
-    #GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver.exe')
-    FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
-    os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
-    #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
-    driver = webdriver.Firefox()
+    if platform.system() == 'Windows':
+        #GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver.exe')
+        FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
+        os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
+        #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
+        driver = webdriver.Firefox()
+    elif platform.system() == 'Darwin':
+        GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver')
+        os.environ['webdriver.gecko.driver'] = GeckoDriver
+        driver = webdriver.Firefox(GeckoDriver)
     RunSogou(driver,sys._getframe().f_code.co_name[3:])
 
 def RunSogou(driver,browser):
