@@ -8,12 +8,12 @@ import platform
 def GetIE():
     if platform.system() == 'Windows':
         IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
-        os.environ["webdriver.ie.driver"] = IEdriver #Set a system environment for ie browser then load IEDriverServer file path    
+        os.environ["webdriver.ie.driver"] = IEdriver #Set a system environment for ie browser then load IEDriverServer file path
+        driver = webdriver.Ie(IEdriver)# Lanuch IE browser
+        RunSogou(driver,sys._getframe().f_code.co_name[3:])
     else:
         print "IE cannot be ran on non-Windows OS"
-    driver = webdriver.Ie(IEdriver)# Lanuch IE browser
-    RunSogou(driver,sys._getframe().f_code.co_name[3:])
-
+    
 def GetChrome():
     if platform.system() == 'Windows':
         ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver.exe')  
