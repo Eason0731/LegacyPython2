@@ -25,7 +25,6 @@ def GetChrome():
 
 def GetFireFox():
     if platform.system() == 'Windows':
-        #GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver.exe')
         FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
         os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
         #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
@@ -38,23 +37,18 @@ def GetFireFox():
 
 def RunSogou(driver,browser):
     driver.maximize_window() #Maxmize the IE browser
-    
     # Open sogou website then wait for 3 seconds
     driver.get("http://www.sogou.com")
     time.sleep(3)
-
     #Store a content then find searchbox and button on website
     SearchBox = driver.find_element_by_id("query")
     SearchButton = driver.find_element_by_id("stb")
     time.sleep(3)
-
     #Input the content and click searchbutton on website
     SearchBox.send_keys(browser)
     time.sleep(3)
     SearchButton.click()
     time.sleep(3)
-
-    print browser + u' - 搜狗搜索 '
     #To check the titile is right
     if browser in driver.title:
         print "Title of search page is right!"
