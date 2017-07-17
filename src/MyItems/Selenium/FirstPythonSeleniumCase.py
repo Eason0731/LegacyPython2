@@ -23,11 +23,7 @@ def GetFireFox():
     os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
     #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
     driver = webdriver.Firefox()
-<<<<<<< HEAD
     RunSogou(driver,sys._getframe().f_code.co_name)
-=======
-    return driver
->>>>>>> 6ef6dae2c45670880e35a73786d9530abce752cb
 
 def RunSogou(driver,browser):
     driver.maximize_window() #Maxmize the IE browser
