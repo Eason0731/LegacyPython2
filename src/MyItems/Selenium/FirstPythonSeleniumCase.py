@@ -44,7 +44,7 @@ def RunSogou(driver,browser):
     SearchBox = driver.find_element_by_name("wd")
     SearchButton = driver.find_element_by_id("su")
     time.sleep(3)
-    #Input the content and click searchbutton on website
+    #Input the content and click search button on website
     SearchBox.send_keys(browser)
     time.sleep(3)
     SearchButton.click()
