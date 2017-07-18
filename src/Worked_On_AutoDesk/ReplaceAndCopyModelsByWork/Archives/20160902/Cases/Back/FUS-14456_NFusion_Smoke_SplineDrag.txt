@@ -1,0 +1,29 @@
+#
+# Neutron Text Command Script File v1.0
+
+
+NuCommands.NewDocumentCmd FusionAssetType 0a149fe0-40f8-44e4-b788-d4089bc7a0c7 2
+# 1. Create a U shape spline
+Commands.Start DrawSpline
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (1.2162238359451294, 1.232731819152832, 0)
+NaFusionUI.SetPoint SketchPointInput (1.5, 4, 7.1054273576010019e-015) 3 0
+NaFusionUI.SetPoint SketchPointInput (2.5, -3, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (7.5, -2.5, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (11.5, 6, 0) 3 0
+NuCommands.CommitCmd
+# 2. Drag the end point horizontally
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Point:1:2=(1.5, 4, 0)" (0.81364059448242188, -0.8301849365234375, 0)
+NaFusionUI.DragSketchCmd
+NaFusionUI.DragPoint DragInput (2.5, 4, 0) 2 1 (1.5, 4, 0)
+NaFusionUI.DragPoint DragInput (4, 4, 0) 2 1 (1.5, 4, 0)
+NaFusionUI.DragPoint DragInput (4, 4, 0) 3 1 (1.5, 4, 0)
+# 3. Undo
+NuCommands.UndoCmd
+# 4. Select the spline. Select the tangent handle at the above end point, right click and Activate Tangent Handle
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Spline:6:1=(5.3283129199705535, -3.3874377618404643, 0)" (1.0862226486206055, 1.8595044612884521, 0)
+Commands.Start ShowInactive
+Commands.SetSelections SelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/InactiveTangent:1:0=(1.5, 4, 0)/LeafType:1=0" (2.0258481800556183, 6.0935766696929932, 0)
+NaFusionUI.AddTangentHandleCmd
+Test.ValidateFusionSketch v1
+Test.ValidateChecksum v1
+NuCommands.CloseDocumentCmd

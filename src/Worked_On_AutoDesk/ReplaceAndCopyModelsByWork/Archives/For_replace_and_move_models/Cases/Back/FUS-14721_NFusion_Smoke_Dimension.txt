@@ -1,0 +1,69 @@
+#
+# Neutron Text Command Script File v1.0
+
+# 1. Start a new sketch.
+NuCommands.NewDocumentCmd FusionAssetType 71d9cb38-84ca-4186-8d2b-48207a08ff25 2
+# 2. Create two intersection lines
+NaFusionUI.DrawPolylineCmd
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (1.3859312534332275, 0.86443006992340088, 0)
+NaFusionUI.SetPoint SketchFirstPointInput (-7.5, -1.5, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-4.5, 4, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-1.5, -1, 0) 3 0
+NuCommands.CommitCmd
+# 3. Create a rectangle
+NaFusionUI.Rectangle2PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (3.3922630492949986, -1.2467291548691088, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (8.7560977853597191, -4.7549670092681966, 0) 3 0
+NuCommands.CommitCmd
+# 4. Create a circle
+NaFusionUI.CircleCenterRadiusCmd
+NaFusionUI.SetPoint SketchCenterPointInput (2.2905024008060288, 2.7544016212224118, 0) 3 0
+NaFusionUI.SetPoint SketchRadiusInput (3, 4, 0) 3 0
+NuCommands.CommitCmd
+# 5. Create an arc
+NaFusionUI.Arc3PtCmd
+NaFusionUI.SetPoint SketchFirstPointInput (-3.2762882441908707, -6.726538696037931, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (-3, -5, 0) 3 0
+NaFusionUI.SetPoint SketchThirdPointInput (-1.5, -5, 0) 3 0
+NuCommands.CommitCmd
+# 6. Invoke Dimension command
+NaFusionUI.SketchDimensionCmd
+Commands.SetBool "SketchEditDimensionOnCreate" 1 
+# 7. Add angular dimension, change the value on created
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(-6, 1.25, 0)" (-5.4542489051818848, 2.2505435943603516, 0)
+NaFusionUI.SetPoint SketchDimTextPoint (-4.3490551914038154, 2.1745275957019015, 0) 2 0
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(-6, 1.25, 0)" (-5.4542489051818848, 2.2505435943603516, 0) "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(-3, 1.5, 0)" (-3.4092197418212891, 2.1820330619812012, 0)
+NaFusionUI.SetPoint SketchDimTextPoint (-4.4360362952318919, 1.5076724663533145, 0) 3 0
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Dim_eAngularDim:32768:1=(-4.4360362952318919, 1.5076724663533145, 0)" (-4.4360362952318919, 1.5076724663533145, 0)
+Commands.Start SketchEditDimensionCmdDef ExecutingBehavior GP-executingBehavior::1
+Commands.SetDouble EditableDimensionHUDInput 1.0471975511965976 (60 deg) (d1)
+NuCommands.CommitCmd
+# 8. Add linear dimension, change the value on created
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:6=(3.3922630492949986, -3.0008480820686527, 0)" (3.3922629356384277, -2.754401683807373, 0)
+NaFusionUI.SetPoint SketchDimTextPoint (2.4064772059101309, -2.8413827250505124, 0) 3 0
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Dim_eLinearDim:16384:1=(2.4064772059101309, -2.8413827250505124, 0)" (2.4064772059101309, -2.8413827250505124, 0)
+Commands.Start SketchEditDimensionCmdDef ExecutingBehavior GP-executingBehavior::1
+Commands.SetDouble EditableDimensionHUDInput 4 (40 mm) (d2)
+NuCommands.CommitCmd
+# 9. Add diameter dimension, change the value on created
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/CircArc:4:1=(0.8570094065868854, 2.7544016212224118, 0)" (3.6803597249090672, 3.1053987145423889, 0)
+NaFusionUI.SetPoint SketchDimTextPoint (4.725973307992172, 4.1750929837476622, 0) 3 0
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Dim_eDiameterDim:65536:1=(4.725973307992172, 4.1750929837476622, 0)" (4.725973307992172, 4.1750929837476622, 0)
+Commands.Start SketchEditDimensionCmdDef ExecutingBehavior GP-executingBehavior::1
+Commands.SetDouble EditableDimensionHUDInput 3 (30 mm) (d3)
+NuCommands.CommitCmd
+# 10. Add radius dimension, change the value on created
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/CircArc:4:2=(-1.0114387585420888, -6.2035940057609853, 0)" (-1.2468419075012207, -5.252406120300293, 0)
+NaFusionUI.SetPoint SketchDimTextPoint (-0.17396220765614051, -6.842513501142033, 0) 3 0
+Commands.SetSelections SketchGeom "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Dim_eRadialDim:131072:1=(-0.17396220765614051, -6.842513501142033, 0)" (-0.17396220765614051, -6.842513501142033, 0)
+Commands.Start SketchEditDimensionCmdDef ExecutingBehavior GP-executingBehavior::1
+Commands.SetDouble EditableDimensionHUDInput 1.5 (15 mm) (d4)
+NuCommands.CommitCmd
+NuCommands.CommitCmd
+NaFusionUI.SketchDimensionCmd
+# 11. Cancel the command
+NuCommands.CancelCmd
+Test.ValidateFusionSketch v1
+Test.ValidateParameterTable v1
+Test.ValidateChecksum v1 /SketchProfile
+NuCommands.CloseDocumentCmd

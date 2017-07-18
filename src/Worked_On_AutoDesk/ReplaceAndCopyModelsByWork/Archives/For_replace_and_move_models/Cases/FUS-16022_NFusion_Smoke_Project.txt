@@ -1,0 +1,17 @@
+#
+# Neutron Text Command Script File v1.0
+
+# 1. Open the attached design
+NuCommands.OpenDocumentCmd "RP=Fusion/Test/Dataset/Sketch/Simple.f3d"
+# 2. Edit the last sketch
+Commands.SetSelections SelectionInput "ONK::CmpInst=Simple/Cmp=Simple/DcNodes/Sketch2" (0, 0, 0)
+Commands.Start SketchActivate
+# 3. Invoke Project command, and select the body edge as shown in the attached video
+Commands.Start ProjectNewCmd
+Commands.SetSelections SketchSelection "ONK::CmpInst=Simple/Cmp=Simple/Bds/Bd=Body1/LeafType:128=(8.7628658641799575, 1.6913896178350414, 3.5002400000000002)" (8.849766731262207, 1.6671057939529419, 3.5002398490905762)
+Commands.SetSelections SketchSelection
+Commands.SetSelections SketchSelection "ONK::CmpInst=Simple/Cmp=Simple/Bds/Bd=Body1/LeafType:128=(6.6486183032980684, 3.448445591210437, 3.5002400000000002)" (6.8380870819091797, 3.2800288200378418, 3.5002400875091553)
+Commands.SetSelections SketchSelection
+NuCommands.CommitCmd
+Test.ValidateFusionSketch v1
+NuCommands.CloseDocumentCmd

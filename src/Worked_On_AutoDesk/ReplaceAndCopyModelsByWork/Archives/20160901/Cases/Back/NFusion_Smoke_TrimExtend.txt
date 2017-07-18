@@ -1,0 +1,30 @@
+#
+# Neutron Text Command Script File v1.0
+
+NuCommands.NewDocumentCmd FusionAssetType 5e6ae3f0-e793-48d0-a8bd-0c784300332e 2
+Commands.Start DrawSpline
+Commands.SetSelections SketchPlaneInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XZ/LeafType:16777216=0" (1.4858663082122803, 0, 1.0616023540496826)
+NaFusionUI.SetPoint SketchPointInput (-7, -4, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (-5, 2.5, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (-2.5, -5, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (1, 2.5, 0) 3 0
+NaFusionUI.SetPoint SketchPointInput (4.5, -3.5, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.DrawPolylineCmd
+NaFusionUI.SetPoint SketchFirstPointInput (-7.5, 2.5, 0) 3 0
+NaFusionUI.SetPoint SketchSecondPointInput (6.5, -2, 0) 3 0
+NuCommands.CommitCmd
+NaFusionUI.SketchTrimCmd
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:1=(-0.5, 0.25, 0)" (-5.6133040189743042, 1.8935620188713074, 0)
+Commands.SetSelections SketchSelectionInput
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(0.88626438612419367, -0.19558506164587364, 0)" (2.1494560241699219, -0.60161101818084717, 0)
+Commands.SetSelections SketchSelectionInput
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Spline:6:1=(-2.4512954891256045, -5.0019500410718303, 0)" (2.6295697689056396, 2.9307422637939453, 0)
+Commands.SetSelections SketchSelectionInput
+NaFusionUI.SketchExtendCmd
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(-2.3802021330046981, 0.85435055685699868, 0)" (-3.8189355731010437, 1.3168005049228668, 0)
+Commands.SetSelections SketchSelectionInput
+Commands.SetSelections SketchSelectionInput "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/Sketches/Sketch=Sketch1/Line:2:2=(-3.0866013022071561, 1.0814075129760339, 0)" (-0.92566394805908203, 0.38682031631469727, 0)
+Commands.SetSelections SketchSelectionInput
+Test.ValidateFusionSketch v1
+NuCommands.CloseDocumentCmd

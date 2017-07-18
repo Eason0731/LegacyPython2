@@ -1,0 +1,58 @@
+#
+# Neutron Text Command Script File v1.0
+
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.NewDocumentCmd FusionAssetType d11e3d85-b539-4f0b-9c07-e2d84a491ad5 2
+Commands.Start ImportDxfFileCommand
+Commands.SetSelections infoPlaneOrSketch "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (1.0465176105499268, 1.4418168067932129, 0)
+Commands.SetFileString infoOpenFile "RP=Fusion/Test/Smoke/Airplane.DXF"
+Commands.SetString infoUnit MmMKS
+Commands.SetString infoUnit InchImperial
+# Nested Trigger: Commands.SetSelections infoPlaneOrSketch
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Test.ValidateTimeline v1timeline 
+Test.ValidateFusionBrowser v1browser 
+# Nested Trigger: NuCommands.CurrentlyOpenDocumentsCmd 819c4db3-24fa-4b45-b3c4-18adf5e3dd01:44039369-f369-430b-983f-ab7193a6388b
+NuCommands.CloseDocumentCmd d11e3d85-b539-4f0b-9c07-e2d84a491ad5
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.NewDocumentCmd FusionAssetType dad6c389-9ee9-4cd4-8250-c46cf81a8ea3 2
+Commands.Start ImportDxfFileCommand
+Commands.SetSelections infoPlaneOrSketch "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (0.96166455745697021, 0.83600807189941406, 0)
+Commands.SetFileString infoOpenFile "RP=Fusion/Test/Dataset/Smoke/all_elements.dxf"
+Commands.SetString infoUnit InchImperial
+Commands.SetString infoInsertMode infoOneSketchPerLayer
+# Nested Trigger: Commands.SetSelections infoPlaneOrSketch
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Test.ValidateTimeline v2timeline 
+Test.ValidateFusionBrowser v2browser 
+# Nested Trigger: NuCommands.CurrentlyOpenDocumentsCmd 819c4db3-24fa-4b45-b3c4-18adf5e3dd01:44039369-f369-430b-983f-ab7193a6388b
+NuCommands.CloseDocumentCmd dad6c389-9ee9-4cd4-8250-c46cf81a8ea3
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.NewDocumentCmd FusionAssetType 12825996-21b9-4d4d-9bc0-3899c2f28f9d 2
+Commands.Start ImportDxfFileCommand
+Commands.SetFileString infoOpenFile "RP=Fusion/Test/Dataset/Smoke/BASE.DXF"
+Commands.SetSelections infoPlaneOrSketch "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (0.67882221937179565, 1.2824640274047852, 0)
+Commands.SetString infoUnit MmMKS
+# Nested Trigger: Commands.SetSelections infoPlaneOrSketch
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Test.ValidateTimeline v3timeline 
+Test.ValidateFusionBrowser v3browser 
+# Nested Trigger: NuCommands.CurrentlyOpenDocumentsCmd 819c4db3-24fa-4b45-b3c4-18adf5e3dd01:44039369-f369-430b-983f-ab7193a6388b
+NuCommands.CloseDocumentCmd 12825996-21b9-4d4d-9bc0-3899c2f28f9d
+# Nested Trigger: NuCommands.SelectCmd
+NuCommands.NewDocumentCmd FusionAssetType 7280e627-2047-49ef-be1b-41503125ac01 2
+Commands.Start ImportDxfFileCommand
+Commands.SetSelections infoPlaneOrSketch "ONK::CmpInst=(Unsaved)/Cmp=(Unsaved)/OriginWorkGeometry/WorkPlane=XY/LeafType:16777216=0" (1.6847792863845825, 2, 0)
+Commands.SetFileString infoOpenFile "RP=Fusion/Test/Dataset/Smoke/Drawing_2010.dxf"
+Commands.SetString infoUnit InchImperial
+Commands.SetBool "infoLayerCheckBox" 0 
+# Nested Trigger: Commands.SetSelections infoPlaneOrSketch
+NuCommands.CommitCmd
+NuCommands.SelectCmd
+Test.ValidateTimeline v4timeline 
+Test.ValidateFusionBrowser v4browser 
+# Nested Trigger: NuCommands.CurrentlyOpenDocumentsCmd 819c4db3-24fa-4b45-b3c4-18adf5e3dd01:44039369-f369-430b-983f-ab7193a6388b
+NuCommands.CloseDocumentCmd 7280e627-2047-49ef-be1b-41503125ac01
