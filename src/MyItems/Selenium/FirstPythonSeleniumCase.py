@@ -36,13 +36,13 @@ def GetFireFox():
     RunSogou(driver,sys._getframe().f_code.co_name[3:])
 
 def RunSogou(driver,browser):
-    driver.maximize_window() #Maxmize the IE browser
-    # Open sogou website then wait for 3 seconds
-    driver.get("http://www.sogou.com")
+    driver.maximize_window() #Maxmize browser
+    # Open baidu website then wait for 3 seconds
+    driver.get("http://www.baidu.com")
     time.sleep(3)
     #Store a content then find searchbox and button on website
-    SearchBox = driver.find_element_by_id("query")
-    SearchButton = driver.find_element_by_id("stb")
+    SearchBox = driver.find_element_by_name("wd")
+    SearchButton = driver.find_element_by_id("su")
     time.sleep(3)
     #Input the content and click searchbutton on website
     SearchBox.send_keys(browser)
@@ -56,13 +56,13 @@ def RunSogou(driver,browser):
     else:
         print "Current title name is " + driver.title
 
-    if browser + u' - 搜狗搜索' == driver.title: #Should add a 'u' before Chinese string
+    if browser + u'_百度搜索' == driver.title: #Should add a 'u' before Chinese string
         print "Title of search page is right!"
     else:
         print "Current title name is " + driver.title
 
     try:
-        assert browser + u' - 搜狗搜索' in driver.title
+        assert browser + u'_百度搜索' in driver.title
         print "Title of search page is right!"
     except Exception,e:
         print e
