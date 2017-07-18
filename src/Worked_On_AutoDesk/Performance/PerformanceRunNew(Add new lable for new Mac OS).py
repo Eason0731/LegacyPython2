@@ -61,9 +61,6 @@ class mongo:
         return insertID
 
 def extractData(fullPath, type):
-	# Just extract performance data, ignore capacity currently
-
-	# parse all files in the inputed directory
 	dataDict = {}
 	dataDictLA = {}
 	for fn in glob.glob(fullPath + os.sep + "*"):
@@ -78,7 +75,6 @@ def extractData(fullPath, type):
 		# right file
 		inputDom = xml.dom.minidom.parse(fn)
 
-		#print("Start recording the data in: " + fn)
 		inputRootNode = inputDom.documentElement
 		errorDeltaValue = "NO_error"
 		for subNode in inputRootNode.childNodes:
@@ -156,12 +152,7 @@ def RunTestCase(exePath, testcasePath, processes):
 	elif os.name == 'posix':
 		cmd = "open -W \"{0}\" --args nothing -execute \"test.run \\\"{1}\\\" /CloseAfterDone\"".format(exePath, testcasePath)
 	print cmd
-	#os.system(cmd)
-	#p=subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	#(stdoutput,erroutput) = p.communicate()
-	#print stdoutput, erroutput
-	#processes = ['Fusion360', 'Autodesk Fusion 360 [dev]', 'Autodesk Fusion 360 [staging]']
-
+	
 	command = Command(cmd, processes)
 	command.run(timeout=900)
 	# Kill the Fusion process because test.run cannot kill itself now
@@ -196,13 +187,11 @@ def parseNtpFile(exePath, ntpFile):
 def execute_sql(sql):
 	result = ();
 	try:
-		#print "execute sql = ", sql
 		conn = MySQLdb.connect(host="10.148.227.108",user="root",passwd="123456",db="db_fusion",charset="utf8")
 		cursor = conn.cursor()
 		n = cursor.execute(sql)
 		result = cursor.fetchall()
-		#print 'insert',n
-		#print result
+    
 		cursor.close()
 		conn.commit()
 		conn.close()
@@ -224,7 +213,6 @@ def	insert_perf_table_intoDB(buildid):
 	if os.name == 'nt':
 		OSname = 'Win'
 	elif os.name == 'posix':
-		#OSname = 'Mac'
 		if (os.path.exists("/Users/Perf_Yosemite")):
                     OSname = 'Mac 10.10'
                 else:
@@ -335,9 +323,9 @@ def process_Model_TestResult(exePath, testCases, buildid):
 	OSname = ''
 	for testcase in testCases:
 		path, fileName = os.path.split(testcase)
-		#print("path, fileName", path, fileName)
+		
 		name, ext = os.path.splitext(fileName)
-		#print("name, ext", name, ext)
+		
 		path, fileName = os.path.split(exePath)
 		resultDir = ''
 		if os.name == 'nt':
@@ -408,41 +396,33 @@ def update_LA_table(buildid, tbl_workflow, tbl_testcase, OSname):
 def update_tbl_viewing(buildid, tbl_viewing, name, OSname, data):
 	categoryList = ('Pan','FreeOrbit','Orbit','Zoom')
 	dict = analyse_data(data, categoryList)
-	#print dict
 	sql = "insert into " + tbl_viewing + "(BuildId, workflow, OS, TestCaseName, PanTime, PanAverageTime,PanFPS,PanAverageFPS,OrbitTime,OrbitAverageTime,OrbitFPS, OrbitAverageFPS,ZoomTime,ZoomAverageTime,ZoomFPS,ZoomAverageFPS,FreeOrbitTime,FreeOrbitAverageTime,FreeOrbitFPS,FreeOrbitAverageFPS) values ('"\
 	+ buildid + "','viewing','" + OSname + "','" + name + "','" + \
 	dict['Pan']['elapsedtime'][0] + "','" + dict['Pan']['elapsedtime'][1] + "','" + dict['Pan']['framerategraphics'][0] + "','" + dict['Pan']['framerategraphics'][1] + "','" + \
 	dict['Orbit']['elapsedtime'][0] + "','" + dict['Orbit']['elapsedtime'][1] + "','" + dict['Orbit']['framerategraphics'][0] + "','" + dict['Orbit']['framerategraphics'][1] + "','" + \
 	dict['Zoom']['elapsedtime'][0] + "','" + dict['Zoom']['elapsedtime'][1] + "','" + dict['Zoom']['framerategraphics'][0] + "','" + dict['Zoom']['framerategraphics'][1] + "','" + \
 	dict['FreeOrbit']['elapsedtime'][0] + "','" + dict['FreeOrbit']['elapsedtime'][1] + "','" + dict['FreeOrbit']['framerategraphics'][0] + "','" + dict['FreeOrbit']['framerategraphics'][1]+ "');"
-	#print sql
 	execute_sql(sql)
 
 
 def update_tbl_compute(buildid, tbl_computer, name, OSname, data):
 	categoryList = ('ComputeAll',)
 	dict = analyse_data(data, categoryList)
-	#print dict
 	sql = "insert into " + tbl_computer + "(BuildId, workflow, OS, TestCaseName, ComputeAll, ComputeAllAverage) values ('" + buildid + "','Computer','" + OSname + "','" + name + "','" + dict['ComputeAll']['elapsedtime'][0] + "','" + dict['ComputeAll']['elapsedtime'][1] + "');"
-	#print sql
 	execute_sql(sql)
 
 def updata_tbl_editmid(buildid, tbl_deitMiddle, name, OSname, data):
 	categoryList = ('EditMiddle', 'Undo' ,)
 	dict = analyse_data(data, categoryList)
-	#print dict
 	sql = "insert into " + tbl_deitMiddle + "(BuildId, workflow, OS, TestCaseName, EditMiddle, EditMiddleAverage, UndoValue, UndoAverage) values ('" + buildid + "','editmid','" + \
 	OSname + "','" + name + "','" + dict['EditMiddle']['elapsedtime'][0] + "','" + dict['EditMiddle']['elapsedtime'][1] + "','" +dict['Undo']['elapsedtime'][0] + "','" + dict['Undo']['elapsedtime'][1] + "');"
-	#print sql
 	execute_sql(sql)
 
 
 def	update_tbl_roll(buildid, tbl_roll, name, OSname, data):
 	categoryList = ('Roll',)
 	dict = analyse_data(data, categoryList)
-	#print dict
 	sql = "insert into " + tbl_roll + "(BuildId, workflow, OS, TestCaseName, Roll, RollAverage) values ('" + buildid + "','Roll','" + OSname + "','" + name + "','" + dict['Roll']['elapsedtime'][0] + "','" + dict['Roll']['elapsedtime'][1] + "');"
-	#print sql
 	execute_sql(sql)
 
 
@@ -461,7 +441,6 @@ def update_tbl_UI(buildid, tbl_UI, name, OSname, data):
 def updata_tbl_data(buildid, tbl_data, name, OSname, data):
 	categoryList = ('Import', 'Export' ,)
 	dict = analyse_data(data, categoryList)
-	#print dict
 	sql = "insert into " + tbl_data + "(BuildId, workflow, OS, TestCaseName, Import, ImportAverage, Export, ExportAverage) values ('" + buildid + "','Data','" + OSname +\
 	"','" + name + "','" + dict['Import']['elapsedtime'][0] + "','" + dict['Import']['elapsedtime'][1] + "','" +dict['Export']['elapsedtime'][0] + "','" + dict['Export']['elapsedtime'][1] + "');"
 	print sql
@@ -524,12 +503,9 @@ def process_LA_TestResult(exePath, testCases, buildid):
 		if -1 != workFlowName.find('_'):
 			workFlowName = workFlowName[(workFlowName.find('_')+1):]
 			print workFlowName
-		#print("path, fileName", path, fileName)
 		name, ext = os.path.splitext(fileName)
-		name = name.replace("'", "")
-		#print("name, ext", name, ext)
+		name = name.replace("'", "")	
 		path, fileName = os.path.split(exePath)
-		#print("path, fileName", path, fileName)
 		resultDir = ''
 		if os.name == 'nt':
 			OSname = 'Win'
@@ -552,7 +528,6 @@ def process_LA_TestResult(exePath, testCases, buildid):
 		elif workFlowName == 'UI':
 			update_tbl_UI(buildid, tbl_UI, name, OSname, data)
 			print "123456789"
-	#update_LA_table(buildid, tbl_workflow, tbl_testcase, OSname)
 
 def RunMgr(exePath, ntpFile, processes,label, ntpProject):
 	testCases = parseNtpFile(exePath, ntpFile)

@@ -3,9 +3,7 @@ import os
 def ReplaceFileNameWithSpecificName(PerfResultDir,FindContent,ReplaceContent): 
     for root,dirs,filenames in os.walk(PerfResultDir):
         for myFile in filenames:
-            myFile = myFile.lower() #Convert the root path to lower
-            #if 'xml' in myFile:
-                #print myFile            
+            myFile = myFile.lower() #Convert the root path to lower  
             if FindContent in myFile:
                 OldNameFile = os.path.join(root,myFile)
                 myFile = myFile.replace (FindContent,ReplaceContent)

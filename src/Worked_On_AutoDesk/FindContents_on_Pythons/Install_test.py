@@ -240,10 +240,6 @@ class OSVERSIONINFOEXW(ctypes.Structure):
                 ('wReserved', ctypes.c_byte)]
 
 def get_os_version():
-    """
-    Get's the OS major and minor versions.  Returns a tuple of
-    (OS_MAJOR, OS_MINOR).
-    """
     os_version = OSVERSIONINFOEXW()
     os_version.dwOSVersionInfoSize = ctypes.sizeof(os_version)
     retcode = ctypes.windll.Ntdll.RtlGetVersion(ctypes.byref(os_version))
@@ -512,8 +508,6 @@ if __name__=='__main__':
             copyFiles(os.path.join(remoteDir, 'Scripts', 'dll'), installPath)
         
         # Copy Regression stuff
-        #LOG.LogInfo('Start to copy Regression test model and other stuff.')
-        #copyFiles(r'{0}\builds\{1}\Regression'.format(remoteDir, label), os.path.join(installPath, r'Neutron\Test\Sample\Regression'))
         cfgFilePath = os.path.join(installPath, r'Neutron\NTest\UI\NTestUI\Resources\RunTime', runtimeFileName)
         
     elif os.name == 'posix':
@@ -559,8 +553,6 @@ if __name__=='__main__':
         copyDir('Cache/{0}'.format(product.lower()), os.path.join(os.path.dirname(webdeployPath), 'Web Services'))
         
         # Copy Regression stuff
-        #LOG.LogInfo('Start to copy Regression test model and other stuff.')
-        #copyDir('{0}/builds/{1}/Regression'.format(sharePoint, label), os.path.join(installPath, 'Neutron/Test/Sample/Regression'))
         cfgFilePath = os.path.join(installPath, 'Applications/NTest/NTest/UI/NTestUI/Resources/RunTime', runtimeFileName)
         
         LOG.LogInfo('Umount the remote direcotry [{0}]'.format(remoteDir))
@@ -574,16 +566,9 @@ if __name__=='__main__':
 
     #check if the installed version is the correct one
     SetEnvironmentVariables()
-    #fusion = runApplication("IPC.startTCPServer", product)
-    #print(fusion.pid)
 
     #Sleep two mins to wait Fusion launch
     time.sleep(60*2)
-    #buildNoStr = SendTxtCmdToFusion('Application.SoftwareVersion')
-    #buildNo = buildNoStr.split(',')[0]
-    #if buildNo != label:
-    #    print('Installed wrong build: {0} instead of {1}'.format(buildNo, label))
-    #    sys.exit(2)
 
     KillRelatedProcess(killProcesses)
     SetVersionToPrepertyFile(labelFilePath, label)

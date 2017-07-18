@@ -35,9 +35,6 @@ def SearchFusionPath():
         print "Your Windows PC didn't install Fusion"
         
 def OpenMultipleFusionBuilds(FusionPath,myFile):
-    #print "FusionPath is: " + FusionPath
-    #print "Filename is " + myFile
-    #print "The Full Path of Fusion on your disk is: " + os.path.join(FusionPath,myFile)
     cc = raw_input ("Would you want to open this build?(Y/N)")
     if (cc.lower() == 'y'):
         os.system(r'start '+ os.path.join(FusionPath,myFile) + '')
@@ -45,7 +42,6 @@ def OpenMultipleFusionBuilds(FusionPath,myFile):
         print "You've canceled this operation"
     else:
         print "You've typed a wrong word!"
-    #return os.path.join(FusionPath,myFile)
     
 
 if __name__ == '__main__':

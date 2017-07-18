@@ -332,7 +332,6 @@ def runApplication(text, product):
         cmd = "open -W \"" + exeFile + "\" --args nothing -execute " + text 
     print(cmd)
     child = subprocess.Popen(cmd,shell = True, close_fds = None,stdout = None,stderr = None, preexec_fn = None)
-    #child = subprocess.Popen(cmd)
     return child
 
 def send_request(sock,req):
@@ -531,8 +530,6 @@ if __name__=='__main__':
             copyFiles(os.path.join(remoteDir, 'Scripts', 'dll'), installPath)
         
         # Copy Regression stuff
-        #LOG.LogInfo('Start to copy Regression test model and other stuff.')
-        #copyFiles(r'{0}\builds\{1}\Regression'.format(remoteDir, label), os.path.join(installPath, r'Neutron\Test\Sample\Regression'))
         cfgFilePath = os.path.join(installPath, r'Neutron\NTest\UI\NTestUI\Resources\RunTime', runtimeFileName)
         
     elif os.name == 'posix':
@@ -554,20 +551,7 @@ if __name__=='__main__':
                 os.system('mkdir -p /"{0}/"'.format(testPath))
             copyDir('{0}/builds/{1}/{2}/NTest/{3}'.format(sharePoint, label, OS, testDir), os.path.join(installPath, 'Neutron'))
 
-            '''
-        else: #For RC and CU builds to copy test case
-            #copyDir('{0}/builds/{1}/{2}/NTest/Neutron'.format(sharePoint, label, OS), os.path.join(installPath, 'Neutron/Neutron/Test'))
-            testDirList = ['Fusion', 'Animation', 'FusionDoc', 'NeuCAM', 'Neutron', 'Simulation']
-            for testDir in testDirList:
-                testPath = os.path.join(installPath, 'Neutron', testDir)
-                if not os.path.exists(testPath):
-                    print('mkdir -p /"{0}/"'.format(testPath))
-                    os.system('mkdir -p /"{0}/"'.format(testPath))
-                copyDir('{0}/builds/{1}/{2}/NTest/{3}'.format(sharePoint, label, OS, testDir), os.path.join(testPath, 'Test'))  
-
-            '''        
         LOG.LogInfo('Update the fusion.xml.')
-        # ReplaceCfgXML(os.path.join(sharePoint, 'Scripts', 'FusionXML'), os.path.join(installPath, 'Applications/Fusion/Configuration'))
         ReplaceCfgXML(os.path.join(os.getcwd(), 'FusionXML'), os.path.join(installPath, 'Applications/Fusion/Configuration'))
          
         LOG.LogInfo('Start to copy NTest 3p files to local')
@@ -593,8 +577,6 @@ if __name__=='__main__':
         copyDir('Cache/{0}'.format(product.lower()), os.path.join(os.path.dirname(webdeployPath), 'Web Services'))
         
         # Copy Regression stuff
-        #LOG.LogInfo('Start to copy Regression test model and other stuff.')
-        #copyDir('{0}/builds/{1}/Regression'.format(sharePoint, label), os.path.join(installPath, 'Neutron/Test/Sample/Regression'))
         cfgFilePath = os.path.join(installPath, 'Applications/NTest/NTest/UI/NTestUI/Resources/RunTime', runtimeFileName)
         
         LOG.LogInfo('Umount the remote direcotry [{0}]'.format(remoteDir))
@@ -613,12 +595,7 @@ if __name__=='__main__':
 
     #Sleep two mins to wait Fusion launch
     time.sleep(60*2)
-    #buildNoStr = SendTxtCmdToFusion('Application.SoftwareVersion')
-    #buildNo = buildNoStr.split(',')[0]
-    #if buildNo != label:
-    #    print('Installed wrong build: {0} instead of {1}'.format(buildNo, label))
-    #    sys.exit(2)
-
+    
     KillRelatedProcess(killProcesses)
     SetVersionToPrepertyFile(labelFilePath, label)
 

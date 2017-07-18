@@ -156,37 +156,19 @@ def polishPath(testCasesDir, FusionBuild):
 
 if  __name__  ==  "__main__":   
 
-
-    
-
     # Test remove same folder on ListTestDir
     rawTestDirList = [
                       'Simulation\Test\Smoke',
                       'Fusion\Test',
                       'FusionDoc\Test\Smoke',
-                  # 'Animation\Test',
-                  # 'FusionDoc\Test',
-                   'Simulation\Test\Smoke',
-                  # 'Simulation\Test',
-                   #'Neutron\Test',
-                 #  'Neutron\Test\Defects',
-                  # 'Neutron\Test\Migration',
-                  # 'Neutron\Test\Workflow',
-                 #  'NeuCAM\Test',
-                    'NeuCAM\Test\Smoke',
-                 #  'Neutron\Test',
-                   'FusionDoc\Test\Smoke'
-                   
+                      'Simulation\Test\Smoke',   
+                      'NeuCAM\Test\Smoke',
+                      'FusionDoc\Test\Smoke'
                    ]
     
     TestDirList = mergeTestDirOnList(rawTestDirList)
     print(TestDirList)
-    
-    
-
-    #Test GenerateNtp()
     FusionBuild = r'C:\Users\t_zhanj\AppData\Local\Autodesk\webdeploy\dev\a54b4b720935980385e2d8a3ba6e9cdba3a02af4'
-    #FusionBuild = r'C:\Users\t_zhanj\AppData\Local\Autodesk\webdeploy\dev\d5a84514d1e3695a3cca2b057c92471e8720004e'
     rawTestDirList = ['Fusion\Test',
                    'Animation\Test',
                    'FusionDoc\Test',

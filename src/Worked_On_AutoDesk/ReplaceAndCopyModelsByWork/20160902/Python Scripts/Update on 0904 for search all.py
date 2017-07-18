@@ -25,12 +25,7 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
     for root,dirnames,filenames in os.walk(TestCasesDir):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
-            #print "root is:" + root  root is the path which your file in now
-            if "txt" in myFile:       
-                #print "File Path is: " + TxtFile #Show the txt file path(Should open this)
-                #print "File Name is: " + myFile #Show the txt file name
-                #print "the full name of the file is:" + os.path.join(parent,myFile)
-                
+                if "txt" in myFile:       
                 print "================================ Start ================================"
                 print "File on " + TxtFile   
                 files = open (TxtFile,'r') #read mode
@@ -45,13 +40,7 @@ def ReplaceContentOnDir(TestCasesDir,s,p):
                     files = open (TxtFile,'w') # write mode
                     files.writelines(content.replace (s, p))
                     files.close()
-                    print s + " has been replaced as " + p + " Success!"
-                
-                    #f = open (TxtFile,'r')
-                    #content = f.read()
-                    #f.close()
-                
-                
+                    print s + " has been replaced as " + p + " Success!"                
                 else:
                     print s + " Not found on File!"
                     

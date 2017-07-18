@@ -9,8 +9,6 @@ installPath=r'C:\Users\t_zhanj\AppData\Local\Autodesk\webdeploy\dev\1ad3d94d72b6
 os.system("ROBOCOPY /e "+r'{0}\builds\{1}\{2}\NTest'.format(remoteDir, label, OS)+" "+installPath)
 print("Copy NTest Successful");
 
-
-
 remoteDir2=r'\\eptserver\dropbox\John'
 filename=r'Fusion360.xml'
 targetpath= installPath + r'\Applications\Fusion\Fusion360App'

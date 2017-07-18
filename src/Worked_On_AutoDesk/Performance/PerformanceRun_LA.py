@@ -43,9 +43,6 @@ class Command(object):
 				p = subprocess.Popen(["killall", "-9", process], stdin=subprocess.PIPE, stdout=subprocess.PIPE, bufsize=1)
 
 def extractData(fullPath, type):
-	# Just extract performance data, ignore capacity currently
-
-	# parse all files in the inputed directory
 	dataDict = {}
 	dataDictLA = {}
 	for fn in glob.glob(fullPath + os.sep + "*"):
@@ -60,7 +57,6 @@ def extractData(fullPath, type):
 		# right file
 		inputDom = xml.dom.minidom.parse(fn)
 
-		#print("Start recording the data in: " + fn)
 		inputRootNode = inputDom.documentElement
 		errorDeltaValue = "NO_error"
 		for subNode in inputRootNode.childNodes:
@@ -157,12 +153,7 @@ def RunTestCase(exePath, testcasePath, processes, ntpProject):
 	elif os.name == 'posix':
 		cmd = "open -W \"{0}\" --args nothing -execute \"test.run \\\"{1}\\\" /CloseAfterDone\"".format(exePath, testcasePath)
 	print cmd
-	#os.system(cmd)
-	#p=subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	#(stdoutput,erroutput) = p.communicate()
-	#print stdoutput, erroutput
-	#processes = ['Fusion360', 'Autodesk Fusion 360 [dev]', 'Autodesk Fusion 360 [staging]']
-
+	
 	command = Command(cmd, processes)
 	returncode = command.run(timeout=900)
 
@@ -264,10 +255,6 @@ def RunMgr(exePath, ntpFile, processes,label, ntpProject):
 			print "Test case {0} is not stable, rerun it".format(testcase)
 			for i in range(3):
 				RunTestCase(exePath, testcase, processes, ntpProject)
-	#if -1 != ntpProject.lower().find('perf'):
-		#process_Model_TestResult(exePath, testCases,label)
-	#elif -1 != ntpProject.lower().find('largeassembly'):
-		#process_LA_TestResult(exePath, testCases,label)
 	WriteResultToDB(ntpFile, exePath)
 
 def WriteResultToDB(ntpFile, exePath):
@@ -292,4 +279,3 @@ def WriteResultToDB(ntpFile, exePath):
 if __name__ == '__main__':
 	a = CheckData(r"E:\TESTDATA\NewDesign\production\fusion.exe", r"E:\TESTDATA\NewDesign\Result\Neutron\Test\Performance\Modeling\Image\Fusion_Image_Decal.txt")
 	print a
-	#RunMgr("c:\\fusion.exe", "PerformanceNew.ntp")

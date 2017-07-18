@@ -6,10 +6,10 @@ def FindContent(Path,Content):
     for root,dirnames,filenames in os.walk(Path):
         for myFile in filenames:
             TxtFile = os.path.join(root,myFile)
-            #print "root is:" + root  root is the path which your file in now
+            print "root is:" + root  root is the path which your file in now
             if 'txt' in myFile:
                 i=0
-                #print TxtFile
+                print TxtFile
                 f = open (TxtFile, 'r')
                 Filecontent = f.readlines()
                 for eachline in Filecontent:                 

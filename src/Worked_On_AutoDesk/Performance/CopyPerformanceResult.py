@@ -9,17 +9,12 @@ import time
 import DeleteFailedXmls
 
 def CopyResult(PerfResultDir,OutputFolder):
-    #PerfResultDir = r'D:\Perf_New\2.1.4242_Win7_performance'
-    #You can edit on this dir
-    #OutputFolder = r'D:\ActualResultOutPut'  
     for root,dirs,filenames in os.walk(PerfResultDir):
         for myFile in filenames:
             if 'xml' in myFile:
-                #print "Copying " + root
                 ActualResultDir = root.split('\\')[-1]
                 copyFiles(root, os.path.join(OutputFolder,ActualResultDir))
 
-        
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
         return 
@@ -52,8 +47,6 @@ if __name__ == '__main__':
     PerfResultDir = raw_input ("Please input the Performance Result folder:")
     if os.path.exists(PerfResultDir):
         OutputFolder = PerfResultDir
-        #if not os.path.exists(OutputFolder):
-            #os.makedirs(OutputFolder)
         print "================================="
         print "Deleting Failed xml files......"
         DeleteFailedXmls.DeleteFailedXmlFiles(PerfResultDir)

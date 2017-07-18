@@ -263,16 +263,11 @@ def Run(workSpace, executeFile, ntpProject, label, jobname, processes):
             print 'Start to upload performance results to server: {0}'.format(sourceResultDir)
             print 'Destiny folder: {0}'.format(os.path.join(os.path.join(uploadTarget, 'Performance'), os.path.basename(outputFile)))
             copyFiles(sourceResultDir, os.path.join(os.path.join(uploadTarget, 'Performance'), os.path.basename(outputFile)))
-
-    #UploadResult(outputFilehtm, uploadTarget)
-    #UploadResult(outputFilexml, uploadTarget)
+            
     print("Finished copy results")
-    #ParseResult(outputFilehtm)
      
     if os.name == 'posix':
         UmountSMBS('upload_point')
-    
-    #Convert2JnuitResult(outputFilexml, os.path.join(workSpace, 'JUnitResult'))
     return True
 
 def Usage():
@@ -294,7 +289,6 @@ if __name__ == '__main__':
     
     pyFile = os.path.abspath(sys.argv[0])
     workSpace = os.path.split(pyFile)[0]
-    #print workSpace
     product = ''
     ntpProject = ''
     label = ''
