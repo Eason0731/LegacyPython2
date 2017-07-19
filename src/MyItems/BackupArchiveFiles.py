@@ -26,7 +26,7 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDri
     BackupFolder = os.path.join("D:\\",BackupFolder)
     if os.path.exists(BackupFolder):
         shutil.rmtree(BackupFolder)
-        print "Delete the legacy backup folder: " + BackupFolder +" successfully!"
+        print "Delete old legacy backup folder: " + BackupFolder +" successfully!"
         print "                                "
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
