@@ -1,2 +1,0 @@
-NuCommands.OpenDocumentCmd "RP=Fusion/Test/Dataset/Sketch/Simple.f3d"
-NuCommands.OpenDocumentCmd  "RP=Fusion/Test/Dataset/Sketch/001.f3d"
