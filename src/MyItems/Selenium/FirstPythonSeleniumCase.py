@@ -8,7 +8,7 @@ import platform
 def GetIE():
     if platform.system() == 'Windows':
         IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
-        os.environ["webdriver.ie.driver"] = IEdriver #Set a system environment for ie browser then load IEDriverServer file path
+        os.environ["webdriver.ie.driver"] = IEdriver # Set a system environment for ie browser then load IEDriverServer file path
         driver = webdriver.Ie(IEdriver)# Lanuch IE browser
         RunSogou(driver,sys._getframe().f_code.co_name[3:])
     else:
@@ -26,8 +26,8 @@ def GetChrome():
 def GetFireFox():
     if platform.system() == 'Windows':
         FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
-        os.environ['path'] = FireFox #Should add firefox browser to PATH environment for additional
-        #Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
+        os.environ['path'] = FireFox # Should add firefox browser to PATH environment for additional
+        # Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
         driver = webdriver.Firefox()
     elif platform.system() == 'Darwin':
         GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver')
@@ -40,16 +40,21 @@ def RunSogou(driver,browser):
     # Open baidu website then wait for 3 seconds
     driver.get("http://www.baidu.com")
     time.sleep(3)
-    #Store a content then find searchbox and button on website
+    # Check the title name on index of baidu
+    try:
+        assert u'百度一下，你就知道' in driver.title
+    except Exception,e:
+        print str(e)
+    # Store a content then find searchbox and button on website
     SearchBox = driver.find_element_by_name("wd")
     SearchButton = driver.find_element_by_id("su")
     time.sleep(3)
-    #Input the content and click search button on website
+    # Input the content and click search button on website
     SearchBox.send_keys(browser)
     time.sleep(3)
     SearchButton.click()
     time.sleep(3)
-    #To check the titile is right
+    # To check the titile is right
     if browser in driver.title:
         print "Title of search page is right!"
         print "Pass: " + browser
@@ -67,8 +72,8 @@ def RunSogou(driver,browser):
     except Exception,e:
         print e
         print "Current title name is " + driver.title
-    
-    driver.quit() #Quit the browser
+    time.sleep(2)
+    driver.quit() # Quit the browser
 
 if __name__ == '__main__':
     GetIE()
