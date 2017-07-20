@@ -43,8 +43,10 @@ def RunSogou(driver,browser):
     # Check the title name on index of baidu
     try:
         assert u'百度一下，你就知道' in driver.title
+        print "The title name on the index of Baidu is correct!"
     except Exception,e:
         print str(e)
+        print "Current title name is " + driver.title
     # Store a content then find searchbox and button on website
     SearchBox = driver.find_element_by_name("wd")
     SearchButton = driver.find_element_by_id("su")
