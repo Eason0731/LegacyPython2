@@ -149,10 +149,10 @@ def CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'KONAMI')
         os.makedirs(BackupFolder)
         copyFiles(sourceKONAMI,BackupFolder)
-        print "Backup KONAMI successfully!"
+        print "Backup Pro Evolution Soccer successfully!"
     else:
         shutil.move(os.path.join(BackupFolder,"KONAMI"), sourceKONAMI)
-        print "Put back KONAMI successfully!"
+        print "Put back Pro Evolution Soccer successfully!"
 
 def CopyTDU(sourceTDU,BackupFolder,IsBackup):
     if IsBackup == '1':
