@@ -80,7 +80,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(source2Kfolder):
                 Copy2K(source2Kfolder,BackupFolder,IsBackup)
             else:
-                print "Destination path of 2K Sports " + source2Kfolder + " already exists and won't put back"
+                print "Won't put back -- Original path of 2K Sports " + source2Kfolder + " already exists"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'KONAMI')):
@@ -88,7 +88,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(sourceKONAMI):
                 CopyKONAMI(sourceKONAMI,BackupFolder,IsBackup)
             else:
-                print "Destination path of Pro Evolution Soccer " + sourceKONAMI + " already exists and won't put back"
+                print "Won't put back -- Original path of Pro Evolution Soccer " + sourceKONAMI + " already exists"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'Test Drive Unlimited')):
@@ -96,7 +96,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(sourceTDU):
                 CopyTDU(sourceTDU,BackupFolder,IsBackup)
             else:
-                print "Destination path of Test Drive Unlimited " + sourceTDU + " already exists and won't put back"
+                print "Won't put back -- Original path of Test Drive Unlimited " + sourceTDU + " already exists"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'Tencent Files')):
@@ -104,7 +104,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(sourceTencentFiles):
                 CopyTencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
             else:
-                print "Destination path of Tencent Files " + sourceTencentFiles + " already exists and won't put back"
+                print "Won't put back -- Original path of Tencent Files " + sourceTencentFiles + " already exists"
             print "                                "
 
         if os.path.exists(os.path.join(BackupFolder,'Bus Driver')):
@@ -112,7 +112,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(sourceBusDriver):
                 CopyBusDriver(sourceBusDriver,BackupFolder,IsBackup)
             else:
-                print "Destination path of Bus Driver " + sourceBusDriver + " already exists and won't put back"
+                print "Won't put back -- Original path of Bus Driver " + sourceBusDriver + " already exists"
             print "                                "
 
         if os.path.exists(os.path.join(BackupFolder,'WeChat Files')):
@@ -120,7 +120,7 @@ def CopyMyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceB
             if not os.path.exists(sourceWeChat):
                 CopyWeChatFiles(sourceWeChat,BackupFolder,IsBackup)
             else:
-               print "Destination path of WeChat Files " + sourceWeChat + " already exists and won't put back"
+               print "Won't put back -- Original path of WeChat Files " + sourceWeChat + " already exists"
             print "                                "
                 
         if i == 0:
