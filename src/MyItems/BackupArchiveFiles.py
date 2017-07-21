@@ -45,7 +45,7 @@ def MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
         print "                                "
             
         if os.path.exists(sourceKONAMI):
-            KONAMI(sourceKONAMI,BackupFolder,IsBackup)
+            PES(sourceKONAMI,BackupFolder,IsBackup)
         else:
             print "Won't back -- Not found Pro Evolution Soccer's archive files"
         print "                                "
@@ -86,7 +86,7 @@ def MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
         if os.path.exists(os.path.join(BackupFolder,'KONAMI')):
             i = i + 1 
             if not os.path.exists(sourceKONAMI):
-                KONAMI(sourceKONAMI,BackupFolder,IsBackup)
+                PES(sourceKONAMI,BackupFolder,IsBackup)
             else:
                 print "Won't put back -- Original path of Pro Evolution Soccer " + sourceKONAMI + " already exists"
             print "                                "
@@ -144,7 +144,7 @@ def My2K(source2Kfolder,BackupFolder,IsBackup):
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
         print "Put back 2K successfully!"
       
-def KONAMI(sourceKONAMI,BackupFolder,IsBackup):
+def PES(sourceKONAMI,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'KONAMI')
         os.makedirs(BackupFolder)
