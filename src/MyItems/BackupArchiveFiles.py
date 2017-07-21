@@ -3,7 +3,7 @@ import os
 import shutil
 import time
 
-def MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
+def MainMethod(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     Choose = raw_input("""
 =========Welcome to Backup Archive Files===========
 1. Backup archive files before reinstall OS
@@ -13,13 +13,13 @@ Press AnyKey to Exit
 
 Please Choose:""")
     if Choose == '1':
-        Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
+        Backup(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
     elif Choose == '2':
-        PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
+        PutBack(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
     else:
         exit(0)
     
-def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
+def Backup(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     IsBackup = '1'
     BackupFolder = time.strftime("%Y%m%d",time.localtime())
     BackupFolder = BackupFolder + "_Backup"
@@ -31,11 +31,11 @@ def Backup(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDri
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
     print "============================================"
-    MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
+    MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
     print "============================================"
     ExitOrNot()
         
-def MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
+def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
     print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
     if IsBackup == '1':
         if os.path.exists(source2Kfolder):
@@ -44,8 +44,8 @@ def MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
             print "Won't back -- Not found 2K Sports's archive files"
         print "                                "
             
-        if os.path.exists(sourceKONAMI):
-            PES(sourceKONAMI,BackupFolder,IsBackup)
+        if os.path.exists(sourcePES):
+            PES(sourcePES,BackupFolder,IsBackup)
         else:
             print "Won't back -- Not found Pro Evolution Soccer's archive files"
         print "                                "
@@ -85,10 +85,10 @@ def MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDr
                 
         if os.path.exists(os.path.join(BackupFolder,'KONAMI')):
             i = i + 1 
-            if not os.path.exists(sourceKONAMI):
-                PES(sourceKONAMI,BackupFolder,IsBackup)
+            if not os.path.exists(sourcePES):
+                PES(sourcePES,BackupFolder,IsBackup)
             else:
-                print "Won't put back -- Original path of Pro Evolution Soccer " + sourceKONAMI + " already exists"
+                print "Won't put back -- Original path of Pro Evolution Soccer " + sourcePES + " already exists"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'Test Drive Unlimited')):
@@ -144,14 +144,14 @@ def My2K(source2Kfolder,BackupFolder,IsBackup):
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
         print "Put back 2K successfully!"
       
-def PES(sourceKONAMI,BackupFolder,IsBackup):
+def PES(sourcePES,BackupFolder,IsBackup):
     if IsBackup == '1':
         BackupFolder = os.path.join(BackupFolder,'KONAMI')
         os.makedirs(BackupFolder)
-        copyFiles(sourceKONAMI,BackupFolder)
+        copyFiles(sourcePES,BackupFolder)
         print "Backup Pro Evolution Soccer successfully!"
     else:
-        shutil.move(os.path.join(BackupFolder,"KONAMI"), sourceKONAMI)
+        shutil.move(os.path.join(BackupFolder,"KONAMI"), sourcePES)
         print "Put back Pro Evolution Soccer successfully!"
 
 def TDU(sourceTDU,BackupFolder,IsBackup):
@@ -194,13 +194,13 @@ def WeChatFiles(sourceWeChat,BackupFolder,IsBackup):
         shutil.move(os.path.join(BackupFolder,"WeChat Files"), sourceWeChat)
         print "Put back WeChat Files successfully!"
 
-def PutBack(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
+def PutBack(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input back up folder path:")
     print "============================================"
     if BackupFolder.strip():
         if os.path.exists(BackupFolder):
             IsBackup = '2'
-            MyFiles(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
+            MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
         else:
             print BackupFolder + " is not exists!"
     else:
@@ -212,7 +212,7 @@ def ExitOrNot():
     while(True):
         cc = raw_input("Back to main menu? (Y/N)")
         if cc.lower() == 'y':
-            MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
+            MainMethod(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
             break
         elif cc.lower() == 'n':
             exit(0)
@@ -251,10 +251,10 @@ def copyFiles(sourceDir, targetDir):
 
 if __name__ == "__main__":
     source2Kfolder = os.path.join(os.environ['AppData'],'2K Sports') 
-    sourceKONAMI = os.path.join(os.environ['USERPROFILE'],'Documents','KONAMI')
+    sourcePES = os.path.join(os.environ['USERPROFILE'],'Documents','KONAMI')
     sourceTDU = os.path.join(os.environ['USERPROFILE'],'Documents','Test Drive Unlimited')
     sourceTencentFiles = os.path.join(os.environ['USERPROFILE'],'Documents','Tencent Files')
     sourceBusDriver = os.path.join(os.environ['USERPROFILE'],'Documents','Bus Driver')
     sourceWeChat = os.path.join(os.environ['USERPROFILE'],'Documents','WeChat Files')
     
-    MainMethod(source2Kfolder,sourceKONAMI,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
+    MainMethod(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat)
