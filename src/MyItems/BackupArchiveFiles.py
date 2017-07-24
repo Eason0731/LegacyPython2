@@ -37,41 +37,42 @@ def Backup(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver
         
 def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
     print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
+    Info = "'s archive files"
     if IsBackup == '1':
         if os.path.exists(source2Kfolder):
             My2K(source2Kfolder,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found 2K Sports's archive files"
+            print "Won't back -- Not found 2K Sports" + Info
         print "                                "
             
         if os.path.exists(sourcePES):
             PES(sourcePES,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Pro Evolution Soccer's archive files"
+            print "Won't back -- Not found Pro Evolution Soccer" + Info
         print "                                "
 
         if os.path.exists(sourceTDU):
             TDU(sourceTDU,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Test Drive Unlimited's archive files"
+            print "Won't back -- Not found Test Drive Unlimited" + Info
         print "                                "
 
         if os.path.exists(sourceTencentFiles):
             TencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Tencent Files's archive files"
+            print "Won't back -- Not found Tencent Files" + Info
         print "                                "
 
         if os.path.exists(sourceBusDriver):
             BusDriver(sourceBusDriver,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Bus Driver's archive files"
+            print "Won't back -- Not found Bus Driver" + Info
         print "                                "
 
         if os.path.exists(sourceWeChat):
             WeChatFiles(sourceWeChat,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found WeChat Files's archive files"
+            print "Won't back -- Not found WeChat Files" + Info
         print "                                "
     else:
         i = 0
