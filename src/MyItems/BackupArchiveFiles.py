@@ -195,7 +195,7 @@ def WeChatFiles(sourceWeChat,BackupFolder,IsBackup):
         print "Put back WeChat Files successfully!"
 
 def PutBack(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
-    BackupFolder = raw_input ("Please input back up folder path:")
+    BackupFolder = raw_input ("Please input backup folder path:")
     print "============================================"
     if BackupFolder.strip():
         if os.path.exists(BackupFolder):
