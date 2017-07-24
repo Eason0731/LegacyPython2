@@ -10,7 +10,7 @@ def IE():
         IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
         os.environ["webdriver.ie.driver"] = IEdriver # Set a system environment for ie browser then load IEDriverServer file path
         driver = webdriver.Ie(IEdriver)# Lanuch IE browser
-        RunSogou(driver,sys._getframe().f_code.co_name[3:])
+        RunSogou(driver,sys._getframe().f_code.co_name)
     else:
         print "IE cannot be ran on non-Windows OS"
     
@@ -21,7 +21,7 @@ def Chrome():
         ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver')
     os.environ['webdriver.chrome.driver'] = ChromeDriver
     driver = webdriver.Chrome(ChromeDriver)
-    RunSogou(driver,sys._getframe().f_code.co_name[3:])
+    RunSogou(driver,sys._getframe().f_code.co_name)
 
 def FireFox():
     if platform.system() == 'Windows':
@@ -33,7 +33,7 @@ def FireFox():
         GeckoDriver = os.path.join(os.path.abspath('.'),'Drivers','geckodriver')
         os.environ['webdriver.gecko.driver'] = GeckoDriver
         driver = webdriver.Firefox(GeckoDriver)
-    RunSogou(driver,sys._getframe().f_code.co_name[3:])
+    RunSogou(driver,sys._getframe().f_code.co_name)
 
 def RunSogou(driver,browser):
     driver.maximize_window() #Maxmize browser
