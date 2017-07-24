@@ -5,7 +5,7 @@ import time
 import sys
 import platform
 
-def GetIE():
+def IE():
     if platform.system() == 'Windows':
         IEdriver = os.path.join(os.path.abspath('.'),'Drivers','IEDriverServer.exe') #Use relative path to get the path of IEDriverServer
         os.environ["webdriver.ie.driver"] = IEdriver # Set a system environment for ie browser then load IEDriverServer file path
@@ -14,7 +14,7 @@ def GetIE():
     else:
         print "IE cannot be ran on non-Windows OS"
     
-def GetChrome():
+def Chrome():
     if platform.system() == 'Windows':
         ChromeDriver = os.path.join(os.path.abspath('.'),'Drivers','ChromeDriver.exe')  
     elif platform.system() == 'Darwin':
@@ -23,7 +23,7 @@ def GetChrome():
     driver = webdriver.Chrome(ChromeDriver)
     RunSogou(driver,sys._getframe().f_code.co_name[3:])
 
-def GetFireFox():
+def FireFox():
     if platform.system() == 'Windows':
         FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
         os.environ['path'] = FireFox # Should add firefox browser to PATH environment for additional
