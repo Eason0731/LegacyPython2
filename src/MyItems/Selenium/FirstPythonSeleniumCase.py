@@ -78,6 +78,6 @@ def RunSogou(driver,browser):
     driver.quit() # Quit the browser
 
 if __name__ == '__main__':
-    GetIE()
-    GetChrome()
-    GetFireFox()
+    IE()
+    Chrome()
+    FireFox()
