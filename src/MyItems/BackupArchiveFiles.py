@@ -37,7 +37,7 @@ def Backup(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver
         
 def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
     print time.strftime("Start time :%Y-%m-%d %X",time.localtime())
-    Info = "'s archive files"
+    Info = "'s archive files on this PC"
     if IsBackup == '1':
         if os.path.exists(source2Kfolder):
             My2K(source2Kfolder,BackupFolder,IsBackup)
@@ -81,7 +81,7 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             if not os.path.exists(source2Kfolder):
                 My2K(source2Kfolder,BackupFolder,IsBackup)
             else:
-                print "Won't put back -- Original path of 2K Sports " + source2Kfolder + " already exists"
+                print "Won't put back -- Path of 2K Sports " + source2Kfolder + " had existed"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'KONAMI')):
@@ -89,7 +89,7 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             if not os.path.exists(sourcePES):
                 PES(sourcePES,BackupFolder,IsBackup)
             else:
-                print "Won't put back -- Original path of Pro Evolution Soccer " + sourcePES + " already exists"
+                print "Won't put back -- Path of Pro Evolution Soccer " + sourcePES + " had existed"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'Test Drive Unlimited')):
@@ -97,7 +97,7 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             if not os.path.exists(sourceTDU):
                 TDU(sourceTDU,BackupFolder,IsBackup)
             else:
-                print "Won't put back -- Original path of Test Drive Unlimited " + sourceTDU + " already exists"
+                print "Won't put back -- Path of Test Drive Unlimited " + sourceTDU + " had existed"
             print "                                "
                 
         if os.path.exists(os.path.join(BackupFolder,'Tencent Files')):
@@ -105,7 +105,7 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             if not os.path.exists(sourceTencentFiles):
                 TencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
             else:
-                print "Won't put back -- Original path of Tencent Files " + sourceTencentFiles + " already exists"
+                print "Won't put back -- Path of Tencent Files " + sourceTencentFiles + " had existed"
             print "                                "
 
         if os.path.exists(os.path.join(BackupFolder,'Bus Driver')):
@@ -113,7 +113,7 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             if not os.path.exists(sourceBusDriver):
                 BusDriver(sourceBusDriver,BackupFolder,IsBackup)
             else:
-                print "Won't put back -- Original path of Bus Driver " + sourceBusDriver + " already exists"
+                print "Won't put back -- Path of Bus Driver " + sourceBusDriver + " had existed"
             print "                                "
 
         if os.path.exists(os.path.join(BackupFolder,'WeChat Files')):
@@ -121,7 +121,7 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             if not os.path.exists(sourceWeChat):
                 WeChatFiles(sourceWeChat,BackupFolder,IsBackup)
             else:
-               print "Won't put back -- Original path of WeChat Files " + sourceWeChat + " already exists"
+               print "Won't put back -- Path of WeChat Files " + sourceWeChat + " had existed"
             print "                                "
                 
         if i == 0:
