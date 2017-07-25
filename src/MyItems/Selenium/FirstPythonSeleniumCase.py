@@ -46,6 +46,7 @@ def RunSogou(driver,browser):
     except Exception,e:
         print str(e)
         print "Current title name is " + driver.title
+        driver.quit()
     # Store a content then find searchbox and button on website
     SearchBox = driver.find_element_by_name("wd")
     SearchButton = driver.find_element_by_id("su")
@@ -56,21 +57,23 @@ def RunSogou(driver,browser):
     SearchButton.click()
     time.sleep(3)
     # To check the titile is right
-    if browser in driver.title:
-        print "Pass: " + browser
-    else:
-        print "Current title name is " + driver.title
-
-    if browser + u'_百度搜索' == driver.title: #Should add a 'u' before Chinese string
-        print "Title of search page is right!"
-    else:
-        print "Current title name is " + driver.title
-
     try:
         assert browser + u'_百度搜索' in driver.title
     except Exception,e:
         print e
         print "Current title name is " + driver.title
+        driver.quit()
+    
+    if browser + u'_百度搜索' == driver.title: #Should add a 'u' before Chinese string
+        print "Title of search page is right!"
+    else:
+        print "Current title name is " + driver.title
+
+    if browser in driver.title:
+        print "Pass: " + browser
+    else:
+        print "Current title name is " + driver.title
+    print "========================================="
     time.sleep(2)
     driver.quit() # Quit the browser
 
