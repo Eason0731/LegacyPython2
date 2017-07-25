@@ -26,7 +26,7 @@ def Backup(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver
     BackupFolder = os.path.join("D:\\",BackupFolder)
     if os.path.exists(BackupFolder):
         shutil.rmtree(BackupFolder)
-        print "Delete old backup folder: " + BackupFolder +" successfully!"
+        print "Old backup folder: " + BackupFolder +" has been deleted successfully!"
         print "                                "
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
