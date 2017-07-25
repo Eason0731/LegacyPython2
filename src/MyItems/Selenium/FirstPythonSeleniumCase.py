@@ -43,7 +43,6 @@ def RunSogou(driver,browser):
     # Check the title name on index of baidu
     try:
         assert u'百度一下，你就知道' in driver.title
-        print "The title name on the index of Baidu is correct!"
     except Exception,e:
         print str(e)
         print "Current title name is " + driver.title
@@ -58,7 +57,6 @@ def RunSogou(driver,browser):
     time.sleep(3)
     # To check the titile is right
     if browser in driver.title:
-        print "Title of search page is right!"
         print "Pass: " + browser
     else:
         print "Current title name is " + driver.title
@@ -70,7 +68,6 @@ def RunSogou(driver,browser):
 
     try:
         assert browser + u'_百度搜索' in driver.title
-        print "Title of search page is right!"
     except Exception,e:
         print e
         print "Current title name is " + driver.title
