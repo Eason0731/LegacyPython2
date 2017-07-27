@@ -157,7 +157,7 @@ def Delete(Dir):
         
 def Copy(Source):
     Target = raw_input ("Please input the target folder path: ")
-    TargetFolderExistsOrNot(Source,Target,sys._getframe().f_code.co_name)
+    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
     if not os.path.exists(Target):
         os.makedirs(Target)          
     Type = Source.split("\\")[-1]
@@ -212,7 +212,7 @@ def copyFiles(sourceDir, targetDir):
 
 def Move(Source):
     Target = raw_input ("Please input the target folder path: ")
-    TargetFolderExistsOrNot(Source,Target,sys._getframe().f_code.co_name)
+    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
     if not os.path.exists(Target):
         os.makedirs(Target)
     Type = Source.split("\\")[-1]
@@ -369,7 +369,7 @@ def OverwriteOrNot(Source,Target):
             CountineOrExit()
         
 
-def TargetFolderExistsOrNot(Source,Target,Fun):
+def TargetFolderEmptyOrNot(Source,Target,Fun):
      if not Target.strip():
          print "Do not input the empty infos. Please input again!"
          if 'Copy' in Fun:
