@@ -24,7 +24,7 @@ def Chrome():
 
 def FireFox():
     if os.name == 'nt':
-        FireFox = 'C:\Program Files (x86)\Mozilla Firefox'
+        FireFox = 'C:\Program Files\Mozilla Firefox'
         os.environ['path'] = FireFox # Should add firefox browser to PATH environment for additional
         # Should copy geckodriver.exe to C:\Program Files (x86)\Mozilla Firefox
         driver = webdriver.Firefox()
