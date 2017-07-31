@@ -30,9 +30,9 @@ def Backup(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver
         print "                                "
     os.makedirs(BackupFolder)
     print "Create backup folder: " + BackupFolder + " successfully!"
-    print "============================================"
+    print "==================================================="
     MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup)
-    print "============================================"
+    print "==================================================="
     ExitOrNot()
         
 def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat,BackupFolder,IsBackup):
@@ -197,7 +197,7 @@ def WeChatFiles(sourceWeChat,BackupFolder,IsBackup):
 
 def PutBack(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDriver,sourceWeChat):
     BackupFolder = raw_input ("Please input backup folder path:")
-    print "============================================"
+    print "==================================================="
     if BackupFolder.strip():
         if os.path.exists(BackupFolder):
             IsBackup = '2'
@@ -206,7 +206,7 @@ def PutBack(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
             print BackupFolder + " is not exists!"
     else:
         print "Please do not input the empty infos"
-    print "============================================"
+    print "==================================================="
     ExitOrNot()
 
 def ExitOrNot():
@@ -219,7 +219,7 @@ def ExitOrNot():
             exit(0)
         else:
             print "You've typed a illgeal word, please select again!"
-            print "============================================"    
+            print "==================================================="    
      
 def copyFiles(sourceDir, targetDir): 
     if sourceDir.find(".svn") > 0: 
