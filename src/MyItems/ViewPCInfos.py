@@ -16,7 +16,7 @@ def ViewPCInfos():
     mac = uuid.UUID(int = uuid.getnode()).hex[-12:]  
     mac_address = "-".join([mac[e:e+2] for e in range(0,11,2)])
     n_ip = re.search('\d+\.\d+\.\d+\.\d+',Popen('ipconfig', stdout=PIPE).stdout.read()).group(0)  
-    print "==============================PC Infos================================="
+    print "=====================PC Infos======================"
     os_version()
     cpu_mem() 
     disk()
@@ -25,7 +25,7 @@ def ViewPCInfos():
     print "Intranet IP: " + n_ip
     print "Public network IP: " + GetPublicNetworkIP()
     print "Mac address: " + mac_address
-    print "======================================================================="
+    print "==================================================="
     FileOperation.CountineOrExit()
 
 def GetPublicNetworkIP():
