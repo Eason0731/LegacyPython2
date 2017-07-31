@@ -8,7 +8,7 @@ import ViewPCInfos
 
 def MainFunction():
     Choose = raw_input ("""
-==========Welcome to File Operation==========
+=============Welcome to File Operation=============
 1. Replace content on txt files
 2. Delete file or folder
 3. Copy file or folder
@@ -18,13 +18,13 @@ def MainFunction():
 7. Rename file or folder
 8. Rename file with specificname
 9. View PC infos
-=============================================
+===================================================
 Press AnyKey to Exit
         
 Please choose : """)
 
     if Choose == '1':
-        print "========Replace content on txt files========"
+        print "===========Replace content on txt files============"
         Dir = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
             ReplaceContentOnDir(Dir)
@@ -34,7 +34,7 @@ Please choose : """)
             ExistOrNot(Dir)
                                   
     elif Choose == '2':
-        print "===========Delete file or folder============"
+        print "===============Delete file or folder==============="
         Dir = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Dir):
             Delete(Dir)
@@ -44,7 +44,7 @@ Please choose : """)
             ExistOrNot(Dir)
 
     elif Choose == '3':
-        print "===========Copy file or folder============="
+        print "===============Copy file or folder================="
         Source = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Source):
             Copy(Source)
@@ -54,7 +54,7 @@ Please choose : """)
             ExistOrNot(Source)
             
     elif Choose == '4':
-        print "===========Move file or folder============="
+        print "===============Move file or folder================="
         Source = raw_input ("Please input the source folder or file path: ")
         if os.path.exists(Source):
             Move(Source)
@@ -64,7 +64,7 @@ Please choose : """)
             ExistOrNot(Source)
                     
     elif Choose == '5':
-        print "=========Find contents on txt files========"
+        print "=============Find contents on txt files============"
         Dir  = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):   
             FindOnTxt(Dir)
@@ -74,7 +74,7 @@ Please choose : """)
             ExistOrNot(Dir)
                 
     elif Choose == '6':
-        print "=======Find files or folder on folder======="
+        print "===========Find files or folder on folder=========="
         Dir  = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
             FindOnDirs(Dir)
@@ -84,7 +84,7 @@ Please choose : """)
             ExistOrNot(Dir)
 
     elif Choose == '7':
-        print "===========Rename file or folder==========="
+        print "===============Rename file or folder==============="  
         Source = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Source):          
             ReplaceName(Source)
@@ -94,7 +94,7 @@ Please choose : """)
             ExistOrNot(Source)
 
     elif Choose == '8':
-        print "=======Rename file with specificname======"
+        print "============Rename file with specificname=========="
         Dir = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
             RenameWithSpecificName(Dir)
@@ -114,7 +114,7 @@ def ReplaceContentOnDir(Dir):
         c = 0
         Original = raw_input("Please input what word you want to find: ")
         Replace = raw_input("Please input what word you want to replace: ")
-        print "================================ Start ==============================="
+        print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
             for myFile in filenames:
@@ -135,13 +135,13 @@ def ReplaceContentOnDir(Dir):
         if c ==0:
             print Original + " didn't found on " + Dir       
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-        print "================================ Finish ==============================="
+        print "=================== Finish ========================"
     else:
         print "There is no txt files under folder " + Dir
     CountineOrExit()
 
 def Delete(Dir):
-    print "================================ Start ================================"
+    print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isfile(Dir):
         os.remove(Dir)
@@ -152,7 +152,7 @@ def Delete(Dir):
     else:
         print  Dir + " has been deleted failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="    
+    print "=================== Finish ========================"
     CountineOrExit()
         
 def Copy(Source):
@@ -168,7 +168,7 @@ def Copy(Source):
             CountineOrExit()
         else:
             OverwriteOrNot(Source,Target)
-    print "================================ Start ================================"
+    print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isdir(Source):
         if not os.listdir(Source):
@@ -179,7 +179,7 @@ def Copy(Source):
         shutil.copy (Source,Target) 
     print Source + " has copied to " + '\\'.join(Target.split("\\")[:-1]) + " successfully!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ===============================" 
+    print "=================== Finish ========================"
     CountineOrExit()
 
 def copyFiles(sourceDir, targetDir): 
@@ -223,7 +223,7 @@ def Move(Source):
             CountineOrExit()
         else:
             OverwriteOrNot(Source,Target)
-    print "================================ Start ================================"
+    print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isfile(Source):
         if os.path.exists(Target):
@@ -240,14 +240,14 @@ def Move(Source):
     else:
         print Source + " has been moved failed!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="
+    print "=================== Finish ========================"
     CountineOrExit()
 
 def FindOnTxt(Dir):
     if 'txt' in str(os.listdir(Dir)):
         c = 0
         Content = raw_input ("What content you want to find on txt file? ")
-        print "================================ Start ==============================="
+        print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
             for myFile in filenames:
@@ -265,7 +265,7 @@ def FindOnTxt(Dir):
         if c ==0 and i == 0:
             print Content + " didn't found on " + Dir
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-        print "================================ Finish ==============================="
+        print "=================== Finish ========================"
     else:
         print "There is no txt files under folder " + Dir   
     CountineOrExit()
@@ -273,7 +273,7 @@ def FindOnTxt(Dir):
 def FindOnDirs(Dir):
     File = raw_input ("What file or folder you want to find on this folder? ")
     k = 0
-    print "================================ Start ==============================="
+    print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
@@ -290,14 +290,14 @@ def FindOnDirs(Dir):
     if k == 0:
         print File + " didn't found on " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="
+    print "=================== Finish ========================"
     CountineOrExit()
             
 def ReplaceName(Source):
     Target = raw_input ("Please input new name want to replace: ")
     Source = os.path.abspath(Source)
     Target = os.path.join(os.path.split(Source)[0],Target)   
-    print "================================ Start ==============================="
+    print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.exists(Target):
         print Source + " has already exists, cannot be renamed!"
@@ -305,7 +305,7 @@ def ReplaceName(Source):
         os.rename (Source,Target)
         print Source + " has been renamed as " + Target +" successfully!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="
+    print "=================== Finish ========================"
     CountineOrExit()
 
 def RenameWithSpecificName(Dir):
@@ -313,7 +313,7 @@ def RenameWithSpecificName(Dir):
     FindContent = FindContent.lower()
     ReplaceContent = raw_input("What word do you want replace? ")
     w = 0
-    print "================================ Start ==============================="
+    print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     for root,dirs,filenames in os.walk(Dir):
         for myFile in filenames:
@@ -330,7 +330,7 @@ def RenameWithSpecificName(Dir):
     if w == 0:
         print "Didn't found file named with " + FindContent + " under folder " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "================================ Finish ==============================="
+    print "=================== Finish ========================"
     CountineOrExit()              
 
 def CountineOrExit():
