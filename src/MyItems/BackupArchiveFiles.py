@@ -255,7 +255,7 @@ def GetSize(Source):
        for names in files:
            myfiles = os.path.join(root,names)
            size += sum([os.path.getsize(myfiles)])
-   return (size/1024/1024)
+   return (size/1024.00/1024.00)
 
 if __name__ == "__main__":
     source2Kfolder = os.path.join(os.environ['AppData'],'2K Sports') 
