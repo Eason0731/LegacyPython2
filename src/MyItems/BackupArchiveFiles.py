@@ -140,7 +140,7 @@ def My2K(source2Kfolder,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'2K Sports')
         os.makedirs(BackupFolder)  
         copyFiles(source2Kfolder,BackupFolder)
-        print "Backup 2K successfully! --- " + str(GetSize(source2Kfolder)/1024/1024) + " MB" 
+        print "Backup 2K successfully! --- " + str(GetSize(source2Kfolder)) + " MB" 
     else:
         shutil.move(os.path.join(BackupFolder,"2K Sports"), source2Kfolder)
         print "Put back 2K successfully!"
@@ -150,7 +150,7 @@ def PES(sourcePES,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'KONAMI')
         os.makedirs(BackupFolder)
         copyFiles(sourcePES,BackupFolder)
-        print "Backup Pro Evolution Soccer successfully! --- " + str(GetSize(sourcePES)/1024/1024) + " MB" 
+        print "Backup Pro Evolution Soccer successfully! --- " + str(GetSize(sourcePES)) + " MB" 
     else:
         shutil.move(os.path.join(BackupFolder,"KONAMI"), sourcePES)
         print "Put back Pro Evolution Soccer successfully!"
@@ -160,7 +160,7 @@ def TDU(sourceTDU,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'Test Drive Unlimited')
         os.makedirs(BackupFolder)  
         copyFiles(sourceTDU,BackupFolder)
-        print "Backup Test Drive Unlimited successfully! --- " + str(GetSize(sourceTDU)/1024/1024) + " MB" 
+        print "Backup Test Drive Unlimited successfully! --- " + str(GetSize(sourceTDU)) + " MB" 
     else:
         shutil.move(os.path.join(BackupFolder,"Test Drive Unlimited"), sourceTDU)
         print "Put back Test Drive Unlimited successfully!"
@@ -170,7 +170,7 @@ def TencentFiles(sourceTencentFiles,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'Tencent Files')
         os.makedirs(BackupFolder)
         copyFiles(sourceTencentFiles,BackupFolder)
-        print "Backup Tencent Files successfully! --- " + str(GetSize(sourceTencentFiles)/1024/1024) + " MB" 
+        print "Backup Tencent Files successfully! --- " + str(GetSize(sourceTencentFiles)) + " MB" 
     else:
         shutil.move(os.path.join(BackupFolder,"Tencent Files"), sourceTencentFiles)
         print "Put back Tencent Files successfully!"
@@ -180,7 +180,7 @@ def BusDriver(sourceBusDriver,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'Bus Driver')
         os.makedirs(BackupFolder)
         copyFiles(sourceBusDriver,BackupFolder)
-        print "Backup Bus Driver successfully! --- " + str(GetSize(sourceBusDriver)/1024/1024) + " MB"  
+        print "Backup Bus Driver successfully! --- " + str(GetSize(sourceBusDriver)) + " MB"  
     else:
         shutil.move(os.path.join(BackupFolder,"Bus Driver"), sourceBusDriver)
         print "Put back Bus Driver successfully!"
@@ -190,7 +190,7 @@ def WeChatFiles(sourceWeChat,BackupFolder,IsBackup):
         BackupFolder = os.path.join(BackupFolder,'WeChat Files')
         os.makedirs(BackupFolder)
         copyFiles(sourceWeChat,BackupFolder)
-        print "Backup WeChat Files successfully! --- " + str(GetSize(sourceWeChat)/1024/1024) + " MB"  
+        print "Backup WeChat Files successfully! --- " + str(GetSize(sourceWeChat)) + " MB"  
     else:
         shutil.move(os.path.join(BackupFolder,"WeChat Files"), sourceWeChat)
         print "Put back WeChat Files successfully!"
@@ -258,7 +258,7 @@ def GetSize(Source):
            for names in files:
                myfiles = os.path.join(root,names)
                size += sum([os.path.getsize(myfiles)])
-   return size
+   return (size/1024/1024)
 
 if __name__ == "__main__":
     source2Kfolder = os.path.join(os.environ['AppData'],'2K Sports') 
