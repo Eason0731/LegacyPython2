@@ -251,13 +251,10 @@ def copyFiles(sourceDir, targetDir):
 
 def GetSize(Source):  
    size = 0
-   if os.path.isfile(Source):
-       size = os.path.getsize(Source)
-   elif os.path.isdir(Source):
-       for root, dirs, files in os.walk(Source):
-           for names in files:
-               myfiles = os.path.join(root,names)
-               size += sum([os.path.getsize(myfiles)])
+   for root, dirs, files in os.walk(Source):
+       for names in files:
+           myfiles = os.path.join(root,names)
+           size += sum([os.path.getsize(myfiles)])
    return (size/1024/1024)
 
 if __name__ == "__main__":
