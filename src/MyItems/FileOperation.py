@@ -17,7 +17,8 @@ def MainFunction():
 6. Find files or folder on folder
 7. Rename file or folder
 8. Rename file with specificname
-9. View PC infos
+9. Calculate the file or folder size
+10. View PC infos
 ===================================================
 Press AnyKey to Exit
         
@@ -102,8 +103,18 @@ Please choose : """)
             EmptyOrNot()
         else:
             ExistOrNot(Dir)
-
+            
     elif Choose == '9':
+        print "========Calculate the file or folder size=========="  
+        Source = raw_input ("Please input the folder or file path: ")
+        if os.path.exists(Source):          
+            GetSize(Source)
+        elif not Source.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Source)
+        
+    elif Choose == '10':
         ViewPCInfos.ViewPCInfos()
 
     else:
@@ -332,6 +343,18 @@ def RenameWithSpecificName(Dir):
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()              
+
+def GetSize(Source):  
+   size = 0L
+   if os.path.isfile(Source):
+       size = os.path.getsize(Source)
+   elif os.path.isdir(Source):
+       for root, dirs, files in os.walk(Source):
+           for names in files:
+               myfiles = os.path.join(root,names)
+               size += sum([os.path.getsize(myfiles)])
+   print "The size of " + Source + " are %.3f" % (size/1024.00/1024.00) ,"MB"
+   CountineOrExit()
 
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
