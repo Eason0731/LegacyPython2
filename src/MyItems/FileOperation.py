@@ -96,7 +96,7 @@ Please choose : """)
 
     elif Choose == '8':
         print "============Rename file with specificname=========="
-        Dir = raw_input ("Please input the folder path: ")
+        Dir = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Dir):
             RenameWithSpecificName(Dir)
         elif not Dir.strip():
@@ -332,20 +332,33 @@ def RenameWithSpecificName(Dir):
     w = 0
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirs,filenames in os.walk(Dir):
-        for myFile in filenames:
-            myFile = myFile.lower()  
-            if FindContent in myFile:
-                w = w + 1
-                OldNameFile = os.path.join(root,myFile)
-                myFile = myFile.replace (FindContent,ReplaceContent)
-                NewNameFile = os.path.join(root,myFile)
-                os.rename (OldNameFile,NewNameFile)
-                if os.path.exists(NewNameFile):
-                    print OldNameFile +" has been replaced as " + NewNameFile + " successfully!"
-                    print "   "
-    if w == 0:
-        print "Didn't found file named with " + FindContent + " under folder " + Dir
+    if os.path.isdir(Dir):
+        for root,dirs,filenames in os.walk(Dir):
+            for myFile in filenames:
+                myFile = myFile.lower()  
+                if FindContent in myFile:
+                    w = w + 1
+                    OldNameFile = os.path.join(root,myFile)
+                    myFile = myFile.replace(FindContent,ReplaceContent)
+                    NewNameFile = os.path.join(root,myFile)
+                    os.rename (OldNameFile,NewNameFile)
+                    if os.path.exists(NewNameFile):
+                        print OldNameFile +" has been replaced as " + NewNameFile + " successfully!"
+                        print "   "
+        if w == 0:
+            print "Didn't found file named with " + FindContent + " under folder " + Dir
+    else:
+        myFile = Dir.split('\\')[-1]
+        myFile = myFile.lower()
+        if FindContent in myFile:
+            myFile = myFile.replace(FindContent,ReplaceContent)
+            Path = '\\'.join(Dir.split('\\')[0:-1])
+            NewNameFile = os.path.join(Path,myFile)
+            os.rename (Dir,NewNameFile)
+            if os.path.exists(NewNameFile):
+                print Dir +" has been replaced as " + NewNameFile + " successfully!"
+        else:
+            print "Didn't found file named with " + FindContent + " on file " + Dir
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()              
