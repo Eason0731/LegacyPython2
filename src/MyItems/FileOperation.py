@@ -121,34 +121,37 @@ Please choose : """)
         exit(1)
       
 def ReplaceContentOnDir(Dir):
-    if 'txt' in str(os.listdir(Dir)):
-        c = 0
-        Original = raw_input("Please input what word you want to find: ")
-        Replace = raw_input("Please input what word you want to replace: ")
-        print "=================== Start ========================="
-        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-        for root,dirs,filenames in os.walk(Dir):
-            for myFile in filenames:
-                TxtFile = os.path.join(root,myFile)
-                files = open (TxtFile,'r') 
-                content = files.read()
-                files.close()
-                Original = Original.lower()
-                content = content.lower()
-                if Original in content:
-                    c+=1         
-                    files = open (TxtFile,'w') 
-                    files.writelines(content.replace (Original, Replace))
+    if os.path.isdir(Dir):
+        if 'txt' in str(os.listdir(Dir)):
+            c = 0
+            Original = raw_input("Please input what word you want to find: ")
+            Replace = raw_input("Please input what word you want to replace: ")
+            print "=================== Start ========================="
+            print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+            for root,dirs,filenames in os.walk(Dir):
+                for myFile in filenames:
+                    TxtFile = os.path.join(root,myFile)
+                    files = open (TxtFile,'r') 
+                    content = files.read()
                     files.close()
-                    print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" successfully!"
-                    print "   "
-                files.close()
-        if c ==0:
-            print Original + " didn't found on " + Dir       
-        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-        print "=================== Finish ========================"
+                    Original = Original.lower()
+                    content = content.lower()
+                    if Original in content:
+                        c+=1         
+                        files = open (TxtFile,'w') 
+                        files.writelines(content.replace (Original, Replace))
+                        files.close()
+                        print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" successfully!"
+                        print "   "
+                    files.close()
+            if c == 0:
+                print Original + " didn't found on " + Dir       
+            print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+            print "=================== Finish ========================"
+        else:
+            print "There is no txt files under folder " + Dir
     else:
-        print "There is no txt files under folder " + Dir
+        print Dir + " is a file path , please input a folder path"
     CountineOrExit()
 
 def Delete(Dir):
@@ -255,30 +258,33 @@ def Move(Source):
     CountineOrExit()
 
 def FindOnTxt(Dir):
-    if 'txt' in str(os.listdir(Dir)):
-        c = 0
-        Content = raw_input ("What content you want to find on txt file? ")
-        print "=================== Start ========================="
-        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-        for root,dirs,filenames in os.walk(Dir):
-            for myFile in filenames:
-                i = 0
-                TxtFile = os.path.join(root,myFile)
-                f = open (TxtFile, 'r')
-                Filecontent = f.readlines()              
-                for eachline in Filecontent:
-                    if Content.lower() in eachline.lower():
-                        i += 1
-                        c += 1
-                f.close()
-                if i > 0:
-                    print Content + " found on " + TxtFile + " for " + str(i) + " times"
-        if c ==0 and i == 0:
-            print Content + " didn't found on " + Dir
-        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-        print "=================== Finish ========================"
+    if os.path.isdir(Dir):
+        if 'txt' in str(os.listdir(Dir)):
+            c = 0
+            Content = raw_input ("What content you want to find on txt file? ")
+            print "=================== Start ========================="
+            print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+            for root,dirs,filenames in os.walk(Dir):
+                for myFile in filenames:
+                    i = 0
+                    TxtFile = os.path.join(root,myFile)
+                    f = open (TxtFile, 'r')
+                    Filecontent = f.readlines()              
+                    for eachline in Filecontent:
+                        if Content.lower() in eachline.lower():
+                            i += 1
+                            c += 1
+                    f.close()
+                    if i > 0:
+                        print Content + " found on " + TxtFile + " for " + str(i) + " times"
+            if c ==0 and i == 0:
+                print Content + " didn't found on " + Dir
+            print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+            print "=================== Finish ========================"
+        else:
+            print "There is no txt files under folder " + Dir
     else:
-        print "There is no txt files under folder " + Dir   
+        print Dir + " is a file path , please input a folder path"   
     CountineOrExit()
                 
 def FindOnDirs(Dir):
