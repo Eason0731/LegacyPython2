@@ -344,17 +344,21 @@ def RenameWithSpecificName(Dir):
     print "=================== Finish ========================"
     CountineOrExit()              
 
-def GetSize(Source):  
-   size = 0L
-   if os.path.isfile(Source):
-       size = os.path.getsize(Source)
-   elif os.path.isdir(Source):
-       for root, dirs, files in os.walk(Source):
-           for names in files:
-               myfiles = os.path.join(root,names)
-               size += sum([os.path.getsize(myfiles)])
-   print "The size of " + Source + " are %.3f" % (size/1024.00/1024.00) ,"MB"
-   CountineOrExit()
+def GetSize(Source):
+    print "=================== Start ========================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    size = 0L
+    if os.path.isfile(Source):
+        size = os.path.getsize(Source)
+    elif os.path.isdir(Source):
+        for root, dirs, files in os.walk(Source):
+            for names in files:
+                myfiles = os.path.join(root,names)
+                size += sum([os.path.getsize(myfiles)])
+    print "The size of " + Source + " are %.3f" % (size/1024.00/1024.00), "MB"
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+    print "=================== Finish ========================"
+    CountineOrExit()
 
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
