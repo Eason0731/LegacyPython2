@@ -374,7 +374,7 @@ def GetSize(Source):
             for names in files:
                 myfiles = os.path.join(root,names)
                 size += sum([os.path.getsize(myfiles)])
-    print "The size of " + Source + " are %.3f" % (size/1024.00/1024.00), "MB"
+    print "The size of " + Source + " are %.2f" % (size/1024.00/1024.00), "MB"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
