@@ -288,26 +288,29 @@ def FindOnTxt(Dir):
     CountineOrExit()
                 
 def FindOnDirs(Dir):
-    File = raw_input ("What file or folder you want to find on this folder? ")
-    k = 0
-    print "=================== Start ========================="
-    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    for root,dirs,filenames in os.walk(Dir):
-        for myFile in filenames:
-            if File.lower() in myFile.lower():
-                k = k + 1
-                print "File: " + File + " has found on " + os.path.join(root,myFile)
-                print "  "
+    if os.path.isdir(Dir):
+        File = raw_input ("What file or folder you want to find on this folder? ")
+        k = 0
+        print "=================== Start ========================="
+        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+        for root,dirs,filenames in os.walk(Dir):
+            for myFile in filenames:
+                if File.lower() in myFile.lower():
+                    k = k + 1
+                    print "File: " + File + " has found on " + os.path.join(root,myFile)
+                    print "  "
 
-        for myFolder in dirs:
-            if File.lower() in myFolder.lower():
-                k = k + 1
-                print "Folder: " + File + " has found on " + os.path.join(root,myFolder)
-                print "  "   
-    if k == 0:
-        print File + " didn't found on " + Dir
-    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "=================== Finish ========================"
+            for myFolder in dirs:
+                if File.lower() in myFolder.lower():
+                    k = k + 1
+                    print "Folder: " + File + " has found on " + os.path.join(root,myFolder)
+                    print "  "   
+        if k == 0:
+            print File + " didn't found on " + Dir
+        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+        print "=================== Finish ========================"
+    else:
+        print Dir + " is a file path , please input a folder path"
     CountineOrExit()
             
 def ReplaceName(Source):
