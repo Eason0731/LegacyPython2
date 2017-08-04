@@ -42,37 +42,37 @@ def MyFiles(source2Kfolder,sourcePES,sourceTDU,sourceTencentFiles,sourceBusDrive
         if os.path.exists(source2Kfolder):
             My2K(source2Kfolder,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found 2K Sports" + Info
+            print "Won't backup -- Not found 2K Sports" + Info
         print "                                "
             
         if os.path.exists(sourcePES):
             PES(sourcePES,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Pro Evolution Soccer" + Info
+            print "Won't backup -- Not found Pro Evolution Soccer" + Info
         print "                                "
 
         if os.path.exists(sourceTDU):
             TDU(sourceTDU,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Test Drive Unlimited" + Info
+            print "Won't backup -- Not found Test Drive Unlimited" + Info
         print "                                "
 
         if os.path.exists(sourceTencentFiles):
             TencentFiles(sourceTencentFiles,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Tencent Files" + Info
+            print "Won't backup -- Not found Tencent Files" + Info
         print "                                "
 
         if os.path.exists(sourceBusDriver):
             BusDriver(sourceBusDriver,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found Bus Driver" + Info
+            print "Won't backup -- Not found Bus Driver" + Info
         print "                                "
 
         if os.path.exists(sourceWeChat):
             WeChatFiles(sourceWeChat,BackupFolder,IsBackup)
         else:
-            print "Won't back -- Not found WeChat Files" + Info
+            print "Won't backup -- Not found WeChat Files" + Info
         print "                                "
     else:
         i = 0
