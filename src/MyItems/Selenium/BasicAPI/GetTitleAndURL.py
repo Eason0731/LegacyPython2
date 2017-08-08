@@ -4,7 +4,7 @@ import time
 import Getbrowser
 import sys
 
-def GetTitleAndURL():
+def GetTitleAndURL(): #1
     driver = Getbrowser.Chrome()
     driver.get('http://www.baidu.com')
     time.sleep(2)

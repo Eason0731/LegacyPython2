@@ -4,7 +4,7 @@ import time
 import Getbrowser
 import sys
 
-def BackAndForward():
+def BackAndForward(): #2
     driver = Getbrowser.Chrome()
     URL1 = 'http://www.baidu.com'
     URL2 = 'http://www.sogou.com'

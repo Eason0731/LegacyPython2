@@ -4,7 +4,7 @@ import time
 import Getbrowser
 import sys
 
-def GetSimpleElement():
+def GetSimpleElement(): #3
     driver = Getbrowser.Chrome()
     URL = 'http://www.baidu.com'
     driver.get(URL)
