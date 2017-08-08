@@ -13,6 +13,7 @@ def GetTitleAndURL():
     else:
         print "Current page title is " + driver.title
     print driver.current_url # "current_url" to get the page title URL address on current page
+    print driver.page_source # "page_source" to get the page source on current page
     driver.quit()
     
 if __name__ == '__main__':
