@@ -39,7 +39,7 @@ class AlertConfirmPromptDialog(unittest.TestCase): #13
         time.sleep(2)
 
     def testPromptDialog(self):
-        self.driver = Getbrowser.IE()
+        driver = Getbrowser.IE()
         URL = os.path.join(os.path.abspath('.'),'Html','Prompt.html')
         driver.get(URL)
 
@@ -53,6 +53,7 @@ class AlertConfirmPromptDialog(unittest.TestCase): #13
         time.sleep(2)
         Prompt.accept() 
         time.sleep(2)
+        driver.quit()
 
     def tearDown(self):
         self.driver.quit()
