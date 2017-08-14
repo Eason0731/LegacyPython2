@@ -13,7 +13,7 @@ class GetAttributes(unittest.TestCase): #20
 
     def testGetAttributes(self):
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','GetAttributes.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','GetAttributes.html')
         driver.get(URL)
 
         Checkboxs = driver.find_elements_by_css_selector('input[type=checkbox]')

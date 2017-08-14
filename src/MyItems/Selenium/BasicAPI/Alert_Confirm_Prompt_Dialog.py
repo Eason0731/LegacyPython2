@@ -14,7 +14,7 @@ class AlertConfirmPromptDialog(unittest.TestCase): #13
         
     def testAlertDialog(self): #Should start with the word "test", or it will not run the case
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','Alert.html')
+        URL =  'file:///' + os.path.join(os.path.abspath('.'),'Html','Alert.html')
         driver.get(URL)
 
         driver.find_element_by_name('button').click()
@@ -27,20 +27,21 @@ class AlertConfirmPromptDialog(unittest.TestCase): #13
 
     def testConfirmDialog(self):
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','Confirm.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','Confirm.html')
         driver.get(URL)
 
         driver.find_element_by_css_selector('input[type=button]').click()
         Confirm = driver.switch_to_alert()
         time.sleep(2)
 
-        print Confirm.text # .text can get the text
+        print Confirm.text # .text can get the text     
         Confirm.dismiss() # .dismiss() to click cancel
         time.sleep(2)
-
+        
+        
     def testPromptDialog(self):
         self.driver = Getbrowser.IE()
-        URL = os.path.join(os.path.abspath('.'),'Html','Prompt.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','Prompt.html')
         driver.get(URL)
 
         driver.find_element_by_id('button').click()
@@ -53,7 +54,7 @@ class AlertConfirmPromptDialog(unittest.TestCase): #13
         time.sleep(2)
         Prompt.accept() 
         time.sleep(2)
-
+    
     def tearDown(self):
         self.driver.quit()
     
