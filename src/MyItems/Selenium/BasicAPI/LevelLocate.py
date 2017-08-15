@@ -12,7 +12,7 @@ class LevelLocate(unittest.TestCase): #10
     
     def testLevelLocate(self): 
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','level_locate.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','level_locate.html')
         driver.get(URL)
 
         driver.find_element_by_link_text('Link1').click() #Click the Link1 to show the drop down list

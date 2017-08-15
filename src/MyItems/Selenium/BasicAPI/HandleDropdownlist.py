@@ -13,7 +13,7 @@ class HandleDropdownlist(unittest.TestCase): #13
         
     def testHandleDropdownlist(self):
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','drop_down.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','drop_down.html')
         driver.get(URL)
         #Use search to click drop down list
         dropdownlist = driver.find_elements_by_tag_name('option')
