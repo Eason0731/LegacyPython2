@@ -12,7 +12,7 @@ class LocateFrame(unittest.TestCase): #11
         
     def testLocateFrame(self):
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','frame.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','frame.html')
         driver.get(URL)
 
         driver.switch_to_frame('f1') # switch to frame named f1

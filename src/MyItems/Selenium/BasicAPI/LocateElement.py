@@ -12,7 +12,7 @@ class LocateElement(unittest.TestCase): #9
         
     def testLocateElement(self): 
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','checkbox.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','checkbox.html')
         driver.get(URL)
         checkboxs = driver.find_elements_by_tag_name('input') #use find_elements to find all same tag name
         radios = driver.find_elements_by_css_selector('input[type=radio]') #use find_elements to find all same css selector,css language:input[type=radio]
