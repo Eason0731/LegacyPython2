@@ -13,7 +13,7 @@ class Pagination(unittest.TestCase): #14
     
     def testPagination(self):
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','Pagination.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','Pagination.html')
         driver.get(URL)
     
         pages = driver.find_element_by_class_name('yem').find_elements_by_tag_name('option') #use elements when its owns same attitubes
