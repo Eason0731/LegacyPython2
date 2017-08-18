@@ -20,13 +20,13 @@ class OperateDialog(unittest.TestCase): #11
         driver.find_element_by_id('u1').find_element_by_name('tj_login').click() #Find the login url on the index of Baidu
         time.sleep(2)
     
-        driver.find_element_by_class_name('tang-content').find_element_by_id('TANGRAM__PSP_10__userName').send_keys('Selenium')
+        driver.find_element_by_class_name('tang-content').find_element_by_id('TANGRAM__PSP_10__userName').send_keys('Selenium') #The username box which showed on a new dialog below on 'tang-content'
         time.sleep(2)
     
-        driver.find_element_by_class_name('tang-content').find_element_by_name('password').send_keys('Selenium')
+        driver.find_element_by_class_name('tang-content').find_element_by_name('password').send_keys('Selenium') #The password box which showed on a new dialog below on 'tang-content'
         time.sleep(2)
     
-        driver.find_element_by_class_name('tang-content').find_element_by_css_selector('input[type=submit]').click()
+        driver.find_element_by_class_name('tang-content').find_element_by_css_selector('input[type=submit]').click() #The login button which showed on a new dialog below on 'tang-content'
         time.sleep(2)
 
     def tearDown(self):
