@@ -13,7 +13,7 @@ class UseJavaScript(unittest.TestCase): #15
         
     def testUseJavaScript(self):
         driver = self.driver
-        URL = os.path.join(os.path.abspath('.'),'Html','js.html')
+        URL = 'file:///' + os.path.join(os.path.abspath('.'),'Html','js.html')
         driver.get(URL)
         time.sleep(2)
 
