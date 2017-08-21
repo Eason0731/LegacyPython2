@@ -195,9 +195,6 @@ def Copy(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        print Source
-        print Target
-        print Source == Target
         if Source == Target:    
             print "Cannot copy same file or folder to origin path"
             CountineOrExit()
