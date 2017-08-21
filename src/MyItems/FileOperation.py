@@ -332,9 +332,14 @@ def FindOnDirs(Dir):
     CountineOrExit()
             
 def ReplaceName(Source):
-    Target = raw_input ("Please input new name want to replace: ")
+    while(True):
+        Target = raw_input ("Please input new name want to replace: ")
+        if not Target.strip():
+            print "Cannot rename with empty path. Please input again! "
+        else:
+            break
     Source = os.path.abspath(Source)
-    Target = os.path.join(os.path.split(Source)[0],Target)   
+    Target = os.path.join(os.path.split(Source)[0],Target)
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.exists(Target):
