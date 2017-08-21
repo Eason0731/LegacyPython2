@@ -212,8 +212,6 @@ def Copy(Source):
             copyFiles(Source,Target)
     elif os.path.isfile(Source):
         shutil.copy (Source,Target)
-    if not '\\' in Target:
-        Target = Target.replace(Target,os.path.join(Target,'\\'))
     print Source + " has copied to " + '\\'.join(Target.split("\\")[:-1]) + " successfully!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
@@ -273,8 +271,6 @@ def Move(Source):
             copyFiles(Source,Target)                    
         shutil.rmtree(Source)
     if os.path.exists(Target):
-        if not '\\' in Target:
-            Target = Target.replace(Target,os.path.join(Target,'\\'))
         print Source + " has been moved from " + "\\".join(Source.split("\\")[0:-1]) + " to " + "\\".join(Target.split("\\")[0:-1]) + " successfully!"
     else:
         print Source + " has been moved failed!"
