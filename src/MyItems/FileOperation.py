@@ -28,6 +28,8 @@ Please choose : """)
         print "===========Replace content on txt files============"
         Dir = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
+            if not '\\' in Dir:
+                FormatJudge(Dir)
             ReplaceContentOnDir(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -38,6 +40,8 @@ Please choose : """)
         print "===============Delete file or folder==============="
         Dir = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Dir):
+            if not '\\' in Dir:
+                FormatJudge(Dir)
             Delete(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -48,6 +52,8 @@ Please choose : """)
         print "===============Copy file or folder================="
         Source = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Source):
+            if not '\\' in Source:
+                FormatJudge(Source)
             Copy(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -58,6 +64,8 @@ Please choose : """)
         print "===============Move file or folder================="
         Source = raw_input ("Please input the source folder or file path: ")
         if os.path.exists(Source):
+            if not '\\' in Source:
+                FormatJudge(Source)
             Move(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -67,7 +75,9 @@ Please choose : """)
     elif Choose == '5':
         print "=============Find contents on txt files============"
         Dir  = raw_input ("Please input the folder path: ")
-        if os.path.exists(Dir):   
+        if os.path.exists(Dir):
+            if not '\\' in Dir:
+                FormatJudge(Dir)
             FindOnTxt(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -78,6 +88,8 @@ Please choose : """)
         print "===========Find files or folder on folder=========="
         Dir  = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
+            if not '\\' in Dir:
+                FormatJudge(Dir)
             FindOnDirs(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -87,7 +99,9 @@ Please choose : """)
     elif Choose == '7':
         print "===============Rename file or folder==============="  
         Source = raw_input ("Please input the folder or file path: ")
-        if os.path.exists(Source):          
+        if os.path.exists(Source):
+            if not '\\' in Source:
+                FormatJudge(Source)
             ReplaceName(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -98,6 +112,8 @@ Please choose : """)
         print "============Rename file with specificname=========="
         Dir = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Dir):
+            if not '\\' in Dir:
+                FormatJudge(Dir)
             RenameWithSpecificName(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -107,7 +123,9 @@ Please choose : """)
     elif Choose == '9':
         print "========Calculate the file or folder size=========="  
         Source = raw_input ("Please input the folder or file path: ")
-        if os.path.exists(Source):          
+        if os.path.exists(Source):
+            if not '\\' in Source:
+                FormatJudge(Source)
             GetSize(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -177,7 +195,10 @@ def Copy(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        if Source == Target:
+        print Source
+        print Target
+        print Source == Target
+        if Source == Target:    
             print "Cannot copy same file or folder to origin path"
             CountineOrExit()
         else:
@@ -421,6 +442,9 @@ def OverwriteOrNot(Source,Target):
         elif IsConver.lower() == 'n':
             CountineOrExit()
         
+def FormatJudge(Source):
+    print "The format of " + Source + " is incorrect! Should with '\\'"
+    CountineOrExit()
 
 def TargetFolderEmptyOrNot(Source,Target,Fun):
      if not Target.strip():
