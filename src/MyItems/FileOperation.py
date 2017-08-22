@@ -253,7 +253,8 @@ def Move(Source):
         if not '\\' in Target:
             FormatJudge(Target,sys._getframe().f_code.co_name)
         else:
-            break    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
+            break
+    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
     Type = Source.split("\\")[-1]
     if not os.path.exists(Target):
         os.makedirs(Target)
@@ -451,7 +452,7 @@ def OverwriteOrNot(Source,Target):
         
 def FormatJudge(Source,Fun):
     print "The format of " + Source + " is incorrect! Should with '\\'"
-    if Fun == 'MainFunction':
+    if 'Main' in Fun:
         CountineOrExit()
 
 def TargetFolderEmptyOrNot(Source,Target,Fun):
