@@ -142,8 +142,18 @@ def ReplaceContentOnDir(Dir):
     if os.path.isdir(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
-            Original = raw_input("Please input what word you want to find: ")
-            Replace = raw_input("Please input what word you want to replace: ")
+            while(True):
+                Original = raw_input("Please input what word you want to find: ")
+                if not Original.strip():
+                    print "Do not input the empty original name,please input again!"
+                else:
+                    break
+            while(True):
+                Replace = raw_input("Please input what word you want to replace: ")
+                if not Replace.strip():
+                    print "Do not input the empty replace name,please input again!"
+                else:
+                    break
             print "=================== Start ========================="
             print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
             for root,dirs,filenames in os.walk(Dir):
