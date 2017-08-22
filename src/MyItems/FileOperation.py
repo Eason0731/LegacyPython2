@@ -23,13 +23,13 @@ def MainFunction():
 Press AnyKey to Exit
         
 Please choose : """)
-
+    Fun = sys._getframe().f_code.co_name
     if Choose == '1':
         print "===========Replace content on txt files============"
         Dir = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
-                FormatJudge(Dir)
+                FormatJudge(Dir,Fun)
             ReplaceContentOnDir(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -41,7 +41,7 @@ Please choose : """)
         Dir = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
-                FormatJudge(Dir)
+                FormatJudge(Dir,Fun)
             Delete(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -53,7 +53,7 @@ Please choose : """)
         Source = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
-                FormatJudge(Source)
+                FormatJudge(Source,Fun)
             Copy(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -65,7 +65,7 @@ Please choose : """)
         Source = raw_input ("Please input the source folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
-                FormatJudge(Source)
+                FormatJudge(Source,Fun)
             Move(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -77,7 +77,7 @@ Please choose : """)
         Dir  = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
-                FormatJudge(Dir)
+                FormatJudge(Dir,Fun)
             FindOnTxt(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -89,7 +89,7 @@ Please choose : """)
         Dir  = raw_input ("Please input the folder path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
-                FormatJudge(Dir)
+                FormatJudge(Dir,Fun)
             FindOnDirs(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -101,7 +101,7 @@ Please choose : """)
         Source = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
-                FormatJudge(Source)
+                FormatJudge(Source,Fun)
             ReplaceName(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -113,7 +113,7 @@ Please choose : """)
         Dir = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
-                FormatJudge(Dir)
+                FormatJudge(Dir,Fun)
             RenameWithSpecificName(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -125,7 +125,7 @@ Please choose : """)
         Source = raw_input ("Please input the folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
-                FormatJudge(Source)
+                FormatJudge(Source,Fun)
             GetSize(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -188,7 +188,12 @@ def Delete(Dir):
     CountineOrExit()
         
 def Copy(Source):
-    Target = raw_input ("Please input the target folder path: ")
+    while(True):
+        Target = raw_input ("Please input the target folder path: ")
+        if not '\\' in Target:
+            FormatJudge(Target,sys._getframe().f_code.co_name)
+        else:
+            break
     TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
     if not os.path.exists(Target):
         os.makedirs(Target)          
@@ -243,8 +248,12 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 def Move(Source):
-    Target = raw_input ("Please input the target folder path: ")
-    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
+    while(True):
+        Target = raw_input ("Please input the target folder path: ")
+        if not '\\' in Target:
+            FormatJudge(Target,sys._getframe().f_code.co_name)
+        else:
+            break    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
     Type = Source.split("\\")[-1]
     if not os.path.exists(Target):
         os.makedirs(Target)
@@ -440,9 +449,10 @@ def OverwriteOrNot(Source,Target):
         elif IsConver.lower() == 'n':
             CountineOrExit()
         
-def FormatJudge(Source):
+def FormatJudge(Source,Fun):
     print "The format of " + Source + " is incorrect! Should with '\\'"
-    CountineOrExit()
+    if Fun == 'MainFunction':
+        CountineOrExit()
 
 def TargetFolderEmptyOrNot(Source,Target,Fun):
      if not Target.strip():
