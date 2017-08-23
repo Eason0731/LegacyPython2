@@ -299,7 +299,12 @@ def FindOnTxt(Dir):
     if os.path.isdir(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
-            Content = raw_input ("What content you want to find on txt file? ")
+            while(True):
+                Content = raw_input ("What content you want to find on txt file? ")
+                if not Content.strip():
+                    print "Do not input the empty content, please input again!"
+                else:
+                    break
             print "=================== Start ========================="
             print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
             for root,dirs,filenames in os.walk(Dir):
