@@ -332,7 +332,12 @@ def FindOnTxt(Dir):
                 
 def FindOnDirs(Dir):
     if os.path.isdir(Dir):
-        File = raw_input ("What file or folder you want to find on this folder? ")
+        while(True):
+            File = raw_input ("What file or folder you want to find on this folder? ")
+            if not File.strip():
+                print "Do not input the empty folder or file name, please input again!"
+            else:
+                break 
         k = 0
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
