@@ -365,7 +365,7 @@ def ReplaceName(Source):
     while(True):
         Target = raw_input ("Please input new name want to replace: ")
         if not Target.strip():
-            print "Cannot rename with empty path. Please input again! "
+            print "Do not input empty replace name. Please input again! "
         else:
             break
     Source = os.path.abspath(Source)
@@ -382,9 +382,19 @@ def ReplaceName(Source):
     CountineOrExit()
 
 def RenameWithSpecificName(Dir):
-    FindContent = raw_input("What word do you want find? ")
-    FindContent = FindContent.lower()
-    ReplaceContent = raw_input("What word do you want replace? ")
+    while(True):
+        FindContent = raw_input("What word do you want find? ")
+        if not FindContent.strip():
+            print "Do not input the empty find content, please input again!"
+        else:
+            FindContent = FindContent.lower()
+            break
+    while(True):
+        ReplaceContent = raw_input("What word do you want replace? ")
+        if not ReplaceContent.strip():
+            print "Do not input the empty replace content, please input again!"
+        else:
+            break
     w = 0
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
