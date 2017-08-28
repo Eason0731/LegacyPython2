@@ -145,13 +145,13 @@ def ReplaceContentOnDir(Dir):
             while(True):
                 Original = raw_input("Please input what word you want to find: ")
                 if not Original.strip():
-                    print "Do not input the empty original name,please input again!"
+                    print "Illegal -- cannot input empty search content, please input again!"
                 else:
                     break
             while(True):
                 Replace = raw_input("Please input what word you want to replace: ")
                 if not Replace.strip():
-                    print "Do not input the empty replace name,please input again!"
+                    print "Illegal -- cannot input empty replace content, please input again!"
                 else:
                     break
             print "=================== Start ========================="
