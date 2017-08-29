@@ -302,7 +302,7 @@ def FindOnTxt(Dir):
             while(True):
                 Content = raw_input ("What content you want to find on txt file? ")
                 if not Content.strip():
-                    print "Do not input the empty content, please input again!"
+                    print "Illegal -- cannot input empty search content, please input again!"
                 else:
                     break
             print "=================== Start ========================="
