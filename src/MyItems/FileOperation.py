@@ -335,7 +335,7 @@ def FindOnDirs(Dir):
         while(True):
             File = raw_input ("What file or folder you want to find on this folder? ")
             if not File.strip():
-                print "Do not input the empty folder or file name, please input again!"
+                print "Illegal -- cannot input empty file or folder name, please input again!"
             else:
                 break 
         k = 0
