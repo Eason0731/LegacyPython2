@@ -365,7 +365,7 @@ def ReplaceName(Source):
     while(True):
         Target = raw_input ("Please input new name want to replace: ")
         if not Target.strip():
-            print "Do not input empty replace name. Please input again! "
+            print "Illegal -- cannot input empty replace content, please input again!"
         else:
             break
     Source = os.path.abspath(Source)
