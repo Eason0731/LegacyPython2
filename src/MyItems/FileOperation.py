@@ -143,13 +143,13 @@ def ReplaceContentOnDir(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
             while(True):
-                Original = raw_input("Please input what word you want to find: ")
+                Original = raw_input("Please input what content you want to find: ")
                 if not Original.strip():
                     print "Illegal -- cannot input empty search content, please input again!"
                 else:
                     break
             while(True):
-                Replace = raw_input("Please input what word you want to replace: ")
+                Replace = raw_input("Please input what content you want to replace: ")
                 if not Replace.strip():
                     print "Illegal -- cannot input empty replace content, please input again!"
                 else:
@@ -383,14 +383,14 @@ def ReplaceName(Source):
 
 def RenameWithSpecificName(Dir):
     while(True):
-        FindContent = raw_input("What word do you want find? ")
+        FindContent = raw_input("What content do you want find? ")
         if not FindContent.strip():
             print "Illegal -- cannot input empty search content, please input again!"
         else:
             FindContent = FindContent.lower()
             break
     while(True):
-        ReplaceContent = raw_input("What word do you want replace? ")
+        ReplaceContent = raw_input("What content do you want replace? ")
         if not ReplaceContent.strip():
             print "Illegal -- cannot input empty replace content, please input again!"
         else:
