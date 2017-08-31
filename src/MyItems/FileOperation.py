@@ -385,14 +385,14 @@ def RenameWithSpecificName(Dir):
     while(True):
         FindContent = raw_input("What word do you want find? ")
         if not FindContent.strip():
-            print "Do not input the empty find content, please input again!"
+            print "Illegal -- cannot input empty search content, please input again!"
         else:
             FindContent = FindContent.lower()
             break
     while(True):
         ReplaceContent = raw_input("What word do you want replace? ")
         if not ReplaceContent.strip():
-            print "Do not input the empty replace content, please input again!"
+            print "Illegal -- cannot input empty replace content, please input again!"
         else:
             break
     w = 0
