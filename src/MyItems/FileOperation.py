@@ -19,7 +19,9 @@ def MainFunction():
 8. Rename file with specificname
 9. Calculate the file or folder size
 10. View PC infos
-===================================================
+
+=========  """+ GetDate() +"""  ========
+
 Press AnyKey to Exit
         
 Please choose : """)
@@ -492,6 +494,10 @@ def TargetFolderEmptyOrNot(Source,Target,Fun):
              Copy(Source)
          elif 'Move' in Fun:
              Move(Source)
-              
+             
+def GetDate():
+    Date = time.strftime("%Y-%m-%d , %A", time.localtime())
+    return "Today is " + Date
+
 if __name__== '__main__':
     MainFunction()
