@@ -145,13 +145,13 @@ def ReplaceContentOnDir(Dir):
             while(True):
                 Original = raw_input("Please input what content you want to find: ")
                 if not Original.strip():
-                    print "Illegal -- cannot input empty search content, please input again!"
+                    print "Cannot input empty search content, please input again!"
                 else:
                     break
             while(True):
                 Replace = raw_input("Please input what content you want to replace: ")
                 if not Replace.strip():
-                    print "Illegal -- cannot input empty replace content, please input again!"
+                    print "Cannot input empty replace content, please input again!"
                 else:
                     break
             print "=================== Start ========================="
@@ -302,7 +302,7 @@ def FindOnTxt(Dir):
             while(True):
                 Content = raw_input ("What content you want to find on txt file? ")
                 if not Content.strip():
-                    print "Illegal -- cannot input empty search content, please input again!"
+                    print "Cannot input empty search content, please input again!"
                 else:
                     break
             print "=================== Start ========================="
@@ -335,7 +335,7 @@ def FindOnDirs(Dir):
         while(True):
             File = raw_input ("What file or folder you want to find on this folder? ")
             if not File.strip():
-                print "Illegal -- cannot input empty file or folder name, please input again!"
+                print "Cannot input empty file or folder name, please input again!"
             else:
                 break 
         k = 0
@@ -365,7 +365,7 @@ def ReplaceName(Source):
     while(True):
         Target = raw_input ("Please input new name want to replace: ")
         if not Target.strip():
-            print "Illegal -- cannot input empty replace content, please input again!"
+            print "Cannot input empty replace content, please input again!"
         else:
             break
     Source = os.path.abspath(Source)
@@ -385,14 +385,14 @@ def RenameWithSpecificName(Dir):
     while(True):
         FindContent = raw_input("What content do you want find? ")
         if not FindContent.strip():
-            print "Illegal -- cannot input empty search content, please input again!"
+            print "Cannot input empty search content, please input again!"
         else:
             FindContent = FindContent.lower()
             break
     while(True):
         ReplaceContent = raw_input("What content do you want replace? ")
         if not ReplaceContent.strip():
-            print "Illegal -- cannot input empty replace content, please input again!"
+            print "Cannot input empty replace content, please input again!"
         else:
             break
     w = 0
