@@ -272,9 +272,14 @@ def Move(Source):
         else:
             break
     TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
+    Disk = '\\'.join(Target.split("\\")[:1])
     Type = Source.split("\\")[-1]
-    if not os.path.exists(Target):
-        os.makedirs(Target)
+    if os.path.exists(Disk):
+        if not os.path.exists(Target):
+            os.makedirs(Target)
+    else:
+        print Disk + " is not exists on this PC, cannot move"
+        CountineOrExit()
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
         if Source == Target:
