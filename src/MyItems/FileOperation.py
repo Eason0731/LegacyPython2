@@ -20,7 +20,7 @@ def MainFunction():
 9. Calculate the file or folder size
 10. View PC infos
 
-=========  """+ GetDate() +"""  ========
+=========  """+ GetDate() +"""  =========
 
 Press AnyKey to Exit
         
