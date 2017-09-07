@@ -104,7 +104,7 @@ Please choose : """)
         if os.path.exists(Source):
             if not '\\' in Source:
                 FormatJudge(Source,Fun)
-            ReplaceName(Source)
+            Rename(Source)
         elif not Source.strip():
             EmptyOrNot()
         else:
@@ -373,7 +373,7 @@ def FindOnDirs(Dir):
         print Dir + " is a file path , please input a folder path"
     CountineOrExit()
             
-def ReplaceName(Source):
+def Rename(Source):
     while(True):
         Target = raw_input ("Please input new name want to replace: ")
         if not Target.strip():
