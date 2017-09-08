@@ -32,7 +32,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            ReplaceContentOnDir(Dir)
+            ReplaceOnTxt(Dir)
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -116,7 +116,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            RenameWithSpecificName(Dir)
+            BatchRename(Dir)
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -140,7 +140,7 @@ Please choose : """)
     else:
         exit(1)
       
-def ReplaceContentOnDir(Dir):
+def ReplaceOnTxt(Dir):
     if os.path.isdir(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
@@ -393,7 +393,7 @@ def Rename(Source):
     print "=================== Finish ========================"
     CountineOrExit()
 
-def RenameWithSpecificName(Dir):
+def BatchRename(Dir):
     while(True):
         FindContent = raw_input("What content do you want find? ")
         if not FindContent.strip():
