@@ -43,7 +43,6 @@ def os_version():
     c = wmi.WMI ()
     print "OS name and version: " + platform.platform()
     for sys in c.Win32_OperatingSystem(): 
-        #print "OS name and version: %s" % sys.Caption.encode("UTF8"),"Vernum:%s" % sys.BuildNumber 
         print "Bits: " + sys.OSArchitecture.encode("UTF8")
         print "Current process count: " + str(sys.NumberOfProcesses)
     print "       "
