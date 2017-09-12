@@ -145,13 +145,13 @@ def ReplaceOnTxt(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
             while(True):
-                Original = raw_input("Please input what content you want to find: ")
+                Original = raw_input("Please input what to find: ")
                 if not Original.strip():
                     print "Cannot input empty search content, please input again!"
                 else:
                     break
             while(True):
-                Replace = raw_input("Please input what content you want to replace: ")
+                Replace = raw_input("Please input what to replace: ")
                 if not Replace.strip():
                     print "Cannot input empty replace content, please input again!"
                 else:
