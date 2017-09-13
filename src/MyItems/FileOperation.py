@@ -312,7 +312,7 @@ def FindOnTxt(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
             while(True):
-                Content = raw_input ("What content you want to find on txt file? ")
+                Content = raw_input ("What want to find on txt file? ")
                 if not Content.strip():
                     print "Cannot input empty search content, please input again!"
                 else:
