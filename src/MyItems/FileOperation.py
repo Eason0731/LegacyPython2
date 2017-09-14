@@ -345,7 +345,7 @@ def FindOnTxt(Dir):
 def FindOnDirs(Dir):
     if os.path.isdir(Dir):
         while(True):
-            File = raw_input ("What file or folder you want to find on this folder? ")
+            File = raw_input ("What want to find on this folder? ")
             if not File.strip():
                 print "Cannot input empty file or folder name, please input again!"
             else:
