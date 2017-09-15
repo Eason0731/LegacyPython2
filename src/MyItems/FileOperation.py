@@ -28,7 +28,7 @@ Please choose : """)
     Fun = sys._getframe().f_code.co_name
     if Choose == '1':
         print "===========Replace content on txt files============"
-        Dir = raw_input ("Please input the folder path: ")
+        Dir = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
@@ -40,7 +40,7 @@ Please choose : """)
                                   
     elif Choose == '2':
         print "===============Delete file or folder==============="
-        Dir = raw_input ("Please input the folder or file path: ")
+        Dir = raw_input ("Please input folder or file path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
@@ -52,7 +52,7 @@ Please choose : """)
 
     elif Choose == '3':
         print "===============Copy file or folder================="
-        Source = raw_input ("Please input the folder or file path: ")
+        Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
                 FormatJudge(Source,Fun)
@@ -64,7 +64,7 @@ Please choose : """)
             
     elif Choose == '4':
         print "===============Move file or folder================="
-        Source = raw_input ("Please input the source folder or file path: ")
+        Source = raw_input ("Please input source folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
                 FormatJudge(Source,Fun)
@@ -76,7 +76,7 @@ Please choose : """)
                     
     elif Choose == '5':
         print "=============Find contents on txt files============"
-        Dir  = raw_input ("Please input the folder path: ")
+        Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
@@ -88,7 +88,7 @@ Please choose : """)
                 
     elif Choose == '6':
         print "===========Find files or folder on folder=========="
-        Dir  = raw_input ("Please input the folder path: ")
+        Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
@@ -100,7 +100,7 @@ Please choose : """)
 
     elif Choose == '7':
         print "===============Rename file or folder==============="  
-        Source = raw_input ("Please input the folder or file path: ")
+        Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
                 FormatJudge(Source,Fun)
@@ -112,7 +112,7 @@ Please choose : """)
 
     elif Choose == '8':
         print "============Rename file with specificname=========="
-        Dir = raw_input ("Please input the folder or file path: ")
+        Dir = raw_input ("Please input folder or file path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
@@ -124,7 +124,7 @@ Please choose : """)
             
     elif Choose == '9':
         print "========Calculate the file or folder size=========="  
-        Source = raw_input ("Please input the folder or file path: ")
+        Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
             if not '\\' in Source:
                 FormatJudge(Source,Fun)
@@ -201,7 +201,7 @@ def Delete(Dir):
         
 def Copy(Source):
     while(True):
-        Target = raw_input ("Please input the target folder path: ")
+        Target = raw_input ("Please input target folder path: ")
         if not '\\' in Target:
             FormatJudge(Target,sys._getframe().f_code.co_name)
         else:
@@ -266,7 +266,7 @@ def copyFiles(sourceDir, targetDir):
 
 def Move(Source):
     while(True):
-        Target = raw_input ("Please input the target folder path: ")
+        Target = raw_input ("Please input target folder path: ")
         if not '\\' in Target:
             FormatJudge(Target,sys._getframe().f_code.co_name)
         else:
@@ -466,12 +466,12 @@ def CountineOrExit():
             print "Bye~"
             exit(0)
         else:
-            print "You have inputed the illegal character,try again!"
+            print "You have inputed illegal character,try again!"
             CountineOrExit()
             break
             
 def EmptyOrNot():
-    print "Please do not input the empty infos"
+    print "Please do not input empty infos"
     CountineOrExit()
 
 def ExistOrNot(Dir):
