@@ -395,14 +395,14 @@ def Rename(Source):
 
 def BatchRename(Dir):
     while(True):
-        FindContent = raw_input("What content do you want find? ")
+        FindContent = raw_input("What name want to find? ")
         if not FindContent.strip():
             print "Cannot input empty search content, please input again!"
         else:
             FindContent = FindContent.lower()
             break
     while(True):
-        ReplaceContent = raw_input("What content do you want replace? ")
+        ReplaceContent = raw_input("Please input new name to replace: ")
         if not ReplaceContent.strip():
             print "Cannot input empty replace content, please input again!"
         else:
