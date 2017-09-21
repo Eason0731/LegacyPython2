@@ -17,7 +17,7 @@ class P6Login(unittest.TestCase):
         time.sleep(2)
         self.assertIn('Provisioning 6',driver.title)
 
-        driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[4]/center/ul/a/font').click()
+        driver.find_element_by_link_text(u'登录 Provisioning 6').click()
         time.sleep(2)
 
         Username = driver.find_element_by_name('j_username')
