@@ -111,7 +111,11 @@ class P6SearchP6OrderDetail (unittest.TestCase):
                 #myButton.click()
                 driver.execute_script('arguments[0].click()',myButton)
                 time.sleep(3)
-        '''        
+        '''
+        #Check the P6ID on detail page or not
+        self.assertIn(P6ID,driver.page_source)
+        time.sleep(2)
+        
         #View more details part
         
     def tearDown(self):
