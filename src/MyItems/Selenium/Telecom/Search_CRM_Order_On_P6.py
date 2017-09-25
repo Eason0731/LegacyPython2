@@ -5,11 +5,11 @@ import time
 import unittest
 import Getbrowser
 
-class P6SearchCRMOrder (unittest.TestCase):
+class Search_CRM_Order_On_P6 (unittest.TestCase):
     def setUp(self):
         self.driver = Getbrowser.IE()
 
-    def testP6SearchCRMOrder(self):
+    def testSearch_CRM_Order_On_P6(self):
         #Login Part
         driver = self.driver
         P6 = 'http://10.7.3.94:5001/oms/'
@@ -78,11 +78,15 @@ class P6SearchCRMOrder (unittest.TestCase):
         SubmitButton.click()
         time.sleep(2)
 
-        #Check the CRM order number on the page or not
-        if not CRMID in driver.page_source:
-            print "Order number : " + CRMID + " didn't been sent to P6"
+        #Check P6 System in error or not
+        if 'OMS Error' in driver.page_source:
+            print "P6 system is in a error status now, please try again later!"
         else:
-            print "Order number : " + CRMID + " has been sent to P6 successfully"
+            #Check the CRM order number on the page or not
+            if not CRMID in driver.page_source:
+                print "Order number : " + CRMID + " didn't been sent to P6"
+            else:
+                print "Order number : " + CRMID + " has been sent to P6 successfully"
         #Search Part
         
     def tearDown(self):
