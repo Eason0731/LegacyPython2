@@ -5,11 +5,11 @@ import time
 import unittest
 import Getbrowser
 
-class P6SearchP6Order (unittest.TestCase):
+class Search_P6_Order_On_P6 (unittest.TestCase):
     def setUp(self):
         self.driver = Getbrowser.IE()
 
-    def testP6SearchP6Order(self):
+    def testSearch_P6_Order_On_P6(self):
         #Login Part
         driver = self.driver
         P6 = 'http://10.7.3.94:5001/oms/'
@@ -77,12 +77,15 @@ class P6SearchP6Order (unittest.TestCase):
         SubmitButton.click()
         time.sleep(2)
 
-        
-        #Check the P6ID on page or not
-        if not P6ID in driver.page_source:
-            print "P6 number : " + P6ID + " didn't been sent to P6"
+        #Check P6 System in error or not
+        if 'OMS Error' in driver.page_source:
+            print "P6 system is in a error status now, please try again later!"
         else:
-            print "P6 number : " + P6ID + " has been sent to P6 successfully"
+            #Check the P6ID on page or not
+            if not P6ID in driver.page_source:
+                print "P6 number : " + P6ID + " didn't been sent to P6"
+            else:
+                print "P6 number : " + P6ID + " has been sent to P6 successfully"
         
         #Search Part
         
