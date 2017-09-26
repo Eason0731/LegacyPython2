@@ -5,11 +5,11 @@ import time
 import unittest
 import Getbrowser
 
-class P6SearchP6OrderDetail (unittest.TestCase):
+class View_P6_Order_Process_History_On_P6 (unittest.TestCase):
     def setUp(self):
         self.driver = Getbrowser.IE()
 
-    def testP6SearchP6OrderDetail(self):
+    def testView_P6_Order_Process_History_On_P6(self):
         #Login Part
         driver = self.driver
         P6 = 'http://10.7.3.94:5001/oms/'
@@ -18,7 +18,7 @@ class P6SearchP6OrderDetail (unittest.TestCase):
         time.sleep(2)
         self.assertIn('Provisioning 6',driver.title)
 
-        driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td[4]/center/ul/a/font').click()
+        driver.find_element_by_link_text(u'登录 Provisioning 6').click()
         time.sleep(2)
 
         Username = driver.find_element_by_name('j_username')
@@ -76,47 +76,53 @@ class P6SearchP6OrderDetail (unittest.TestCase):
         SubmitButton = driver.find_element_by_name('Submit')
         SubmitButton.click()
         time.sleep(2)
-
-        
-        #Check the P6ID on page or not
-        if not P6ID in driver.page_source:
-            print "P6 number : " + P6ID + " didn't been sent to P6"
+        #Check P6 System in error or not
+        if 'OMS Error' in driver.page_source:
+            print "P6 system is in a error status now, please try again later!"
         else:
-            print "P6 number : " + P6ID + " has been sent to P6 successfully"
+            #Check the P6ID on page or not
+            if not P6ID in driver.page_source:
+                print "P6 number : " + P6ID + " didn't been sent to P6"
+            else:
+                print "P6 number : " + P6ID + " has been sent to P6 successfully"
         
         #Search Part
 
-        #View more details part
-        #Choose processHistory radio button
-        RadioButtons = driver.find_elements_by_css_selector('input[type=radio]')
-        for myradio in RadioButtons:
-            if myradio.get_attribute('value') == 'processHistory':
-                myradio.click()
+                #View more details part
+                #Choose processHistory radio button
+                RadioButtons = driver.find_elements_by_css_selector('input[type=radio]')
+                for myradio in RadioButtons:
+                    if myradio.get_attribute('value') == 'processHistory':
+                        myradio.click()
+                        time.sleep(2)
+
+                #Click details button on the left
+                if u'开始执行' in driver.page_source:
+                    DetailsButton = driver.find_element_by_xpath('//*[@id="accepted"]/input')
+                elif u'已完成' in driver.page_source:
+                    DetailsButton = driver.find_element_by_xpath('//*[@id="completed"]/input')
+                DetailsButton.click()
                 time.sleep(2)
 
-        #Click details button on the left
-        DetailsButton = driver.find_element_by_xpath('//*[@id="accepted"]/input')
-        DetailsButton.click()
-        time.sleep(2)
-
-        #Click detail infos button on the page
-        driver.find_element_by_xpath('/html/body/table[1]/tbody/tr[3]/td/form/table/tbody/tr/td/input[2]').click()
-        time.sleep(3)
-        
-        #Chinese characters can not be well recognized then pop up the errors that give up below method
-        '''
-        Buttons = driver.find_elements_by_css_selector('//input[type=button]')
-        for myButton in Buttons:
-            if u"详" in myButton.get_attribute('value'):
-                #myButton.click()
-                driver.execute_script('arguments[0].click()',myButton)
+                #Click detail infos button on the page
+                driver.find_element_by_xpath('/html/body/table[1]/tbody/tr[3]/td/form/table/tbody/tr/td/input[2]').click()
                 time.sleep(3)
-        '''
-        #Check the P6ID on detail page or not
-        self.assertIn(P6ID,driver.page_source)
-        time.sleep(2)
         
-        #View more details part
+               #Chinese characters can not be well recognized then pop up the errors that give up below method
+                '''
+                Buttons = driver.find_elements_by_css_selector('//input[type=button]')
+                for myButton in Buttons:
+                    if myButton.get_attribute('onclick') == "viewTable('/oms');":
+                        myButton.click()
+                time.sleep(3)
+                '''
+                
+                #Check the P6ID on detail page or not
+                self.assertIn(u'详细信息表',driver.page_source)
+                self.assertIn(P6ID,driver.page_source)
+                time.sleep(2)
+        
+                #View more details part
         
     def tearDown(self):
         self.driver.quit()
