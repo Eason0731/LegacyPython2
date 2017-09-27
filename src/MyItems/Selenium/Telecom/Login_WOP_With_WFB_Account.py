@@ -4,11 +4,11 @@ import time
 import unittest
 import Getbrowser
 
-class WOPLogin(unittest.TestCase):
+class Login_WOP_With_WFB_Account(unittest.TestCase):
     def setUp(self):
         self.driver = Getbrowser.IE()
 
-    def testWOPLogin(self):
+    def testLogin_WOP_With_WFB_Account(self):
         driver = self.driver
         WOP = 'http://10.145.206.52:8001/wop/'
         driver.get(WOP)
