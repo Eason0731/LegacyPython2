@@ -6,7 +6,7 @@ import Getbrowser
 
 class Login_WOP_With_111_Account(unittest.TestCase):
     def setUp(self):
-        self.driver = Getbrowser.Chrome()
+        self.driver = Getbrowser.IE()
 
     def testLogin_WOP_With_111_Account(self):
         driver = self.driver
