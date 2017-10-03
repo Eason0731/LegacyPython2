@@ -5,11 +5,11 @@ import time
 import unittest
 import Getbrowser
 
-class Preview_CRM_Order_Details_On_P6 (unittest.TestCase):
+class Preview_Details_And_View_Process_History_P6_Order_On_P6 (unittest.TestCase):
     def setUp(self):
         self.driver = Getbrowser.IE()
 
-    def testPreview_CRM_Order_Details_On_P6(self):
+    def testPreview_Details_And_View_Process_History_P6_Order_On_P6(self):
         #Login Part
         driver = self.driver
         P6 = 'http://10.7.3.94:5001/oms/'
