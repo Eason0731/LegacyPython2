@@ -185,6 +185,13 @@ def ReplaceOnTxt(Dir):
     CountineOrExit()
 
 def Delete(Dir):
+    while(True):
+        IsDelete = raw_input("Are you sure to delete " + Dir +"? (Y/N)")
+        if IsDelete.lower() == 'y':
+            break
+        elif IsDelete.lower() == 'n':
+            CountineOrExit()
+            break
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isfile(Dir):
