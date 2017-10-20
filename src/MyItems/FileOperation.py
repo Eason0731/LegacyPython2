@@ -267,7 +267,6 @@ def BatchAndFindOnDirs(Dir,Fun):
                             print "   "
 
             for myFolder in dirs:
-                #myFolder = myFolder.lower()
                 if FindContent.lower() in myFolder.lower():
                     k = k + 1
                     Folder = os.path.join(root,myFolder)
