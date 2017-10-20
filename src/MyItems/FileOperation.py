@@ -17,7 +17,7 @@ def MainFunction():
 6. Find contents on txt files
 7. Find files or folder on folder
 8. Rename file or folder
-9. Rename file with specificname
+9. Batch Rename file or folder
 10. Calculate the file or folder size
 11. View PC infos
 
@@ -125,7 +125,7 @@ Please choose : """)
             ExistOrNot(Source)
 
     elif Choose == '9':
-        print "============Rename file with specificname=========="
+        print "============Batch Rename files or folder=========="
         Dir = raw_input ("Please input folder or file path: ")
         if os.path.exists(Dir):
             if not '\\' in Dir:
