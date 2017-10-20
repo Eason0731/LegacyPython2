@@ -58,7 +58,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            BatchDeleteAndFindOnDirs(Dir,'Del')
+            BatchAndFindOnDirs(Dir,'Del')
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -106,7 +106,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            BatchDeleteAndFindOnDirs(Dir,'Find')
+            BatchAndFindOnDirs(Dir,'Find')
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -130,7 +130,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            BatchRename(Dir)
+            BatchAndFindOnDirs(Dir,'Rename')
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -221,20 +221,28 @@ def Delete(Dir):
     print "=================== Finish ========================"
     CountineOrExit()
 
-def BatchDeleteAndFindOnDirs(Dir,Fun):
+def BatchAndFindOnDirs(Dir,Fun):
     if os.path.isdir(Dir):
         while(True):
-            File = raw_input ("What want to find on this folder? ")
-            if not File.strip():
+            FindContent = raw_input ("What want to find on this folder? ")
+            if not FindContent.strip():
                 print "Cannot input empty file or folder name, please input again!"
             else:
-                break 
+                break
+            
+        if 'Rename' in Fun:
+            while(True):
+                ReplaceContent = raw_input("Please input new name to replace: ")
+                if not ReplaceContent.strip():
+                    print "Cannot input empty replace content, please input again!"
+                else:
+                    break    
         k = 0
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
             for myFile in filenames:
-                if File.lower() in myFile.lower():
+                if FindContent.lower() in myFile.lower():
                     k = k + 1
                     Files = os.path.join(root,myFile)
                     if 'Del' in Fun:
@@ -245,11 +253,22 @@ def BatchDeleteAndFindOnDirs(Dir,Fun):
                         else:
                             print  Files + " has been deleted failed!"
                     elif 'Find' in Fun:
-                        print "File: " + File + " has found on " + Files
+                        print "File: " + FindContent + " has found on " + Files
                         print  "  "
+                    elif 'Rename' in Fun:
+                        FindContent = FindContent.lower()
+                        myFile = myFile.lower()
+                        OldName = os.path.join(root,myFile)
+                        myFile = myFile.replace(FindContent,ReplaceContent)
+                        NewName = os.path.join(root,myFile)
+                        os.rename (OldName,NewName)
+                        if os.path.exists(NewName):
+                            print OldName +" has been replaced as " + NewName + " successfully!"
+                            print "   "
 
             for myFolder in dirs:
-                if File.lower() in myFolder.lower():
+                #myFolder = myFolder.lower()
+                if FindContent.lower() in myFolder.lower():
                     k = k + 1
                     Folder = os.path.join(root,myFolder)
                     if 'Del' in Fun:
@@ -260,11 +279,21 @@ def BatchDeleteAndFindOnDirs(Dir,Fun):
                         else:
                             print  Folder + " has been deleted failed!"
                     elif 'Find' in Fun:
-                        print "Folder: " + File + " has found on " + Folder
+                        print "Folder: " + FindContent + " has found on " + Folder
                         print  "  "
+                    elif 'Rename' in Fun:
+                        FindContent = FindContent.lower()
+                        myFolder = myFolder.lower()
+                        OldName = os.path.join(root,myFolder)
+                        myFolder = myFolder.replace(FindContent,ReplaceContent)
+                        NewName = os.path.join(root,myFolder)
+                        os.rename (OldName,NewName)
+                        if os.path.exists(NewName):
+                            print OldName +" has been replaced as " + NewName + " successfully!"
+                            print "   "
     
         if k == 0:
-            print File + " didn't found on " + Dir
+            print FindContent + " didn't found on " + Dir
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
         print "=================== Finish ========================"
     else:
@@ -433,54 +462,7 @@ def Rename(Source):
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
-
-def BatchRename(Dir):
-    while(True):
-        FindContent = raw_input("What name want to find? ")
-        if not FindContent.strip():
-            print "Cannot input empty search content, please input again!"
-        else:
-            FindContent = FindContent.lower()
-            break
-    while(True):
-        ReplaceContent = raw_input("Please input new name to replace: ")
-        if not ReplaceContent.strip():
-            print "Cannot input empty replace content, please input again!"
-        else:
-            break
-    w = 0
-    print "=================== Start ========================="
-    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if os.path.isdir(Dir):
-        for root,dirs,filenames in os.walk(Dir):
-            for myFile in filenames:
-                myFile = myFile.lower()  
-                if FindContent in myFile:
-                    w = w + 1
-                    OldNameFile = os.path.join(root,myFile)
-                    myFile = myFile.replace(FindContent,ReplaceContent)
-                    NewNameFile = os.path.join(root,myFile)
-                    os.rename (OldNameFile,NewNameFile)
-                    if os.path.exists(NewNameFile):
-                        print OldNameFile +" has been replaced as " + NewNameFile + " successfully!"
-                        print "   "
-        if w == 0:
-            print "Didn't found file named with " + FindContent + " under folder " + Dir
-    else:
-        myFile = Dir.split('\\')[-1]
-        myFile = myFile.lower()
-        if FindContent in myFile:
-            myFile = myFile.replace(FindContent,ReplaceContent)
-            Path = '\\'.join(Dir.split('\\')[0:-1])
-            NewNameFile = os.path.join(Path,myFile)
-            os.rename (Dir,NewNameFile)
-            if os.path.exists(NewNameFile):
-                print Dir +" has been replaced as " + NewNameFile + " successfully!"
-        else:
-            print "Didn't found file named with " + FindContent + " on file " + Dir
-    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "=================== Finish ========================"
-    CountineOrExit()              
+            
 
 def GetSize(Source):
     print "=================== Start ========================="
