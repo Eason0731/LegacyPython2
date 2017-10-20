@@ -58,7 +58,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            BatchDelete(Dir)
+            BatchDeleteAndFindOnDirs(Dir,'Del')
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -106,7 +106,7 @@ Please choose : """)
         if os.path.exists(Dir):
             if not '\\' in Dir:
                 FormatJudge(Dir,Fun)
-            FindOnDirs(Dir)
+            BatchDeleteAndFindOnDirs(Dir,'Find')
         elif not Dir.strip():
             EmptyOrNot()
         else:
@@ -221,7 +221,7 @@ def Delete(Dir):
     print "=================== Finish ========================"
     CountineOrExit()
 
-def BatchDelete(Dir):
+def BatchDeleteAndFindOnDirs(Dir,Fun):
     if os.path.isdir(Dir):
         while(True):
             File = raw_input ("What want to find on this folder? ")
@@ -237,24 +237,32 @@ def BatchDelete(Dir):
                 if File.lower() in myFile.lower():
                     k = k + 1
                     Files = os.path.join(root,myFile)
-                    os.remove(Files)
-                    if not os.path.exists(Files):
-                        print  Files + " has been deleted successfully!"
+                    if 'Del' in Fun:
+                        os.remove(Files)
+                        if not os.path.exists(Files):
+                            print  Files + " has been deleted successfully!"
+                            print  "  "
+                        else:
+                            print  Files + " has been deleted failed!"
+                    elif 'Find' in Fun:
+                        print "File: " + File + " has found on " + Files
                         print  "  "
-                    else:
-                        print  Files + " has been deleted failed!"
 
             for myFolder in dirs:
                 if File.lower() in myFolder.lower():
                     k = k + 1
                     Folder = os.path.join(root,myFolder)
-                    shutil.rmtree(Folder)  
-                    if not os.path.exists(Folder):
-                        print  Folder + " has been deleted successfully!"
+                    if 'Del' in Fun:
+                        shutil.rmtree(Folder)  
+                        if not os.path.exists(Folder):
+                            print  Folder + " has been deleted successfully!"
+                            print  "  "
+                        else:
+                            print  Folder + " has been deleted failed!"
+                    elif 'Find' in Fun:
+                        print "Folder: " + File + " has found on " + Folder
                         print  "  "
-                    else:
-                        print  Folder + " has been deleted failed!"
-            
+    
         if k == 0:
             print File + " didn't found on " + Dir
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
@@ -262,7 +270,7 @@ def BatchDelete(Dir):
     else:
         print Dir + " is a file path , please input a folder path"
     CountineOrExit()
-    
+
 def Copy(Source):
     while(True):
         Target = raw_input ("Please input target folder path: ")
@@ -404,37 +412,6 @@ def FindOnTxt(Dir):
             print "There is no txt files under folder " + Dir
     else:
         print Dir + " is a file path , please input a folder path"   
-    CountineOrExit()
-                
-def FindOnDirs(Dir):
-    if os.path.isdir(Dir):
-        while(True):
-            File = raw_input ("What want to find on this folder? ")
-            if not File.strip():
-                print "Cannot input empty file or folder name, please input again!"
-            else:
-                break 
-        k = 0
-        print "=================== Start ========================="
-        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-        for root,dirs,filenames in os.walk(Dir):
-            for myFile in filenames:
-                if File.lower() in myFile.lower():
-                    k = k + 1
-                    print "File: " + File + " has found on " + os.path.join(root,myFile)
-                    print "  "
-
-            for myFolder in dirs:
-                if File.lower() in myFolder.lower():
-                    k = k + 1
-                    print "Folder: " + File + " has found on " + os.path.join(root,myFolder)
-                    print "  "   
-        if k == 0:
-            print File + " didn't found on " + Dir
-        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-        print "=================== Finish ========================"
-    else:
-        print Dir + " is a file path , please input a folder path"
     CountineOrExit()
             
 def Rename(Source):
