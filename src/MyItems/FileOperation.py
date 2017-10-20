@@ -11,14 +11,16 @@ def MainFunction():
 =============Welcome to File Operation=============
 1. Replace content on txt files
 2. Delete file or folder
-3. Copy file or folder
-4. Move file or folder
-5. Find contents on txt files
-6. Find files or folder on folder
-7. Rename file or folder
-8. Rename file with specificname
-9. Calculate the file or folder size
-10. View PC infos
+3. Batch delete file or folder
+4. Copy file or folder
+5. Move file or folder
+6. Find contents on txt files
+7. Find files or folder on folder
+8. Rename file or folder
+9. Rename file with specificname
+10. Calculate the file or folder size
+11. View PC infos
+
 
 =========  """+ GetDate() +"""  =========
 
@@ -51,6 +53,18 @@ Please choose : """)
             ExistOrNot(Dir)
 
     elif Choose == '3':
+        print "===========Batch Delete files or folder =========="
+        Dir  = raw_input ("Please input folder path: ")
+        if os.path.exists(Dir):
+            if not '\\' in Dir:
+                FormatJudge(Dir,Fun)
+            BatchDelete(Dir)
+        elif not Dir.strip():
+            EmptyOrNot()
+        else:
+            ExistOrNot(Dir)
+
+    elif Choose == '4':
         print "===============Copy file or folder================="
         Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
@@ -62,7 +76,7 @@ Please choose : """)
         else:
             ExistOrNot(Source)
             
-    elif Choose == '4':
+    elif Choose == '5':
         print "===============Move file or folder================="
         Source = raw_input ("Please input source folder or file path: ")
         if os.path.exists(Source):
@@ -74,7 +88,7 @@ Please choose : """)
         else:
             ExistOrNot(Source)
                     
-    elif Choose == '5':
+    elif Choose == '6':
         print "=============Find contents on txt files============"
         Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
@@ -86,7 +100,7 @@ Please choose : """)
         else:
             ExistOrNot(Dir)
                 
-    elif Choose == '6':
+    elif Choose == '7':
         print "===========Find files or folder on folder=========="
         Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
@@ -98,7 +112,7 @@ Please choose : """)
         else:
             ExistOrNot(Dir)
 
-    elif Choose == '7':
+    elif Choose == '8':
         print "===============Rename file or folder==============="  
         Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
@@ -110,7 +124,7 @@ Please choose : """)
         else:
             ExistOrNot(Source)
 
-    elif Choose == '8':
+    elif Choose == '9':
         print "============Rename file with specificname=========="
         Dir = raw_input ("Please input folder or file path: ")
         if os.path.exists(Dir):
@@ -122,7 +136,7 @@ Please choose : """)
         else:
             ExistOrNot(Dir)
             
-    elif Choose == '9':
+    elif Choose == '10':
         print "========Calculate the file or folder size=========="  
         Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
@@ -134,7 +148,7 @@ Please choose : """)
         else:
             ExistOrNot(Source)
         
-    elif Choose == '10':
+    elif Choose == '11':
         ViewPCInfos.ViewPCInfos()
 
     else:
@@ -192,6 +206,7 @@ def Delete(Dir):
         elif IsDelete.lower() == 'n':
             CountineOrExit()
             break
+    
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
     if os.path.isfile(Dir):
@@ -205,7 +220,49 @@ def Delete(Dir):
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
-        
+
+def BatchDelete(Dir):
+    if os.path.isdir(Dir):
+        while(True):
+            File = raw_input ("What want to find on this folder? ")
+            if not File.strip():
+                print "Cannot input empty file or folder name, please input again!"
+            else:
+                break 
+        k = 0
+        print "=================== Start ========================="
+        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+        for root,dirs,filenames in os.walk(Dir):
+            for myFile in filenames:
+                if File.lower() in myFile.lower():
+                    k = k + 1
+                    Files = os.path.join(root,myFile)
+                    os.remove(Files)
+                    if not os.path.exists(Files):
+                        print  Files + " has been deleted successfully!"
+                        print  "  "
+                    else:
+                        print  Files + " has been deleted failed!"
+
+            for myFolder in dirs:
+                if File.lower() in myFolder.lower():
+                    k = k + 1
+                    Folder = os.path.join(root,myFolder)
+                    shutil.rmtree(Folder)  
+                    if not os.path.exists(Folder):
+                        print  Folder + " has been deleted successfully!"
+                        print  "  "
+                    else:
+                        print  Folder + " has been deleted failed!"
+            
+        if k == 0:
+            print File + " didn't found on " + Dir
+        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+        print "=================== Finish ========================"
+    else:
+        print Dir + " is a file path , please input a folder path"
+    CountineOrExit()
+    
 def Copy(Source):
     while(True):
         Target = raw_input ("Please input target folder path: ")
@@ -463,6 +520,7 @@ def GetSize(Source):
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
+
 
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
