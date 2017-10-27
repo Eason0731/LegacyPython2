@@ -241,12 +241,19 @@ def BatchAndFindOnDirs(Dir,Fun):
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
-            for myFile in filenames:
+            if '.' in FindContent:
+                FD = filenames
+            else:
+                FD = dirs
+            for myFile in FD:
                 if FindContent.lower() in myFile.lower():
                     k = k + 1
                     Files = os.path.join(root,myFile)
                     if 'Del' in Fun:
-                        os.remove(Files)
+                        if os.path.isfile(Files):       
+                            os.remove(Files)
+                        elif os.path.isdir(Files):
+                            shutil.rmtree(Files)
                         if not os.path.exists(Files):
                             print  Files + " has been deleted successfully!"
                             print  "  "
@@ -265,32 +272,7 @@ def BatchAndFindOnDirs(Dir,Fun):
                         if os.path.exists(NewName):
                             print OldName +" has been replaced as " + NewName + " successfully!"
                             print "   "
-
-            for myFolder in dirs:
-                if FindContent.lower() in myFolder.lower():
-                    k = k + 1
-                    Folder = os.path.join(root,myFolder)
-                    if 'Del' in Fun:
-                        shutil.rmtree(Folder)  
-                        if not os.path.exists(Folder):
-                            print  Folder + " has been deleted successfully!"
-                            print  "  "
-                        else:
-                            print  Folder + " has been deleted failed!"
-                    elif 'Find' in Fun:
-                        print "Folder: " + FindContent + " has found on " + Folder
-                        print  "  "
-                    elif 'Rename' in Fun:
-                        FindContent = FindContent.lower()
-                        myFolder = myFolder.lower()
-                        OldName = os.path.join(root,myFolder)
-                        myFolder = myFolder.replace(FindContent,ReplaceContent)
-                        NewName = os.path.join(root,myFolder)
-                        os.rename (OldName,NewName)
-                        if os.path.exists(NewName):
-                            print OldName +" has been replaced as " + NewName + " successfully!"
-                            print "   "
-    
+        
         if k == 0:
             print FindContent + " didn't found on " + Dir
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
