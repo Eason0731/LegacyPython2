@@ -222,6 +222,7 @@ def Delete(Dir):
     CountineOrExit()
 
 def BatchAndFindOnDirs(Dir,Fun):
+    k = 0
     if os.path.isdir(Dir):
         while(True):
             FindContent = raw_input ("What want to find on this folder? ")
@@ -236,8 +237,17 @@ def BatchAndFindOnDirs(Dir,Fun):
                 if not ReplaceContent.strip():
                     print "Cannot input empty replace content, please input again!"
                 else:
-                    break    
-        k = 0
+                    break
+
+        if 'Del' in Fun:
+            while(True):
+                IsDelete = raw_input("Are you sure to delete them? (Y/N)")
+                if IsDelete.lower() == 'y':
+                    break
+                elif IsDelete.lower() == 'n':
+                    CountineOrExit()
+                    break
+          
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
@@ -250,7 +260,7 @@ def BatchAndFindOnDirs(Dir,Fun):
                     k = k + 1
                     Files = os.path.join(root,myFile)
                     if 'Del' in Fun:
-                        if os.path.isfile(Files):       
+                        if os.path.isfile(Files):    
                             os.remove(Files)
                         elif os.path.isdir(Files):
                             shutil.rmtree(Files)
