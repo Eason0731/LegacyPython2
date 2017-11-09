@@ -200,10 +200,10 @@ def ReplaceOnTxt(Dir):
 
 def Delete(Dir):
     while(True):
-        IsDelete = raw_input("Are you sure to delete " + Dir +"? (Y/N)")
-        if IsDelete.lower() == 'y':
+        IsDel = raw_input("Are you sure to delete " + Dir +"? (Y/N)")
+        if IsDel.lower() == 'y':
             break
-        elif IsDelete.lower() == 'n':
+        elif IsDel.lower() == 'n':
             CountineOrExit()
             break
     
@@ -241,10 +241,10 @@ def BatchAndFindOnDirs(Dir,Fun):
 
         if 'Del' in Fun:
             while(True):
-                IsDelete = raw_input("Are you sure to delete them? (Y/N)")
-                if IsDelete.lower() == 'y':
+                IsDel = raw_input("Are you sure to delete them? (Y/N)")
+                if IsDel.lower() == 'y':
                     break
-                elif IsDelete.lower() == 'n':
+                elif IsDel.lower() == 'n':
                     CountineOrExit()
                     break
           
