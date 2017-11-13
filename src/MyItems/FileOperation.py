@@ -239,15 +239,6 @@ def BatchAndFindOnDirs(Dir,Fun):
                 else:
                     break
 
-        if 'Del' in Fun:
-            while(True):
-                IsDel = raw_input("Are you sure to delete them? (Y/N)")
-                if IsDel.lower() == 'y':
-                    break
-                elif IsDel.lower() == 'n':
-                    CountineOrExit()
-                    break
-          
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
@@ -260,6 +251,14 @@ def BatchAndFindOnDirs(Dir,Fun):
                     k = k + 1
                     Files = os.path.join(root,myFile)
                     if 'Del' in Fun:
+                        while(True):
+                            IsDel = raw_input("Are you sure to delete "+ Files +" ? (Y/N)")
+                            if IsDel.lower() == 'y':
+                                break
+                            elif IsDel.lower() == 'n':
+                                CountineOrExit()
+                                break
+                        
                         if os.path.isfile(Files):    
                             os.remove(Files)
                         elif os.path.isdir(Files):
@@ -269,6 +268,7 @@ def BatchAndFindOnDirs(Dir,Fun):
                             print  "  "
                         else:
                             print  Files + " has been deleted failed!"
+                        
                     elif 'Find' in Fun:
                         print "File: " + Find + " has found on " + Files
                         print  "  "
