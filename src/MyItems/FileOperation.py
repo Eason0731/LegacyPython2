@@ -258,24 +258,24 @@ def BatchAndFindOnDirs(Dir,Fun):
             for myFile in FD:
                 if Find.lower() in myFile.lower():
                     k = k + 1
-                    Files = os.path.join(root,myFile)
+                    F = os.path.join(root,myFile)
                     if 'Del' in Fun:                        
-                        if os.path.isfile(Files):    
-                            os.remove(Files)
-                        elif os.path.isdir(Files):
-                            shutil.rmtree(Files)
-                        if not os.path.exists(Files):
-                            print  Files + " has been deleted successfully!"
+                        if os.path.isfile(F):    
+                            os.remove(F)
+                        elif os.path.isdir(F):
+                            shutil.rmtree(F)
+                        if not os.path.exists(F):
+                            print  F + " has been deleted successfully!"
                             print  "  "
                         else:
-                            print  Files + " has been deleted failed!"
+                            print  F + " has been deleted failed!"
                         
                     elif 'Find' in Fun:
-                        if os.path.isfile(Files):
+                        if os.path.isfile(F):
                             Fn = 'File: '
                         else:
                             Fn = 'Folder: '
-                        print Fn + Find + " has found on " + Files
+                        print Fn + Find + " has found on " + F
                         print  "  "
                     elif 'Rename' in Fun:
                         Find = Find.lower()
