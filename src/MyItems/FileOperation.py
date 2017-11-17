@@ -32,8 +32,7 @@ Please choose : """)
         print "===========Replace content on txt files============"
         Dir = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
-            if not '\\' in Dir:
-                FormatJudge(Dir,Fun)
+            FormatJudge(Dir,Fun)
             ReplaceOnTxt(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -44,8 +43,7 @@ Please choose : """)
         print "===============Delete file or folder==============="
         Dir = raw_input ("Please input folder or file path: ")
         if os.path.exists(Dir):
-            if not '\\' in Dir:
-                FormatJudge(Dir,Fun)
+            FormatJudge(Dir,Fun)
             Delete(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -56,8 +54,7 @@ Please choose : """)
         print "===========Batch Delete files or folder =========="
         Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
-            if not '\\' in Dir:
-                FormatJudge(Dir,Fun)
+            FormatJudge(Dir,Fun)
             BatchAndFindOnDirs(Dir,'Del')
         elif not Dir.strip():
             EmptyOrNot()
@@ -68,8 +65,7 @@ Please choose : """)
         print "===============Copy file or folder================="
         Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
-            if not '\\' in Source:
-                FormatJudge(Source,Fun)
+            FormatJudge(Source,Fun)
             Copy(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -80,8 +76,7 @@ Please choose : """)
         print "===============Move file or folder================="
         Source = raw_input ("Please input source folder or file path: ")
         if os.path.exists(Source):
-            if not '\\' in Source:
-                FormatJudge(Source,Fun)
+            FormatJudge(Source,Fun)
             Move(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -92,8 +87,7 @@ Please choose : """)
         print "=============Find contents on txt files============"
         Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
-            if not '\\' in Dir:
-                FormatJudge(Dir,Fun)
+            FormatJudge(Dir,Fun)
             FindOnTxt(Dir)
         elif not Dir.strip():
             EmptyOrNot()
@@ -104,8 +98,7 @@ Please choose : """)
         print "===========Find files or folder on folder=========="
         Dir  = raw_input ("Please input folder path: ")
         if os.path.exists(Dir):
-            if not '\\' in Dir:
-                FormatJudge(Dir,Fun)
+            FormatJudge(Dir,Fun)
             BatchAndFindOnDirs(Dir,'Find')
         elif not Dir.strip():
             EmptyOrNot()
@@ -116,8 +109,7 @@ Please choose : """)
         print "===============Rename file or folder==============="  
         Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
-            if not '\\' in Source:
-                FormatJudge(Source,Fun)
+            FormatJudge(Source,Fun)
             Rename(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -128,8 +120,7 @@ Please choose : """)
         print "============Batch Rename files or folder=========="
         Dir = raw_input ("Please input folder or file path: ")
         if os.path.exists(Dir):
-            if not '\\' in Dir:
-                FormatJudge(Dir,Fun)
+            FormatJudge(Dir,Fun)
             BatchAndFindOnDirs(Dir,'Rename')
         elif not Dir.strip():
             EmptyOrNot()
@@ -140,8 +131,7 @@ Please choose : """)
         print "========Calculate the file or folder size=========="  
         Source = raw_input ("Please input folder or file path: ")
         if os.path.exists(Source):
-            if not '\\' in Source:
-                FormatJudge(Source,Fun)
+            FormatJudge(Source,Fun)
             GetSize(Source)
         elif not Source.strip():
             EmptyOrNot()
@@ -508,10 +498,11 @@ def OverwriteOrNot(Source,Target):
         elif IsConver.lower() == 'n':
             CountineOrExit()
         
-def FormatJudge(Source,Fun):
-    print "The format of " + Source + " is incorrect! Should with '\\'"
-    if 'Main' in Fun:
-        CountineOrExit()
+def FormatJudge(Dir,Fun):
+    if not '\\' in Dir:
+        print "The format of " + Dir + " is incorrect! Should with '\\'"
+        if 'Main' in Fun:
+            CountineOrExit()
 
 def TargetFolderEmptyOrNot(Source,Target,Fun):
      if not Target.strip():
