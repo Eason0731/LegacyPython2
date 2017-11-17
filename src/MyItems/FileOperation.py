@@ -271,11 +271,7 @@ def BatchAndFindOnDirs(Dir,Fun):
                             print  F + " has been deleted failed!"
                         
                     elif 'Find' in Fun:
-                        if os.path.isfile(F):
-                            Fn = 'File: '
-                        else:
-                            Fn = 'Folder: '
-                        print Fn + Find + " has found on " + F
+                        print Find + " has found on " + F
                         print  "  "
                     elif 'Rename' in Fun:
                         Find = Find.lower()
