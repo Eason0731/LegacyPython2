@@ -189,7 +189,7 @@ def ReplaceOnTxt(Dir):
     CountineOrExit()
 
 def Delete(Dir):
-    while(True):
+    while 1:
         IsDel = raw_input("Are you sure to delete " + Dir +"? (Y/N)")
         if IsDel.lower() == 'y':
             break
