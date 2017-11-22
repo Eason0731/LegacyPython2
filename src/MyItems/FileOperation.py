@@ -214,7 +214,7 @@ def Delete(Dir):
 def BatchAndFindOnDirs(Dir,Fun):
     k = 0
     if os.path.isdir(Dir):
-        while(True):
+        while 1:
             Find = raw_input ("What want to find on this folder? ")
             if not Find.strip():
                 print "Cannot input empty file or folder name, please input again!"
@@ -222,7 +222,7 @@ def BatchAndFindOnDirs(Dir,Fun):
                 break
             
         if 'Rename' in Fun:
-            while(True):
+            while 1:
                 Replace = raw_input("Please input new name to replace: ")
                 if not Replace.strip():
                     print "Cannot input empty replace content, please input again!"
@@ -230,7 +230,7 @@ def BatchAndFindOnDirs(Dir,Fun):
                     break
 
         if 'Del' in Fun:
-            while(True):
+            while 1:
                 IsDel = raw_input("Are you sure to batch delete files or folders? (Y/N)")
                 if IsDel.lower() == 'y':
                     break
