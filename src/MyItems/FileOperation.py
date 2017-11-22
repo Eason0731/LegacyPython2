@@ -283,7 +283,7 @@ def BatchAndFindOnDirs(Dir,Fun):
     CountineOrExit()
 
 def Copy(Source):
-    while(True):
+    while 1:
         Target = raw_input ("Please input target folder path: ")
         if not '\\' in Target:
             FormatJudge(Target,sys._getframe().f_code.co_name)
@@ -348,7 +348,7 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 def Move(Source):
-    while(True):
+    while 1:
         Target = raw_input ("Please input target folder path: ")
         if not '\\' in Target:
             FormatJudge(Target,sys._getframe().f_code.co_name)
