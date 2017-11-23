@@ -394,7 +394,7 @@ def FindOnTxt(Dir):
     if os.path.isdir(Dir):
         if 'txt' in str(os.listdir(Dir)):
             c = 0
-            while(True):
+            while 1:
                 Content = raw_input ("What want to find on txt file? ")
                 if not Content.strip():
                     print "Cannot input empty search content, please input again!"
@@ -426,7 +426,7 @@ def FindOnTxt(Dir):
     CountineOrExit()
             
 def Rename(Source):
-    while(True):
+    while 1:
         Target = raw_input ("Please input new name want to replace: ")
         if not Target.strip():
             print "Cannot input empty replace content, please input again!"
