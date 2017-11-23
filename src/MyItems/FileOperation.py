@@ -146,24 +146,26 @@ Please choose : """)
       
 def ReplaceOnTxt(Dir):
     if os.path.isdir(Dir):
-        if 'txt' in str(os.listdir(Dir)):
-            c = 0
-            while 1:
-                Original = raw_input("Please input what to find: ")
-                if not Original.strip():
-                    print "Cannot input empty search content, please input again!"
-                else:
-                    break
-            while 1:
-                Replace = raw_input("Please input what to replace: ")
-                if not Replace.strip():
-                    print "Cannot input empty replace content, please input again!"
-                else:
-                    break
-            print "=================== Start ========================="
-            print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-            for root,dirs,filenames in os.walk(Dir):
-                for myFile in filenames:
+        k = 0
+        c = 0
+        while 1:
+            Original = raw_input("Please input what to find: ")
+            if not Original.strip():
+                 print "Cannot input empty search content, please input again!"
+            else:
+                break
+        while 1:
+            Replace = raw_input("Please input what to replace: ")
+            if not Replace.strip():
+                 print "Cannot input empty replace content, please input again!"
+            else:
+                break
+        print "=================== Start ========================="
+        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+        for root,dirs,filenames in os.walk(Dir):
+            for myFile in filenames:
+                if 'txt' in myFile:
+                    k+=1
                     TxtFile = os.path.join(root,myFile)
                     files = open (TxtFile,'r') 
                     content = files.read()
@@ -178,12 +180,15 @@ def ReplaceOnTxt(Dir):
                         print Original + " has been replaced as " + Replace + " on file "+ TxtFile +" successfully!"
                         print "   "
                     files.close()
-            if c == 0:
-                print Original + " didn't found on " + Dir       
-            print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-            print "=================== Finish ========================"
-        else:
+                    
+        if c == 0 and k != 0:
+            print Original + " didn't found on " + Dir       
+                
+        if c == 0 and k == 0:
             print "There is no txt files under folder " + Dir
+
+        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+        print "=================== Finish ========================"
     else:
         print Dir + " is a file path , please input a folder path"
     CountineOrExit()
