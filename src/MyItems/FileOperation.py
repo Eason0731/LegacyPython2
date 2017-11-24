@@ -397,35 +397,40 @@ def Move(Source):
 
 def FindOnTxt(Dir):
     if os.path.isdir(Dir):
-        if 'txt' in str(os.listdir(Dir)):
-            c = 0
-            while 1:
-                Content = raw_input ("What want to find on txt file? ")
-                if not Content.strip():
-                    print "Cannot input empty search content, please input again!"
-                else:
-                    break
-            print "=================== Start ========================="
-            print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-            for root,dirs,filenames in os.walk(Dir):
-                for myFile in filenames:
+        c = 0
+        k = 0
+        while 1:
+            Content = raw_input ("What want to find on txt file? ")
+            if not Content.strip():
+                print "Cannot input empty search content, please input again!"
+            else:
+                break
+        print "=================== Start ========================="
+        print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+        for root,dirs,filenames in os.walk(Dir):         
+            for myFile in filenames:
+                if 'txt' in myFile:
+                    k+=1
                     i = 0
                     TxtFile = os.path.join(root,myFile)
                     f = open (TxtFile, 'r')
                     Filecontent = f.readlines()              
                     for eachline in Filecontent:
                         if Content.lower() in eachline.lower():
-                            i += 1
-                            c += 1
+                            i+=1
+                            c+=1
                     f.close()
                     if i > 0:
                         print Content + " found on " + TxtFile + " for " + str(i) + " times"
-            if c ==0 and i == 0:
-                print Content + " didn't found on " + Dir
-            print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-            print "=================== Finish ========================"
-        else:
+
+        if c == 0 and k != 0:
+            print Content + " didn't found on " + Dir
+            
+        if k == 0:
             print "There is no txt files under folder " + Dir
+
+        print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+        print "=================== Finish ========================"
     else:
         print Dir + " is a file path , please input a folder path"   
     CountineOrExit()
