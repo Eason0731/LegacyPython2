@@ -316,7 +316,7 @@ def Copy(Source):
             FormatJudge(Target,Fun)
         else:
             break
-    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
+    TargetFolderEmptyOrNot(Source,Target,Fun)
     Disk = '\\'.join(Target.split("\\")[:1])
     if os.path.exists(Disk):
         if not os.path.exists(Target):
@@ -384,7 +384,7 @@ def Move(Source):
             FormatJudge(Target,Fun)
         else:
             break
-    TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
+    TargetFolderEmptyOrNot(Source,Target,Fun)
     Disk = '\\'.join(Target.split("\\")[:1])
     Type = Source.split("\\")[-1]
     if os.path.exists(Disk):
