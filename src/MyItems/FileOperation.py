@@ -35,7 +35,7 @@ Please choose : """)
             FormatJudge(Dir,Fun)
             ReplaceOnTxt(Dir)
         elif not Dir.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Dir)
                                   
@@ -46,7 +46,7 @@ Please choose : """)
             FormatJudge(Dir,Fun)
             Delete(Dir)
         elif not Dir.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Dir)
 
@@ -57,7 +57,7 @@ Please choose : """)
             FormatJudge(Dir,Fun)
             BatchAndFindOnDirs(Dir,'Del')
         elif not Dir.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Dir)
 
@@ -68,7 +68,7 @@ Please choose : """)
             FormatJudge(Source,Fun)
             Copy(Source)
         elif not Source.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Source)
             
@@ -79,7 +79,7 @@ Please choose : """)
             FormatJudge(Source,Fun)
             Move(Source)
         elif not Source.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Source)
                     
@@ -90,7 +90,7 @@ Please choose : """)
             FormatJudge(Dir,Fun)
             FindOnTxt(Dir)
         elif not Dir.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Dir)
                 
@@ -101,7 +101,7 @@ Please choose : """)
             FormatJudge(Dir,Fun)
             BatchAndFindOnDirs(Dir,'Find')
         elif not Dir.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Dir)
 
@@ -112,7 +112,7 @@ Please choose : """)
             FormatJudge(Source,Fun)
             Rename(Source)
         elif not Source.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Source)
 
@@ -123,7 +123,7 @@ Please choose : """)
             FormatJudge(Dir,Fun)
             BatchAndFindOnDirs(Dir,'Rename')
         elif not Dir.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Dir)
             
@@ -134,7 +134,7 @@ Please choose : """)
             FormatJudge(Source,Fun)
             GetSize(Source)
         elif not Source.strip():
-            EmptyOrNot()
+            EmptyOrNot(Fun)
         else:
             ExistOrNot(Source)
         
@@ -246,19 +246,12 @@ def BatchAndFindOnDirs(Dir,Fun):
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
-            if '.' in Find:
-                FD = filenames
-            else:
-                FD = dirs
-            for myFile in FD:
+            for myFile in filenames:
                 if Find.lower() in myFile.lower():
                     k = k + 1
                     F = os.path.join(root,myFile)
                     if 'Del' in Fun:                        
-                        if os.path.isfile(F):    
-                            os.remove(F)
-                        elif os.path.isdir(F):
-                            shutil.rmtree(F)
+                        os.remove(F)
                         if not os.path.exists(F):
                             print  F + " has been deleted successfully!"
                             print  "  "
@@ -278,6 +271,32 @@ def BatchAndFindOnDirs(Dir,Fun):
                         if os.path.exists(NewName):
                             print OldName +" has been replaced as " + NewName + " successfully!"
                             print "   "
+                            
+            for myFolder in dirs:
+                if Find.lower() in myFolder.lower():
+                    k = k + 1
+                    F = os.path.join(root,myFolder)
+                    if 'Del' in Fun:                        
+                        shutil.rmtree(F)
+                        if not os.path.exists(F):
+                            print  F + " has been deleted successfully!"
+                            print  "  "
+                        else:
+                            print  F + " has been deleted failed!"
+                        
+                    elif 'Find' in Fun:
+                        print Find + " has found on " + F
+                        print  "  "
+                    elif 'Rename' in Fun:
+                        Find = Find.lower()
+                        myFolder = myFolder.lower()
+                        OldName = os.path.join(root,myFolder)
+                        myFolder = myFolder.replace(Find,Replace)
+                        NewName = os.path.join(root,myFolder)
+                        os.rename (OldName,NewName)
+                        if os.path.exists(NewName):
+                            print OldName +" has been replaced as " + NewName + " successfully!"
+                            print "   "
         
         if k == 0:
             print Find + " didn't found on " + Dir
@@ -288,10 +307,13 @@ def BatchAndFindOnDirs(Dir,Fun):
     CountineOrExit()
 
 def Copy(Source):
+    Fun = sys._getframe().f_code.co_name
     while 1:
         Target = raw_input ("Please input target folder path: ")
-        if not '\\' in Target:
-            FormatJudge(Target,sys._getframe().f_code.co_name)
+        if not Target.strip():
+            EmptyOrNot(Fun)
+        elif not '\\' in Target:
+            FormatJudge(Target,Fun)
         else:
             break
     TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
@@ -305,7 +327,7 @@ def Copy(Source):
     Type = Source.split("\\")[-1]
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        if Source == Target:    
+        if Source.lower() == Target.lower():    
             print "Cannot copy same file or folder to origin path"
             CountineOrExit()
         else:
@@ -353,10 +375,13 @@ def copyFiles(sourceDir, targetDir):
             copyFiles(sourceFile, targetFile)
 
 def Move(Source):
+    Fun = sys._getframe().f_code.co_name
     while 1:
         Target = raw_input ("Please input target folder path: ")
-        if not '\\' in Target:
-            FormatJudge(Target,sys._getframe().f_code.co_name)
+        if not Target.strip():
+            EmptyOrNot(Fun)
+        elif not '\\' in Target:
+            FormatJudge(Target,Fun)
         else:
             break
     TargetFolderEmptyOrNot(Source,Target,sys._getframe().f_code.co_name)
@@ -370,7 +395,7 @@ def Move(Source):
         CountineOrExit()
     Target = os.path.join(Target,Type)
     if os.path.exists(Target):
-        if Source == Target:
+        if Source.lower() == Target.lower():
             print "Cannot move file or folder to origin path"
             CountineOrExit()
         else:
@@ -486,9 +511,10 @@ def CountineOrExit():
             CountineOrExit()
             break
             
-def EmptyOrNot():
+def EmptyOrNot(Fun):
     print "Please do not input empty infos"
-    CountineOrExit()
+    if 'Main' in Fun:
+        CountineOrExit()
 
 def ExistOrNot(Dir):
     print "{0} is NOT Exist!" .format(Dir)
