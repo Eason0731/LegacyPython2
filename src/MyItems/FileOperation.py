@@ -184,7 +184,7 @@ def ReplaceOnTxt(Dir):
         if c == 0 and k != 0:
             print Original + " didn't found on " + Dir       
                 
-        if c == 0 and k == 0:
+        if k == 0:
             print "There is no txt files under folder " + Dir
 
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
