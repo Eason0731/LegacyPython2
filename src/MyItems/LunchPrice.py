@@ -6,7 +6,7 @@ def CalcPrice(Price,People,DFee,Discount,c):
     elif c == '2':
         print "The average price is : " + str(format(float(Price)/float(People),'.2f') )
 
-if __name__ == '__main__':
+def Main():
     while 1:
         c = raw_input("""
 1 -- Calculate single price
@@ -81,4 +81,7 @@ Please input:  """)
 
     print "                      "
     CalcPrice(Price,People,DFee,Discount,c)
-        
+
+if __name__ == '__main__':
+    Main()
+
