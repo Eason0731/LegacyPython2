@@ -5,6 +5,8 @@ def CalcPrice(Price,People,DFee,Discount,c):
         print "The price after discount is : " + str(format(float(Price) + float(DFee)/float(People) - float(Discount)/float(People),'.2f') )
     elif c == '2':
         print "The average price is : " + str(format(float(Price)/float(People),'.2f') )
+    print "                      "
+    CoutinueOrExit()
 
 def Main():
     while 1:
@@ -81,7 +83,16 @@ Please input:  """)
 
     print "                      "
     CalcPrice(Price,People,DFee,Discount,c)
+    
 
+def CoutinueOrExit():
+    while 1:
+        cc = raw_input("Coutinue Or Exit? (Y/N) ")
+        if cc.lower() == 'y':
+            Main()
+        elif cc.lower() == 'n':
+            exit(1)
+        
 if __name__ == '__main__':
     Main()
 
