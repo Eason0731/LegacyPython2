@@ -15,6 +15,7 @@ def Main():
 2 -- Calculate average price
 
 Please input:  """)
+        print "                      "
         if not c.strip():
             print "Cannot input empty infos , pleae input again"
         else:
