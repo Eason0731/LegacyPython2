@@ -19,7 +19,8 @@ def MainFunction():
 8. Rename file or folder
 9. Batch Rename file or folder
 10. Calculate the file or folder size
-11. View PC infos
+11. Decompress rar and zip file
+12. View PC infos
 
 
 =========  """+ GetDate() +"""  =========
@@ -137,8 +138,25 @@ Please choose : """)
             EmptyOrNot(Fun)
         else:
             ExistOrNot(Source)
-        
+
     elif Choose == '11':
+        print "==========Decompress rar and zip file============="  
+        cfile = raw_input("Please input compressed file path: ")
+        if os.path.exists(cfile):
+            FormatJudge(cfile,Fun)
+            extractpath = "".join(cfile.split('.')[:-1])
+            if 'zip' in cfile:
+                Unzip(cfile,extractpath)
+            elif 'rar' in cfile:
+                Unrar(cfile,extractpath)
+            else:
+                print "Cannot decompress " + cfile + " as its not the correct format"    
+        elif not cfile.strip():
+            EmptyOrNot(Fun)
+        else:
+            ExistOrNot(cfile)
+    
+    elif Choose == '12':
         ViewPCInfos.ViewPCInfos()
 
     else:
@@ -497,6 +515,40 @@ def GetSize(Source):
     print "=================== Finish ========================"
     CountineOrExit()
 
+def Unzip(cfile,extractpath):
+    print "=================== Start ========================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    import zipfile
+    zip_file = zipfile.ZipFile(cfile)
+    if os.path.exists(extractpath):
+        print extractpath + " is exists and won't cover!"
+    else:
+        os.mkdir(extractpath)
+        print cfile + " has been decompressed to " + extractpath + " successfullly!"
+    for names in zip_file.namelist():
+        zip_file.extract(names,extractpath)
+    zip_file.close()
+    print "=================== Finish ========================"
+    CountineOrExit()
+
+def Unrar(cfile,extractpath):
+    print "=================== Start ========================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    output = os.popen('pip list')
+    if 'rarfile' not in output.read():
+        os.system('pip install rarfile')
+        os.system('pip install unrar')
+    import rarfile
+    rar = rarfile.RarFile(cfile)
+    if os.path.exists(extractpath):
+        print extractpath + " is exists and won't cover!"
+    else:
+        os.mkdir(extractpath)
+        print cfile + " has been decompressed to " + extractpath + " successfullly!"
+    rar.extractall(extractpath)
+    rar.close()
+    print "=================== Finish ========================"
+    CountineOrExit()
 
 def CountineOrExit():
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
