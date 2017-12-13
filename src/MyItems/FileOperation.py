@@ -20,7 +20,8 @@ def MainFunction():
 9. Batch Rename file or folder
 10. Calculate the file or folder size
 11. Decompress rar and zip file
-12. View PC infos
+12. Compress file or folder to zip
+13. View PC infos
 
 
 =========  """+ GetDate() +"""  =========
@@ -155,8 +156,19 @@ Please choose : """)
             EmptyOrNot(Fun)
         else:
             ExistOrNot(cfile)
-    
+
     elif Choose == '12':
+        print "=========Compress file or folder to zip==========="  
+        Target = raw_input("Please input file or folder path: ")
+        if os.path.exists(Target):
+            FormatJudge(Target,Fun)
+            CompressZip(Target)
+        elif not Target.strip():
+            EmptyOrNot(Fun)
+        else:
+            ExistOrNot(Target)
+    
+    elif Choose == '13':
         ViewPCInfos.ViewPCInfos()
 
     else:
@@ -528,6 +540,7 @@ def Unzip(cfile,extractpath):
     for names in zip_file.namelist():
         zip_file.extract(names,extractpath)
     zip_file.close()
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
 
@@ -547,6 +560,41 @@ def Unrar(cfile,extractpath):
         print cfile + " has been decompressed to " + extractpath + " successfullly!"
     rar.extractall(extractpath)
     rar.close()
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+    print "=================== Finish ========================"
+    CountineOrExit()
+
+def CompressZip(Target):
+    import zipfile
+    print "=================== Start ========================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    if os.path.isdir(Target):
+        zipfilename = "\\".join(Target.split('\\'))+".zip"
+        types = 'dir'
+    elif os.path.isfile(Target):
+        zipfilename = os.path.splitext(Target)[0]+'.zip'
+        types = 'file'
+    if 'file' in types:
+        if os.path.exists(zipfilename):
+            print zipfilename + " is exists and won't cover!"
+        else:
+            cfile = zipfile.ZipFile(zipfilename,'w',zipfile.ZIP_DEFLATED,allowZip64=True)
+            os.chdir(os.path.dirname(Target)) 
+            myfile = "".join(Target.split('\\')[-1])
+            cfile.write(myfile)
+            print Target + " has been compressed as " + zipfilename + " succeessfully!"
+            cfile.close()
+    if 'dir' in types:
+        if os.path.exists(zipfilename):
+            print zipfilename + " is exists and won't cover!"
+        else:
+            cfile = zipfile.ZipFile(zipfilename,'w',zipfile.ZIP_DEFLATED,allowZip64=True)
+            for dirpath, dirnames, filenames in os.walk(Target):  
+                for filename in filenames:  
+                    cfile.write(os.path.join(dirpath,filename))
+            print Target + " has been compressed as " + zipfilename + " succeessfully!"
+            cfile.close()
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
 
