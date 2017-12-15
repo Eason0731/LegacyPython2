@@ -145,13 +145,7 @@ Please choose : """)
         cfile = raw_input("Please input compressed file path: ")
         if os.path.exists(cfile):
             FormatJudge(cfile,Fun)
-            extractpath = "".join(cfile.split('.')[:-1])
-            if 'zip' in cfile:
-                Unzip(cfile,extractpath)
-            elif 'rar' in cfile:
-                Unrar(cfile,extractpath)
-            else:
-                print "Cannot decompress " + cfile + " as its not the correct format"    
+            Decompress(cfile)
         elif not cfile.strip():
             EmptyOrNot(Fun)
         else:
@@ -527,39 +521,37 @@ def GetSize(Source):
     print "=================== Finish ========================"
     CountineOrExit()
 
-def Unzip(cfile,extractpath):
+def Decompress(cfile):
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    import zipfile
-    zip_file = zipfile.ZipFile(cfile)
-    if os.path.exists(extractpath):
-        print extractpath + " is exists and won't cover!"
+    extractpath = "".join(cfile.split('.')[:-1])
+    if 'zip' in cfile:
+        import zipfile
+        zip_file = zipfile.ZipFile(cfile)
+        if os.path.exists(extractpath):
+            print extractpath + " is exists and won't cover!"
+        else:
+            os.mkdir(extractpath)
+            for names in zip_file.namelist():
+                zip_file.extract(names,extractpath)
+            print cfile + " has been decompressed to " + extractpath + " successfullly!"
+            zip_file.close()
+    elif 'rar' in cfile:
+        output = os.popen('pip list')
+        if 'rarfile' not in output.read():
+            os.system('pip install rarfile')
+            os.system('pip install unrar')
+        import rarfile
+        rar = rarfile.RarFile(cfile)
+        if os.path.exists(extractpath):
+            print extractpath + " is exists and won't cover!"
+        else:
+            os.mkdir(extractpath)
+            rar.extractall(extractpath)
+            print cfile + " has been decompressed to " + extractpath + " successfullly!"
+            rar.close()  
     else:
-        os.mkdir(extractpath)
-        print cfile + " has been decompressed to " + extractpath + " successfullly!"
-    for names in zip_file.namelist():
-        zip_file.extract(names,extractpath)
-    zip_file.close()
-    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
-    print "=================== Finish ========================"
-    CountineOrExit()
-
-def Unrar(cfile,extractpath):
-    print "=================== Start ========================="
-    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    output = os.popen('pip list')
-    if 'rarfile' not in output.read():
-        os.system('pip install rarfile')
-        os.system('pip install unrar')
-    import rarfile
-    rar = rarfile.RarFile(cfile)
-    if os.path.exists(extractpath):
-        print extractpath + " is exists and won't cover!"
-    else:
-        os.mkdir(extractpath)
-        print cfile + " has been decompressed to " + extractpath + " successfullly!"
-    rar.extractall(extractpath)
-    rar.close()
+        print "Cannot decompress " + cfile + " as its not the correct format"    
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
