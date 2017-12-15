@@ -33,90 +33,98 @@ Please choose : """)
     if Choose == '1':
         print "===========Replace content on txt files============"
         Dir = raw_input ("Please input folder path: ")
-        if os.path.exists(Dir):
-            FormatJudge(Dir,Fun)
-            ReplaceOnTxt(Dir)
-        elif not Dir.strip():
+        if not Dir.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Dir)
+            if os.path.exists(Dir):
+                FormatJudge(Dir,Fun)
+                ReplaceOnTxt(Dir)
+            else:
+                ExistOrNot(Dir)
                                   
     elif Choose == '2':
         print "===============Delete file or folder==============="
         Dir = raw_input ("Please input folder or file path: ")
-        if os.path.exists(Dir):
-            FormatJudge(Dir,Fun)
-            Delete(Dir)
-        elif not Dir.strip():
+        if not Dir.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Dir)
+            if os.path.exists(Dir):
+                FormatJudge(Dir,Fun)
+                Delete(Dir)
+            else:
+                ExistOrNot(Dir)
 
     elif Choose == '3':
         print "===========Batch Delete files or folder =========="
         Dir  = raw_input ("Please input folder path: ")
-        if os.path.exists(Dir):
-            FormatJudge(Dir,Fun)
-            BatchAndFindOnDirs(Dir,'Del')
-        elif not Dir.strip():
+        if not Dir.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Dir)
+            if os.path.exists(Dir):
+                FormatJudge(Dir,Fun)
+                BatchAndFindOnDirs(Dir,'Del')
+            else:
+                ExistOrNot(Dir)
 
     elif Choose == '4':
         print "===============Copy file or folder================="
         Source = raw_input ("Please input folder or file path: ")
-        if os.path.exists(Source):
-            FormatJudge(Source,Fun)
-            Copy(Source)
-        elif not Source.strip():
+        if not Source.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Source)
+            if os.path.exists(Source):
+                FormatJudge(Source,Fun)
+                Copy(Source)
+            else:
+                ExistOrNot(Source)
             
     elif Choose == '5':
         print "===============Move file or folder================="
         Source = raw_input ("Please input source folder or file path: ")
-        if os.path.exists(Source):
-            FormatJudge(Source,Fun)
-            Move(Source)
-        elif not Source.strip():
+        if not Source.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Source)
+            if os.path.exists(Source):
+                FormatJudge(Source,Fun)
+                Move(Source)
+            else:
+                ExistOrNot(Source)
                     
     elif Choose == '6':
         print "=============Find contents on txt files============"
         Dir  = raw_input ("Please input folder path: ")
-        if os.path.exists(Dir):
-            FormatJudge(Dir,Fun)
-            FindOnTxt(Dir)
-        elif not Dir.strip():
+        if not Dir.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Dir)
+            if os.path.exists(Dir):
+                FormatJudge(Dir,Fun)
+                FindOnTxt(Dir)
+            else:
+                ExistOrNot(Dir)
                 
     elif Choose == '7':
         print "===========Find files or folder on folder=========="
         Dir  = raw_input ("Please input folder path: ")
-        if os.path.exists(Dir):
-            FormatJudge(Dir,Fun)
-            BatchAndFindOnDirs(Dir,'Find')
-        elif not Dir.strip():
+        if not Dir.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Dir)
+            if os.path.exists(Dir):
+                FormatJudge(Dir,Fun)
+                BatchAndFindOnDirs(Dir,'Find')
+            else:
+                ExistOrNot(Dir)
 
     elif Choose == '8':
         print "===============Rename file or folder==============="  
         Source = raw_input ("Please input folder or file path: ")
-        if os.path.exists(Source):
-            FormatJudge(Source,Fun)
-            Rename(Source)
-        elif not Source.strip():
+        if not Source.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Source)
+            if os.path.exists(Source):
+                FormatJudge(Source,Fun)
+                Rename(Source)
+            else:
+                ExistOrNot(Source)
 
     elif Choose == '9':
         print "============Batch Rename files or folder=========="
@@ -132,35 +140,38 @@ Please choose : """)
     elif Choose == '10':
         print "========Calculate the file or folder size=========="  
         Source = raw_input ("Please input folder or file path: ")
-        if os.path.exists(Source):
-            FormatJudge(Source,Fun)
-            GetSize(Source)
-        elif not Source.strip():
+        if not Source.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Source)
+            if os.path.exists(Source):
+                FormatJudge(Source,Fun)
+                GetSize(Source)
+            else:
+                ExistOrNot(Source)
 
     elif Choose == '11':
         print "==========Decompress rar and zip file============="  
         cfile = raw_input("Please input compressed file path: ")
-        if os.path.exists(cfile):
-            FormatJudge(cfile,Fun)
-            Decompress(cfile)
-        elif not cfile.strip():
+        if not cfile.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(cfile)
+            if os.path.exists(cfile):
+                FormatJudge(cfile,Fun)
+                Decompress(cfile)
+            else:
+                ExistOrNot(cfile)
 
     elif Choose == '12':
         print "=========Compress file or folder to zip==========="  
         Target = raw_input("Please input file or folder path: ")
-        if os.path.exists(Target):
-            FormatJudge(Target,Fun)
-            CompressZip(Target)
-        elif not Target.strip():
+        if not Target.strip():
             EmptyOrNot(Fun)
         else:
-            ExistOrNot(Target)
+            if os.path.exists(Target):
+                FormatJudge(Target,Fun)
+                CompressZip(Target)
+            else:
+                ExistOrNot(Target)
     
     elif Choose == '13':
         ViewPCInfos.ViewPCInfos()
