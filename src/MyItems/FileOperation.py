@@ -151,15 +151,15 @@ Please choose : """)
 
     elif Choose == '11':
         print "==========Decompress rar and zip file============="  
-        cfile = raw_input("Please input compressed file path: ")
-        if not cfile.strip():
+        Source = raw_input("Please input compressed file path: ")
+        if not Source.strip():
             EmptyOrNot(Fun)
         else:
-            if os.path.exists(cfile):
-                FormatJudge(cfile,Fun)
-                Decompress(cfile)
+            if os.path.exists(Source):
+                FormatJudge(Source,Fun)
+                Decompress(Source)
             else:
-                ExistOrNot(cfile)
+                ExistOrNot(Source)
 
     elif Choose == '12':
         print "=========Compress file or folder to zip==========="  
