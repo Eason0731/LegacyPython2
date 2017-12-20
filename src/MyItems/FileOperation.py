@@ -532,37 +532,37 @@ def GetSize(Source):
     print "=================== Finish ========================"
     CountineOrExit()
 
-def Decompress(cfile):
+def Decompress(Source):
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    extractpath = "".join(cfile.split('.')[:-1])
-    if 'zip' in cfile:
+    UnzipPath = "".join(Source.split('.')[:-1])
+    if 'zip' in Source:
         import zipfile
-        zip_file = zipfile.ZipFile(cfile)
-        if os.path.exists(extractpath):
-            print extractpath + " is exists and won't cover!"
+        ZFile = zipfile.ZipFile(Source)
+        if os.path.exists(UnzipPath):
+            print UnzipPath + " is exists and won't cover!"
         else:
-            os.mkdir(extractpath)
-            for names in zip_file.namelist():
-                zip_file.extract(names,extractpath)
-            print cfile + " has been decompressed to " + extractpath + " successfullly!"
-            zip_file.close()
-    elif 'rar' in cfile:
-        output = os.popen('pip list')
-        if 'rarfile' not in output.read():
+            os.mkdir(UnzipPath)
+            for names in ZFile.namelist():
+                ZFile.extract(names,UnzipPath)
+            print Source + " has been decompressed to " + UnzipPath + " successfullly!"
+            ZFile.close()
+    elif 'rar' in Source:
+        Output = os.popen('pip list')
+        if 'rarfile' not in Output.read():
             os.system('pip install rarfile')
             os.system('pip install unrar')
         import rarfile
-        rar = rarfile.RarFile(cfile)
-        if os.path.exists(extractpath):
-            print extractpath + " is exists and won't cover!"
+        rar = rarfile.RarFile(Source)
+        if os.path.exists(UnzipPath):
+            print UnzipPath + " is exists and won't cover!"
         else:
-            os.mkdir(extractpath)
-            rar.extractall(extractpath)
-            print cfile + " has been decompressed to " + extractpath + " successfullly!"
+            os.mkdir(UnzipPath)
+            rar.extractall(UnzipPath)
+            print Source + " has been decompressed to " + UnzipPath + " successfullly!"
             rar.close()  
     else:
-        print "Cannot decompress " + cfile + " as its not the correct format"    
+        print "Cannot decompress " + Source + " as its not the correct format"    
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
