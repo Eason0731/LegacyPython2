@@ -163,15 +163,15 @@ Please choose : """)
 
     elif Choose == '12':
         print "=========Compress file or folder to zip==========="  
-        Target = raw_input("Please input file or folder path: ")
-        if not Target.strip():
+        Source = raw_input("Please input file or folder path: ")
+        if not Source.strip():
             EmptyOrNot(Fun)
         else:
-            if os.path.exists(Target):
-                FormatJudge(Target,Fun)
-                CompressZip(Target)
+            if os.path.exists(Source):
+                FormatJudge(Source,Fun)
+                CompressZip(Source)
             else:
-                ExistOrNot(Target)
+                ExistOrNot(Source)
     
     elif Choose == '13':
         ViewPCInfos.ViewPCInfos()
