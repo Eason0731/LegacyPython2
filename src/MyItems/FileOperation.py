@@ -567,36 +567,36 @@ def Decompress(Source):
     print "=================== Finish ========================"
     CountineOrExit()
 
-def CompressZip(Target):
+def CompressZip(Source):
     import zipfile
     print "=================== Start ========================="
     print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
-    if os.path.isdir(Target):
-        zipfilename = "\\".join(Target.split('\\'))+".zip"
+    if os.path.isdir(Source):
+        ZFile = "\\".join(Source.split('\\'))+".zip"
         types = 'dir'
-    elif os.path.isfile(Target):
-        zipfilename = os.path.splitext(Target)[0]+'.zip'
+    elif os.path.isfile(Source):
+        ZFile = os.path.splitext(Source)[0]+'.zip'
         types = 'file'
     if 'file' in types:
-        if os.path.exists(zipfilename):
-            print zipfilename + " is exists and won't cover!"
+        if os.path.exists(ZFile):
+            print ZFile + " is exists and won't cover!"
         else:
-            cfile = zipfile.ZipFile(zipfilename,'w',zipfile.ZIP_DEFLATED,allowZip64=True)
-            os.chdir(os.path.dirname(Target)) 
-            myfile = "".join(Target.split('\\')[-1])
-            cfile.write(myfile)
-            print Target + " has been compressed as " + zipfilename + " succeessfully!"
-            cfile.close()
+            Zip_File = zipfile.ZipFile(ZFile,'w',zipfile.ZIP_DEFLATED,allowZip64=True)
+            os.chdir(os.path.dirname(Source)) 
+            Myfile = "".join(Source.split('\\')[-1])
+            Zip_File.write(Myfile)
+            print Source + " has been compressed as " + ZFile + " succeessfully!"
+            Zip_File.close()
     if 'dir' in types:
-        if os.path.exists(zipfilename):
-            print zipfilename + " is exists and won't cover!"
+        if os.path.exists(ZFile):
+            print ZFile + " is exists and won't cover!"
         else:
-            cfile = zipfile.ZipFile(zipfilename,'w',zipfile.ZIP_DEFLATED,allowZip64=True)
-            for dirpath, dirnames, filenames in os.walk(Target):  
+            Zip_File = zipfile.ZipFile(ZFile,'w',zipfile.ZIP_DEFLATED,allowZip64=True)
+            for dirpath, dirnames, filenames in os.walk(Source):  
                 for filename in filenames:  
-                    cfile.write(os.path.join(dirpath,filename))
-            print Target + " has been compressed as " + zipfilename + " succeessfully!"
-            cfile.close()
+                    Zip_File.write(os.path.join(dirpath,filename))
+            print Source + " has been compressed as " + ZFile + " succeessfully!"
+            Zip_File.close()
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
