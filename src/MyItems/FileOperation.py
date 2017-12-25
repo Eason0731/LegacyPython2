@@ -281,58 +281,37 @@ def BatchAndFindOnDirs(Dir,Fun):
         print "=================== Start ========================="
         print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
         for root,dirs,filenames in os.walk(Dir):
-            for myFile in filenames:
-                if Find.lower() in myFile.lower():
-                    k = k + 1
-                    F = os.path.join(root,myFile)
-                    if 'Del' in Fun:                        
-                        os.remove(F)
-                        if not os.path.exists(F):
-                            print  F + " has been deleted successfully!"
-                            print  "  "
-                        else:
-                            print  F + " has been deleted failed!"
+            FTypes = [filenames,dirs]
+            for FD in FTypes:
+                for myFile in FD:
+                    if Find.lower() in myFile.lower():
+                        k = k + 1
+                        F = os.path.join(root,myFile)
+                        if 'Del' in Fun:
+                            if os.path.isfile(F):
+                                os.remove(F)
+                            elif os.path.isdir(F):
+                                shutil.rmtree(F)
+                            if not os.path.exists(F):
+                                print  F + " has been deleted successfully!"
+                                print  "  "
+                            else:
+                                print  F + " has been deleted failed!"
                         
-                    elif 'Find' in Fun:
-                        print Find + " has found on " + F
-                        print  "  "
-                    elif 'Rename' in Fun:
-                        Find = Find.lower()
-                        myFile = myFile.lower()
-                        OldName = os.path.join(root,myFile)
-                        myFile = myFile.replace(Find,Replace)
-                        NewName = os.path.join(root,myFile)
-                        os.rename (OldName,NewName)
-                        if os.path.exists(NewName):
-                            print OldName +" has been replaced as " + NewName + " successfully!"
-                            print "   "
-                            
-            for myFolder in dirs:
-                if Find.lower() in myFolder.lower():
-                    k = k + 1
-                    F = os.path.join(root,myFolder)
-                    if 'Del' in Fun:                        
-                        shutil.rmtree(F)
-                        if not os.path.exists(F):
-                            print  F + " has been deleted successfully!"
+                        elif 'Find' in Fun:
+                            print Find + " has found on " + F
                             print  "  "
-                        else:
-                            print  F + " has been deleted failed!"
-                        
-                    elif 'Find' in Fun:
-                        print Find + " has found on " + F
-                        print  "  "
-                    elif 'Rename' in Fun:
-                        Find = Find.lower()
-                        myFolder = myFolder.lower()
-                        OldName = os.path.join(root,myFolder)
-                        myFolder = myFolder.replace(Find,Replace)
-                        NewName = os.path.join(root,myFolder)
-                        os.rename (OldName,NewName)
-                        if os.path.exists(NewName):
-                            print OldName +" has been replaced as " + NewName + " successfully!"
-                            print "   "
-        
+                        elif 'Rename' in Fun:
+                            Find = Find.lower()
+                            myFile = myFile.lower()
+                            OldName = os.path.join(root,myFile)
+                            myFile = myFile.replace(Find,Replace)
+                            NewName = os.path.join(root,myFile)
+                            os.rename (OldName,NewName)
+                            if os.path.exists(NewName):
+                                print OldName +" has been replaced as " + NewName + " successfully!"
+                                print "   "
+            
         if k == 0:
             print Find + " didn't found on " + Dir
         print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
