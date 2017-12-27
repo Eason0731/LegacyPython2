@@ -4,7 +4,7 @@ import re
 import shutil
 import time
 import sys
-import ViewPCInfos
+#import ViewPCInfos
 
 def MainFunction():
     Choose = raw_input ("""
@@ -21,7 +21,8 @@ def MainFunction():
 10. Calculate the file or folder size
 11. Decompress rar and zip file
 12. Compress file or folder to zip
-13. View PC infos
+13. Open file or folder
+14. View PC infos
 
 
 =========  """+ GetDate() +"""  =========
@@ -174,6 +175,18 @@ Please choose : """)
                 ExistOrNot(Source)
     
     elif Choose == '13':
+        print "===============Open file or folder================="
+        Dir = raw_input ("Please input file or folder path: ")
+        if not Dir.strip():
+            EmptyOrNot(Fun)
+        else:
+            if os.path.exists(Dir):
+                FormatJudge(Dir,Fun)
+                OpenFileOrFolder(Dir)
+            else:
+                ExistOrNot(Dir)
+    
+    elif Choose == '14':
         ViewPCInfos.ViewPCInfos()
 
     else:
@@ -576,6 +589,15 @@ def CompressZip(Source):
                     Zip_File.write(os.path.join(dirpath,filename))
             print Source + " has been compressed as " + ZFile + " succeessfully!"
             Zip_File.close()
+    print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
+    print "=================== Finish ========================"
+    CountineOrExit()
+
+def OpenFileOrFolder(Dir):
+    print "=================== Start ========================="
+    print time.strftime("Start Time :%Y-%m-%d %X",time.localtime())
+    os.startfile(Dir)
+    print Dir + " has been opened sucessfully!"
     print time.strftime("End Time :%Y-%m-%d %X",time.localtime())
     print "=================== Finish ========================"
     CountineOrExit()
