@@ -4,7 +4,7 @@ import re
 import shutil
 import time
 import sys
-#import ViewPCInfos
+import ViewPCInfos
 
 def MainFunction():
     Choose = raw_input ("""
@@ -341,6 +341,8 @@ def Copy(Source):
             EmptyOrNot(Fun)
         elif not '\\' in Target:
             FormatJudge(Target,Fun)
+        elif os.path.isfile(Target):
+            print "Cannot copy to file path " + Target + " please input again!"
         else:
             break
     TargetFolderEmptyOrNot(Source,Target,Fun)
@@ -409,6 +411,8 @@ def Move(Source):
             EmptyOrNot(Fun)
         elif not '\\' in Target:
             FormatJudge(Target,Fun)
+        elif os.path.isfile(Target):
+            print "Cannot move to file path " + Target + " please input again!"
         else:
             break
     TargetFolderEmptyOrNot(Source,Target,Fun)
