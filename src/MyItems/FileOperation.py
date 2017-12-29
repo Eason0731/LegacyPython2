@@ -607,6 +607,7 @@ def OpenFileOrFolder(Dir):
     CountineOrExit()
 
 def CountineOrExit():
+    print "==================================================="
     IsExit = raw_input ("Countine(Y) or Exit(N)? ")
     while(1):
         if IsExit.upper() == 'Y':
@@ -620,11 +621,16 @@ def CountineOrExit():
             break
             
 def EmptyOrNot(Fun):
+    print "==================================================="
     print "Please do not input empty infos"
     if 'Main' in Fun:
         CountineOrExit()
+    else:
+        print "==================================================="
+        
 
 def ExistOrNot(Dir):
+    print "==================================================="
     print "{0} is NOT Exist!" .format(Dir)
     CountineOrExit()
     
@@ -644,12 +650,16 @@ def OverwriteOrNot(Source,Target):
         
 def FormatJudge(Dir,Fun):
     if not '\\' in Dir:
+        print "==================================================="
         print "The format of " + Dir + " is incorrect! Should with '\\'"
         if 'Main' in Fun:
             CountineOrExit()
+        else:
+            print "==================================================="
 
 def TargetFolderEmptyOrNot(Source,Target,Fun):
      if not Target.strip():
+         print "==================================================="
          print "Do not input the empty infos. Please input again!"
          if 'Copy' in Fun:
              Copy(Source)
