@@ -4,7 +4,7 @@ import time
 
 def IE():
     if os.name == 'nt':
-        IEDriverFile =  os.path.join(os.path.abspath('..'),'Drivers','IEDriverServer.exe')
+        IEDriverFile =  os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','IEDriverServer.exe'))
         os.environ['webdriver.ie.driver'] = IEDriverFile
         driver = webdriver.Ie(IEDriverFile)
         driver.maximize_window()
@@ -14,9 +14,9 @@ def IE():
 
 def Chrome():
     if os.name == 'nt':
-        ChromeDrvier = os.path.join(os.path.abspath('..'),'Drivers','chromedriver.exe')
+        ChromeDrvier = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','chromedriver.exe'))
     elif os.name == 'posix':
-        ChromeDrvier = os.path.join(os.path.abspath('..'),'Drivers','chromedriver')
+        ChromeDrvier = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','chromedriver'))
     os.environ['webdriver.chrome.driver'] = ChromeDrvier
     driver = webdriver.Chrome(ChromeDrvier)
     driver.maximize_window()
@@ -24,13 +24,13 @@ def Chrome():
 
 def FireFox():
     if 'nt' in os.name:
-        FFDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver.exe')
+        FFDriver = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','geckodriver.exe'))
         FFBrowser = 'C:\Program Files\Mozilla Firefox'
         if not os.path.exists(os.path.join(FFBrowser,'geckodriver.exe')):
             shutil.copy(FFDriver,os.path.join(FFBrowser,'geckodriver.exe'))
         os.environ['PATH'] = FFBrowser
     elif 'posix' in os.name:
-        FFDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver')
+        FFDriver = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','geckodriver'))
         if not os.path.exists(os.path.join(FFBrowser,'geckodriver')):
             shutil.copy(FFDriver,os.path.join(FFBrowser,'geckodriver'))
         FFBrowser = 'Mac OS path of Firefox'
