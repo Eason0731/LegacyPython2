@@ -4,8 +4,7 @@ import time
 
 def IE():
     if os.name == 'nt':
-        IEDriverFile = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','IEDriverServer.exe'))
-        #IEDriverFile =  os.path.join(os.path.abspath('..'),os.path.abspath('..'),os.path.abspath('..'),'Drivers','IEDriverServer.exe')
+        IEDriverFile =  os.path.join(os.path.abspath('..'),'Drivers','IEDriverServer.exe')
         os.environ['webdriver.ie.driver'] = IEDriverFile
         driver = webdriver.Ie(IEDriverFile)
         driver.maximize_window()
@@ -15,25 +14,27 @@ def IE():
 
 def Chrome():
     if os.name == 'nt':
-        ChromeDrvier = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','chromedriver.exe'))
-        #ChromeDrvier = os.path.join(os.path.abspath('..'),'Drivers','chromedriver.exe')
+        ChromeDrvier = os.path.join(os.path.abspath('..'),'Drivers','chromedriver.exe')
     elif os.name == 'posix':
-        ChromeDrvier = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','chromedriver'))
-        #ChromeDrvier = os.path.join(os.path.abspath('..'),'Drivers','chromedriver')
+        ChromeDrvier = os.path.join(os.path.abspath('..'),'Drivers','chromedriver')
     os.environ['webdriver.chrome.driver'] = ChromeDrvier
     driver = webdriver.Chrome(ChromeDrvier)
     driver.maximize_window()
     return driver
 
 def FireFox():
-    if os.name == 'nt':
-        FireFoxDriver = 'C:\Program Files\Mozilla Firefox'
-        os.environ['PATH'] = FireFoxDriver
-    elif os.name == 'posix':
-        FireFoxDriver = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir,os.path.pardir,'Drivers','geckodriver'))
-        #FireFoxDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver')
-        os.environ['webdriver.gecko.driver'] = FireFoxDriver
-    driver = webdriver.Firefox(FireFoxDriver)
+    if 'nt' in os.name:
+        FFDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver.exe')
+        FFBrowser = 'C:\Program Files\Mozilla Firefox'
+        if not os.path.exists(os.path.join(FFBrowser,'geckodriver.exe')):
+            shutil.copy(FFDriver,os.path.join(FFBrowser,'geckodriver.exe'))
+        os.environ['PATH'] = FFBrowser
+    elif 'posix' in os.name:
+        FFDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver')
+        if not os.path.exists(os.path.join(FFBrowser,'geckodriver')):
+            shutil.copy(FFDriver,os.path.join(FFBrowser,'geckodriver'))
+        FFBrowser = 'Mac OS path of Firefox'
+    driver = webdriver.Firefox(FFBrowser)
     driver.maximize_window()
     return driver
 
