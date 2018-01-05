@@ -1,6 +1,7 @@
 import os
 from selenium import webdriver
 import time
+import shutil
 
 def IE():
     if os.name == 'nt':
