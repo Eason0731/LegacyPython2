@@ -1,6 +1,7 @@
 import os
 from selenium import webdriver
 import time
+import shutil
 
 def IE():
     if os.name == 'nt':
@@ -23,13 +24,18 @@ def Chrome():
     return driver
 
 def FireFox():
-    if os.name == 'nt':
-        FireFoxDriver = 'C:\Program Files\Mozilla Firefox'
-        os.environ['PATH'] = FireFoxDriver
-    elif os.name == 'posix':
-        FireFoxDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver')
-        os.environ['webdriver.gecko.driver'] = FireFoxDriver
-    driver = webdriver.Firefox(FireFoxDriver)
+    if 'nt' in os.name:
+        FFDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver.exe')
+        FFBrowser = 'C:\Program Files\Mozilla Firefox'
+        if not os.path.exists(os.path.join(FFBrowser,'geckodriver.exe')):
+            shutil.copy(FFDriver,os.path.join(FFBrowser,'geckodriver.exe'))
+        os.environ['PATH'] = FFBrowser
+    elif 'posix' in os.name:
+        FFDriver = os.path.join(os.path.abspath('..'),'Drivers','geckodriver')
+        if not os.path.exists(os.path.join(FFBrowser,'geckodriver')):
+            shutil.copy(FFDriver,os.path.join(FFBrowser,'geckodriver'))
+        FFBrowser = 'Mac OS path of Firefox'
+    driver = webdriver.Firefox(FFBrowser)
     driver.maximize_window()
     return driver
 
