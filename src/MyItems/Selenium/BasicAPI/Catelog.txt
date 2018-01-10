@@ -19,3 +19,8 @@
 16 --- UseJavaScriptToControlScrollbar
 19 --- HandleCookie
 20 --- GetAttributes
+
+Examples:
+UseJavaScriptOnSogou
+UnittestDemo
+JohnTestDemo
